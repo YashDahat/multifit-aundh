@@ -8,9 +8,9 @@ import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
 import { CreateTrainerData } from '@/types/trainer';
 
-export default function AdminTrainersPage(): JSX.Element {
+export default function AdminTrainersPage(): React.ReactElement {
   const { data: trainers, isLoading, isError, error } = useTrainers();
-  const { mutate: createTrainer, isLoading: isCreating, isSuccess: createSuccess, isError: createError } = useCreateTrainer();
+  const { mutate: createTrainer, isPending: isCreating, isSuccess: createSuccess, isError: createError } = useCreateTrainer();
 
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [newTrainer, setNewTrainer] = useState<CreateTrainerData>({

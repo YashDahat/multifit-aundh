@@ -2,7 +2,7 @@ import React from 'react';
 import AdminLayout from '@/components/AdminLayout';
 import ProtectedRoute from '@/components/ProtectedRoute';
 
-export default function AdminDashboardPage(): JSX.Element {
+export default function AdminDashboardPage(): React.ReactElement {
   return (
     <ProtectedRoute>
       <AdminLayout>

@@ -3,7 +3,7 @@ import Link from 'next/link';
 import TestimonialsSection from '@/components/TestimonialsSection';
 import TrialForm from '@/components/TrialForm';
 
-const HomePage = (): JSX.Element => {
+const HomePage = (): React.ReactElement => {
   return (
     <Layout>
       {/* Hero Section */}

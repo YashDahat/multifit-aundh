@@ -1,9 +1,9 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { login as authServiceLogin } from '../services/authService';
 import { AuthResponse, LoginCredentials } from '../types/auth';
 
-interface AuthContextType {
+export interface AuthContextType {
   isAuthenticated: boolean;
   isAdmin: boolean;
   token: string | null;

@@ -4,7 +4,7 @@ import { AuthProvider } from '../context/AuthContext';
 
 const queryClient = new QueryClient();
 
-function MyApp({ Component, pageProps }: AppProps): JSX.Element {
+function MyApp({ Component, pageProps }: AppProps): React.ReactElement {
   return (
     <QueryClientProvider client={queryClient}>
       <AuthProvider>

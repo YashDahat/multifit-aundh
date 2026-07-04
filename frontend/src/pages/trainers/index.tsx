@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { FaUsers, FaExclamationCircle } from 'react-icons/fa';
 import { ImSpinner2 } from 'react-icons/im';
 
-const TrainersPage = (): JSX.Element => {
+const TrainersPage = (): React.ReactElement => {
   const { data: trainers, isLoading, isError, error } = useTrainers();
 
   return (

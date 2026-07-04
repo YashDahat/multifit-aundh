@@ -1,18 +1,22 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { useAuth } from '@/hooks/useAuth';
 
 interface AdminLayoutProps {
   children: React.ReactNode;
 }
 
-export default function AdminLayout({ children }: AdminLayoutProps): JSX.Element {
+export default function AdminLayout({ children }: AdminLayoutProps): React.ReactElement {
   const { logout } = useAuth();
+  const router = useRouter();
 
-  const navLinkClass = ({ isActive }: { isActive: boolean }) =>
-    `py-2 px-4 block rounded-md transition-all duration-200 ${
+  const navLinkClass = (href: string, exact = false) => {
+    const isActive = exact ? router.pathname === href : router.pathname.startsWith(href);
+    return `py-2 px-4 block rounded-md transition-all duration-200 ${
       isActive ? 'bg-[#333333] text-[#DFFF00]' : 'text-[#F5F5F5] hover:bg-[#333333]'
     }`;
+  };
 
   return (
     <div className="flex min-h-screen">
@@ -22,24 +26,24 @@ export default function AdminLayout({ children }: AdminLayoutProps): JSX.Element
         <nav className="flex-grow">
           <ul>
             <li className="mb-2">
-              <NavLink to="/admin" className={navLinkClass} end>
+              <Link href="/admin" className={navLinkClass('/admin', true)}>
                 Dashboard
-              </NavLink>
+              </Link>
             </li>
             <li className="mb-2">
-              <NavLink to="/admin/trainers" className={navLinkClass}>
+              <Link href="/admin/trainers" className={navLinkClass('/admin/trainers')}>
                 Trainers
-              </NavLink>
+              </Link>
             </li>
             <li className="mb-2">
-              <NavLink to="/admin/testimonials" className={navLinkClass}>
+              <Link href="/admin/testimonials" className={navLinkClass('/admin/testimonials')}>
                 Testimonials
-              </NavLink>
+              </Link>
             </li>
             <li className="mb-2">
-              <NavLink to="/admin/leads" className={navLinkClass}>
+              <Link href="/admin/leads" className={navLinkClass('/admin/leads')}>
                 Leads
-              </NavLink>
+              </Link>
             </li>
           </ul>
         </nav>
