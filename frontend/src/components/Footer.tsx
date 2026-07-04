@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Footer = (): React.ReactElement => {
+const Footer = (): JSX.Element => {
   const currentYear = new Date().getFullYear();
 
   return (
@@ -17,14 +17,14 @@ const Footer = (): React.ReactElement => {
         {/* Column 2: Contact Information */}
         <div>
           <h3 className="text-xl font-semibold text-[#DFFF00] mb-4">Contact Us</h3>
-          <p className="mb-2 text-gray-300">
+          <p className="mb-2">
             Multifit Aundh , D.P. Road Medipoint Hospital Road, opp. to Indian Bank, Aundh, Pune, Maharashtra 411067
           </p>
-          <p className="mb-4 text-gray-300">
-            Phone: <a href="tel:07507008009" className="hover:text-[#DFFF00] transition-all duration-200">075070 08009</a>
+          <p className="mb-4">
+            Phone: <a href="tel:07507008009" className="hover:text-[#DFFF00] transition-colors duration-200">075070 08009</a>
           </p>
-          <h4 className="font-semibold text-[#DFFF00] mb-2">Opening Hours:</h4>
-          <ul className="text-gray-300">
+          <h4 className="font-semibold mb-2">Opening Hours:</h4>
+          <ul>
             <li>Monday - Friday: 6:00 AM - 10:00 PM</li>
             <li>Saturday: 7:00 AM - 8:00 PM</li>
             <li>Sunday: 8:00 AM - 6:00 PM</li>
@@ -39,15 +39,16 @@ const Footer = (): React.ReactElement => {
             width="100%"
             height="200"
             style={{ border: 0 }}
-            allowFullScreen
+            allowFullScreen={true}
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
+            title="MultiFit Aundh Location"
           ></iframe>
         </div>
       </div>
 
       {/* Copyright Notice */}
-      <div className="mt-8 pt-8 border-t border-gray-700 text-center text-gray-500 text-sm">
+      <div className="mt-8 pt-8 border-t border-gray-700 text-center text-gray-400">
         © {currentYear} MultiFit Aundh. All rights reserved.
       </div>
     </footer>

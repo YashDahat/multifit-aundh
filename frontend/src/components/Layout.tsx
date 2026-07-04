@@ -1,20 +1,18 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import FloatingWhatsAppButton from '@/components/FloatingWhatsAppButton';
 import LocalBusinessSchema from '@/components/LocalBusinessSchema';
 
 interface LayoutProps {
-  children: React.ReactNode;
+  children: ReactNode;
 }
 
-const Layout: React.FC<LayoutProps> = ({ children }) => {
+const Layout = ({ children }: LayoutProps): React.ReactElement => {
   return (
-    <div className="flex flex-col min-h-screen">
+    <div>
       <Header />
-      <main className="flex-grow">
-        {children}
-      </main>
+      {children}
       <Footer />
       <FloatingWhatsAppButton />
       <LocalBusinessSchema />
