@@ -2,7 +2,6 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import Layout from '@/components/Layout';
 import { useMembershipPlans } from '../hooks/useMemberships';
-import clsx from 'clsx';
 
 const MembershipPage: React.FC = () => {
   const navigate = useNavigate();

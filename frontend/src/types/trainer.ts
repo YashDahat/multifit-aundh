@@ -3,4 +3,5 @@ export interface Trainer {
   name: string;
   specialization: string;
   imageUrl: string;
+  description?: string;
 }

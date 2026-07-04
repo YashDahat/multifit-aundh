@@ -33,7 +33,6 @@ import {
   AlertDialogContent,
   AlertDialogDescription,
   AlertDialogTitle,
-  AlertDialogTrigger,
 } from '@radix-ui/react-alert-dialog';
 
 // Minimal placeholder types to allow compilation as per instruction

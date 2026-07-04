@@ -15,14 +15,13 @@ import {
   AlertDialogCancel,
   AlertDialogContent,
   AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
   AlertDialogTitle,
-  AlertDialogTrigger,
 } from '@radix-ui/react-alert-dialog';
+const AlertDialogHeader = ({ children, className }: { children: React.ReactNode; className?: string }) => <div className={className}>{children}</div>;
+const AlertDialogFooter = ({ children, className }: { children: React.ReactNode; className?: string }) => <div className={className}>{children}</div>;
 import { Label } from '@radix-ui/react-label';
-import { Input } from '@/components/ui/Input';
-import { Textarea } from '@/components/ui/Textarea';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
 
 const AdminTrainersPage: React.FC = () => {
   const { data: trainers, isLoading, isError, error, refetch } = useAdminTrainers();

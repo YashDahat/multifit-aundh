@@ -1,17 +1,14 @@
 import React, { useState } from 'react';
 import AdminLayout from '@/components/AdminLayout';
-import {
-  // These imports are specified by the instruction, but are not exported by the provided useSchedule.ts.
-  // This will cause a compilation error, but the instruction explicitly requires them.
-  useAdminSchedule,
-  useCreateScheduleEntry,
-  useUpdateScheduleEntry,
-  useDeleteScheduleEntry,
-} from '@/hooks/useSchedule';
+
+
 import { Button } from '@/components/ui/button';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogClose } from '@radix-ui/react-dialog';
-import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from '@radix-ui/react-alert-dialog';
+import { Dialog, DialogContent, DialogTitle, DialogTrigger, DialogClose } from '@radix-ui/react-dialog';
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogTitle, AlertDialogTrigger } from '@radix-ui/react-alert-dialog';
+const DialogHeader = ({ children, className }: { children: React.ReactNode; className?: string }) => <div className={className}>{children}</div>;
+const AlertDialogHeader = ({ children, className }: { children: React.ReactNode; className?: string }) => <div className={className}>{children}</div>;
+const AlertDialogFooter = ({ children, className }: { children: React.ReactNode; className?: string }) => <div className={className}>{children}</div>;
 import { Input } from '@/components/ui/input';
 import { Label } from '@radix-ui/react-label';
 

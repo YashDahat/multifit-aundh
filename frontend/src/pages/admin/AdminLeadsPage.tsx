@@ -1,6 +1,6 @@
 import React from 'react';
 import AdminLayout from '@/components/AdminLayout';
-import { useAdminLeads } from '../hooks/useLeads';
+import { useAdminLeads } from '../../hooks/useLeads';
 
 // Define the expected structure of a TrialLeadDto based on the instruction
 interface TrialLeadDto {

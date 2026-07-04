@@ -4,7 +4,6 @@ import * as z from 'zod';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
-import { LoginCredentials } from '../types/auth';
 import Layout from '@/components/Layout';
 
 const loginSchema = z.object({
