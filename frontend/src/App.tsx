@@ -11,7 +11,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 
 const queryClient = new QueryClient();
 
-const App = (): JSX.Element => {
+const App = (): React.ReactElement => {
   return (
     <BrowserRouter>
       <QueryClientProvider client={queryClient}>

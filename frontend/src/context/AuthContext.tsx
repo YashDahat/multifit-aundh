@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import React, { createContext, useState, useEffect, ReactNode } from 'react';
 import { login as authServiceLogin } from '../services/authService';
 import { LoginCredentials, AuthResponse } from '../types/auth';
 
@@ -15,7 +15,7 @@ interface AuthProviderProps {
   children: ReactNode;
 }
 
-export const AuthProvider = ({ children }: AuthProviderProps): JSX.Element => {
+export const AuthProvider = ({ children }: AuthProviderProps): React.ReactElement => {
   const [token, setToken] = useState<string | null>(null);
   const [user, setUser] = useState<{ role: string } | null>(null);
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
@@ -63,4 +63,5 @@ export const AuthProvider = ({ children }: AuthProviderProps): JSX.Element => {
   );
 };
 
-export { AuthContext, AuthContextType };
+export { AuthContext };
+export type { AuthContextType };

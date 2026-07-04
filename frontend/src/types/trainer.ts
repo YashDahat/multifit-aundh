@@ -1,7 +1,8 @@
 export interface Trainer {
   id: string;
-  name: string;
-  specializations: string[];
+  firstName: string;
+  lastName: string;
+  specialization: string;
   bio: string;
   imageUrl: string;
 }

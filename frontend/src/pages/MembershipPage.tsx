@@ -1,7 +1,6 @@
 import React from 'react';
 import Layout from '@/components/Layout';
 import { useMemberships } from '../hooks/useMemberships';
-import clsx from 'clsx';
 
 const MembershipPage: React.FC = () => {
   const { data: plans, isLoading, isError, error } = useMemberships();

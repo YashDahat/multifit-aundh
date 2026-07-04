@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
@@ -9,7 +9,7 @@ interface LoginFormInputs {
   password: string;
 }
 
-const LoginPage = (): JSX.Element => {
+const LoginPage = (): React.ReactElement => {
   const { register, handleSubmit, formState: { errors } } = useForm<LoginFormInputs>();
   const { login } = useAuth();
   const navigate = useNavigate();

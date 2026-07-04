@@ -3,7 +3,6 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import clsx from 'clsx';
 import { useCreateTrialLead } from '../hooks/useTrialLeads';
-import { CreateTrialLeadRequest } from '../types/trial';
 import { useEffect, useState } from 'react';
 
 const formSchema = z.object({
@@ -14,12 +13,12 @@ const formSchema = z.object({
 
 type FormData = z.infer<typeof formSchema>;
 
-export default function TrialForm(): JSX.Element {
+export default function TrialForm(): React.ReactElement {
   const { register, handleSubmit, formState: { errors }, reset } = useForm<FormData>({
     resolver: zodResolver(formSchema),
   });
 
-  const { mutate, isLoading, isSuccess, isError, error } = useCreateTrialLead();
+  const { mutate, isPending: isLoading, isSuccess, isError, error } = useCreateTrialLead();
   const [submissionMessage, setSubmissionMessage] = useState<string | null>(null);
   const [isSuccessState, setIsSuccessState] = useState(false);
   const [isErrorState, setIsErrorState] = useState(false);

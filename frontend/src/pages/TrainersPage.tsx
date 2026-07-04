@@ -51,14 +51,14 @@ const TrainersPage: React.FC = () => {
                 <div key={trainer.id} className="bg-[#333333] rounded-xl shadow-lg border border-gray-700 p-6 text-[#F5F5F5]">
                   <img
                     src={trainer.imageUrl}
-                    alt={trainer.name}
+                    alt={`${trainer.firstName} ${trainer.lastName}`}
                     className="object-cover w-full h-64 rounded-t-xl"
                   />
                   <h3 className="text-2xl font-semibold mt-4 text-[#DFFF00]">
-                    {trainer.name}
+                    {trainer.firstName} {trainer.lastName}
                   </h3>
                   <p className="text-gray-400 text-sm mt-2">
-                    {trainer.specializations.join(', ')}
+                    {trainer.specialization}
                   </p>
                   <p className="text-[#F5F5F5] mt-4 leading-relaxed">
                     {trainer.bio}

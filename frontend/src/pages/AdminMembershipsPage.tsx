@@ -13,12 +13,11 @@ import {
   DialogFooter,
   DialogTrigger,
   DialogClose,
-} from '@radix-ui/react-dialog';
-import { Button } from '@/components/ui/Button';
-import { Input } from '@/components/ui/Input';
-import { Label } from '@/components/ui/Label';
+} from '@/components/ui/dialog';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
 import * as Checkbox from '@radix-ui/react-checkbox';
-import clsx from 'clsx';
 
 // Zod schema for form validation
 const membershipPlanSchema = z.object({
