@@ -1,0 +1,103 @@
+# Project History
+
+This file tracks each generation attempt.
+
+## Attempt 4 — 2026-07-04 [IN PROGRESS]
+
+**Business:** MultiFit Aundh
+**Planned Files (93):**
+- backend/src/main/java/com/multifitaundh/model/User.java
+- backend/src/main/java/com/multifitaundh/model/Role.java
+- backend/src/main/java/com/multifitaundh/repository/UserRepository.java
+- backend/src/main/java/com/multifitaundh/service/UserService.java
+- backend/src/main/java/com/multifitaundh/util/JwtUtil.java
+- backend/src/main/java/com/multifitaundh/security/JwtAuthFilter.java
+- backend/src/main/java/com/multifitaundh/config/SecurityConfig.java
+- backend/src/main/java/com/multifitaundh/controller/AuthController.java
+- backend/src/main/java/com/multifitaundh/dto/AuthRequest.java
+- backend/src/main/java/com/multifitaundh/dto/AuthResponse.java
+- backend/src/main/java/com/multifitaundh/config/AdminInitializer.java
+- backend/src/main/java/com/multifitaundh/controller/SpaController.java
+- backend/src/main/java/com/multifitaundh/exception/GlobalExceptionHandler.java
+- backend/src/main/java/com/multifitaundh/dto/ErrorResponse.java
+- backend/src/main/java/com/multifitaundh/exception/ResourceNotFoundException.java
+- backend/src/main/java/com/multifitaundh/config/DataSeeder.java
+- backend/src/main/java/com/multifitaundh/model/MembershipPlan.java
+- backend/src/main/java/com/multifitaundh/repository/MembershipPlanRepository.java
+- backend/src/main/java/com/multifitaundh/model/Subscription.java
+- backend/src/main/java/com/multifitaundh/model/SubscriptionStatus.java
+- backend/src/main/java/com/multifitaundh/repository/SubscriptionRepository.java
+- backend/src/main/java/com/multifitaundh/service/MembershipService.java
+- backend/src/main/java/com/multifitaundh/controller/MembershipController.java
+- backend/src/main/java/com/multifitaundh/controller/AdminMembershipController.java
+- backend/src/main/java/com/multifitaundh/dto/MembershipPlanDto.java
+- backend/src/main/java/com/multifitaundh/dto/SubscriptionDto.java
+- backend/src/main/java/com/multifitaundh/dto/CreateSubscriptionRequest.java
+- backend/src/main/java/com/multifitaundh/model/GymClass.java
+- backend/src/main/java/com/multifitaundh/repository/GymClassRepository.java
+- backend/src/main/java/com/multifitaundh/model/Schedule.java
+- backend/src/main/java/com/multifitaundh/repository/ScheduleRepository.java
+- backend/src/main/java/com/multifitaundh/model/Booking.java
+- backend/src/main/java/com/multifitaundh/model/BookingStatus.java
+- backend/src/main/java/com/multifitaundh/repository/BookingRepository.java
+- backend/src/main/java/com/multifitaundh/service/ClassScheduleService.java
+- backend/src/main/java/com/multifitaundh/controller/ClassScheduleController.java
+- backend/src/main/java/com/multifitaundh/controller/AdminClassScheduleController.java
+- backend/src/main/java/com/multifitaundh/dto/GymClassDto.java
+- backend/src/main/java/com/multifitaundh/dto/ScheduleDto.java
+- backend/src/main/java/com/multifitaundh/dto/BookingDto.java
+- backend/src/main/java/com/multifitaundh/dto/CreateBookingRequest.java
+- backend/src/main/java/com/multifitaundh/model/Trainer.java
+- backend/src/main/java/com/multifitaundh/repository/TrainerRepository.java
+- backend/src/main/java/com/multifitaundh/model/Testimonial.java
+- backend/src/main/java/com/multifitaundh/repository/TestimonialRepository.java
+- backend/src/main/java/com/multifitaundh/model/TrialLead.java
+- backend/src/main/java/com/multifitaundh/repository/TrialLeadRepository.java
+- backend/src/main/java/com/multifitaundh/service/ContentService.java
+- backend/src/main/java/com/multifitaundh/controller/ContentController.java
+- backend/src/main/java/com/multifitaundh/controller/AdminContentController.java
+- backend/src/main/java/com/multifitaundh/dto/TrainerDto.java
+- backend/src/main/java/com/multifitaundh/dto/TestimonialDto.java
+- backend/src/main/java/com/multifitaundh/dto/TrialLeadDto.java
+- backend/src/main/java/com/multifitaundh/dto/CreateTrialLeadRequest.java
+- frontend/src/api/client.ts
+- frontend/src/App.tsx
+- frontend/src/components/Layout.tsx
+- frontend/src/components/Header.tsx
+- frontend/src/components/Footer.tsx
+- frontend/src/pages/HomePage.tsx
+- frontend/src/pages/ContactPage.tsx
+- frontend/src/context/AuthContext.tsx
+- frontend/src/services/authService.ts
+- frontend/src/hooks/useAuth.ts
+- frontend/src/pages/LoginPage.tsx
+- frontend/src/components/ProtectedRoute.tsx
+- frontend/src/types/auth.ts
+- frontend/src/components/AdminLayout.tsx
+- frontend/src/pages/AdminDashboardPage.tsx
+- frontend/src/pages/admin/AdminMembershipsPage.tsx
+- frontend/src/pages/admin/AdminSchedulePage.tsx
+- frontend/src/pages/admin/AdminTrainersPage.tsx
+- frontend/src/pages/admin/AdminTestimonialsPage.tsx
+- frontend/src/pages/admin/AdminLeadsPage.tsx
+- frontend/src/types/membership.ts
+- frontend/src/services/membershipService.ts
+- frontend/src/hooks/useMemberships.ts
+- frontend/src/pages/MembershipPage.tsx
+- frontend/src/types/schedule.ts
+- frontend/src/services/scheduleService.ts
+- frontend/src/hooks/useSchedule.ts
+- frontend/src/pages/SchedulePage.tsx
+- frontend/src/types/trainer.ts
+- frontend/src/services/trainerService.ts
+- frontend/src/hooks/useTrainers.ts
+- frontend/src/pages/TrainersPage.tsx
+- frontend/src/types/marketing.ts
+- frontend/src/services/marketingService.ts
+- frontend/src/hooks/useMarketingContent.ts
+- frontend/src/components/TestimonialsSection.tsx
+- frontend/src/components/TrialLeadForm.tsx
+- frontend/src/hooks/useTestimonials.ts
+- frontend/src/hooks/useLeads.ts
+
+---
