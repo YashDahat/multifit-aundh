@@ -16,7 +16,7 @@ const TrainerDetailPage: React.FC = () => {
       <Layout>
         <section className="py-16 px-4 md:py-24">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <Spinner size="lg" />
+            <Spinner className="w-8 h-8" />
             <p className="mt-4 text-[#333333]">Loading trainer details...</p>
           </div>
         </section>

@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 
-const Header = (): JSX.Element => {
+const Header = (): React.ReactElement => {
   return (
     <header className="sticky top-0 z-50 w-full py-4 bg-[#1A1A1A] text-[#F5F5F5]">
       <div className="max-w-7xl mx-auto px-4 flex justify-between items-center">

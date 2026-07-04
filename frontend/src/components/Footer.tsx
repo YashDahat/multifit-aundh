@@ -1,4 +1,6 @@
-const Footer = (): JSX.Element => {
+import React from 'react';
+
+const Footer = (): React.ReactElement => {
   const currentYear = new Date().getFullYear();
 
   return (

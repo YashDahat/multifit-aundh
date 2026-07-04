@@ -1,5 +1,6 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 import useAuth from '@/hooks/useAuth';
 import clsx from 'clsx';
 
@@ -9,6 +10,22 @@ interface AdminLayoutProps {
 
 const AdminLayout: React.FC<AdminLayoutProps> = ({ children }) => {
   const { logout } = useAuth();
+  const router = useRouter();
+
+  const navLink = (href: string, label: string, exact = false) => {
+    const isActive = exact ? router.pathname === href : router.pathname.startsWith(href);
+    return (
+      <Link
+        href={href}
+        className={clsx(
+          'py-2 px-4 block rounded-md transition-all duration-200',
+          isActive ? 'bg-[#333333] text-[#DFFF00]' : 'text-[#F5F5F5] hover:bg-[#333333]'
+        )}
+      >
+        {label}
+      </Link>
+    );
+  };
 
   return (
     <div className="flex min-h-screen">
@@ -17,51 +34,10 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({ children }) => {
         <div>
           <h2 className="text-2xl font-bold mb-8 text-center">MultiFit Aundh Admin</h2>
           <nav className="space-y-2">
-            <NavLink
-              to="/admin"
-              className={({ isActive }) =>
-                clsx(
-                  "py-2 px-4 block rounded-md transition-all duration-200",
-                  isActive ? "bg-[#333333] text-[#DFFF00]" : "text-[#F5F5F5] hover:bg-[#333333]"
-                )
-              }
-              end
-            >
-              Dashboard
-            </NavLink>
-            <NavLink
-              to="/admin/trainers"
-              className={({ isActive }) =>
-                clsx(
-                  "py-2 px-4 block rounded-md transition-all duration-200",
-                  isActive ? "bg-[#333333] text-[#DFFF00]" : "text-[#F5F5F5] hover:bg-[#333333]"
-                )
-              }
-            >
-              Trainers
-            </NavLink>
-            <NavLink
-              to="/admin/testimonials"
-              className={({ isActive }) =>
-                clsx(
-                  "py-2 px-4 block rounded-md transition-all duration-200",
-                  isActive ? "bg-[#333333] text-[#DFFF00]" : "text-[#F5F5F5] hover:bg-[#333333]"
-                )
-              }
-            >
-              Testimonials
-            </NavLink>
-            <NavLink
-              to="/admin/leads"
-              className={({ isActive }) =>
-                clsx(
-                  "py-2 px-4 block rounded-md transition-all duration-200",
-                  isActive ? "bg-[#333333] text-[#DFFF00]" : "text-[#F5F5F5] hover:bg-[#333333]"
-                )
-              }
-            >
-              Leads
-            </NavLink>
+            {navLink('/admin', 'Dashboard', true)}
+            {navLink('/admin/trainers', 'Trainers')}
+            {navLink('/admin/testimonials', 'Testimonials')}
+            {navLink('/admin/leads', 'Leads')}
           </nav>
         </div>
         <button

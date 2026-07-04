@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import clsx from 'clsx';
 import AdminLayout from '@/components/AdminLayout';
 import ProtectedRoute from '@/components/ProtectedRoute';
 import { useTrainers, useCreateTrainer } from '@/hooks/useTrainers';
@@ -136,10 +135,10 @@ const AdminTrainersPage: React.FC = () => {
                       </Dialog.Close>
                       <Button
                         type="submit"
-                        disabled={createTrainerMutation.isLoading}
+                        disabled={createTrainerMutation.isPending}
                         className="bg-[#DFFF00] hover:bg-[#c2e600] text-[#1A1A1A] font-bold rounded-md px-4 py-2 transition-all duration-200"
                       >
-                        {createTrainerMutation.isLoading ? 'Creating...' : 'Create Trainer'}
+                        {createTrainerMutation.isPending ? 'Creating...' : 'Create Trainer'}
                       </Button>
                     </div>
                   </form>
