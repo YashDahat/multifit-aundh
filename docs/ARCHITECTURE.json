@@ -143,8 +143,8 @@
     "file_type" : "BACKEND",
     "layer" : "CONFIG",
     "created_date" : "2024-07-31",
-    "updated_date" : "2024-07-31",
-    "status" : "PLANNED",
+    "updated_date" : "2026-07-04",
+    "status" : "GENERATED",
     "description" : "A CommandLineRunner that creates a default admin user on application startup if one does not exist, using credentials from application properties.",
     "public_functions" : [ {
       "name" : "run",
@@ -165,8 +165,8 @@
     "file_type" : "BACKEND",
     "layer" : "CONFIG",
     "created_date" : "2024-07-31",
-    "updated_date" : "2024-07-31",
-    "status" : "PLANNED",
+    "updated_date" : "2026-07-04",
+    "status" : "GENERATED",
     "description" : "Configures Spring Security, including CORS, stateless session management, JWT filter chain, and authorization rules.",
     "public_functions" : [ {
       "name" : "securityFilterChain",
@@ -187,8 +187,8 @@
     "file_type" : "BACKEND",
     "layer" : "CONFIG",
     "created_date" : "2024-07-31",
-    "updated_date" : "2024-07-31",
-    "status" : "PLANNED",
+    "updated_date" : "2026-07-04",
+    "status" : "GENERATED",
     "description" : "A filter that intercepts requests to validate the JWT from the Authorization header and set the security context.",
     "public_functions" : [ {
       "name" : "doFilterInternal",
