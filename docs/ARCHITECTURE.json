@@ -1314,8 +1314,8 @@
     "file_type" : "FRONTEND",
     "layer" : "UTIL",
     "created_date" : "2024-07-28",
-    "updated_date" : "2024-07-28",
-    "status" : "PLANNED",
+    "updated_date" : "2026-07-04",
+    "status" : "GENERATED",
     "description" : "TypeScript types and interfaces for authentication.",
     "public_functions" : [ ],
     "public_variables" : [ {
@@ -1493,8 +1493,8 @@
     "file_type" : "FRONTEND",
     "layer" : "UTIL",
     "created_date" : "2024-07-28",
-    "updated_date" : "2024-07-28",
-    "status" : "PLANNED",
+    "updated_date" : "2026-07-04",
+    "status" : "GENERATED",
     "description" : "TypeScript types for the trial lead feature.",
     "public_functions" : [ ],
     "public_variables" : [ {
@@ -1612,8 +1612,8 @@
     "file_type" : "FRONTEND",
     "layer" : "UTIL",
     "created_date" : "2024-07-28",
-    "updated_date" : "2024-07-28",
-    "status" : "PLANNED",
+    "updated_date" : "2026-07-04",
+    "status" : "GENERATED",
     "description" : "TypeScript types for the membership feature.",
     "public_functions" : [ ],
     "public_variables" : [ {
@@ -1785,8 +1785,8 @@
     "file_type" : "FRONTEND",
     "layer" : "UTIL",
     "created_date" : "2024-07-28",
-    "updated_date" : "2024-07-28",
-    "status" : "PLANNED",
+    "updated_date" : "2026-07-04",
+    "status" : "GENERATED",
     "description" : "TypeScript types for the trainer feature.",
     "public_functions" : [ ],
     "public_variables" : [ {
