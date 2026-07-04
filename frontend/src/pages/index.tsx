@@ -5,13 +5,31 @@ import TestimonialsSection from '@/components/TestimonialsSection';
 import TrialForm from '@/components/TrialForm';
 
 export default function HomePage(): React.ReactElement {
+  const classes = [
+    {
+      name: 'High-Intensity Interval Training (HIIT)',
+      description: 'Maximize calorie burn and boost your metabolism with our dynamic HIIT sessions. Push your limits and achieve peak fitness.',
+      image: 'https://images.unsplash.com/photo-1571019625476-f3d8e96e1894?w=800&q=80',
+    },
+    {
+      name: 'Yoga & Flexibility',
+      description: 'Improve strength, balance, and mental clarity. Our yoga classes cater to all levels, helping you find your inner calm.',
+      image: 'https://images.unsplash.com/photo-1544367623-a60429719391?w=800&q=80',
+    },
+    {
+      name: 'Strength & Conditioning',
+      description: 'Build muscle, increase power, and enhance overall physical performance with our expert-led strength training programs.',
+      image: 'https://images.unsplash.com/photo-1590487988256-9ddf166049ce?w=800&q=80',
+    },
+  ];
+
   return (
     <Layout>
       {/* Hero Section */}
       <section className="relative h-screen flex items-center justify-center text-center">
         <img
           src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1920&q=80"
-          alt="Gym background"
+          alt="MultiFit Aundh Gym"
           className="absolute inset-0 w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-black bg-opacity-50" />
@@ -38,39 +56,20 @@ export default function HomePage(): React.ReactElement {
             Our Signature Classes
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div className="bg-white rounded-xl shadow-md border border-gray-100 p-6 text-center">
-              <img
-                src="https://images.unsplash.com/photo-1571019625454-f4464673390c?w=600&q=80"
-                alt="HIIT Class"
-                className="w-full h-48 object-cover rounded-lg mb-4"
-              />
-              <h3 className="text-xl font-semibold text-[#1A1A1A] mb-2">High-Intensity Interval Training (HIIT)</h3>
-              <p className="text-gray-700 leading-relaxed">
-                Maximize calorie burn and boost your metabolism with our dynamic HIIT sessions. Push your limits and see real results.
-              </p>
-            </div>
-            <div className="bg-white rounded-xl shadow-md border border-gray-100 p-6 text-center">
-              <img
-                src="https://images.unsplash.com/photo-1544367623-6497f4d75471?w=600&q=80"
-                alt="Yoga Class"
-                className="w-full h-48 object-cover rounded-lg mb-4"
-              />
-              <h3 className="text-xl font-semibold text-[#1A1A1A] mb-2">Yoga & Flexibility</h3>
-              <p className="text-gray-700 leading-relaxed">
-                Improve strength, balance, and mental clarity with our diverse yoga classes, suitable for all levels.
-              </p>
-            </div>
-            <div className="bg-white rounded-xl shadow-md border border-gray-100 p-6 text-center">
-              <img
-                src="https://images.unsplash.com/photo-1594381836113-1b7f03212854?w=600&q=80"
-                alt="Strength Training"
-                className="w-full h-48 object-cover rounded-lg mb-4"
-              />
-              <h3 className="text-xl font-semibold text-[#1A1A1A] mb-2">Strength & Conditioning</h3>
-              <p className="text-gray-700 leading-relaxed">
-                Build muscle, increase power, and sculpt your body with our expert-led strength training programs.
-              </p>
-            </div>
+            {classes.map((cls, index) => (
+              <div
+                key={index}
+                className="bg-white rounded-xl shadow-md border border-gray-100 p-6 text-center transition-all duration-200 hover:shadow-lg hover:scale-[1.02]"
+              >
+                <img
+                  src={cls.image}
+                  alt={cls.name}
+                  className="w-full h-48 object-cover rounded-lg mb-4"
+                />
+                <h3 className="text-xl font-semibold text-[#1A1A1A] mb-2">{cls.name}</h3>
+                <p className="text-gray-700 leading-relaxed">{cls.description}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>

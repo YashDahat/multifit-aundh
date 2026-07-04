@@ -3,17 +3,17 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import { useRouter } from 'next/router';
-import useAuth from '@/hooks/useAuth';
-import { LoginCredentials } from '@/types/auth';
+import useAuth from '../hooks/useAuth';
+import { LoginCredentials } from '../types/auth';
 
 const loginSchema = z.object({
-  email: z.string().email("Invalid email address").min(1, "Email is required"),
-  password: z.string().min(6, "Password must be at least 6 characters").min(1, "Password is required"),
+  email: z.string().email("Invalid email address").nonempty("Email is required"),
+  password: z.string().nonempty("Password is required"),
 });
 
 const LoginPage: React.FC = () => {
-  const { login, isAuthenticated } = useAuth();
   const router = useRouter();
+  const { login, isAuthenticated } = useAuth();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -54,6 +54,7 @@ const LoginPage: React.FC = () => {
         <p className="text-[#F5F5F5] text-opacity-80 text-center mb-8">
           Access the MultiFit Aundh management portal.
         </p>
+
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="mb-4">
             <label htmlFor="email" className="block text-[#F5F5F5] text-sm font-bold mb-2">
@@ -64,13 +65,14 @@ const LoginPage: React.FC = () => {
               id="email"
               {...register('email')}
               className="w-full bg-gray-700 text-white border border-gray-600 rounded-md p-3 focus:ring-2 focus:ring-[#DFFF00] focus:border-transparent"
-              placeholder="admin@multiaundh.com"
+              disabled={loading}
             />
             {errors.email && (
               <p className="text-red-500 text-xs mt-1">{errors.email.message}</p>
             )}
           </div>
-          <div className="mb-6">
+
+          <div className="mb-4">
             <label htmlFor="password" className="block text-[#F5F5F5] text-sm font-bold mb-2">
               Password
             </label>
@@ -79,12 +81,13 @@ const LoginPage: React.FC = () => {
               id="password"
               {...register('password')}
               className="w-full bg-gray-700 text-white border border-gray-600 rounded-md p-3 focus:ring-2 focus:ring-[#DFFF00] focus:border-transparent"
-              placeholder="••••••••"
+              disabled={loading}
             />
             {errors.password && (
               <p className="text-red-500 text-xs mt-1">{errors.password.message}</p>
             )}
           </div>
+
           <button
             type="submit"
             className="w-full bg-[#DFFF00] hover:bg-[#c2e600] text-[#1A1A1A] font-bold rounded-md py-3 transition-all duration-200"
@@ -92,13 +95,14 @@ const LoginPage: React.FC = () => {
           >
             {loading ? 'Logging in...' : 'Login to Dashboard'}
           </button>
-          {loading && (
-            <p className="text-center mt-4 text-blue-400">Authenticating...</p>
-          )}
-          {error && (
-            <p className="text-center mt-4 text-red-500">{error}</p>
-          )}
         </form>
+
+        {loading && (
+          <p className="text-center mt-4 text-blue-400">Authenticating...</p>
+        )}
+        {error && (
+          <p className="text-center mt-4 text-red-500">{error}</p>
+        )}
       </div>
     </div>
   );
