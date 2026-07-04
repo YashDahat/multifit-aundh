@@ -1271,8 +1271,8 @@
     "file_type" : "FRONTEND",
     "layer" : "HOOK",
     "created_date" : "2024-07-31",
-    "updated_date" : "2024-07-31",
-    "status" : "PLANNED",
+    "updated_date" : "2026-07-04",
+    "status" : "GENERATED",
     "description" : "Custom hook to easily access the authentication context.",
     "public_functions" : [ {
       "name" : "useAuth",
@@ -1674,8 +1674,8 @@
     "file_type" : "FRONTEND",
     "layer" : "HOOK",
     "created_date" : "2024-07-31",
-    "updated_date" : "2024-07-31",
-    "status" : "PLANNED",
+    "updated_date" : "2026-07-04",
+    "status" : "GENERATED",
     "description" : "React Query hook for fetching and managing trainer data.",
     "public_functions" : [ {
       "name" : "useTrainers",
