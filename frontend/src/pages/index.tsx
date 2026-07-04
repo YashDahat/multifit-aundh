@@ -3,25 +3,7 @@ import Link from 'next/link';
 import TestimonialsSection from '@/components/TestimonialsSection';
 import TrialForm from '@/components/TrialForm';
 
-const HomePage: React.FC = () => {
-  const classHighlights = [
-    {
-      title: 'High-Intensity Interval Training (HIIT)',
-      description: 'Maximize calorie burn and boost your metabolism with our dynamic HIIT sessions. Push your limits and see real results.',
-      image: 'https://images.unsplash.com/photo-1594381837177-385002773950?w=800&q=80',
-    },
-    {
-      title: 'Yoga & Flexibility',
-      description: 'Improve your strength, balance, and mental well-being with our diverse yoga classes. Suitable for all levels.',
-      image: 'https://images.unsplash.com/photo-1544367664-90a887a1770b?w=800&q=80',
-    },
-    {
-      title: 'Strength & Conditioning',
-      description: 'Build muscle, increase endurance, and sculpt your body with our expert-led strength training programs.',
-      image: 'https://images.unsplash.com/photo-1571019625454-e05e1679078f?w=800&q=80',
-    },
-  ];
-
+const HomePage = (): JSX.Element => {
   return (
     <Layout>
       {/* Hero Section */}
@@ -32,7 +14,7 @@ const HomePage: React.FC = () => {
           className="absolute inset-0 w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-black bg-opacity-50" />
-        <div className="relative z-10 text-[#F5F5F5] px-4">
+        <div className="relative z-10 text-[#F5F5F5]">
           <h1 className="text-4xl md:text-6xl font-bold mb-4">
             Unleash Your Potential at MultiFit Aundh
           </h1>
@@ -55,17 +37,42 @@ const HomePage: React.FC = () => {
             Our Signature Classes
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {classHighlights.map((cls, index) => (
-              <div key={index} className="bg-white rounded-xl shadow-md border border-gray-100 p-6 flex flex-col items-center text-center">
-                <img
-                  src={cls.image}
-                  alt={cls.title}
-                  className="w-full h-48 object-cover rounded-lg mb-4"
-                />
-                <h3 className="text-xl font-semibold mb-2 text-[#1A1A1A]">{cls.title}</h3>
-                <p className="text-gray-700 leading-relaxed">{cls.description}</p>
-              </div>
-            ))}
+            {/* Placeholder Class Card 1 */}
+            <div className="bg-white rounded-xl shadow-md border border-gray-100 p-6 text-center">
+              <h3 className="text-xl font-semibold mb-2 text-[#1A1A1A]">High-Intensity Interval Training (HIIT)</h3>
+              <p className="text-gray-700 leading-relaxed mb-4">
+                Maximize your calorie burn and boost your metabolism with our dynamic HIIT sessions. Push your limits and see real results.
+              </p>
+              <img
+                src="https://images.unsplash.com/photo-1571019625454-f5711676832e?w=800&q=80"
+                alt="HIIT Class"
+                className="rounded-lg object-cover w-full h-48 mt-4"
+              />
+            </div>
+            {/* Placeholder Class Card 2 */}
+            <div className="bg-white rounded-xl shadow-md border border-gray-100 p-6 text-center">
+              <h3 className="text-xl font-semibold mb-2 text-[#1A1A1A]">Yoga & Flexibility</h3>
+              <p className="text-gray-700 leading-relaxed mb-4">
+                Improve your strength, balance, and mental clarity with our expert-led yoga classes. Find your inner peace.
+              </p>
+              <img
+                src="https://images.unsplash.com/photo-1591291621165-f99a9a3b2b7e?w=800&q=80"
+                alt="Yoga Class"
+                className="rounded-lg object-cover w-full h-48 mt-4"
+              />
+            </div>
+            {/* Placeholder Class Card 3 */}
+            <div className="bg-white rounded-xl shadow-md border border-gray-100 p-6 text-center">
+              <h3 className="text-xl font-semibold mb-2 text-[#1A1A1A]">Strength & Conditioning</h3>
+              <p className="text-gray-700 leading-relaxed mb-4">
+                Build muscle, increase endurance, and sculpt your physique with our comprehensive strength training programs.
+              </p>
+              <img
+                src="https://images.unsplash.com/photo-1594737648356-912111d4d08e?w=800&q=80"
+                alt="Strength Training Class"
+                className="rounded-lg object-cover w-full h-48 mt-4"
+              />
+            </div>
           </div>
         </div>
       </section>

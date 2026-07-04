@@ -1,19 +1,12 @@
 import React from 'react';
 import { useRouter } from 'next/router';
-import Image from 'next/image';
-import Head from 'next/head';
 import Layout from '@/components/Layout';
 import { useTrainers } from '@/hooks/useTrainers';
 
-const TrainerDetailPage: React.FC = () => {
+const TrainerDetailPage = (): JSX.Element => {
   const router = useRouter();
   const { slug } = router.query;
-
   const { data: trainers, isLoading, isError, error } = useTrainers();
-
-  const trainerSlug = typeof slug === 'string' ? slug : undefined;
-
-  const trainer = trainers?.find(t => t.slug === trainerSlug);
 
   if (isLoading) {
     return (
@@ -39,13 +32,15 @@ const TrainerDetailPage: React.FC = () => {
     );
   }
 
+  const trainer = trainers?.find((t) => t.slug === slug);
+
   if (!trainer) {
     return (
       <Layout>
         <section className="py-16 px-4 md:py-24">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 className="text-3xl md:text-4xl font-bold text-[#1A1A1A]">Trainer not found</h1>
-            <p className="mt-4 text-lg text-[#333333]">The trainer you are looking for does not exist.</p>
+            <h1 className="text-3xl md:text-4xl font-bold text-[#1A1A1A]">Trainer Not Found</h1>
+            <p className="text-lg text-[#333333] mt-4">The trainer you are looking for does not exist.</p>
           </div>
         </section>
       </Layout>
@@ -54,25 +49,17 @@ const TrainerDetailPage: React.FC = () => {
 
   return (
     <Layout>
-      <Head>
-        <title>{trainer.name} - MultiFit Aundh Trainer</title>
-        <meta name="description" content={`Meet ${trainer.name}, an expert trainer at MultiFit Aundh specializing in ${trainer.specializations.join(', ')}.`} />
-      </Head>
-
-      <section className="py-16 px-4 md:py-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto">
-            <div className="relative w-full h-96 overflow-hidden rounded-lg shadow-lg">
-              <Image
-                src={trainer.imageUrl}
-                alt={trainer.name}
-                layout="fill"
-                objectFit="cover"
-                className="transition-transform duration-300 hover:scale-105"
-              />
-            </div>
-
-            <h1 className="text-3xl md:text-5xl font-bold text-[#1A1A1A] mt-6">{trainer.name}</h1>
+      <section className="py-16 px-4 md:py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center md:items-start gap-8">
+          <div className="flex-shrink-0">
+            <img
+              src={trainer.imageUrl}
+              alt={trainer.name}
+              className="w-64 h-64 object-cover rounded-full shadow-lg border-4 border-[#DFFF00]"
+            />
+          </div>
+          <div className="flex-grow text-center md:text-left">
+            <h1 className="text-3xl md:text-5xl font-bold text-[#1A1A1A] mt-6 md:mt-0">{trainer.name}</h1>
             <p className="text-xl text-[#DFFF00] mt-2">{trainer.specializations.join(', ')}</p>
             <p className="text-[#333333] leading-relaxed mt-6">{trainer.bio}</p>
           </div>
