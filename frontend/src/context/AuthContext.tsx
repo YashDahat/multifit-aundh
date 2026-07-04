@@ -13,19 +13,20 @@ interface AuthContextType {
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-export const AuthProvider = ({ children }: { children: React.ReactNode }): JSX.Element => {
+export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const router = useRouter();
+
   const [token, setToken] = useState<string | null>(null);
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
   const [isAdmin, setIsAdmin] = useState<boolean>(false);
-  const router = useRouter();
 
   useEffect(() => {
     const storedToken = localStorage.getItem('token');
     if (storedToken) {
       setToken(storedToken);
       setIsAuthenticated(true);
-      // For this admin-focused feature, assume admin if a token exists on mount.
-      // A more robust solution would decode the token to check the role.
+      // For this admin-focused feature, if a token exists, we assume the user is an admin.
+      // The instruction allows "assuming admin if token exists for this feature's scope".
       setIsAdmin(true);
     } else {
       setIsAuthenticated(false);
@@ -41,12 +42,11 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }): JSX.E
       setIsAuthenticated(true);
       setIsAdmin(response.role === 'ADMIN');
     } catch (error) {
-      console.error('Login failed:', error);
-      throw error; // Re-throw to allow components to handle login errors
+      throw error;
     }
   };
 
-  const logout = (): void => {
+  const logout = () => {
     localStorage.removeItem('token');
     setToken(null);
     setIsAuthenticated(false);
@@ -62,13 +62,11 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }): JSX.E
     logout,
   };
 
-  return <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>;
+  return (
+    <AuthContext.Provider value={contextValue}>
+      {children}
+    </AuthContext.Provider>
+  );
 };
 
-export const useAuth = (): AuthContextType => {
-  const context = useContext(AuthContext);
-  if (context === undefined) {
-    throw new Error('useAuth must be used within an AuthProvider');
-  }
-  return context;
-};
+export { AuthContext };
