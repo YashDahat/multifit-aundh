@@ -1,66 +1,83 @@
 import React from 'react';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
-import { useAuth } from '@/hooks/useAuth';
+import { NavLink } from 'react-router-dom';
+import useAuth from '@/hooks/useAuth';
+import clsx from 'clsx';
 
 interface AdminLayoutProps {
   children: React.ReactNode;
 }
 
-export default function AdminLayout({ children }: AdminLayoutProps): React.ReactElement {
+const AdminLayout: React.FC<AdminLayoutProps> = ({ children }) => {
   const { logout } = useAuth();
-  const router = useRouter();
-
-  const navLinkClass = (href: string, exact = false) => {
-    const isActive = exact ? router.pathname === href : router.pathname.startsWith(href);
-    return `py-2 px-4 block rounded-md transition-all duration-200 ${
-      isActive ? 'bg-[#333333] text-[#DFFF00]' : 'text-[#F5F5F5] hover:bg-[#333333]'
-    }`;
-  };
 
   return (
     <div className="flex min-h-screen">
       {/* Sidebar */}
-      <aside className="w-64 bg-[#1A1A1A] text-[#F5F5F5] flex flex-col p-4">
-        <h2 className="text-2xl font-bold mb-8 text-center">MultiFit Aundh Admin</h2>
-        <nav className="flex-grow">
-          <ul>
-            <li className="mb-2">
-              <Link href="/admin" className={navLinkClass('/admin', true)}>
-                Dashboard
-              </Link>
-            </li>
-            <li className="mb-2">
-              <Link href="/admin/trainers" className={navLinkClass('/admin/trainers')}>
-                Trainers
-              </Link>
-            </li>
-            <li className="mb-2">
-              <Link href="/admin/testimonials" className={navLinkClass('/admin/testimonials')}>
-                Testimonials
-              </Link>
-            </li>
-            <li className="mb-2">
-              <Link href="/admin/leads" className={navLinkClass('/admin/leads')}>
-                Leads
-              </Link>
-            </li>
-          </ul>
-        </nav>
-        <div className="mt-auto">
-          <button
-            onClick={logout}
-            className="w-full bg-[#DFFF00] hover:bg-[#DFFF00]/80 text-[#1A1A1A] font-semibold rounded-md px-4 py-2 transition-all duration-200"
-          >
-            Logout
-          </button>
+      <div className="w-64 bg-[#1A1A1A] text-[#F5F5F5] flex flex-col justify-between p-4 shadow-lg">
+        <div>
+          <h2 className="text-2xl font-bold mb-8 text-center">MultiFit Aundh Admin</h2>
+          <nav className="space-y-2">
+            <NavLink
+              to="/admin"
+              className={({ isActive }) =>
+                clsx(
+                  "py-2 px-4 block rounded-md transition-all duration-200",
+                  isActive ? "bg-[#333333] text-[#DFFF00]" : "text-[#F5F5F5] hover:bg-[#333333]"
+                )
+              }
+              end
+            >
+              Dashboard
+            </NavLink>
+            <NavLink
+              to="/admin/trainers"
+              className={({ isActive }) =>
+                clsx(
+                  "py-2 px-4 block rounded-md transition-all duration-200",
+                  isActive ? "bg-[#333333] text-[#DFFF00]" : "text-[#F5F5F5] hover:bg-[#333333]"
+                )
+              }
+            >
+              Trainers
+            </NavLink>
+            <NavLink
+              to="/admin/testimonials"
+              className={({ isActive }) =>
+                clsx(
+                  "py-2 px-4 block rounded-md transition-all duration-200",
+                  isActive ? "bg-[#333333] text-[#DFFF00]" : "text-[#F5F5F5] hover:bg-[#333333]"
+                )
+              }
+            >
+              Testimonials
+            </NavLink>
+            <NavLink
+              to="/admin/leads"
+              className={({ isActive }) =>
+                clsx(
+                  "py-2 px-4 block rounded-md transition-all duration-200",
+                  isActive ? "bg-[#333333] text-[#DFFF00]" : "text-[#F5F5F5] hover:bg-[#333333]"
+                )
+              }
+            >
+              Leads
+            </NavLink>
+          </nav>
         </div>
-      </aside>
+        <button
+          onClick={logout}
+          className="mt-8 w-full bg-[#DFFF00] hover:bg-[#DFFF00]/80 text-[#1A1A1A] font-semibold rounded-md px-4 py-2 transition-all duration-200"
+        >
+          Logout
+        </button>
+      </div>
 
       {/* Main Content Area */}
-      <main className="flex-1 overflow-y-auto bg-[#F5F5F5]">
+      <div className="flex-1 overflow-y-auto bg-[#F5F5F5] p-8">
         {children}
-      </main>
+      </div>
     </div>
   );
-}
+};
+
+export default AdminLayout;
