@@ -14,3 +14,5 @@ export interface CreateTrainerData {
   bio: string;
   imageUrl: string;
 }
+
+export type { Trainer, CreateTrainerData };
