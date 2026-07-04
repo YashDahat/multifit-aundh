@@ -1,18 +1,18 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import * as trialLeadService from '../services/trialLeadService';
-import { CreateTrialLeadRequest, TrialLead } from '../types/trial';
+import { createTrialLead, getTrialLeads } from '../services/trialLeadService';
+import { TrialLead, CreateTrialLeadRequest } from '../types/trial';
 
 export const useTrialLeads = () => {
   return useQuery<TrialLead[], Error>({
     queryKey: ['trialLeads'],
-    queryFn: trialLeadService.getTrialLeads,
+    queryFn: getTrialLeads,
   });
 };
 
 export const useCreateTrialLead = () => {
   const queryClient = useQueryClient();
   return useMutation<TrialLead, Error, CreateTrialLeadRequest>({
-    mutationFn: trialLeadService.createTrialLead,
+    mutationFn: createTrialLead,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['trialLeads'] });
     },
