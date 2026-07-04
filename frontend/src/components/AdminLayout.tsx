@@ -1,17 +1,40 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 import useAuth from '@/hooks/useAuth';
 
 interface AdminLayoutProps {
   children: React.ReactNode;
 }
 
-const AdminLayout: React.FC<AdminLayoutProps> = ({ children }) => {
-  const { logout } = useAuth();
+interface NavItemProps {
+  href: string;
+  label: string;
+  exact?: boolean;
+}
+
+const NavItem: React.FC<NavItemProps> = ({ href, label, exact }) => {
+  const router = useRouter();
+  const isActive = exact ? router.pathname === href : router.pathname.startsWith(href);
 
   const baseNavLinkClasses = "py-2 px-4 block rounded-md transition-all duration-200";
   const inactiveNavLinkClasses = "text-[#F5F5F5] hover:bg-[#333333]";
   const activeNavLinkClasses = "bg-[#333333] text-[#DFFF00]";
+
+  return (
+    <li className="mb-2">
+      <Link
+        href={href}
+        className={`${baseNavLinkClasses} ${isActive ? activeNavLinkClasses : inactiveNavLinkClasses}`}
+      >
+        {label}
+      </Link>
+    </li>
+  );
+};
+
+const AdminLayout: React.FC<AdminLayoutProps> = ({ children }) => {
+  const { logout } = useAuth();
 
   return (
     <div className="flex min-h-screen">
@@ -22,47 +45,10 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({ children }) => {
         </div>
         <nav className="flex-grow">
           <ul>
-            <li className="mb-2">
-              <NavLink
-                to="/admin"
-                className={({ isActive }) =>
-                  `${baseNavLinkClasses} ${isActive ? activeNavLinkClasses : inactiveNavLinkClasses}`
-                }
-                end // Ensures this link is active only when the path is exactly /admin
-              >
-                Dashboard
-              </NavLink>
-            </li>
-            <li className="mb-2">
-              <NavLink
-                to="/admin/trainers"
-                className={({ isActive }) =>
-                  `${baseNavLinkClasses} ${isActive ? activeNavLinkClasses : inactiveNavLinkClasses}`
-                }
-              >
-                Trainers
-              </NavLink>
-            </li>
-            <li className="mb-2">
-              <NavLink
-                to="/admin/testimonials"
-                className={({ isActive }) =>
-                  `${baseNavLinkClasses} ${isActive ? activeNavLinkClasses : inactiveNavLinkClasses}`
-                }
-              >
-                Testimonials
-              </NavLink>
-            </li>
-            <li className="mb-2">
-              <NavLink
-                to="/admin/leads"
-                className={({ isActive }) =>
-                  `${baseNavLinkClasses} ${isActive ? activeNavLinkClasses : inactiveNavLinkClasses}`
-                }
-              >
-                Leads
-              </NavLink>
-            </li>
+            <NavItem href="/admin" label="Dashboard" exact />
+            <NavItem href="/admin/trainers" label="Trainers" />
+            <NavItem href="/admin/testimonials" label="Testimonials" />
+            <NavItem href="/admin/leads" label="Leads" />
           </ul>
         </nav>
         <div className="mt-auto">

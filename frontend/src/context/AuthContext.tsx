@@ -1,10 +1,10 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { login as authServiceLogin } from '@/services/authService';
 import { AuthResponse, LoginCredentials } from '@/types/auth';
 
 // Context Type
-interface AuthContextType {
+export interface AuthContextType {
   isAuthenticated: boolean;
   isAdmin: boolean;
   token: string | null;
@@ -13,10 +13,10 @@ interface AuthContextType {
 }
 
 // Create the context
-const AuthContext = createContext<AuthContextType | undefined>(undefined);
+export const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 // AuthProvider component
-export const AuthProvider = ({ children }: { children: React.ReactNode }): JSX.Element => {
+export const AuthProvider = ({ children }: { children: React.ReactNode }): React.ReactElement => {
   const [token, setToken] = useState<string | null>(null);
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
   const [isAdmin, setIsAdmin] = useState<boolean>(false);

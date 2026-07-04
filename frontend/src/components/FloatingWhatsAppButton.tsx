@@ -1,6 +1,6 @@
 import React from 'react';
 
-const FloatingWhatsAppButton = (): JSX.Element => {
+const FloatingWhatsAppButton = (): React.ReactElement => {
   return (
     <a
       href="https://wa.me/917507008009"

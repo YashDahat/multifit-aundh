@@ -1,4 +1,4 @@
-import apiClient from '@/api/client';
+import { apiClient } from '@/api/client';
 import { Trainer, CreateTrainerData } from '@/types/trainer';
 
 export async function getTrainers(): Promise<Trainer[]> {
