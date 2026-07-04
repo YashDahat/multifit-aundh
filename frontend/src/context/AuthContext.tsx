@@ -1,9 +1,8 @@
-import React, { createContext, useState, useEffect, ReactNode } from 'react';
+import React, { createContext, useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { login as authServiceLogin } from '@/services/authService';
-import { AuthResponse, LoginCredentials } from '@/types/auth';
+import { login as authServiceLogin } from '../services/authService';
+import { AuthResponse, LoginCredentials } from '../types/auth';
 
-// Context Type
 export interface AuthContextType {
   isAuthenticated: boolean;
   isAdmin: boolean;
@@ -12,26 +11,21 @@ export interface AuthContextType {
   logout: () => void;
 }
 
-// Create the context
-export const AuthContext = createContext<AuthContextType | undefined>(undefined);
+const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-// AuthProvider component
-interface AuthProviderProps {
-  children: ReactNode;
-}
-
-export const AuthProvider = ({ children }: AuthProviderProps): React.ReactElement => {
-  const router = useRouter();
+export const AuthProvider = ({ children }: { children: React.ReactNode }): JSX.Element => {
   const [token, setToken] = useState<string | null>(null);
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
   const [isAdmin, setIsAdmin] = useState<boolean>(false);
+  const router = useRouter();
 
   useEffect(() => {
     const storedToken = localStorage.getItem('token');
     if (storedToken) {
       setToken(storedToken);
       setIsAuthenticated(true);
-      // As per instruction: assume admin if token exists for this admin-focused feature's scope on initial load
+      // As per instruction: "if the role within the token (if applicable, otherwise assume admin for this admin-focused feature) is 'ADMIN'"
+      // Since there's no explicit token decoding utility, we assume admin if a token is present for this admin-focused feature.
       setIsAdmin(true);
     } else {
       setIsAuthenticated(false);
@@ -46,6 +40,7 @@ export const AuthProvider = ({ children }: AuthProviderProps): React.ReactElemen
       setToken(response.token);
       setIsAuthenticated(true);
       setIsAdmin(response.role === 'ADMIN');
+      router.push('/admin');
     } catch (error) {
       throw error;
     }
@@ -69,3 +64,5 @@ export const AuthProvider = ({ children }: AuthProviderProps): React.ReactElemen
 
   return <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>;
 };
+
+export { AuthContext };
