@@ -3,20 +3,19 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import { useRouter } from 'next/router';
-import { useAuth } from '@/hooks/useAuth';
+import useAuth from '@/hooks/useAuth';
 import { LoginCredentials } from '@/types/auth';
 
-// Define the Zod schema for login credentials
 const loginSchema = z.object({
-  email: z.string().email('Invalid email address').nonempty('Email is required'),
-  password: z.string().min(1, 'Password is required'),
+  email: z.string().email("Invalid email address").min(1, "Email is required"),
+  password: z.string().min(6, "Password must be at least 6 characters").min(1, "Password is required"),
 });
 
 const LoginPage: React.FC = () => {
   const { login, isAuthenticated } = useAuth();
   const router = useRouter();
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const {
     register,
@@ -26,7 +25,6 @@ const LoginPage: React.FC = () => {
     resolver: zodResolver(loginSchema),
   });
 
-  // Redirect if already authenticated
   useEffect(() => {
     if (isAuthenticated) {
       router.replace('/admin');
@@ -34,15 +32,16 @@ const LoginPage: React.FC = () => {
   }, [isAuthenticated, router]);
 
   const onSubmit = async (data: LoginCredentials) => {
+    setLoading(true);
     setError(null);
-    setIsLoading(true);
     try {
       await login(data);
       router.push('/admin');
-    } catch (err: any) {
-      setError(err.message || 'Invalid credentials. Please try again.');
+    } catch (err) {
+      setError("Invalid credentials. Please try again.");
+      console.error("Login error:", err);
     } finally {
-      setIsLoading(false);
+      setLoading(false);
     }
   };
 
@@ -55,7 +54,6 @@ const LoginPage: React.FC = () => {
         <p className="text-[#F5F5F5] text-opacity-80 text-center mb-8">
           Access the MultiFit Aundh management portal.
         </p>
-
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="mb-4">
             <label htmlFor="email" className="block text-[#F5F5F5] text-sm font-bold mb-2">
@@ -66,13 +64,12 @@ const LoginPage: React.FC = () => {
               id="email"
               {...register('email')}
               className="w-full bg-gray-700 text-white border border-gray-600 rounded-md p-3 focus:ring-2 focus:ring-[#DFFF00] focus:border-transparent"
-              disabled={isLoading}
+              placeholder="admin@multiaundh.com"
             />
             {errors.email && (
               <p className="text-red-500 text-xs mt-1">{errors.email.message}</p>
             )}
           </div>
-
           <div className="mb-6">
             <label htmlFor="password" className="block text-[#F5F5F5] text-sm font-bold mb-2">
               Password
@@ -82,22 +79,20 @@ const LoginPage: React.FC = () => {
               id="password"
               {...register('password')}
               className="w-full bg-gray-700 text-white border border-gray-600 rounded-md p-3 focus:ring-2 focus:ring-[#DFFF00] focus:border-transparent"
-              disabled={isLoading}
+              placeholder="••••••••"
             />
             {errors.password && (
               <p className="text-red-500 text-xs mt-1">{errors.password.message}</p>
             )}
           </div>
-
           <button
             type="submit"
             className="w-full bg-[#DFFF00] hover:bg-[#c2e600] text-[#1A1A1A] font-bold rounded-md py-3 transition-all duration-200"
-            disabled={isLoading}
+            disabled={loading}
           >
-            {isLoading ? 'Logging in...' : 'Login to Dashboard'}
+            {loading ? 'Logging in...' : 'Login to Dashboard'}
           </button>
-
-          {isLoading && (
+          {loading && (
             <p className="text-center mt-4 text-blue-400">Authenticating...</p>
           )}
           {error && (
