@@ -1,12 +1,11 @@
-import React from 'react';
 import { useAuth } from '../hooks/useAuth';
 import { Navigate } from 'react-router-dom';
 
 interface ProtectedRouteProps {
-  children: React.ReactElement;
+  children: JSX.Element;
 }
 
-const ProtectedRoute = ({ children }: ProtectedRouteProps): React.ReactElement => {
+const ProtectedRoute = ({ children }: ProtectedRouteProps): JSX.Element => {
   const { isAuthenticated } = useAuth();
 
   if (!isAuthenticated) {
