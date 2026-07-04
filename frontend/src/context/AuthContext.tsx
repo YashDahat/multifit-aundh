@@ -1,9 +1,10 @@
-import React, { createContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { useRouter } from 'next/router';
-import { login as authServiceLogin } from '../services/authService';
-import { AuthResponse, LoginCredentials } from '../types/auth';
+import { login as authServiceLogin } from '@/services/authService';
+import { AuthResponse, LoginCredentials } from '@/types/auth';
 
-export interface AuthContextType {
+// Context Type
+interface AuthContextType {
   isAuthenticated: boolean;
   isAdmin: boolean;
   token: string | null;
@@ -11,11 +12,16 @@ export interface AuthContextType {
   logout: () => void;
 }
 
+// Create the context
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const router = useRouter();
+// AuthProvider component
+interface AuthProviderProps {
+  children: ReactNode;
+}
 
+export const AuthProvider = ({ children }: AuthProviderProps): JSX.Element => {
+  const router = useRouter();
   const [token, setToken] = useState<string | null>(null);
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
   const [isAdmin, setIsAdmin] = useState<boolean>(false);
@@ -25,8 +31,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     if (storedToken) {
       setToken(storedToken);
       setIsAuthenticated(true);
-      // For this admin-focused feature, if a token exists, we assume the user is an admin.
-      // The instruction allows "assuming admin if token exists for this feature's scope".
+      // As per instruction: assume admin if token exists for this admin-focused feature's scope on initial load
       setIsAdmin(true);
     } else {
       setIsAuthenticated(false);
@@ -46,7 +51,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }
   };
 
-  const logout = () => {
+  const logout = (): void => {
     localStorage.removeItem('token');
     setToken(null);
     setIsAuthenticated(false);
@@ -62,11 +67,5 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     logout,
   };
 
-  return (
-    <AuthContext.Provider value={contextValue}>
-      {children}
-    </AuthContext.Provider>
-  );
+  return <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>;
 };
-
-export { AuthContext };
