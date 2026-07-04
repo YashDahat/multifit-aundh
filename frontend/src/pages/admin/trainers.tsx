@@ -140,9 +140,9 @@ const AdminTrainersPage: React.FC = () => {
                         <button
                           type="submit"
                           className="bg-[#DFFF00] hover:bg-[#c2e600] text-[#1A1A1A] font-bold rounded-md px-4 py-2 transition-all duration-200"
-                          disabled={createTrainerMutation.isLoading}
+                          disabled={createTrainerMutation.isPending}
                         >
-                          {createTrainerMutation.isLoading ? 'Creating...' : 'Create Trainer'}
+                          {createTrainerMutation.isPending ? 'Creating...' : 'Create Trainer'}
                         </button>
                       </div>
                     </form>

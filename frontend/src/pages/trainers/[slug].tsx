@@ -4,7 +4,7 @@ import Image from 'next/image';
 import Layout from '@/components/Layout';
 import { useTrainers } from '@/hooks/useTrainers';
 
-const TrainerDetailPage = (): JSX.Element => {
+const TrainerDetailPage = (): React.ReactElement => {
   const router = useRouter();
   const { slug } = router.query;
 

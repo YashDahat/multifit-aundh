@@ -1229,7 +1229,7 @@
     "layer" : "SERVICE",
     "created_date" : "2024-07-31",
     "updated_date" : "2026-07-04",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Axios instance configured with a base URL and an interceptor to add the JWT Authorization header to requests.",
     "public_functions" : [ ],
     "public_variables" : [ {
@@ -1250,7 +1250,7 @@
     "layer" : "CONTEXT",
     "created_date" : "2024-07-31",
     "updated_date" : "2026-07-04",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "React context for managing authentication state (token, role) and providing auth functions (login, logout) to the app.",
     "public_functions" : [ {
       "name" : "AuthProvider",
@@ -1272,7 +1272,7 @@
     "layer" : "HOOK",
     "created_date" : "2024-07-31",
     "updated_date" : "2026-07-04",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Custom hook to easily access the authentication context.",
     "public_functions" : [ {
       "name" : "useAuth",
@@ -1294,7 +1294,7 @@
     "layer" : "SERVICE",
     "created_date" : "2024-07-31",
     "updated_date" : "2026-07-04",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Service for making authentication-related API calls.",
     "public_functions" : [ {
       "name" : "login",
@@ -1322,7 +1322,7 @@
     "layer" : "UTIL",
     "created_date" : "2024-07-31",
     "updated_date" : "2026-07-04",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "TypeScript types and interfaces for the authentication domain.",
     "public_functions" : [ ],
     "public_variables" : [ {
@@ -1347,7 +1347,7 @@
     "layer" : "PAGE",
     "created_date" : "2024-07-31",
     "updated_date" : "2026-07-04",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Admin login page with a form for email and password.",
     "public_functions" : [ {
       "name" : "LoginPage",
@@ -1369,7 +1369,7 @@
     "layer" : "COMPONENT",
     "created_date" : "2024-07-31",
     "updated_date" : "2026-07-04",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "A component that wraps admin pages, redirecting to /login if the user is not authenticated.",
     "public_functions" : [ {
       "name" : "ProtectedRoute",
@@ -1391,7 +1391,7 @@
     "layer" : "COMPONENT",
     "created_date" : "2024-07-31",
     "updated_date" : "2026-07-04",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Main layout component for public-facing pages, including Header and Footer.",
     "public_functions" : [ {
       "name" : "Layout",
@@ -1413,7 +1413,7 @@
     "layer" : "COMPONENT",
     "created_date" : "2024-07-31",
     "updated_date" : "2026-07-04",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Responsive site header with navigation links and a call-to-action button. Uses the energetic color scheme.",
     "public_functions" : [ {
       "name" : "Header",
@@ -1435,7 +1435,7 @@
     "layer" : "COMPONENT",
     "created_date" : "2024-07-31",
     "updated_date" : "2026-07-04",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Site footer with contact information, hours, and an embedded Google Map.",
     "public_functions" : [ {
       "name" : "Footer",
@@ -1457,7 +1457,7 @@
     "layer" : "COMPONENT",
     "created_date" : "2024-07-31",
     "updated_date" : "2026-07-04",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Layout for all admin pages, featuring a persistent sidebar for navigation.",
     "public_functions" : [ {
       "name" : "AdminLayout",
@@ -1479,7 +1479,7 @@
     "layer" : "PAGE",
     "created_date" : "2024-07-31",
     "updated_date" : "2026-07-04",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "The main dashboard page for the admin area.",
     "public_functions" : [ {
       "name" : "AdminDashboardPage",
@@ -1501,7 +1501,7 @@
     "layer" : "PAGE",
     "created_date" : "2024-07-31",
     "updated_date" : "2026-07-04",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "The homepage, featuring a hero section, testimonials, and the trial lead form.",
     "public_functions" : [ {
       "name" : "HomePage",
@@ -1523,7 +1523,7 @@
     "layer" : "PAGE",
     "created_date" : "2024-07-31",
     "updated_date" : "2026-07-04",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Next.js custom App component to wrap all pages with global providers.",
     "public_functions" : [ {
       "name" : "MyApp",
@@ -1545,7 +1545,7 @@
     "layer" : "PAGE",
     "created_date" : "2024-07-31",
     "updated_date" : "2026-07-04",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Next.js custom Document to augment the app's <html> and <body> tags, used for SEO and global scripts.",
     "public_functions" : [ {
       "name" : "Document",
@@ -1567,7 +1567,7 @@
     "layer" : "COMPONENT",
     "created_date" : "2024-07-31",
     "updated_date" : "2026-07-04",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Component to inject LocalBusiness JSON-LD schema markup for SEO.",
     "public_functions" : [ {
       "name" : "LocalBusinessSchema",
@@ -1589,7 +1589,7 @@
     "layer" : "COMPONENT",
     "created_date" : "2024-07-31",
     "updated_date" : "2026-07-04",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "A floating action button that links to the business's WhatsApp for inquiries.",
     "public_functions" : [ {
       "name" : "FloatingWhatsAppButton",
@@ -1611,7 +1611,7 @@
     "layer" : "UTIL",
     "created_date" : "2024-07-31",
     "updated_date" : "2026-07-04",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "TypeScript types for the Trainer domain.",
     "public_functions" : [ ],
     "public_variables" : [ {
@@ -1636,7 +1636,7 @@
     "layer" : "SERVICE",
     "created_date" : "2024-07-31",
     "updated_date" : "2026-07-04",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Service for all trainer-related API calls.",
     "public_functions" : [ {
       "name" : "getTrainers",
@@ -1675,7 +1675,7 @@
     "layer" : "HOOK",
     "created_date" : "2024-07-31",
     "updated_date" : "2026-07-04",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "React Query hook for fetching and managing trainer data.",
     "public_functions" : [ {
       "name" : "useTrainers",
@@ -1702,7 +1702,7 @@
     "layer" : "PAGE",
     "created_date" : "2024-07-31",
     "updated_date" : "2026-07-04",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Page displaying a grid of all gym trainers.",
     "public_functions" : [ {
       "name" : "TrainersPage",
@@ -1724,7 +1724,7 @@
     "layer" : "PAGE",
     "created_date" : "2024-07-31",
     "updated_date" : "2026-07-04",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Dynamic page for displaying a single trainer's detailed profile.",
     "public_functions" : [ {
       "name" : "TrainerDetailPage",
@@ -1746,7 +1746,7 @@
     "layer" : "PAGE",
     "created_date" : "2024-07-31",
     "updated_date" : "2026-07-04",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Admin page for managing trainer profiles.",
     "public_functions" : [ {
       "name" : "AdminTrainersPage",
@@ -1767,8 +1767,8 @@
     "file_type" : "FRONTEND",
     "layer" : "COMPONENT",
     "created_date" : null,
-    "updated_date" : null,
-    "status" : "PLANNED",
+    "updated_date" : "2026-07-04",
+    "status" : "VALIDATED",
     "description" : "Auto-added: referenced in imports_from but missing from manifest",
     "public_functions" : null,
     "public_variables" : null,
@@ -1784,8 +1784,8 @@
     "file_type" : "FRONTEND",
     "layer" : "COMPONENT",
     "created_date" : null,
-    "updated_date" : null,
-    "status" : "PLANNED",
+    "updated_date" : "2026-07-04",
+    "status" : "VALIDATED",
     "description" : "Auto-added: referenced in imports_from but missing from manifest",
     "public_functions" : null,
     "public_variables" : null,

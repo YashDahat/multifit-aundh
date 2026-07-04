@@ -3,7 +3,7 @@ import { useTrainers } from '@/hooks/useTrainers';
 import Link from 'next/link';
 import Image from 'next/image';
 
-const TrainersPage = (): JSX.Element => {
+const TrainersPage = (): React.ReactElement => {
   const { data: trainers, isLoading, isError, error } = useTrainers();
 
   return (
