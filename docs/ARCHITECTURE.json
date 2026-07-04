@@ -1321,8 +1321,8 @@
     "file_type" : "FRONTEND",
     "layer" : "UTIL",
     "created_date" : "2024-07-31",
-    "updated_date" : "2024-07-31",
-    "status" : "PLANNED",
+    "updated_date" : "2026-07-04",
+    "status" : "GENERATED",
     "description" : "TypeScript types and interfaces for the authentication domain.",
     "public_functions" : [ ],
     "public_variables" : [ {
@@ -1610,8 +1610,8 @@
     "file_type" : "FRONTEND",
     "layer" : "UTIL",
     "created_date" : "2024-07-31",
-    "updated_date" : "2024-07-31",
-    "status" : "PLANNED",
+    "updated_date" : "2026-07-04",
+    "status" : "GENERATED",
     "description" : "TypeScript types for the Trainer domain.",
     "public_functions" : [ ],
     "public_variables" : [ {
