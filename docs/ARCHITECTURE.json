@@ -1110,8 +1110,8 @@
     "file_type" : "FRONTEND",
     "layer" : "PAGE",
     "created_date" : "2024-07-28",
-    "updated_date" : "2024-07-28",
-    "status" : "PLANNED",
+    "updated_date" : "2026-07-04",
+    "status" : "GENERATED",
     "description" : "The root component of the React application, responsible for setting up providers and routing.",
     "public_functions" : [ {
       "name" : "App",
