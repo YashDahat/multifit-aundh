@@ -1,0 +1,30 @@
+package com.multifitaundh.controller;
+
+import com.multifitaundh.dto.TrialLeadDto;
+import com.multifitaundh.service.TrialLeadService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/api/v1/admin/trials")
+public class AdminTrialLeadController {
+
+    private final TrialLeadService trialLeadService;
+
+    @Autowired
+    public AdminTrialLeadController(TrialLeadService trialLeadService) {
+        this.trialLeadService = trialLeadService;
+    }
+
+    @GetMapping
+    public ResponseEntity<List<TrialLeadDto>> getAllTrialLeads() {
+        List<TrialLeadDto> leads = trialLeadService.getAllTrialLeads();
+        return new ResponseEntity<>(leads, HttpStatus.OK);
+    }
+}
