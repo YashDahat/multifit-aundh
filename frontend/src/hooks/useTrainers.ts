@@ -1,6 +1,6 @@
 import { useQuery, useMutation, useQueryClient, UseQueryResult, UseMutationResult } from '@tanstack/react-query';
-import { getTrainers, createTrainer } from '../services/trainerService';
-import { Trainer, CreateTrainerData } from '../types/trainer';
+import { getTrainers, createTrainer } from '@/services/trainerService';
+import { Trainer, CreateTrainerData } from '@/types/trainer';
 
 export const useTrainers = (): UseQueryResult<Trainer[], Error> => {
   return useQuery<Trainer[], Error>({
