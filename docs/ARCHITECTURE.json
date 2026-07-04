@@ -1,0 +1,1871 @@
+{
+  "generated_at" : "2024-07-31T10:00:00Z",
+  "business_name" : "MultiFit Aundh",
+  "base_package" : "com.multifitaundh",
+  "project_dependencies" : {
+    "spring_boot_starters" : [ "web", "data-jpa", "postgresql", "lombok", "validation", "actuator", "security", "mail" ],
+    "npm_packages" : [ "next", "react", "react-dom", "tailwindcss", "@tanstack/react-query", "react-hook-form", "zod", "axios", "clsx", "lucide-react", "@radix-ui/react-dialog", "@radix-ui/react-label", "@radix-ui/react-toast" ],
+    "maven_dependencies" : null
+  },
+  "files" : [ {
+    "file_name" : "User.java",
+    "file_path" : "backend/src/main/java/com/multifitaundh/model/User.java",
+    "file_type" : "BACKEND",
+    "layer" : "MODEL",
+    "created_date" : "2024-07-31",
+    "updated_date" : "2024-07-31",
+    "status" : "PLANNED",
+    "description" : "Represents an application user, primarily for administrative access.",
+    "public_functions" : [ ],
+    "public_variables" : [ {
+      "name" : "id",
+      "type" : "UUID",
+      "description" : "Primary key, generated automatically."
+    }, {
+      "name" : "email",
+      "type" : "String",
+      "description" : "User's email address, used for login. Must be unique and not null."
+    }, {
+      "name" : "password",
+      "type" : "String",
+      "description" : "BCrypt-hashed password. Not null."
+    }, {
+      "name" : "role",
+      "type" : "Role",
+      "description" : "User's role, determining permissions. EnumType.STRING."
+    } ],
+    "api_endpoints" : [ ],
+    "api_endpoints_consumed" : [ ],
+    "imports_from" : [ "backend/src/main/java/com/multifitaundh/model/Role.java" ],
+    "depends_on" : [ ],
+    "feature_name" : "authentication-core",
+    "file_role" : "MODEL layer - Defines the User entity for JPA persistence, including fields for authentication and authorization (email, password, role)."
+  }, {
+    "file_name" : "Role.java",
+    "file_path" : "backend/src/main/java/com/multifitaundh/model/Role.java",
+    "file_type" : "BACKEND",
+    "layer" : "MODEL",
+    "created_date" : "2024-07-31",
+    "updated_date" : "2024-07-31",
+    "status" : "PLANNED",
+    "description" : "Enum defining user roles within the application.",
+    "public_functions" : [ ],
+    "public_variables" : [ {
+      "name" : "ADMIN",
+      "type" : "enum",
+      "description" : "Administrator role with full access to management features."
+    } ],
+    "api_endpoints" : [ ],
+    "api_endpoints_consumed" : [ ],
+    "imports_from" : [ ],
+    "depends_on" : [ ],
+    "feature_name" : "authentication-core",
+    "file_role" : "MODEL layer - A simple Java enum defining the authority levels in the application, primarily 'ADMIN'."
+  }, {
+    "file_name" : "UserRepository.java",
+    "file_path" : "backend/src/main/java/com/multifitaundh/repository/UserRepository.java",
+    "file_type" : "BACKEND",
+    "layer" : "REPOSITORY",
+    "created_date" : "2024-07-31",
+    "updated_date" : "2024-07-31",
+    "status" : "PLANNED",
+    "description" : "Spring Data JPA repository for User entities.",
+    "public_functions" : [ {
+      "name" : "findByEmail",
+      "parameters" : [ "String email" ],
+      "return_type" : "Optional<User>",
+      "description" : "Finds a user by their unique email address."
+    } ],
+    "public_variables" : [ ],
+    "api_endpoints" : [ ],
+    "api_endpoints_consumed" : [ ],
+    "imports_from" : [ "backend/src/main/java/com/multifitaundh/model/User.java" ],
+    "depends_on" : [ ],
+    "feature_name" : "authentication-core",
+    "file_role" : "REPOSITORY layer - Provides data access methods for the User entity, including the critical findByEmail(String email) for the authentication process."
+  }, {
+    "file_name" : "UserService.java",
+    "file_path" : "backend/src/main/java/com/multifitaundh/service/UserService.java",
+    "file_type" : "BACKEND",
+    "layer" : "SERVICE",
+    "created_date" : "2024-07-31",
+    "updated_date" : "2024-07-31",
+    "status" : "PLANNED",
+    "description" : "Implements Spring Security's UserDetailsService to load user-specific data.",
+    "public_functions" : [ {
+      "name" : "loadUserByUsername",
+      "parameters" : [ "String email" ],
+      "return_type" : "UserDetails",
+      "description" : "Loads a user by email for Spring Security authentication."
+    } ],
+    "public_variables" : [ ],
+    "api_endpoints" : [ ],
+    "api_endpoints_consumed" : [ ],
+    "imports_from" : [ "backend/src/main/java/com/multifitaundh/repository/UserRepository.java" ],
+    "depends_on" : [ ],
+    "feature_name" : "authentication-core",
+    "file_role" : "SERVICE layer - Implements UserDetailsService for Spring Security integration. Its loadUserByUsername(String email) method is the entry point for authenticating users against the database."
+  }, {
+    "file_name" : "JwtUtil.java",
+    "file_path" : "backend/src/main/java/com/multifitaundh/util/JwtUtil.java",
+    "file_type" : "BACKEND",
+    "layer" : "UTIL",
+    "created_date" : "2024-07-31",
+    "updated_date" : "2024-07-31",
+    "status" : "PLANNED",
+    "description" : "Utility class for handling JWT creation, validation, and claims extraction. Uses a Base64-encoded secret key.",
+    "public_functions" : [ {
+      "name" : "generateToken",
+      "parameters" : [ "UserDetails userDetails" ],
+      "return_type" : "String",
+      "description" : "Generates a JWT for an authenticated user."
+    }, {
+      "name" : "validateToken",
+      "parameters" : [ "String token", "UserDetails userDetails" ],
+      "return_type" : "boolean",
+      "description" : "Validates a JWT against a user's details."
+    }, {
+      "name" : "extractEmail",
+      "parameters" : [ "String token" ],
+      "return_type" : "String",
+      "description" : "Extracts the email (subject) from a JWT."
+    } ],
+    "public_variables" : [ ],
+    "api_endpoints" : [ ],
+    "api_endpoints_consumed" : [ ],
+    "imports_from" : [ ],
+    "depends_on" : [ ],
+    "feature_name" : "authentication-core",
+    "file_role" : "UTIL layer - A stateless utility for all JWT operations. Provides generateToken(UserDetails), validateToken(String, UserDetails), and extractEmail(String) methods to the security filter and auth controller."
+  }, {
+    "file_name" : "AdminInitializer.java",
+    "file_path" : "backend/src/main/java/com/multifitaundh/config/AdminInitializer.java",
+    "file_type" : "BACKEND",
+    "layer" : "CONFIG",
+    "created_date" : "2024-07-31",
+    "updated_date" : "2024-07-31",
+    "status" : "PLANNED",
+    "description" : "A CommandLineRunner that creates a default admin user on application startup if one does not exist, using credentials from application properties.",
+    "public_functions" : [ {
+      "name" : "run",
+      "parameters" : [ "String... args" ],
+      "return_type" : "void",
+      "description" : "Executes the admin user creation logic on startup."
+    } ],
+    "public_variables" : [ ],
+    "api_endpoints" : [ ],
+    "api_endpoints_consumed" : [ ],
+    "imports_from" : [ "backend/src/main/java/com/multifitaundh/repository/UserRepository.java", "backend/src/main/java/com/multifitaundh/model/User.java", "backend/src/main/java/com/multifitaundh/model/Role.java" ],
+    "depends_on" : [ ],
+    "feature_name" : "authentication-core",
+    "file_role" : "CONFIG layer - A CommandLineRunner that ensures at least one ADMIN user exists on startup, preventing the system from being locked out. Reads admin credentials from environment variables."
+  }, {
+    "file_name" : "SecurityConfig.java",
+    "file_path" : "backend/src/main/java/com/multifitaundh/config/SecurityConfig.java",
+    "file_type" : "BACKEND",
+    "layer" : "CONFIG",
+    "created_date" : "2024-07-31",
+    "updated_date" : "2024-07-31",
+    "status" : "PLANNED",
+    "description" : "Configures Spring Security, including CORS, stateless session management, JWT filter chain, and authorization rules.",
+    "public_functions" : [ {
+      "name" : "securityFilterChain",
+      "parameters" : [ "HttpSecurity http" ],
+      "return_type" : "SecurityFilterChain",
+      "description" : "Defines the security filter chain and request authorization rules."
+    } ],
+    "public_variables" : [ ],
+    "api_endpoints" : [ ],
+    "api_endpoints_consumed" : [ ],
+    "imports_from" : [ "backend/src/main/java/com/multifitaundh/security/JwtAuthFilter.java", "backend/src/main/java/com/multifitaundh/service/UserService.java" ],
+    "depends_on" : [ ],
+    "feature_name" : "authentication-api",
+    "file_role" : "CONFIG layer - Central hub for security configuration. Defines CORS policy, CSRF disablement, stateless session management, and the crucial HTTP authorization rules, placing the JwtAuthFilter in the filter chain."
+  }, {
+    "file_name" : "JwtAuthFilter.java",
+    "file_path" : "backend/src/main/java/com/multifitaundh/security/JwtAuthFilter.java",
+    "file_type" : "BACKEND",
+    "layer" : "CONFIG",
+    "created_date" : "2024-07-31",
+    "updated_date" : "2024-07-31",
+    "status" : "PLANNED",
+    "description" : "A filter that intercepts requests to validate the JWT from the Authorization header and set the security context.",
+    "public_functions" : [ {
+      "name" : "doFilterInternal",
+      "parameters" : [ "HttpServletRequest request", "HttpServletResponse response", "FilterChain filterChain" ],
+      "return_type" : "void",
+      "description" : "Performs JWT validation for each incoming request."
+    } ],
+    "public_variables" : [ ],
+    "api_endpoints" : [ ],
+    "api_endpoints_consumed" : [ ],
+    "imports_from" : [ "backend/src/main/java/com/multifitaundh/util/JwtUtil.java", "backend/src/main/java/com/multifitaundh/service/UserService.java" ],
+    "depends_on" : [ ],
+    "feature_name" : "authentication-api",
+    "file_role" : "CONFIG layer - A OncePerRequestFilter that extracts the Bearer token, validates it using JwtUtil, and sets the authentication in the SecurityContextHolder if valid."
+  }, {
+    "file_name" : "AuthController.java",
+    "file_path" : "backend/src/main/java/com/multifitaundh/controller/AuthController.java",
+    "file_type" : "BACKEND",
+    "layer" : "CONTROLLER",
+    "created_date" : "2024-07-31",
+    "updated_date" : "2024-07-31",
+    "status" : "PLANNED",
+    "description" : "Handles the authentication endpoint for admin login.",
+    "public_functions" : [ {
+      "name" : "login",
+      "parameters" : [ "AuthRequest authRequest" ],
+      "return_type" : "ResponseEntity<AuthResponse>",
+      "description" : "Authenticates a user and returns a JWT."
+    } ],
+    "public_variables" : null,
+    "api_endpoints" : [ {
+      "method" : "POST",
+      "path" : "/api/v1/auth/login",
+      "request_body" : "AuthRequest",
+      "response_body" : "AuthResponse",
+      "description" : "Accepts email and password, returns a JWT and user role upon successful authentication."
+    } ],
+    "api_endpoints_consumed" : [ ],
+    "imports_from" : [ "backend/src/main/java/com/multifitaundh/dto/AuthRequest.java", "backend/src/main/java/com/multifitaundh/dto/AuthResponse.java", "backend/src/main/java/com/multifitaundh/util/JwtUtil.java" ],
+    "depends_on" : [ ],
+    "feature_name" : "authentication-api",
+    "file_role" : "CONTROLLER layer - Exposes the public POST /api/v1/auth/login endpoint. It uses Spring's AuthenticationManager to validate credentials and JwtUtil to generate a token for the frontend."
+  }, {
+    "file_name" : "AuthRequest.java",
+    "file_path" : "backend/src/main/java/com/multifitaundh/dto/AuthRequest.java",
+    "file_type" : "BACKEND",
+    "layer" : "DTO",
+    "created_date" : "2024-07-31",
+    "updated_date" : "2024-07-31",
+    "status" : "PLANNED",
+    "description" : "Data Transfer Object for authentication requests.",
+    "public_functions" : [ ],
+    "public_variables" : [ {
+      "name" : "email",
+      "type" : "String",
+      "description" : "User's email. Must be a valid email format and not blank."
+    }, {
+      "name" : "password",
+      "type" : "String",
+      "description" : "User's password. Must not be blank."
+    } ],
+    "api_endpoints" : [ ],
+    "api_endpoints_consumed" : [ ],
+    "imports_from" : [ ],
+    "depends_on" : [ ],
+    "feature_name" : "authentication-api",
+    "file_role" : "DTO layer - A record representing the JSON body for a login request, with @NotBlank and @Email validation annotations."
+  }, {
+    "file_name" : "AuthResponse.java",
+    "file_path" : "backend/src/main/java/com/multifitaundh/dto/AuthResponse.java",
+    "file_type" : "BACKEND",
+    "layer" : "DTO",
+    "created_date" : "2024-07-31",
+    "updated_date" : "2024-07-31",
+    "status" : "PLANNED",
+    "description" : "Data Transfer Object for authentication responses.",
+    "public_functions" : [ ],
+    "public_variables" : [ {
+      "name" : "token",
+      "type" : "String",
+      "description" : "The generated JWT."
+    }, {
+      "name" : "role",
+      "type" : "String",
+      "description" : "The role of the authenticated user."
+    } ],
+    "api_endpoints" : [ ],
+    "api_endpoints_consumed" : [ ],
+    "imports_from" : [ ],
+    "depends_on" : [ ],
+    "feature_name" : "authentication-api",
+    "file_role" : "DTO layer - A record representing the JSON response after a successful login, containing the JWT and user role."
+  }, {
+    "file_name" : "Trainer.java",
+    "file_path" : "backend/src/main/java/com/multifitaundh/model/Trainer.java",
+    "file_type" : "BACKEND",
+    "layer" : "MODEL",
+    "created_date" : "2024-07-31",
+    "updated_date" : "2024-07-31",
+    "status" : "PLANNED",
+    "description" : "Represents a gym trainer with their profile information.",
+    "public_functions" : [ ],
+    "public_variables" : [ {
+      "name" : "id",
+      "type" : "UUID",
+      "description" : "Primary key."
+    }, {
+      "name" : "name",
+      "type" : "String",
+      "description" : "Trainer's full name. Not null."
+    }, {
+      "name" : "specializations",
+      "type" : "String",
+      "description" : "Comma-separated list of trainer's specializations (e.g., CrossFit, Yoga)."
+    }, {
+      "name" : "bio",
+      "type" : "String",
+      "description" : "A short biography of the trainer. Stored as TEXT."
+    }, {
+      "name" : "imageUrl",
+      "type" : "String",
+      "description" : "URL to the trainer's profile picture."
+    }, {
+      "name" : "slug",
+      "type" : "String",
+      "description" : "URL-friendly slug for the trainer's detail page. Unique."
+    } ],
+    "api_endpoints" : [ ],
+    "api_endpoints_consumed" : [ ],
+    "imports_from" : [ ],
+    "depends_on" : [ ],
+    "feature_name" : "trainer-management",
+    "file_role" : "MODEL layer - Defines the Trainer entity for storing trainer profiles, including name, specializations, bio, and image URL."
+  }, {
+    "file_name" : "TrainerRepository.java",
+    "file_path" : "backend/src/main/java/com/multifitaundh/repository/TrainerRepository.java",
+    "file_type" : "BACKEND",
+    "layer" : "REPOSITORY",
+    "created_date" : "2024-07-31",
+    "updated_date" : "2024-07-31",
+    "status" : "PLANNED",
+    "description" : "Spring Data JPA repository for Trainer entities.",
+    "public_functions" : [ {
+      "name" : "findBySlug",
+      "parameters" : [ "String slug" ],
+      "return_type" : "Optional<Trainer>",
+      "description" : "Finds a trainer by their unique URL slug."
+    } ],
+    "public_variables" : [ ],
+    "api_endpoints" : [ ],
+    "api_endpoints_consumed" : [ ],
+    "imports_from" : [ "backend/src/main/java/com/multifitaundh/model/Trainer.java" ],
+    "depends_on" : [ ],
+    "feature_name" : "trainer-management",
+    "file_role" : "REPOSITORY layer - Provides data access for Trainer entities, including a custom findBySlug(String slug) method for public-facing profile pages."
+  }, {
+    "file_name" : "TrainerService.java",
+    "file_path" : "backend/src/main/java/com/multifitaundh/service/TrainerService.java",
+    "file_type" : "BACKEND",
+    "layer" : "SERVICE",
+    "created_date" : "2024-07-31",
+    "updated_date" : "2024-07-31",
+    "status" : "PLANNED",
+    "description" : "Service layer for managing trainer data.",
+    "public_functions" : [ {
+      "name" : "getAllTrainers",
+      "parameters" : [ ],
+      "return_type" : "List<TrainerDto>",
+      "description" : "Retrieves all trainers."
+    }, {
+      "name" : "createTrainer",
+      "parameters" : [ "CreateTrainerRequest request" ],
+      "return_type" : "TrainerDto",
+      "description" : "Creates a new trainer."
+    }, {
+      "name" : "updateTrainer",
+      "parameters" : [ "UUID id", "UpdateTrainerRequest request" ],
+      "return_type" : "TrainerDto",
+      "description" : "Updates an existing trainer."
+    }, {
+      "name" : "deleteTrainer",
+      "parameters" : [ "UUID id" ],
+      "return_type" : "void",
+      "description" : "Deletes a trainer."
+    } ],
+    "public_variables" : [ ],
+    "api_endpoints" : [ ],
+    "api_endpoints_consumed" : [ ],
+    "imports_from" : [ "backend/src/main/java/com/multifitaundh/repository/TrainerRepository.java", "backend/src/main/java/com/multifitaundh/dto/TrainerDto.java", "backend/src/main/java/com/multifitaundh/dto/CreateTrainerRequest.java", "backend/src/main/java/com/multifitaundh/dto/UpdateTrainerRequest.java" ],
+    "depends_on" : [ ],
+    "feature_name" : "trainer-management",
+    "file_role" : "SERVICE layer - Implements the business logic for trainer CRUD operations. Methods like createTrainer(CreateTrainerRequest) and getAllTrainers() serve the admin and public controllers."
+  }, {
+    "file_name" : "TrainerController.java",
+    "file_path" : "backend/src/main/java/com/multifitaundh/controller/TrainerController.java",
+    "file_type" : "BACKEND",
+    "layer" : "CONTROLLER",
+    "created_date" : "2024-07-31",
+    "updated_date" : "2024-07-31",
+    "status" : "PLANNED",
+    "description" : "Public-facing REST controller for retrieving trainer information.",
+    "public_functions" : [ {
+      "name" : "getAllTrainers",
+      "parameters" : [ ],
+      "return_type" : "ResponseEntity<List<TrainerDto>>",
+      "description" : "Gets a list of all trainers."
+    }, {
+      "name" : "getTrainerBySlug",
+      "parameters" : [ "String slug" ],
+      "return_type" : "ResponseEntity<TrainerDto>",
+      "description" : "Gets a single trainer by their slug."
+    } ],
+    "public_variables" : null,
+    "api_endpoints" : [ {
+      "method" : "GET",
+      "path" : "/api/v1/trainers",
+      "request_body" : null,
+      "response_body" : "List<TrainerDto>",
+      "description" : "Returns a list of all trainers for public display."
+    }, {
+      "method" : "GET",
+      "path" : "/api/v1/trainers/{slug}",
+      "request_body" : null,
+      "response_body" : "TrainerDto",
+      "description" : "Returns a single trainer's profile."
+    } ],
+    "api_endpoints_consumed" : [ ],
+    "imports_from" : [ "backend/src/main/java/com/multifitaundh/service/TrainerService.java", "backend/src/main/java/com/multifitaundh/dto/TrainerDto.java" ],
+    "depends_on" : [ ],
+    "feature_name" : "trainer-management-api",
+    "file_role" : "CONTROLLER layer - Exposes public, read-only endpoints for trainers. GET /api/v1/trainers and GET /api/v1/trainers/{slug} are consumed by the frontend to display trainer profiles."
+  }, {
+    "file_name" : "AdminTrainerController.java",
+    "file_path" : "backend/src/main/java/com/multifitaundh/controller/AdminTrainerController.java",
+    "file_type" : "BACKEND",
+    "layer" : "CONTROLLER",
+    "created_date" : "2024-07-31",
+    "updated_date" : "2024-07-31",
+    "status" : "PLANNED",
+    "description" : "Admin-only REST controller for CRUD operations on trainers.",
+    "public_functions" : [ {
+      "name" : "createTrainer",
+      "parameters" : [ "CreateTrainerRequest request" ],
+      "return_type" : "ResponseEntity<TrainerDto>",
+      "description" : "Creates a new trainer."
+    } ],
+    "public_variables" : null,
+    "api_endpoints" : [ {
+      "method" : "POST",
+      "path" : "/api/v1/admin/trainers",
+      "request_body" : "CreateTrainerRequest",
+      "response_body" : "TrainerDto",
+      "description" : "Creates a new trainer profile."
+    }, {
+      "method" : "PUT",
+      "path" : "/api/v1/admin/trainers/{id}",
+      "request_body" : "UpdateTrainerRequest",
+      "response_body" : "TrainerDto",
+      "description" : "Updates an existing trainer profile."
+    }, {
+      "method" : "DELETE",
+      "path" : "/api/v1/admin/trainers/{id}",
+      "request_body" : null,
+      "response_body" : "void",
+      "description" : "Deletes a trainer profile."
+    } ],
+    "api_endpoints_consumed" : [ ],
+    "imports_from" : [ "backend/src/main/java/com/multifitaundh/service/TrainerService.java", "backend/src/main/java/com/multifitaundh/dto/TrainerDto.java", "backend/src/main/java/com/multifitaundh/dto/CreateTrainerRequest.java", "backend/src/main/java/com/multifitaundh/dto/UpdateTrainerRequest.java" ],
+    "depends_on" : [ ],
+    "feature_name" : "trainer-management-api",
+    "file_role" : "CONTROLLER layer - Provides secure, ADMIN-only endpoints for full CRUD management of trainers, consumed by the admin portal frontend. Path is /api/v1/admin/trainers."
+  }, {
+    "file_name" : "TrainerDto.java",
+    "file_path" : "backend/src/main/java/com/multifitaundh/dto/TrainerDto.java",
+    "file_type" : "BACKEND",
+    "layer" : "DTO",
+    "created_date" : "2024-07-31",
+    "updated_date" : "2024-07-31",
+    "status" : "PLANNED",
+    "description" : "DTO for exposing trainer data.",
+    "public_functions" : [ ],
+    "public_variables" : [ {
+      "name" : "id",
+      "type" : "UUID",
+      "description" : "Trainer's ID."
+    }, {
+      "name" : "name",
+      "type" : "String",
+      "description" : "Trainer's name."
+    }, {
+      "name" : "specializations",
+      "type" : "String",
+      "description" : "Trainer's specializations."
+    }, {
+      "name" : "bio",
+      "type" : "String",
+      "description" : "Trainer's biography."
+    }, {
+      "name" : "imageUrl",
+      "type" : "String",
+      "description" : "URL for trainer's image."
+    }, {
+      "name" : "slug",
+      "type" : "String",
+      "description" : "URL slug."
+    } ],
+    "api_endpoints" : [ ],
+    "api_endpoints_consumed" : [ ],
+    "imports_from" : [ ],
+    "depends_on" : [ ],
+    "feature_name" : "trainer-management-api",
+    "file_role" : "DTO layer - A record representing the public view of a Trainer, used as the response body for all trainer-related API endpoints."
+  }, {
+    "file_name" : "CreateTrainerRequest.java",
+    "file_path" : "backend/src/main/java/com/multifitaundh/dto/CreateTrainerRequest.java",
+    "file_type" : "BACKEND",
+    "layer" : "DTO",
+    "created_date" : "2024-07-31",
+    "updated_date" : "2024-07-31",
+    "status" : "PLANNED",
+    "description" : "DTO for creating a new trainer.",
+    "public_functions" : [ ],
+    "public_variables" : [ {
+      "name" : "name",
+      "type" : "String",
+      "description" : "@NotBlank trainer's name."
+    }, {
+      "name" : "specializations",
+      "type" : "String",
+      "description" : "@NotBlank trainer's specializations."
+    }, {
+      "name" : "bio",
+      "type" : "String",
+      "description" : "@NotBlank trainer's biography."
+    }, {
+      "name" : "imageUrl",
+      "type" : "String",
+      "description" : "@NotBlank @URL trainer's image URL."
+    } ],
+    "api_endpoints" : [ ],
+    "api_endpoints_consumed" : [ ],
+    "imports_from" : [ ],
+    "depends_on" : [ ],
+    "feature_name" : "trainer-management-api",
+    "file_role" : "DTO layer - A record for the POST /api/v1/admin/trainers request body, with validation annotations to ensure all required fields are present."
+  }, {
+    "file_name" : "UpdateTrainerRequest.java",
+    "file_path" : "backend/src/main/java/com/multifitaundh/dto/UpdateTrainerRequest.java",
+    "file_type" : "BACKEND",
+    "layer" : "DTO",
+    "created_date" : "2024-07-31",
+    "updated_date" : "2024-07-31",
+    "status" : "PLANNED",
+    "description" : "DTO for updating an existing trainer.",
+    "public_functions" : [ ],
+    "public_variables" : [ {
+      "name" : "name",
+      "type" : "String",
+      "description" : "@NotBlank trainer's name."
+    }, {
+      "name" : "specializations",
+      "type" : "String",
+      "description" : "@NotBlank trainer's specializations."
+    }, {
+      "name" : "bio",
+      "type" : "String",
+      "description" : "@NotBlank trainer's biography."
+    }, {
+      "name" : "imageUrl",
+      "type" : "String",
+      "description" : "@NotBlank @URL trainer's image URL."
+    } ],
+    "api_endpoints" : [ ],
+    "api_endpoints_consumed" : [ ],
+    "imports_from" : [ ],
+    "depends_on" : [ ],
+    "feature_name" : "trainer-management-api",
+    "file_role" : "DTO layer - A record for the PUT /api/v1/admin/trainers/{id} request body, with validation annotations."
+  }, {
+    "file_name" : "Testimonial.java",
+    "file_path" : "backend/src/main/java/com/multifitaundh/model/Testimonial.java",
+    "file_type" : "BACKEND",
+    "layer" : "MODEL",
+    "created_date" : "2024-07-31",
+    "updated_date" : "2024-07-31",
+    "status" : "PLANNED",
+    "description" : "Represents a customer testimonial or review.",
+    "public_functions" : [ ],
+    "public_variables" : [ {
+      "name" : "id",
+      "type" : "UUID",
+      "description" : "Primary key."
+    }, {
+      "name" : "authorName",
+      "type" : "String",
+      "description" : "Name of the person giving the testimonial. Not null."
+    }, {
+      "name" : "quote",
+      "type" : "String",
+      "description" : "The testimonial text. Stored as TEXT, not null."
+    }, {
+      "name" : "rating",
+      "type" : "int",
+      "description" : "Star rating from 1 to 5."
+    } ],
+    "api_endpoints" : [ ],
+    "api_endpoints_consumed" : [ ],
+    "imports_from" : [ ],
+    "depends_on" : [ ],
+    "feature_name" : "testimonial-management",
+    "file_role" : "MODEL layer - Defines the Testimonial entity for storing customer reviews, including author, quote, and rating."
+  }, {
+    "file_name" : "TestimonialRepository.java",
+    "file_path" : "backend/src/main/java/com/multifitaundh/repository/TestimonialRepository.java",
+    "file_type" : "BACKEND",
+    "layer" : "REPOSITORY",
+    "created_date" : "2024-07-31",
+    "updated_date" : "2024-07-31",
+    "status" : "PLANNED",
+    "description" : "Spring Data JPA repository for Testimonial entities.",
+    "public_functions" : [ {
+      "name" : "findAllByOrderByCreatedAtDesc",
+      "parameters" : [ ],
+      "return_type" : "List<Testimonial>",
+      "description" : "Finds all testimonials, ordered by creation date descending."
+    } ],
+    "public_variables" : [ ],
+    "api_endpoints" : [ ],
+    "api_endpoints_consumed" : [ ],
+    "imports_from" : [ "backend/src/main/java/com/multifitaundh/model/Testimonial.java" ],
+    "depends_on" : [ ],
+    "feature_name" : "testimonial-management",
+    "file_role" : "REPOSITORY layer - Provides data access for Testimonial entities, including a findAllByOrderByCreatedAtDesc() method to fetch the latest testimonials first."
+  }, {
+    "file_name" : "TestimonialService.java",
+    "file_path" : "backend/src/main/java/com/multifitaundh/service/TestimonialService.java",
+    "file_type" : "BACKEND",
+    "layer" : "SERVICE",
+    "created_date" : "2024-07-31",
+    "updated_date" : "2024-07-31",
+    "status" : "PLANNED",
+    "description" : "Service layer for managing testimonials.",
+    "public_functions" : [ {
+      "name" : "getAllTestimonials",
+      "parameters" : [ ],
+      "return_type" : "List<TestimonialDto>",
+      "description" : "Retrieves all testimonials."
+    }, {
+      "name" : "createTestimonial",
+      "parameters" : [ "CreateTestimonialRequest request" ],
+      "return_type" : "TestimonialDto",
+      "description" : "Creates a new testimonial."
+    }, {
+      "name" : "deleteTestimonial",
+      "parameters" : [ "UUID id" ],
+      "return_type" : "void",
+      "description" : "Deletes a testimonial."
+    } ],
+    "public_variables" : [ ],
+    "api_endpoints" : [ ],
+    "api_endpoints_consumed" : [ ],
+    "imports_from" : [ "backend/src/main/java/com/multifitaundh/repository/TestimonialRepository.java", "backend/src/main/java/com/multifitaundh/dto/TestimonialDto.java", "backend/src/main/java/com/multifitaundh/dto/CreateTestimonialRequest.java" ],
+    "depends_on" : [ ],
+    "feature_name" : "testimonial-management",
+    "file_role" : "SERVICE layer - Implements business logic for testimonial CRUD operations, serving both public and admin controllers."
+  }, {
+    "file_name" : "TestimonialController.java",
+    "file_path" : "backend/src/main/java/com/multifitaundh/controller/TestimonialController.java",
+    "file_type" : "BACKEND",
+    "layer" : "CONTROLLER",
+    "created_date" : "2024-07-31",
+    "updated_date" : "2024-07-31",
+    "status" : "PLANNED",
+    "description" : "Public-facing REST controller for retrieving testimonials.",
+    "public_functions" : [ ],
+    "public_variables" : null,
+    "api_endpoints" : [ {
+      "method" : "GET",
+      "path" : "/api/v1/testimonials",
+      "request_body" : null,
+      "response_body" : "List<TestimonialDto>",
+      "description" : "Returns a list of all testimonials for public display."
+    } ],
+    "api_endpoints_consumed" : [ ],
+    "imports_from" : [ "backend/src/main/java/com/multifitaundh/service/TestimonialService.java", "backend/src/main/java/com/multifitaundh/dto/TestimonialDto.java" ],
+    "depends_on" : [ ],
+    "feature_name" : "testimonial-management-api",
+    "file_role" : "CONTROLLER layer - Exposes the public GET /api/v1/testimonials endpoint, consumed by the frontend to display social proof."
+  }, {
+    "file_name" : "AdminTestimonialController.java",
+    "file_path" : "backend/src/main/java/com/multifitaundh/controller/AdminTestimonialController.java",
+    "file_type" : "BACKEND",
+    "layer" : "CONTROLLER",
+    "created_date" : "2024-07-31",
+    "updated_date" : "2024-07-31",
+    "status" : "PLANNED",
+    "description" : "Admin-only REST controller for managing testimonials.",
+    "public_functions" : [ ],
+    "public_variables" : null,
+    "api_endpoints" : [ {
+      "method" : "GET",
+      "path" : "/api/v1/admin/testimonials",
+      "request_body" : null,
+      "response_body" : "List<TestimonialDto>",
+      "description" : "Gets all testimonials for the admin panel."
+    }, {
+      "method" : "POST",
+      "path" : "/api/v1/admin/testimonials",
+      "request_body" : "CreateTestimonialRequest",
+      "response_body" : "TestimonialDto",
+      "description" : "Creates a new testimonial."
+    }, {
+      "method" : "DELETE",
+      "path" : "/api/v1/admin/testimonials/{id}",
+      "request_body" : null,
+      "response_body" : "void",
+      "description" : "Deletes a testimonial."
+    } ],
+    "api_endpoints_consumed" : [ ],
+    "imports_from" : [ "backend/src/main/java/com/multifitaundh/service/TestimonialService.java", "backend/src/main/java/com/multifitaundh/dto/TestimonialDto.java", "backend/src/main/java/com/multifitaundh/dto/CreateTestimonialRequest.java" ],
+    "depends_on" : [ ],
+    "feature_name" : "testimonial-management-api",
+    "file_role" : "CONTROLLER layer - Provides secure, ADMIN-only endpoints for managing testimonials (GET all, POST, DELETE), consumed by the admin portal. Path is /api/v1/admin/testimonials."
+  }, {
+    "file_name" : "TestimonialDto.java",
+    "file_path" : "backend/src/main/java/com/multifitaundh/dto/TestimonialDto.java",
+    "file_type" : "BACKEND",
+    "layer" : "DTO",
+    "created_date" : "2024-07-31",
+    "updated_date" : "2024-07-31",
+    "status" : "PLANNED",
+    "description" : "DTO for exposing testimonial data.",
+    "public_functions" : [ ],
+    "public_variables" : [ {
+      "name" : "id",
+      "type" : "UUID",
+      "description" : "Testimonial ID."
+    }, {
+      "name" : "authorName",
+      "type" : "String",
+      "description" : "Author's name."
+    }, {
+      "name" : "quote",
+      "type" : "String",
+      "description" : "Testimonial text."
+    }, {
+      "name" : "rating",
+      "type" : "int",
+      "description" : "Star rating."
+    } ],
+    "api_endpoints" : [ ],
+    "api_endpoints_consumed" : [ ],
+    "imports_from" : [ ],
+    "depends_on" : [ ],
+    "feature_name" : "testimonial-management-api",
+    "file_role" : "DTO layer - A record representing the public view of a Testimonial, used as the response body for testimonial API endpoints."
+  }, {
+    "file_name" : "CreateTestimonialRequest.java",
+    "file_path" : "backend/src/main/java/com/multifitaundh/dto/CreateTestimonialRequest.java",
+    "file_type" : "BACKEND",
+    "layer" : "DTO",
+    "created_date" : "2024-07-31",
+    "updated_date" : "2024-07-31",
+    "status" : "PLANNED",
+    "description" : "DTO for creating a new testimonial.",
+    "public_functions" : [ ],
+    "public_variables" : [ {
+      "name" : "authorName",
+      "type" : "String",
+      "description" : "@NotBlank author's name."
+    }, {
+      "name" : "quote",
+      "type" : "String",
+      "description" : "@NotBlank testimonial text."
+    }, {
+      "name" : "rating",
+      "type" : "int",
+      "description" : "@Min(1) @Max(5) star rating."
+    } ],
+    "api_endpoints" : [ ],
+    "api_endpoints_consumed" : [ ],
+    "imports_from" : [ ],
+    "depends_on" : [ ],
+    "feature_name" : "testimonial-management-api",
+    "file_role" : "DTO layer - A record for the POST /api/v1/admin/testimonials request body, with validation annotations."
+  }, {
+    "file_name" : "TrialLead.java",
+    "file_path" : "backend/src/main/java/com/multifitaundh/model/TrialLead.java",
+    "file_type" : "BACKEND",
+    "layer" : "MODEL",
+    "created_date" : "2024-07-31",
+    "updated_date" : "2024-07-31",
+    "status" : "PLANNED",
+    "description" : "Represents a lead captured from the '3-Day Free Trial' form.",
+    "public_functions" : [ ],
+    "public_variables" : [ {
+      "name" : "id",
+      "type" : "UUID",
+      "description" : "Primary key."
+    }, {
+      "name" : "name",
+      "type" : "String",
+      "description" : "Lead's full name. Not null."
+    }, {
+      "name" : "email",
+      "type" : "String",
+      "description" : "Lead's email address. Not null."
+    }, {
+      "name" : "phone",
+      "type" : "String",
+      "description" : "Lead's phone number. Not null."
+    }, {
+      "name" : "createdAt",
+      "type" : "Instant",
+      "description" : "Timestamp of when the lead was submitted."
+    } ],
+    "api_endpoints" : [ ],
+    "api_endpoints_consumed" : [ ],
+    "imports_from" : [ ],
+    "depends_on" : [ ],
+    "feature_name" : "lead-capture",
+    "file_role" : "MODEL layer - Defines the TrialLead entity for storing leads from the free trial form, capturing name, email, and phone number."
+  }, {
+    "file_name" : "TrialLeadRepository.java",
+    "file_path" : "backend/src/main/java/com/multifitaundh/repository/TrialLeadRepository.java",
+    "file_type" : "BACKEND",
+    "layer" : "REPOSITORY",
+    "created_date" : "2024-07-31",
+    "updated_date" : "2024-07-31",
+    "status" : "PLANNED",
+    "description" : "Spring Data JPA repository for TrialLead entities.",
+    "public_functions" : [ {
+      "name" : "findAllByOrderByCreatedAtDesc",
+      "parameters" : [ ],
+      "return_type" : "List<TrialLead>",
+      "description" : "Finds all leads, ordered by creation date descending."
+    } ],
+    "public_variables" : [ ],
+    "api_endpoints" : [ ],
+    "api_endpoints_consumed" : [ ],
+    "imports_from" : [ "backend/src/main/java/com/multifitaundh/model/TrialLead.java" ],
+    "depends_on" : [ ],
+    "feature_name" : "lead-capture",
+    "file_role" : "REPOSITORY layer - Provides data access for TrialLead entities, including a method to fetch all leads sorted by most recent."
+  }, {
+    "file_name" : "TrialLeadService.java",
+    "file_path" : "backend/src/main/java/com/multifitaundh/service/TrialLeadService.java",
+    "file_type" : "BACKEND",
+    "layer" : "SERVICE",
+    "created_date" : "2024-07-31",
+    "updated_date" : "2024-07-31",
+    "status" : "PLANNED",
+    "description" : "Service layer for managing trial leads, including creation and notifications.",
+    "public_functions" : [ {
+      "name" : "createTrialLead",
+      "parameters" : [ "CreateTrialLeadRequest request" ],
+      "return_type" : "TrialLeadDto",
+      "description" : "Saves a new trial lead and triggers a notification."
+    }, {
+      "name" : "getAllTrialLeads",
+      "parameters" : [ ],
+      "return_type" : "List<TrialLeadDto>",
+      "description" : "Retrieves all trial leads for admin."
+    } ],
+    "public_variables" : [ ],
+    "api_endpoints" : [ ],
+    "api_endpoints_consumed" : [ ],
+    "imports_from" : [ "backend/src/main/java/com/multifitaundh/repository/TrialLeadRepository.java", "backend/src/main/java/com/multifitaundh/dto/TrialLeadDto.java", "backend/src/main/java/com/multifitaundh/dto/CreateTrialLeadRequest.java", "backend/src/main/java/com/multifitaundh/service/NotificationService.java" ],
+    "depends_on" : [ ],
+    "feature_name" : "lead-capture",
+    "file_role" : "SERVICE layer - Implements logic for creating and retrieving trial leads. The createTrialLead(CreateTrialLeadRequest) method persists the lead and calls NotificationService to alert staff."
+  }, {
+    "file_name" : "NotificationService.java",
+    "file_path" : "backend/src/main/java/com/multifitaundh/service/NotificationService.java",
+    "file_type" : "BACKEND",
+    "layer" : "SERVICE",
+    "created_date" : "2024-07-31",
+    "updated_date" : "2024-07-31",
+    "status" : "PLANNED",
+    "description" : "Handles sending email notifications for new leads.",
+    "public_functions" : [ {
+      "name" : "sendNewLeadNotification",
+      "parameters" : [ "TrialLeadDto lead" ],
+      "return_type" : "void",
+      "description" : "Sends an email to the admin about a new trial lead."
+    } ],
+    "public_variables" : [ ],
+    "api_endpoints" : [ ],
+    "api_endpoints_consumed" : [ ],
+    "imports_from" : [ "backend/src/main/java/com/multifitaundh/dto/TrialLeadDto.java" ],
+    "depends_on" : [ ],
+    "feature_name" : "lead-capture",
+    "file_role" : "SERVICE layer - An abstraction for sending notifications. Its sendNewLeadNotification(TrialLeadDto) method uses JavaMailSender to email gym staff about new sign-ups."
+  }, {
+    "file_name" : "LeadController.java",
+    "file_path" : "backend/src/main/java/com/multifitaundh/controller/LeadController.java",
+    "file_type" : "BACKEND",
+    "layer" : "CONTROLLER",
+    "created_date" : "2024-07-31",
+    "updated_date" : "2024-07-31",
+    "status" : "PLANNED",
+    "description" : "Public-facing REST controller for submitting the trial lead form.",
+    "public_functions" : [ ],
+    "public_variables" : null,
+    "api_endpoints" : [ {
+      "method" : "POST",
+      "path" : "/api/v1/leads/trial",
+      "request_body" : "CreateTrialLeadRequest",
+      "response_body" : "TrialLeadDto",
+      "description" : "Accepts a new trial lead submission from the public website."
+    } ],
+    "api_endpoints_consumed" : [ ],
+    "imports_from" : [ "backend/src/main/java/com/multifitaundh/service/TrialLeadService.java", "backend/src/main/java/com/multifitaundh/dto/CreateTrialLeadRequest.java", "backend/src/main/java/com/multifitaundh/dto/TrialLeadDto.java" ],
+    "depends_on" : [ ],
+    "feature_name" : "lead-capture-api",
+    "file_role" : "CONTROLLER layer - Exposes the public POST /api/v1/leads/trial endpoint, which is the submission target for the '3-Day Free Trial' form."
+  }, {
+    "file_name" : "AdminLeadController.java",
+    "file_path" : "backend/src/main/java/com/multifitaundh/controller/AdminLeadController.java",
+    "file_type" : "BACKEND",
+    "layer" : "CONTROLLER",
+    "created_date" : "2024-07-31",
+    "updated_date" : "2024-07-31",
+    "status" : "PLANNED",
+    "description" : "Admin-only REST controller for viewing captured leads.",
+    "public_functions" : [ ],
+    "public_variables" : null,
+    "api_endpoints" : [ {
+      "method" : "GET",
+      "path" : "/api/v1/admin/leads/trial",
+      "request_body" : null,
+      "response_body" : "List<TrialLeadDto>",
+      "description" : "Retrieves all captured trial leads for the admin panel."
+    } ],
+    "api_endpoints_consumed" : [ ],
+    "imports_from" : [ "backend/src/main/java/com/multifitaundh/service/TrialLeadService.java", "backend/src/main/java/com/multifitaundh/dto/TrialLeadDto.java" ],
+    "depends_on" : [ ],
+    "feature_name" : "lead-capture-api",
+    "file_role" : "CONTROLLER layer - Provides the secure GET /api/v1/admin/leads/trial endpoint for the admin portal to display a list of all submitted leads."
+  }, {
+    "file_name" : "TrialLeadDto.java",
+    "file_path" : "backend/src/main/java/com/multifitaundh/dto/TrialLeadDto.java",
+    "file_type" : "BACKEND",
+    "layer" : "DTO",
+    "created_date" : "2024-07-31",
+    "updated_date" : "2024-07-31",
+    "status" : "PLANNED",
+    "description" : "DTO for exposing trial lead data.",
+    "public_functions" : [ ],
+    "public_variables" : [ {
+      "name" : "id",
+      "type" : "UUID",
+      "description" : "Lead ID."
+    }, {
+      "name" : "name",
+      "type" : "String",
+      "description" : "Lead's name."
+    }, {
+      "name" : "email",
+      "type" : "String",
+      "description" : "Lead's email."
+    }, {
+      "name" : "phone",
+      "type" : "String",
+      "description" : "Lead's phone."
+    }, {
+      "name" : "createdAt",
+      "type" : "Instant",
+      "description" : "Submission timestamp."
+    } ],
+    "api_endpoints" : [ ],
+    "api_endpoints_consumed" : [ ],
+    "imports_from" : [ ],
+    "depends_on" : [ ],
+    "feature_name" : "lead-capture-api",
+    "file_role" : "DTO layer - A record representing a TrialLead, used as the response body for lead-related API endpoints."
+  }, {
+    "file_name" : "CreateTrialLeadRequest.java",
+    "file_path" : "backend/src/main/java/com/multifitaundh/dto/CreateTrialLeadRequest.java",
+    "file_type" : "BACKEND",
+    "layer" : "DTO",
+    "created_date" : "2024-07-31",
+    "updated_date" : "2024-07-31",
+    "status" : "PLANNED",
+    "description" : "DTO for creating a new trial lead.",
+    "public_functions" : [ ],
+    "public_variables" : [ {
+      "name" : "name",
+      "type" : "String",
+      "description" : "@NotBlank lead's name."
+    }, {
+      "name" : "email",
+      "type" : "String",
+      "description" : "@NotBlank @Email lead's email."
+    }, {
+      "name" : "phone",
+      "type" : "String",
+      "description" : "@NotBlank lead's phone number."
+    } ],
+    "api_endpoints" : [ ],
+    "api_endpoints_consumed" : [ ],
+    "imports_from" : [ ],
+    "depends_on" : [ ],
+    "feature_name" : "lead-capture-api",
+    "file_role" : "DTO layer - A record for the POST /api/v1/leads/trial request body, with validation annotations for name, email, and phone."
+  }, {
+    "file_name" : "SaaSIntegrationService.java",
+    "file_path" : "backend/src/main/java/com/multifitaundh/service/SaaSIntegrationService.java",
+    "file_type" : "BACKEND",
+    "layer" : "SERVICE",
+    "created_date" : "2024-07-31",
+    "updated_date" : "2024-07-31",
+    "status" : "PLANNED",
+    "description" : "Service to communicate with the external Gym Management SaaS API.",
+    "public_functions" : [ {
+      "name" : "getMembershipPlans",
+      "parameters" : [ ],
+      "return_type" : "List<MembershipPlanDto>",
+      "description" : "Fetches membership plans from the SaaS API."
+    }, {
+      "name" : "getClassSchedule",
+      "parameters" : [ ],
+      "return_type" : "List<ClassScheduleDto>",
+      "description" : "Fetches the class schedule from the SaaS API."
+    } ],
+    "public_variables" : [ ],
+    "api_endpoints" : [ ],
+    "api_endpoints_consumed" : [ ],
+    "imports_from" : [ "backend/src/main/java/com/multifitaundh/dto/MembershipPlanDto.java", "backend/src/main/java/com/multifitaundh/dto/ClassScheduleDto.java" ],
+    "depends_on" : [ ],
+    "feature_name" : "saas-integration",
+    "file_role" : "SERVICE layer - Acts as a client for the external Gym Management SaaS. Methods like getMembershipPlans() use RestTemplate/WebClient to call the third-party API, hiding API keys and complexity from the rest of the application."
+  }, {
+    "file_name" : "GymController.java",
+    "file_path" : "backend/src/main/java/com/multifitaundh/controller/GymController.java",
+    "file_type" : "BACKEND",
+    "layer" : "CONTROLLER",
+    "created_date" : "2024-07-31",
+    "updated_date" : "2024-07-31",
+    "status" : "PLANNED",
+    "description" : "Public-facing REST controller to expose data from the Gym Management SaaS.",
+    "public_functions" : [ ],
+    "public_variables" : null,
+    "api_endpoints" : [ {
+      "method" : "GET",
+      "path" : "/api/v1/gym/memberships",
+      "request_body" : null,
+      "response_body" : "List<MembershipPlanDto>",
+      "description" : "Returns available membership plans."
+    }, {
+      "method" : "GET",
+      "path" : "/api/v1/gym/schedule",
+      "request_body" : null,
+      "response_body" : "List<ClassScheduleDto>",
+      "description" : "Returns the current class schedule."
+    } ],
+    "api_endpoints_consumed" : [ ],
+    "imports_from" : [ "backend/src/main/java/com/multifitaundh/service/SaaSIntegrationService.java", "backend/src/main/java/com/multifitaundh/dto/MembershipPlanDto.java", "backend/src/main/java/com/multifitaundh/dto/ClassScheduleDto.java" ],
+    "depends_on" : [ ],
+    "feature_name" : "saas-integration",
+    "file_role" : "CONTROLLER layer - A Backend-for-Frontend (BFF) controller that exposes simplified, public endpoints like GET /api/v1/gym/memberships by proxying requests to the SaaSIntegrationService."
+  }, {
+    "file_name" : "MembershipPlanDto.java",
+    "file_path" : "backend/src/main/java/com/multifitaundh/dto/MembershipPlanDto.java",
+    "file_type" : "BACKEND",
+    "layer" : "DTO",
+    "created_date" : "2024-07-31",
+    "updated_date" : "2024-07-31",
+    "status" : "PLANNED",
+    "description" : "DTO representing a membership plan from the SaaS.",
+    "public_functions" : [ ],
+    "public_variables" : [ {
+      "name" : "id",
+      "type" : "String",
+      "description" : "SaaS-provided plan ID."
+    }, {
+      "name" : "name",
+      "type" : "String",
+      "description" : "Name of the plan (e.g., '1 Month Unlimited')."
+    }, {
+      "name" : "price",
+      "type" : "String",
+      "description" : "Price of the plan."
+    }, {
+      "name" : "description",
+      "type" : "String",
+      "description" : "Description of the plan."
+    }, {
+      "name" : "purchaseUrl",
+      "type" : "String",
+      "description" : "Direct URL to purchase this plan on the SaaS platform."
+    } ],
+    "api_endpoints" : [ ],
+    "api_endpoints_consumed" : [ ],
+    "imports_from" : [ ],
+    "depends_on" : [ ],
+    "feature_name" : "saas-integration",
+    "file_role" : "DTO layer - A record that defines the data structure for a membership plan as consumed from the SaaS and exposed to the frontend."
+  }, {
+    "file_name" : "ClassScheduleDto.java",
+    "file_path" : "backend/src/main/java/com/multifitaundh/dto/ClassScheduleDto.java",
+    "file_type" : "BACKEND",
+    "layer" : "DTO",
+    "created_date" : "2024-07-31",
+    "updated_date" : "2024-07-31",
+    "status" : "PLANNED",
+    "description" : "DTO representing a class in the schedule from the SaaS.",
+    "public_functions" : [ ],
+    "public_variables" : [ {
+      "name" : "id",
+      "type" : "String",
+      "description" : "SaaS-provided class ID."
+    }, {
+      "name" : "className",
+      "type" : "String",
+      "description" : "Name of the class (e.g., 'Zumba')."
+    }, {
+      "name" : "startTime",
+      "type" : "String",
+      "description" : "Start time of the class (ISO 8601 format)."
+    }, {
+      "name" : "durationMinutes",
+      "type" : "int",
+      "description" : "Duration of the class in minutes."
+    }, {
+      "name" : "trainerName",
+      "type" : "String",
+      "description" : "Name of the trainer for the class."
+    }, {
+      "name" : "bookingUrl",
+      "type" : "String",
+      "description" : "Direct URL to book this class on the SaaS platform."
+    } ],
+    "api_endpoints" : [ ],
+    "api_endpoints_consumed" : [ ],
+    "imports_from" : [ ],
+    "depends_on" : [ ],
+    "feature_name" : "saas-integration",
+    "file_role" : "DTO layer - A record that defines the data structure for a scheduled class as consumed from the SaaS and exposed to the frontend."
+  }, {
+    "file_name" : "SpaController.java",
+    "file_path" : "backend/src/main/java/com/multifitaundh/controller/SpaController.java",
+    "file_type" : "BACKEND",
+    "layer" : "CONTROLLER",
+    "created_date" : "2024-07-31",
+    "updated_date" : "2024-07-31",
+    "status" : "PLANNED",
+    "description" : "Forwards non-API, non-static-asset requests to index.html, enabling client-side routing in the Next.js SPA.",
+    "public_functions" : [ {
+      "name" : "fallback",
+      "parameters" : [ ],
+      "return_type" : "String",
+      "description" : "Handles GET requests for SPA routes."
+    } ],
+    "public_variables" : null,
+    "api_endpoints" : [ ],
+    "api_endpoints_consumed" : [ ],
+    "imports_from" : [ ],
+    "depends_on" : [ ],
+    "feature_name" : "shared-backend",
+    "file_role" : "CONTROLLER layer - A special @Controller that forwards all non-API, non-file requests to the frontend's index.html, enabling client-side routing to work correctly on page refresh."
+  }, {
+    "file_name" : "GlobalExceptionHandler.java",
+    "file_path" : "backend/src/main/java/com/multifitaundh/exception/GlobalExceptionHandler.java",
+    "file_type" : "BACKEND",
+    "layer" : "EXCEPTION",
+    "created_date" : "2024-07-31",
+    "updated_date" : "2024-07-31",
+    "status" : "PLANNED",
+    "description" : "Centralized exception handler for the application to return consistent error responses.",
+    "public_functions" : [ ],
+    "public_variables" : [ ],
+    "api_endpoints" : [ ],
+    "api_endpoints_consumed" : [ ],
+    "imports_from" : [ "backend/src/main/java/com/multifitaundh/dto/ErrorResponse.java" ],
+    "depends_on" : [ ],
+    "feature_name" : "shared-backend",
+    "file_role" : "EXCEPTION layer - A @RestControllerAdvice that catches exceptions across all controllers and formats them into a standardized ErrorResponse DTO."
+  }, {
+    "file_name" : "ErrorResponse.java",
+    "file_path" : "backend/src/main/java/com/multifitaundh/dto/ErrorResponse.java",
+    "file_type" : "BACKEND",
+    "layer" : "DTO",
+    "created_date" : "2024-07-31",
+    "updated_date" : "2024-07-31",
+    "status" : "PLANNED",
+    "description" : "Standardized DTO for returning API errors.",
+    "public_functions" : [ ],
+    "public_variables" : [ {
+      "name" : "timestamp",
+      "type" : "LocalDateTime",
+      "description" : "Time of the error."
+    }, {
+      "name" : "status",
+      "type" : "int",
+      "description" : "HTTP status code."
+    }, {
+      "name" : "error",
+      "type" : "String",
+      "description" : "Error message."
+    }, {
+      "name" : "path",
+      "type" : "String",
+      "description" : "Request path where the error occurred."
+    } ],
+    "api_endpoints" : [ ],
+    "api_endpoints_consumed" : [ ],
+    "imports_from" : [ ],
+    "depends_on" : [ ],
+    "feature_name" : "shared-backend",
+    "file_role" : "DTO layer - A record representing the standard JSON structure for all API error responses."
+  }, {
+    "file_name" : "ResourceNotFoundException.java",
+    "file_path" : "backend/src/main/java/com/multifitaundh/exception/ResourceNotFoundException.java",
+    "file_type" : "BACKEND",
+    "layer" : "EXCEPTION",
+    "created_date" : "2024-07-31",
+    "updated_date" : "2024-07-31",
+    "status" : "PLANNED",
+    "description" : "Custom exception for cases where a requested resource is not found.",
+    "public_functions" : [ {
+      "name" : "ResourceNotFoundException",
+      "parameters" : [ "String message" ],
+      "return_type" : "void",
+      "description" : "Constructor for the exception."
+    } ],
+    "public_variables" : [ ],
+    "api_endpoints" : [ ],
+    "api_endpoints_consumed" : [ ],
+    "imports_from" : [ ],
+    "depends_on" : [ ],
+    "feature_name" : "shared-backend",
+    "file_role" : "EXCEPTION layer - A custom RuntimeException thrown by services when an entity lookup by ID or slug fails, which is then handled by GlobalExceptionHandler to return a 404 Not Found response."
+  }, {
+    "file_name" : "client.ts",
+    "file_path" : "frontend/src/api/client.ts",
+    "file_type" : "FRONTEND",
+    "layer" : "SERVICE",
+    "created_date" : "2024-07-31",
+    "updated_date" : "2024-07-31",
+    "status" : "PLANNED",
+    "description" : "Axios instance configured with a base URL and an interceptor to add the JWT Authorization header to requests.",
+    "public_functions" : [ ],
+    "public_variables" : [ {
+      "name" : "apiClient",
+      "type" : "AxiosInstance",
+      "description" : "The configured axios instance, exported for use in service files."
+    } ],
+    "api_endpoints" : [ ],
+    "api_endpoints_consumed" : [ ],
+    "imports_from" : [ ],
+    "depends_on" : [ ],
+    "feature_name" : "core-frontend",
+    "file_role" : "SERVICE layer - A singleton Axios instance configured with the VITE_API_URL. It includes a request interceptor that reads 'token' from localStorage and adds the 'Authorization: Bearer' header to all outgoing API calls."
+  }, {
+    "file_name" : "AuthContext.tsx",
+    "file_path" : "frontend/src/context/AuthContext.tsx",
+    "file_type" : "FRONTEND",
+    "layer" : "CONTEXT",
+    "created_date" : "2024-07-31",
+    "updated_date" : "2024-07-31",
+    "status" : "PLANNED",
+    "description" : "React context for managing authentication state (token, role) and providing auth functions (login, logout) to the app.",
+    "public_functions" : [ {
+      "name" : "AuthProvider",
+      "parameters" : [ "{ children: React.ReactNode }" ],
+      "return_type" : "JSX.Element",
+      "description" : "Provider component that wraps the application."
+    } ],
+    "public_variables" : [ ],
+    "api_endpoints" : [ ],
+    "api_endpoints_consumed" : [ ],
+    "imports_from" : [ "frontend/src/services/authService.ts" ],
+    "depends_on" : [ ],
+    "feature_name" : "auth-ui",
+    "file_role" : "CONTEXT layer - Manages global authentication state. It stores the JWT in localStorage under the key 'token' and provides login(email, password), logout(), and state variables like isAuthenticated and isAdmin to the entire component tree."
+  }, {
+    "file_name" : "useAuth.ts",
+    "file_path" : "frontend/src/hooks/useAuth.ts",
+    "file_type" : "FRONTEND",
+    "layer" : "HOOK",
+    "created_date" : "2024-07-31",
+    "updated_date" : "2024-07-31",
+    "status" : "PLANNED",
+    "description" : "Custom hook to easily access the authentication context.",
+    "public_functions" : [ {
+      "name" : "useAuth",
+      "parameters" : [ ],
+      "return_type" : "AuthContextType",
+      "description" : "Returns the auth context value."
+    } ],
+    "public_variables" : [ ],
+    "api_endpoints" : [ ],
+    "api_endpoints_consumed" : [ ],
+    "imports_from" : [ "frontend/src/context/AuthContext.tsx" ],
+    "depends_on" : [ ],
+    "feature_name" : "auth-ui",
+    "file_role" : "HOOK layer - A simple convenience hook that calls `useContext(AuthContext)` to provide easy access to the authentication state and functions within components."
+  }, {
+    "file_name" : "authService.ts",
+    "file_path" : "frontend/src/services/authService.ts",
+    "file_type" : "FRONTEND",
+    "layer" : "SERVICE",
+    "created_date" : "2024-07-31",
+    "updated_date" : "2024-07-31",
+    "status" : "PLANNED",
+    "description" : "Service for making authentication-related API calls.",
+    "public_functions" : [ {
+      "name" : "login",
+      "parameters" : [ "credentials: LoginCredentials" ],
+      "return_type" : "Promise<AuthResponse>",
+      "description" : "Calls the login API endpoint."
+    } ],
+    "public_variables" : [ ],
+    "api_endpoints" : [ ],
+    "api_endpoints_consumed" : [ {
+      "method" : "POST",
+      "path" : "/api/v1/auth/login",
+      "request_body" : null,
+      "response_body" : null,
+      "description" : "Authenticates the admin user."
+    } ],
+    "imports_from" : [ "frontend/src/api/client.ts", "frontend/src/types/auth.ts" ],
+    "depends_on" : [ ],
+    "feature_name" : "auth-ui",
+    "file_role" : "SERVICE layer - Contains the login(credentials) async function that makes the POST request to /api/v1/auth/login using the shared apiClient."
+  }, {
+    "file_name" : "auth.ts",
+    "file_path" : "frontend/src/types/auth.ts",
+    "file_type" : "FRONTEND",
+    "layer" : "UTIL",
+    "created_date" : "2024-07-31",
+    "updated_date" : "2024-07-31",
+    "status" : "PLANNED",
+    "description" : "TypeScript types and interfaces for the authentication domain.",
+    "public_functions" : [ ],
+    "public_variables" : [ {
+      "name" : "LoginCredentials",
+      "type" : "interface",
+      "description" : "Shape of the login form data (email, password)."
+    }, {
+      "name" : "AuthResponse",
+      "type" : "interface",
+      "description" : "Shape of the response from the login API (token, role)."
+    } ],
+    "api_endpoints" : [ ],
+    "api_endpoints_consumed" : [ ],
+    "imports_from" : [ ],
+    "depends_on" : [ ],
+    "feature_name" : "auth-ui",
+    "file_role" : "UTIL layer - Exports TypeScript interfaces like LoginCredentials and AuthResponse, ensuring type safety between the auth service, context, and login page."
+  }, {
+    "file_name" : "LoginPage.tsx",
+    "file_path" : "frontend/src/pages/login.tsx",
+    "file_type" : "FRONTEND",
+    "layer" : "PAGE",
+    "created_date" : "2024-07-31",
+    "updated_date" : "2024-07-31",
+    "status" : "PLANNED",
+    "description" : "Admin login page with a form for email and password.",
+    "public_functions" : [ {
+      "name" : "LoginPage",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders the login form."
+    } ],
+    "public_variables" : [ ],
+    "api_endpoints" : [ ],
+    "api_endpoints_consumed" : [ ],
+    "imports_from" : [ "frontend/src/hooks/useAuth.ts" ],
+    "depends_on" : [ ],
+    "feature_name" : "auth-ui",
+    "file_role" : "PAGE layer - A public page containing a form built with react-hook-form and zod for validation. On submit, it calls the login() function from the useAuth hook and redirects to /admin on success."
+  }, {
+    "file_name" : "ProtectedRoute.tsx",
+    "file_path" : "frontend/src/components/ProtectedRoute.tsx",
+    "file_type" : "FRONTEND",
+    "layer" : "COMPONENT",
+    "created_date" : "2024-07-31",
+    "updated_date" : "2024-07-31",
+    "status" : "PLANNED",
+    "description" : "A component that wraps admin pages, redirecting to /login if the user is not authenticated.",
+    "public_functions" : [ {
+      "name" : "ProtectedRoute",
+      "parameters" : [ "{ children: React.ReactNode }" ],
+      "return_type" : "JSX.Element | null",
+      "description" : "Renders children if authenticated, otherwise redirects."
+    } ],
+    "public_variables" : [ ],
+    "api_endpoints" : [ ],
+    "api_endpoints_consumed" : [ ],
+    "imports_from" : [ "frontend/src/hooks/useAuth.ts" ],
+    "depends_on" : [ ],
+    "feature_name" : "auth-ui",
+    "file_role" : "COMPONENT layer - A wrapper component that checks the isAuthenticated status from useAuth(). If false, it uses the Next.js router to redirect to '/login'. If true, it renders its children."
+  }, {
+    "file_name" : "Layout.tsx",
+    "file_path" : "frontend/src/components/Layout.tsx",
+    "file_type" : "FRONTEND",
+    "layer" : "COMPONENT",
+    "created_date" : "2024-07-31",
+    "updated_date" : "2024-07-31",
+    "status" : "PLANNED",
+    "description" : "Main layout component for public-facing pages, including Header and Footer.",
+    "public_functions" : [ {
+      "name" : "Layout",
+      "parameters" : [ "{ children: React.ReactNode }" ],
+      "return_type" : "JSX.Element",
+      "description" : "Wraps page content with the standard header and footer."
+    } ],
+    "public_variables" : [ ],
+    "api_endpoints" : [ ],
+    "api_endpoints_consumed" : [ ],
+    "imports_from" : [ "frontend/src/components/Header.tsx", "frontend/src/components/Footer.tsx" ],
+    "depends_on" : [ ],
+    "feature_name" : "core-layout",
+    "file_role" : "COMPONENT layer - The primary wrapper for all public pages. It renders a Header, the page's {children}, and a Footer, providing a consistent structure."
+  }, {
+    "file_name" : "Header.tsx",
+    "file_path" : "frontend/src/components/Header.tsx",
+    "file_type" : "FRONTEND",
+    "layer" : "COMPONENT",
+    "created_date" : "2024-07-31",
+    "updated_date" : "2024-07-31",
+    "status" : "PLANNED",
+    "description" : "Responsive site header with navigation links and a call-to-action button. Uses the energetic color scheme.",
+    "public_functions" : [ {
+      "name" : "Header",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders the main navigation bar."
+    } ],
+    "public_variables" : [ ],
+    "api_endpoints" : [ ],
+    "api_endpoints_consumed" : [ ],
+    "imports_from" : [ ],
+    "depends_on" : [ ],
+    "feature_name" : "core-layout",
+    "file_role" : "COMPONENT layer - A responsive, sticky navigation bar. Displays the 'MultiFit Aundh' brand name, nav links (Memberships, Schedule, Trainers), and a prominent 'Get Free Trial' button styled with the accent color #DFFF00."
+  }, {
+    "file_name" : "Footer.tsx",
+    "file_path" : "frontend/src/components/Footer.tsx",
+    "file_type" : "FRONTEND",
+    "layer" : "COMPONENT",
+    "created_date" : "2024-07-31",
+    "updated_date" : "2024-07-31",
+    "status" : "PLANNED",
+    "description" : "Site footer with contact information, hours, and an embedded Google Map.",
+    "public_functions" : [ {
+      "name" : "Footer",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders the site footer."
+    } ],
+    "public_variables" : [ ],
+    "api_endpoints" : [ ],
+    "api_endpoints_consumed" : [ ],
+    "imports_from" : [ ],
+    "depends_on" : [ ],
+    "feature_name" : "core-layout",
+    "file_role" : "COMPONENT layer - A multi-column footer with the gym's address and phone, opening hours, and an iframe embedding Google Maps pointed to the Aundh, Pune location. Styled with the dark theme colors."
+  }, {
+    "file_name" : "AdminLayout.tsx",
+    "file_path" : "frontend/src/components/AdminLayout.tsx",
+    "file_type" : "FRONTEND",
+    "layer" : "COMPONENT",
+    "created_date" : "2024-07-31",
+    "updated_date" : "2024-07-31",
+    "status" : "PLANNED",
+    "description" : "Layout for all admin pages, featuring a persistent sidebar for navigation.",
+    "public_functions" : [ {
+      "name" : "AdminLayout",
+      "parameters" : [ "{ children: React.ReactNode }" ],
+      "return_type" : "JSX.Element",
+      "description" : "Wraps admin page content with the admin sidebar."
+    } ],
+    "public_variables" : [ ],
+    "api_endpoints" : [ ],
+    "api_endpoints_consumed" : [ ],
+    "imports_from" : [ "frontend/src/hooks/useAuth.ts" ],
+    "depends_on" : [ ],
+    "feature_name" : "admin-portal",
+    "file_role" : "COMPONENT layer - The wrapper for all admin-facing pages. It renders a vertical sidebar with NavLink components for Dashboard, Trainers, Testimonials, Leads, and a Logout button. The main content area renders the {children} prop."
+  }, {
+    "file_name" : "index.tsx",
+    "file_path" : "frontend/src/pages/admin/index.tsx",
+    "file_type" : "FRONTEND",
+    "layer" : "PAGE",
+    "created_date" : "2024-07-31",
+    "updated_date" : "2024-07-31",
+    "status" : "PLANNED",
+    "description" : "The main dashboard page for the admin area.",
+    "public_functions" : [ {
+      "name" : "AdminDashboardPage",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders the admin dashboard."
+    } ],
+    "public_variables" : [ ],
+    "api_endpoints" : [ ],
+    "api_endpoints_consumed" : [ ],
+    "imports_from" : [ "frontend/src/components/AdminLayout.tsx", "frontend/src/components/ProtectedRoute.tsx" ],
+    "depends_on" : [ ],
+    "feature_name" : "admin-portal",
+    "file_role" : "PAGE layer - The landing page for the /admin route. It is wrapped in ProtectedRoute and AdminLayout and displays a welcome message and summary stats."
+  }, {
+    "file_name" : "index.tsx",
+    "file_path" : "frontend/src/pages/index.tsx",
+    "file_type" : "FRONTEND",
+    "layer" : "PAGE",
+    "created_date" : "2024-07-31",
+    "updated_date" : "2024-07-31",
+    "status" : "PLANNED",
+    "description" : "The homepage, featuring a hero section, testimonials, and the trial lead form.",
+    "public_functions" : [ {
+      "name" : "HomePage",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders the main landing page."
+    } ],
+    "public_variables" : [ ],
+    "api_endpoints" : [ ],
+    "api_endpoints_consumed" : [ ],
+    "imports_from" : [ "frontend/src/components/Layout.tsx", "frontend/src/components/TestimonialsSection.tsx", "frontend/src/components/TrialForm.tsx" ],
+    "depends_on" : [ ],
+    "feature_name" : "core-layout",
+    "file_role" : "PAGE layer - The main landing page. It includes a full-bleed hero with a high-energy video background, a section for class highlights, the prominent TestimonialsSection, and the TrialForm component."
+  }, {
+    "file_name" : "_app.tsx",
+    "file_path" : "frontend/src/pages/_app.tsx",
+    "file_type" : "FRONTEND",
+    "layer" : "PAGE",
+    "created_date" : "2024-07-31",
+    "updated_date" : "2024-07-31",
+    "status" : "PLANNED",
+    "description" : "Next.js custom App component to wrap all pages with global providers.",
+    "public_functions" : [ {
+      "name" : "MyApp",
+      "parameters" : [ "{ Component, pageProps }" ],
+      "return_type" : "JSX.Element",
+      "description" : "Wraps the application with context providers."
+    } ],
+    "public_variables" : [ ],
+    "api_endpoints" : [ ],
+    "api_endpoints_consumed" : [ ],
+    "imports_from" : [ "frontend/src/context/AuthContext.tsx" ],
+    "depends_on" : [ ],
+    "feature_name" : "core-frontend",
+    "file_role" : "PAGE layer - The root Next.js component. It wraps the entire application in necessary providers: QueryClientProvider for data fetching and AuthProvider for authentication state management."
+  }, {
+    "file_name" : "_document.tsx",
+    "file_path" : "frontend/src/pages/_document.tsx",
+    "file_type" : "FRONTEND",
+    "layer" : "PAGE",
+    "created_date" : "2024-07-31",
+    "updated_date" : "2024-07-31",
+    "status" : "PLANNED",
+    "description" : "Next.js custom Document to augment the app's <html> and <body> tags, used for SEO and global scripts.",
+    "public_functions" : [ {
+      "name" : "Document",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Custom document structure."
+    } ],
+    "public_variables" : [ ],
+    "api_endpoints" : [ ],
+    "api_endpoints_consumed" : [ ],
+    "imports_from" : [ ],
+    "depends_on" : [ ],
+    "feature_name" : "core-frontend",
+    "file_role" : "PAGE layer - The Next.js custom document, used to set the `lang` attribute on the <html> tag and include any global font links or third-party scripts in the <head>."
+  }, {
+    "file_name" : "LocalBusinessSchema.tsx",
+    "file_path" : "frontend/src/components/LocalBusinessSchema.tsx",
+    "file_type" : "FRONTEND",
+    "layer" : "COMPONENT",
+    "created_date" : "2024-07-31",
+    "updated_date" : "2024-07-31",
+    "status" : "PLANNED",
+    "description" : "Component to inject LocalBusiness JSON-LD schema markup for SEO.",
+    "public_functions" : [ {
+      "name" : "LocalBusinessSchema",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders a <script> tag with JSON-LD content."
+    } ],
+    "public_variables" : [ ],
+    "api_endpoints" : [ ],
+    "api_endpoints_consumed" : [ ],
+    "imports_from" : [ ],
+    "depends_on" : [ ],
+    "feature_name" : "core-layout",
+    "file_role" : "COMPONENT layer - A utility component that renders a <script type=\"application/ld+json\"> tag containing structured data about the gym (name, address, phone, etc.) to improve local SEO."
+  }, {
+    "file_name" : "FloatingWhatsAppButton.tsx",
+    "file_path" : "frontend/src/components/FloatingWhatsAppButton.tsx",
+    "file_type" : "FRONTEND",
+    "layer" : "COMPONENT",
+    "created_date" : "2024-07-31",
+    "updated_date" : "2024-07-31",
+    "status" : "PLANNED",
+    "description" : "A floating action button that links to the business's WhatsApp for inquiries.",
+    "public_functions" : [ {
+      "name" : "FloatingWhatsAppButton",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders a fixed-position WhatsApp link."
+    } ],
+    "public_variables" : [ ],
+    "api_endpoints" : [ ],
+    "api_endpoints_consumed" : [ ],
+    "imports_from" : [ ],
+    "depends_on" : [ ],
+    "feature_name" : "core-layout",
+    "file_role" : "COMPONENT layer - Renders a circular button with the WhatsApp icon, fixed to the bottom-right of the screen, which links to the WhatsApp chat API for instant customer communication."
+  }, {
+    "file_name" : "trainer.ts",
+    "file_path" : "frontend/src/types/trainer.ts",
+    "file_type" : "FRONTEND",
+    "layer" : "UTIL",
+    "created_date" : "2024-07-31",
+    "updated_date" : "2024-07-31",
+    "status" : "PLANNED",
+    "description" : "TypeScript types for the Trainer domain.",
+    "public_functions" : [ ],
+    "public_variables" : [ {
+      "name" : "Trainer",
+      "type" : "interface",
+      "description" : "Represents a single trainer's profile."
+    }, {
+      "name" : "CreateTrainerData",
+      "type" : "interface",
+      "description" : "Data shape for creating a new trainer."
+    } ],
+    "api_endpoints" : [ ],
+    "api_endpoints_consumed" : [ ],
+    "imports_from" : [ ],
+    "depends_on" : [ ],
+    "feature_name" : "trainer-display",
+    "file_role" : "UTIL layer - Exports TypeScript interfaces like Trainer and CreateTrainerData, ensuring type safety for trainer-related frontend logic."
+  }, {
+    "file_name" : "trainerService.ts",
+    "file_path" : "frontend/src/services/trainerService.ts",
+    "file_type" : "FRONTEND",
+    "layer" : "SERVICE",
+    "created_date" : "2024-07-31",
+    "updated_date" : "2024-07-31",
+    "status" : "PLANNED",
+    "description" : "Service for all trainer-related API calls.",
+    "public_functions" : [ {
+      "name" : "getTrainers",
+      "parameters" : [ ],
+      "return_type" : "Promise<Trainer[]>",
+      "description" : "Fetches all trainers."
+    }, {
+      "name" : "createTrainer",
+      "parameters" : [ "data: CreateTrainerData" ],
+      "return_type" : "Promise<Trainer>",
+      "description" : "Creates a trainer (admin)."
+    } ],
+    "public_variables" : [ ],
+    "api_endpoints" : [ ],
+    "api_endpoints_consumed" : [ {
+      "method" : "GET",
+      "path" : "/api/v1/trainers",
+      "request_body" : null,
+      "response_body" : null,
+      "description" : "Fetch all public trainer profiles."
+    }, {
+      "method" : "POST",
+      "path" : "/api/v1/admin/trainers",
+      "request_body" : null,
+      "response_body" : null,
+      "description" : "Create a new trainer profile."
+    } ],
+    "imports_from" : [ "frontend/src/api/client.ts", "frontend/src/types/trainer.ts" ],
+    "depends_on" : [ ],
+    "feature_name" : "trainer-display",
+    "file_role" : "SERVICE layer - Contains async functions like getTrainers() and createTrainer(data) that make HTTP requests to the corresponding backend endpoints using apiClient."
+  }, {
+    "file_name" : "useTrainers.ts",
+    "file_path" : "frontend/src/hooks/useTrainers.ts",
+    "file_type" : "FRONTEND",
+    "layer" : "HOOK",
+    "created_date" : "2024-07-31",
+    "updated_date" : "2024-07-31",
+    "status" : "PLANNED",
+    "description" : "React Query hook for fetching and managing trainer data.",
+    "public_functions" : [ {
+      "name" : "useTrainers",
+      "parameters" : [ ],
+      "return_type" : "UseQueryResult<Trainer[]>",
+      "description" : "Fetches the list of all trainers."
+    }, {
+      "name" : "useCreateTrainer",
+      "parameters" : [ ],
+      "return_type" : "UseMutationResult<Trainer, Error, CreateTrainerData>",
+      "description" : "Provides a mutation function for creating a trainer."
+    } ],
+    "public_variables" : [ ],
+    "api_endpoints" : [ ],
+    "api_endpoints_consumed" : [ ],
+    "imports_from" : [ "frontend/src/services/trainerService.ts", "frontend/src/types/trainer.ts" ],
+    "depends_on" : [ ],
+    "feature_name" : "trainer-display",
+    "file_role" : "HOOK layer - Wraps trainerService calls with React Query's useQuery and useMutation. useTrainers() handles fetching, caching, and state management for the trainer list. useCreateTrainer() handles the form submission state for the admin panel."
+  }, {
+    "file_name" : "index.tsx",
+    "file_path" : "frontend/src/pages/trainers/index.tsx",
+    "file_type" : "FRONTEND",
+    "layer" : "PAGE",
+    "created_date" : "2024-07-31",
+    "updated_date" : "2024-07-31",
+    "status" : "PLANNED",
+    "description" : "Page displaying a grid of all gym trainers.",
+    "public_functions" : [ {
+      "name" : "TrainersPage",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders the trainers list page."
+    } ],
+    "public_variables" : [ ],
+    "api_endpoints" : [ ],
+    "api_endpoints_consumed" : [ ],
+    "imports_from" : [ "frontend/src/hooks/useTrainers.ts", "frontend/src/components/Layout.tsx" ],
+    "depends_on" : [ ],
+    "feature_name" : "trainer-display",
+    "file_role" : "PAGE layer - The public-facing page at /trainers. It calls the useTrainers() hook to fetch data and displays a grid of trainer profile cards, each linking to the trainer's detail page."
+  }, {
+    "file_name" : "[slug].tsx",
+    "file_path" : "frontend/src/pages/trainers/[slug].tsx",
+    "file_type" : "FRONTEND",
+    "layer" : "PAGE",
+    "created_date" : "2024-07-31",
+    "updated_date" : "2024-07-31",
+    "status" : "PLANNED",
+    "description" : "Dynamic page for displaying a single trainer's detailed profile.",
+    "public_functions" : [ {
+      "name" : "TrainerDetailPage",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders a single trainer's profile."
+    } ],
+    "public_variables" : [ ],
+    "api_endpoints" : [ ],
+    "api_endpoints_consumed" : [ ],
+    "imports_from" : [ "frontend/src/hooks/useTrainers.ts", "frontend/src/components/Layout.tsx" ],
+    "depends_on" : [ ],
+    "feature_name" : "trainer-display",
+    "file_role" : "PAGE layer - A dynamic Next.js page for /trainers/[slug]. It uses the router's slug parameter to fetch and display the detailed profile of a single trainer, including their bio and specializations."
+  }, {
+    "file_name" : "trainers.tsx",
+    "file_path" : "frontend/src/pages/admin/trainers.tsx",
+    "file_type" : "FRONTEND",
+    "layer" : "PAGE",
+    "created_date" : "2024-07-31",
+    "updated_date" : "2024-07-31",
+    "status" : "PLANNED",
+    "description" : "Admin page for managing trainer profiles.",
+    "public_functions" : [ {
+      "name" : "AdminTrainersPage",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders the trainer management interface."
+    } ],
+    "public_variables" : [ ],
+    "api_endpoints" : [ ],
+    "api_endpoints_consumed" : [ ],
+    "imports_from" : [ "frontend/src/hooks/useTrainers.ts", "frontend/src/components/AdminLayout.tsx", "frontend/src/components/ProtectedRoute.tsx" ],
+    "depends_on" : [ ],
+    "feature_name" : "trainer-display",
+    "file_role" : "PAGE layer - The admin interface at /admin/trainers. It displays a table of existing trainers and includes a button to open a modal (using Radix Dialog) with a form for creating/editing trainers, powered by the useCreateTrainer mutation."
+  } ],
+  "features" : [ {
+    "feature_name" : "authentication-core",
+    "feature_display_name" : "Authentication Core (Backend)",
+    "feature_type" : "BACKEND",
+    "file_paths" : [ "backend/src/main/java/com/multifitaundh/model/User.java", "backend/src/main/java/com/multifitaundh/model/Role.java", "backend/src/main/java/com/multifitaundh/repository/UserRepository.java", "backend/src/main/java/com/multifitaundh/service/UserService.java", "backend/src/main/java/com/multifitaundh/util/JwtUtil.java", "backend/src/main/java/com/multifitaundh/config/AdminInitializer.java" ],
+    "feature_instruction" : "This feature, `authentication-core`, provides the foundational backend components for user authentication and authorization within the MultiFit Aundh application. It defines the `User` entity, user roles, a repository for user data access, a service for Spring Security integration, a utility for JWT handling, and an initializer to ensure a default admin user exists on startup.\n\n### `Role.java`\nThis file defines a simple Java enum `Role` to represent the different authority levels within the application.\n\n*   **Enum Definition**: `public enum Role`\n*   **Enum Members**: `ADMIN` (representing an administrator with full access to management features).\n\n### `User.java`\nThis file defines the `User` JPA entity, which represents an application user, primarily for administrative access. It also implements Spring Security's `UserDetails` interface.\n\n*   **Class Definition**: `public class User implements UserDetails`\n*   **JPA Annotations**: `@Entity`, `@Table(name = \"users\")`\n*   **Fields**:\n    *   `id`: `UUID` (Primary key, generated automatically). Annotated with `@Id` and `@GeneratedValue(strategy = GenerationType.UUID)`.\n    *   `email`: `String` (User's email address, used for login. Must be unique and not null). Annotated with `@Column(unique = true, nullable = false)`.\n    *   `password`: `String` (BCrypt-hashed password. Not null). Annotated with `@Column(nullable = false)`.\n    *   `role`: `Role` (User's role, determining permissions. Not null). Annotated with `@Enumerated(EnumType.STRING)` and `@Column(nullable = false)`.\n*   **Constructors**: A no-argument constructor and a constructor taking `email`, `password`, and `role`.\n*   **Getters and Setters**: Standard getters and setters for all fields.\n*   **`UserDetails` Implementation**:\n    *   `getAuthorities()`: Returns a `Collection<? extends GrantedAuthority>` containing a `SimpleGrantedAuthority` for the user's `role` (e.g., `ROLE_ADMIN`).\n    *   `getPassword()`: Returns the `password` field.\n    *   `getUsername()`: Returns the `email` field.\n    *   `isAccountNonExpired()`: Returns `true`.\n    *   `isAccountNonLocked()`: Returns `true`.\n    *   `isCredentialsNonExpired()`: Returns `true`.\n    *   `isEnabled()`: Returns `true`.\n\n### `UserRepository.java`\nThis file defines the Spring Data JPA repository for `User` entities, providing data access methods.\n\n*   **Interface Definition**: `public interface UserRepository extends JpaRepository<User, UUID>`\n*   **Annotation**: `@Repository`\n*   **Methods**:\n    *   `findByEmail(String email)`: `Optional<User>`\n        *   **Logic**: Finds a user by their unique email address. This is a custom finder method required by Spring Data JPA.\n\n### `UserService.java`\nThis file implements Spring Security's `UserDetailsService` to load user-specific data during the authentication process.\n\n*   **Class Definition**: `public class UserService implements UserDetailsService`\n*   **Annotation**: `@Service`\n*   **Dependencies**: Injects `UserRepository`.\n*   **Methods**:\n    *   `loadUserByUsername(String email)`: `UserDetails`\n        1.  Calls `userRepository.findByEmail(email)` to retrieve the user.\n        2.  If the `Optional<User>` is empty, throws a `UsernameNotFoundException` with a message like \"User not found with email: \" + `email`.\n        3.  If the user is found, returns the `User` object (which implements `UserDetails`).\n\n### `JwtUtil.java`\nThis file is a utility class for handling JWT creation, validation, and claims extraction. It uses a Base64-encoded secret key and an expiration time configured in `application.properties`.\n\n*   **Class Definition**: `public class JwtUtil`\n*   **Annotation**: `@Component`\n*   **Dependencies**: Uses `@Value(\"${jwt.secret}\")` to inject the JWT secret key and `@Value(\"${jwt.expiration}\")` to inject the token expiration time (in milliseconds).\n*   **Methods**:\n    *   `generateToken(UserDetails userDetails)`: `String`\n        1.  **Logic**: Creates a JWT token.\n            *   Sets the subject to `userDetails.getUsername()`.\n            *   Sets the issued at time to `new Date(System.currentTimeMillis())`.\n            *   Sets the expiration time to `new Date(System.currentTimeMillis() + expirationTime)`.\n            *   Signs the token using `Keys.hmacShaKeyFor(Decoders.BASE64.decode(secret))`.\n            *   Builds and compacts the JWT.\n    *   `validateToken(String token, UserDetails userDetails)`: `boolean`\n        1.  **Logic**: Validates a JWT against a user's details.\n            *   Extracts the email from the `token` using `extractEmail(token)`.\n            *   Compares the extracted email with `userDetails.getUsername()`.\n            *   Checks if the token is expired using `isTokenExpired(token)`.\n            *   Returns `true` if the email matches and the token is not expired; otherwise, returns `false`.\n    *   `extractEmail(String token)`: `String`\n        1.  **Logic**: Extracts the email (subject) from a JWT.\n            *   Parses the token using the signing key.\n            *   Retrieves the subject claim.\n            *   Returns the subject as a `String`.\n*   **Helper Methods (private)**:\n    *   `extractAllClaims(String token)`: `Claims` (Parses the token and returns all claims).\n    *   `extractClaim(String token, Function<Claims, T> claimsResolver)`: `T` (Extracts a specific claim).\n    *   `isTokenExpired(String token)`: `boolean` (Checks if the token's expiration date is before the current date).\n    *   `getSigningKey()`: `Key` (Decodes the Base64 secret key into a `Key`).\n\n### `AdminInitializer.java`\nThis file is a `CommandLineRunner` that ensures a default admin user is created on application startup if one does not already exist. It reads admin credentials from `application.properties`.\n\n*   **Class Definition**: `public class AdminInitializer implements CommandLineRunner`\n*   **Annotation**: `@Component`\n*   **Dependencies**: Injects `UserRepository` and `BCryptPasswordEncoder` (the latter is provided by the `authentication-api` feature's `SecurityConfig`).\n*   **Properties**: Uses `@Value(\"${admin.email}\")` and `@Value(\"${admin.password}\")` to inject the default admin email and raw password from `application.properties`.\n*   **Methods**:\n    *   `run(String... args)`: `void`\n        1.  **Logic**: Executes on application startup.\n            *   Calls `userRepository.findByEmail(adminEmail)` to check for an existing admin user.\n            *   If the `Optional<User>` is empty (no admin user found):\n                *   Creates a new `User` object.\n                *   Sets the `email` using the injected `adminEmail`.\n                *   Sets the `password` by encoding the injected `adminPassword` using `bCryptPasswordEncoder.encode(adminPassword)`.\n                *   Sets the `role` to `Role.ADMIN`.\n                *   Saves the new `User` object using `userRepository.save(adminUser)`.\n                *   Logs a message indicating the successful creation of the default admin user.\n            *   If an admin user already exists, logs a message indicating that the admin user already exists and no new user was created.\n\n### Inter-file Wiring and Cross-Feature Contracts\n*   `UserService` injects `UserRepository` and calls `userRepository.findByEmail()`.\n*   `AdminInitializer` injects `UserRepository` and `BCryptPasswordEncoder`. It calls `userRepository.findByEmail()` and `userRepository.save()`.\n*   `User` implements `UserDetails`, which is a core Spring Security interface. `UserService.loadUserByUsername()` returns this `User` object.\n*   `JwtUtil`'s `generateToken()` and `validateToken()` methods operate on `UserDetails` objects, which are provided by `UserService` during the authentication flow (handled by the `authentication-api` feature).\n*   `AdminInitializer` depends on `BCryptPasswordEncoder`, which is expected to be defined as a `@Bean` in the `authentication-api` feature's `SecurityConfig`.",
+    "change_required" : true
+  }, {
+    "feature_name" : "authentication-api",
+    "feature_display_name" : "Authentication API (Backend)",
+    "feature_type" : "BACKEND",
+    "file_paths" : [ "backend/src/main/java/com/multifitaundh/config/SecurityConfig.java", "backend/src/main/java/com/multifitaundh/security/JwtAuthFilter.java", "backend/src/main/java/com/multifitaundh/controller/AuthController.java", "backend/src/main/java/com/multifitaundh/dto/AuthRequest.java", "backend/src/main/java/com/multifitaundh/dto/AuthResponse.java" ],
+    "feature_instruction" : null,
+    "change_required" : true
+  }, {
+    "feature_name" : "trainer-management",
+    "feature_display_name" : "Trainer Management (Backend Core)",
+    "feature_type" : "BACKEND",
+    "file_paths" : [ "backend/src/main/java/com/multifitaundh/model/Trainer.java", "backend/src/main/java/com/multifitaundh/repository/TrainerRepository.java", "backend/src/main/java/com/multifitaundh/service/TrainerService.java" ],
+    "feature_instruction" : null,
+    "change_required" : true
+  }, {
+    "feature_name" : "trainer-management-api",
+    "feature_display_name" : "Trainer Management (Backend API)",
+    "feature_type" : "BACKEND",
+    "file_paths" : [ "backend/src/main/java/com/multifitaundh/controller/TrainerController.java", "backend/src/main/java/com/multifitaundh/controller/AdminTrainerController.java", "backend/src/main/java/com/multifitaundh/dto/TrainerDto.java", "backend/src/main/java/com/multifitaundh/dto/CreateTrainerRequest.java", "backend/src/main/java/com/multifitaundh/dto/UpdateTrainerRequest.java" ],
+    "feature_instruction" : null,
+    "change_required" : true
+  }, {
+    "feature_name" : "testimonial-management",
+    "feature_display_name" : "Testimonial Management (Backend Core)",
+    "feature_type" : "BACKEND",
+    "file_paths" : [ "backend/src/main/java/com/multifitaundh/model/Testimonial.java", "backend/src/main/java/com/multifitaundh/repository/TestimonialRepository.java", "backend/src/main/java/com/multifitaundh/service/TestimonialService.java" ],
+    "feature_instruction" : null,
+    "change_required" : true
+  }, {
+    "feature_name" : "testimonial-management-api",
+    "feature_display_name" : "Testimonial Management (Backend API)",
+    "feature_type" : "BACKEND",
+    "file_paths" : [ "backend/src/main/java/com/multifitaundh/controller/TestimonialController.java", "backend/src/main/java/com/multifitaundh/controller/AdminTestimonialController.java", "backend/src/main/java/com/multifitaundh/dto/TestimonialDto.java", "backend/src/main/java/com/multifitaundh/dto/CreateTestimonialRequest.java" ],
+    "feature_instruction" : null,
+    "change_required" : true
+  }, {
+    "feature_name" : "lead-capture",
+    "feature_display_name" : "Lead Capture (Backend Core)",
+    "feature_type" : "BACKEND",
+    "file_paths" : [ "backend/src/main/java/com/multifitaundh/model/TrialLead.java", "backend/src/main/java/com/multifitaundh/repository/TrialLeadRepository.java", "backend/src/main/java/com/multifitaundh/service/TrialLeadService.java", "backend/src/main/java/com/multifitaundh/service/NotificationService.java" ],
+    "feature_instruction" : null,
+    "change_required" : true
+  }, {
+    "feature_name" : "lead-capture-api",
+    "feature_display_name" : "Lead Capture (Backend API)",
+    "feature_type" : "BACKEND",
+    "file_paths" : [ "backend/src/main/java/com/multifitaundh/controller/LeadController.java", "backend/src/main/java/com/multifitaundh/controller/AdminLeadController.java", "backend/src/main/java/com/multifitaundh/dto/TrialLeadDto.java", "backend/src/main/java/com/multifitaundh/dto/CreateTrialLeadRequest.java" ],
+    "feature_instruction" : null,
+    "change_required" : true
+  }, {
+    "feature_name" : "saas-integration",
+    "feature_display_name" : "SaaS Integration (Backend)",
+    "feature_type" : "BACKEND",
+    "file_paths" : [ "backend/src/main/java/com/multifitaundh/service/SaaSIntegrationService.java", "backend/src/main/java/com/multifitaundh/controller/GymController.java", "backend/src/main/java/com/multifitaundh/dto/MembershipPlanDto.java", "backend/src/main/java/com/multifitaundh/dto/ClassScheduleDto.java" ],
+    "feature_instruction" : null,
+    "change_required" : true
+  }, {
+    "feature_name" : "shared-backend",
+    "feature_display_name" : "Shared Backend Utilities",
+    "feature_type" : "SHARED",
+    "file_paths" : [ "backend/src/main/java/com/multifitaundh/controller/SpaController.java", "backend/src/main/java/com/multifitaundh/exception/GlobalExceptionHandler.java", "backend/src/main/java/com/multifitaundh/dto/ErrorResponse.java", "backend/src/main/java/com/multifitaundh/exception/ResourceNotFoundException.java" ],
+    "feature_instruction" : null,
+    "change_required" : true
+  }, {
+    "feature_name" : "core-frontend",
+    "feature_display_name" : "Core Frontend Setup",
+    "feature_type" : "FRONTEND",
+    "file_paths" : [ "frontend/src/api/client.ts", "frontend/src/pages/_app.tsx", "frontend/src/pages/_document.tsx" ],
+    "feature_instruction" : null,
+    "change_required" : true
+  }, {
+    "feature_name" : "auth-ui",
+    "feature_display_name" : "Authentication UI (Frontend)",
+    "feature_type" : "FRONTEND",
+    "file_paths" : [ "frontend/src/context/AuthContext.tsx", "frontend/src/hooks/useAuth.ts", "frontend/src/services/authService.ts", "frontend/src/types/auth.ts", "frontend/src/pages/login.tsx", "frontend/src/components/ProtectedRoute.tsx" ],
+    "feature_instruction" : null,
+    "change_required" : true
+  }, {
+    "feature_name" : "core-layout",
+    "feature_display_name" : "Core Layout (Frontend)",
+    "feature_type" : "FRONTEND",
+    "file_paths" : [ "frontend/src/components/Layout.tsx", "frontend/src/components/Header.tsx", "frontend/src/components/Footer.tsx", "frontend/src/pages/index.tsx", "frontend/src/components/LocalBusinessSchema.tsx", "frontend/src/components/FloatingWhatsAppButton.tsx" ],
+    "feature_instruction" : null,
+    "change_required" : true
+  }, {
+    "feature_name" : "admin-portal",
+    "feature_display_name" : "Admin Portal (Frontend)",
+    "feature_type" : "FRONTEND",
+    "file_paths" : [ "frontend/src/components/AdminLayout.tsx", "frontend/src/pages/admin/index.tsx" ],
+    "feature_instruction" : null,
+    "change_required" : true
+  }, {
+    "feature_name" : "trainer-display",
+    "feature_display_name" : "Trainer Display (Frontend)",
+    "feature_type" : "FRONTEND",
+    "file_paths" : [ "frontend/src/types/trainer.ts", "frontend/src/services/trainerService.ts", "frontend/src/hooks/useTrainers.ts", "frontend/src/pages/trainers/index.tsx", "frontend/src/pages/trainers/[slug].tsx", "frontend/src/pages/admin/trainers.tsx" ],
+    "feature_instruction" : null,
+    "change_required" : true
+  } ]
+}
