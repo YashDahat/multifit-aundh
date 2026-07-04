@@ -1249,8 +1249,8 @@
     "file_type" : "FRONTEND",
     "layer" : "CONTEXT",
     "created_date" : "2024-07-31",
-    "updated_date" : "2024-07-31",
-    "status" : "PLANNED",
+    "updated_date" : "2026-07-04",
+    "status" : "GENERATED",
     "description" : "React context for managing authentication state (token, role) and providing auth functions (login, logout) to the app.",
     "public_functions" : [ {
       "name" : "AuthProvider",
