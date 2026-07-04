@@ -3,8 +3,7 @@ export interface TrialLead {
   name: string;
   email: string;
   phone: string;
-  membershipInterest?: string;
-  submittedAt: string; // ISO 8601 date string
+  submittedAt: string;
 }
 
 export interface CreateTrialLeadRequest {
