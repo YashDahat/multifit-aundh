@@ -1,5 +1,5 @@
-import { apiClient } from '../../api/client';
-import { Trainer } from '../types/trainer';
+import { apiClient } from '@/api/client';
+import { Trainer } from '@/types/trainer';
 
 export const getAllTrainers = async (): Promise<Trainer[]> => {
   const response = await apiClient.get<Trainer[]>('/trainers');
