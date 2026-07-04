@@ -67,8 +67,8 @@
     "file_type" : "BACKEND",
     "layer" : "REPOSITORY",
     "created_date" : "2024-07-31",
-    "updated_date" : "2024-07-31",
-    "status" : "PLANNED",
+    "updated_date" : "2026-07-04",
+    "status" : "GENERATED",
     "description" : "Spring Data JPA repository for User entities.",
     "public_functions" : [ {
       "name" : "findByEmail",
@@ -328,8 +328,8 @@
     "file_type" : "BACKEND",
     "layer" : "REPOSITORY",
     "created_date" : "2024-07-31",
-    "updated_date" : "2024-07-31",
-    "status" : "PLANNED",
+    "updated_date" : "2026-07-04",
+    "status" : "GENERATED",
     "description" : "Spring Data JPA repository for Trainer entities.",
     "public_functions" : [ {
       "name" : "findBySlug",
@@ -606,8 +606,8 @@
     "file_type" : "BACKEND",
     "layer" : "REPOSITORY",
     "created_date" : "2024-07-31",
-    "updated_date" : "2024-07-31",
-    "status" : "PLANNED",
+    "updated_date" : "2026-07-04",
+    "status" : "GENERATED",
     "description" : "Spring Data JPA repository for Testimonial entities.",
     "public_functions" : [ {
       "name" : "findAllByOrderByCreatedAtDesc",
@@ -817,8 +817,8 @@
     "file_type" : "BACKEND",
     "layer" : "REPOSITORY",
     "created_date" : "2024-07-31",
-    "updated_date" : "2024-07-31",
-    "status" : "PLANNED",
+    "updated_date" : "2026-07-04",
+    "status" : "GENERATED",
     "description" : "Spring Data JPA repository for TrialLead entities.",
     "public_functions" : [ {
       "name" : "findAllByOrderByCreatedAtDesc",
