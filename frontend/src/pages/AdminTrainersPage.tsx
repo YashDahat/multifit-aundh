@@ -34,7 +34,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { Trainer } from '../types/trainer';
-import { clsx } from 'clsx'; // For className merging
+// For className merging
 
 // Zod schema for trainer form validation
 const trainerSchema = z.object({

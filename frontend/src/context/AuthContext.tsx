@@ -1,21 +1,21 @@
-import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import React, { createContext, useState, useEffect, ReactNode } from 'react';
 import { login as authServiceLogin } from '../services/authService';
 import { LoginCredentials, AuthResponse } from '../types/auth';
 
-interface AuthContextType {
+export interface AuthContextType {
   isAuthenticated: boolean;
   user: { role: string } | null;
   login: (credentials: LoginCredentials) => Promise<void>;
   logout: () => void;
 }
 
-const AuthContext = createContext<AuthContextType | null>(null);
+export const AuthContext = createContext<AuthContextType>({} as AuthContextType);
 
 interface AuthProviderProps {
   children: ReactNode;
 }
 
-export const AuthProvider = ({ children }: AuthProviderProps): JSX.Element => {
+export const AuthProvider = ({ children }: AuthProviderProps): React.ReactElement => {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
   const [user, setUser] = useState<{ role: string } | null>(null);
 

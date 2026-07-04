@@ -22,7 +22,7 @@ const TrialForm = () => {
     resolver: zodResolver(trialLeadSchema),
   });
 
-  const { mutate, isLoading, isSuccess, isError, error } = useCreateTrialLead();
+  const { mutate, isPending: isLoading, isSuccess, isError, error } = useCreateTrialLead();
 
   useEffect(() => {
     if (isSuccess) {

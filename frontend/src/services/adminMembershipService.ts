@@ -1,4 +1,4 @@
-import apiClient from '@/api/client';
+import { apiClient } from '@/api/client';
 import { MembershipPlan } from '@/types/membership';
 
 export const getAllMembershipPlans = async (): Promise<MembershipPlan[]> => {

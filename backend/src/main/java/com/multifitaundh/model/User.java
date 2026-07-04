@@ -12,7 +12,13 @@ import java.time.LocalDate;
 import java.util.UUID;
 import com.multifitaundh.model.Role;
 import com.multifitaundh.model.MembershipPlan;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 public class User {
 

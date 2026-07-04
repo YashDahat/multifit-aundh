@@ -3,7 +3,7 @@ import { AdminLayout } from '../components/AdminLayout';
 import { useTrialLeads } from '../hooks/useTrialLeads';
 import { TrialLead } from '../types/trial';
 
-export const AdminLeadsPage = (): JSX.Element => {
+export const AdminLeadsPage = (): React.ReactElement => {
   const { data: leads, isLoading, isError } = useTrialLeads();
 
   // Sort leads by submittedAt in descending order (most recent first)

@@ -1,7 +1,7 @@
 import React from 'react';
 import { AdminLayout } from '../components/AdminLayout';
 
-const AdminDashboardPage = (): JSX.Element => {
+const AdminDashboardPage = (): React.ReactElement => {
   return (
     <AdminLayout>
       <section className="py-8 px-4">

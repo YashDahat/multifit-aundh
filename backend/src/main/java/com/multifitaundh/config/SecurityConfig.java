@@ -34,7 +34,9 @@ public class SecurityConfig {
             .cors(cors -> cors.configurationSource(corsConfigurationSource()))
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/api/v1/auth/**").permitAll()
+                            .requestMatchers("/", "/index.html", "/assets/**", "/favicon.ico",
+                             "/*.js", "/*.css", "/*.svg", "/*.png", "/*.ico").permitAll()
+.requestMatchers("/api/v1/auth/**").permitAll()
                 .requestMatchers("/api/v1/trials").permitAll()
                 .requestMatchers("/api/v1/memberships").permitAll()
                 .requestMatchers("/api/v1/trainers").permitAll()

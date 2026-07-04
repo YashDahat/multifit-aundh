@@ -7,7 +7,7 @@ interface AdminLayoutProps {
   children: React.ReactNode;
 }
 
-export const AdminLayout = ({ children }: AdminLayoutProps): JSX.Element => {
+export const AdminLayout = ({ children }: AdminLayoutProps): React.ReactElement => {
   const { logout } = useAuth();
   const navigate = useNavigate();
 
