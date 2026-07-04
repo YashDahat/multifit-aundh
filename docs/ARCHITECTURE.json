@@ -1792,8 +1792,8 @@
     "file_type" : "FRONTEND",
     "layer" : "CONTEXT",
     "created_date" : "2024-07-27",
-    "updated_date" : "2024-07-27",
-    "status" : "PLANNED",
+    "updated_date" : "2026-07-04",
+    "status" : "GENERATED",
     "description" : "React context for managing authentication state globally.",
     "public_functions" : [ ],
     "public_variables" : [ {
