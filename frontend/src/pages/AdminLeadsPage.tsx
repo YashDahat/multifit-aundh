@@ -1,19 +1,9 @@
 import React from 'react';
-import { AdminLayout } from '../components/AdminLayout';
+import AdminLayout from '@/components/AdminLayout';
 import { useTrialLeads } from '../hooks/useTrialLeads';
-import { TrialLead } from '../types/trial';
 
-export const AdminLeadsPage = (): React.ReactElement => {
+const AdminLeadsPage: React.FC = () => {
   const { data: leads, isLoading, isError } = useTrialLeads();
-
-  // Sort leads by submittedAt in descending order (most recent first)
-  const sortedLeads = React.useMemo(() => {
-    if (!leads) return [];
-    return [...leads].sort((a, b) => {
-      // Assuming submittedAt is an ISO string or comparable date format
-      return new Date(b.submittedAt).getTime() - new Date(a.submittedAt).getTime();
-    });
-  }, [leads]);
 
   return (
     <AdminLayout>
@@ -23,24 +13,24 @@ export const AdminLeadsPage = (): React.ReactElement => {
 
           {isLoading && (
             <div className="text-center py-8">
-              <p className="text-lg text-gray-600">Loading leads...</p>
+              <p className="text-lg text-gray-600">Loading trial leads...</p>
             </div>
           )}
 
           {isError && (
             <div className="text-center py-8 text-red-600">
-              <p className="text-lg">Error loading leads. Please try again later.</p>
+              <p className="text-lg">Error loading trial leads. Please try again later.</p>
             </div>
           )}
 
-          {!isLoading && !isError && (!sortedLeads || sortedLeads.length === 0) && (
+          {!isLoading && !isError && (!leads || leads.length === 0) && (
             <div className="text-center py-8">
               <p className="text-lg text-gray-600">No trial leads found.</p>
             </div>
           )}
 
-          {!isLoading && !isError && sortedLeads && sortedLeads.length > 0 && (
-            <div className="overflow-x-auto bg-white rounded-xl shadow-md border border-gray-100 p-6">
+          {!isLoading && !isError && leads && leads.length > 0 && (
+            <div className="overflow-x-auto bg-white rounded-xl shadow-md border border-gray-100">
               <table className="min-w-full divide-y divide-gray-200">
                 <thead className="bg-gray-50">
                   <tr>
@@ -62,21 +52,21 @@ export const AdminLeadsPage = (): React.ReactElement => {
                   </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200">
-                  {sortedLeads.map((lead: TrialLead) => (
-                    <tr key={lead.id}>
+                  {leads.map((lead) => (
+                    <tr key={lead.id} className="hover:bg-gray-50 transition-all duration-200">
                       <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                         {lead.name}
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
                         {lead.email}
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
                         {lead.phone}
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
                         {lead.membershipInterest}
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
                         {new Date(lead.submittedAt).toLocaleString()}
                       </td>
                     </tr>
@@ -90,3 +80,5 @@ export const AdminLeadsPage = (): React.ReactElement => {
     </AdminLayout>
   );
 };
+
+export default AdminLeadsPage;
