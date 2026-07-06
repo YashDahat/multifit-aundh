@@ -2661,14 +2661,19 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Displays available membership plans in bold, energetic cards with clear pricing and a 'Buy Now' CTA.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "MembershipsPage",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders the public page for viewing membership plans."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/hooks/useMemberships.ts" ],
     "depends_on" : [ ],
     "feature_name" : "membership-ui",
-    "file_role" : null
+    "file_role" : "PAGE layer — displays available membership plans fetched via `useMemberships.useMembershipPlans()`."
   }, {
     "file_name" : "MemberDashboardPage.tsx",
     "file_path" : "frontend/src/pages/MemberDashboardPage.tsx",
@@ -2678,14 +2683,19 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "A protected page for logged-in members to view their current membership, payment history, and booked classes.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "MemberDashboardPage",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders the protected dashboard for members."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/hooks/useMemberships.ts", "frontend/src/hooks/useSchedule.ts" ],
     "depends_on" : [ ],
     "feature_name" : "membership-ui",
-    "file_role" : null
+    "file_role" : "PAGE layer — displays a logged-in member's current membership, payment history, and booked classes, using `useMemberships.useUserMembership()` and `useSchedule.useUserBookings()`."
   }, {
     "file_name" : "membershipService.ts",
     "file_path" : "frontend/src/services/membershipService.ts",
@@ -2695,14 +2705,36 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Service for fetching membership plans and managing user subscriptions.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "getMembershipPlans",
+      "parameters" : [ ],
+      "return_type" : "Promise<MembershipPlan[]>",
+      "description" : "Fetches all available membership plans from the backend."
+    }, {
+      "name" : "getUserMembership",
+      "parameters" : [ "string userId" ],
+      "return_type" : "Promise<UserMembership | null>",
+      "description" : "Fetches the current membership details for a specific user."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
-    "api_endpoints_consumed" : null,
+    "api_endpoints_consumed" : [ {
+      "method" : "GET",
+      "path" : "/api/v1/memberships",
+      "request_body" : null,
+      "response_body" : null,
+      "description" : "Fetches a list of all available membership plans."
+    }, {
+      "method" : "GET",
+      "path" : "/api/v1/users/{userId}/memberships",
+      "request_body" : null,
+      "response_body" : null,
+      "description" : "Fetches the membership details for a specific user."
+    } ],
     "imports_from" : [ "frontend/src/api/client.ts", "frontend/src/types/membership.ts" ],
     "depends_on" : [ ],
     "feature_name" : "membership-ui",
-    "file_role" : null
+    "file_role" : "SERVICE layer — provides functions to interact with the backend for membership plans and user subscriptions."
   }, {
     "file_name" : "useMemberships.ts",
     "file_path" : "frontend/src/hooks/useMemberships.ts",
@@ -2712,14 +2744,24 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "React Query hook for fetching and caching membership data.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "useMembershipPlans",
+      "parameters" : [ ],
+      "return_type" : "UseQueryResult<MembershipPlan[], Error>",
+      "description" : "React Query hook to fetch and manage all membership plans."
+    }, {
+      "name" : "useUserMembership",
+      "parameters" : [ "string userId" ],
+      "return_type" : "UseQueryResult<UserMembership | null, Error>",
+      "description" : "React Query hook to fetch and manage a specific user's membership."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/services/membershipService.ts", "frontend/src/types/membership.ts" ],
     "depends_on" : [ ],
     "feature_name" : "membership-ui",
-    "file_role" : null
+    "file_role" : "HOOK layer — React Query hooks for fetching and caching membership data."
   }, {
     "file_name" : "membership.ts",
     "file_path" : "frontend/src/types/membership.ts",
@@ -2730,13 +2772,25 @@
     "status" : "PLANNED",
     "description" : "TypeScript types for membership plans and user subscriptions.",
     "public_functions" : null,
-    "public_variables" : null,
+    "public_variables" : [ {
+      "name" : "MembershipPlan",
+      "type" : "interface",
+      "description" : "Represents a membership plan with details like name, price, duration, and features."
+    }, {
+      "name" : "UserMembership",
+      "type" : "interface",
+      "description" : "Represents a user's purchased membership, including the plan, dates, status, and payment history."
+    }, {
+      "name" : "Payment",
+      "type" : "interface",
+      "description" : "Represents a payment record associated with a user's membership."
+    } ],
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "membership-ui",
-    "file_role" : null
+    "file_role" : "Generated from the backend API contract — defines TypeScript interfaces for membership plans and user subscriptions."
   }, {
     "file_name" : "SchedulePage.tsx",
     "file_path" : "frontend/src/pages/SchedulePage.tsx",
@@ -3079,7 +3133,7 @@
     "feature_display_name" : "Membership UI",
     "feature_type" : "FRONTEND",
     "file_paths" : [ "frontend/src/pages/MembershipsPage.tsx", "frontend/src/pages/MemberDashboardPage.tsx", "frontend/src/services/membershipService.ts", "frontend/src/hooks/useMemberships.ts", "frontend/src/types/membership.ts" ],
-    "feature_instruction" : null,
+    "feature_instruction" : "## Design Tokens\n- Navbar: bg-[#1A1A1A] text-[#F5F5F5]\n- Primary CTA: bg-[#DFFF00] hover:bg-[#DFFF00]/80 text-[#1A1A1A] font-bold rounded-full px-8 py-3 transition-all duration-200\n- Brand text accent: text-[#DFFF00]\n- Section bg: bg-[#F5F5F5] (odd sections) / bg-gray-100 (even sections)\n- Card: bg-white rounded-xl shadow-md border border-gray-100 p-6\n- Section container: <section className=\"py-16 px-4\"><div className=\"max-w-7xl mx-auto\">\n- Hero h1: text-4xl md:text-6xl font-bold text-[#F5F5F5]\n- Body: text-gray-700 leading-relaxed\n\nThis `membership-ui` feature provides two main user interfaces: a public-facing page to display available membership plans (`MembershipsPage.tsx`) and a protected dashboard for logged-in members to view their current membership details and history (`MemberDashboardPage.tsx`). It interacts with the `membership-backend` for fetching membership plans and user-specific membership data, and with `scheduling-api-backend` for displaying booked classes on the member dashboard.\n\n### `frontend/src/types/membership.ts`\nThis file defines the TypeScript interfaces for `MembershipPlan` and `UserMembership` which are derived from the backend DTOs. These types are crucial for ensuring type safety across the frontend application when handling membership-related data.\n\n### `frontend/src/services/membershipService.ts`\nThis service acts as the data layer for membership-related operations. It contains two asynchronous functions: `getMembershipPlans()` to fetch all available plans from the backend, and `getUserMembership(userId: string)` to retrieve a specific user's membership details. It uses the `apiClient` from `@/api/client.ts` to make HTTP requests to the `membership-backend`.\n\n### `frontend/src/hooks/useMemberships.ts`\nThis React Query hook provides a convenient way for components to fetch and cache membership data. It exposes `useMembershipPlans()` for retrieving all plans and `useUserMembership(userId: string)` for a specific user's membership. These hooks abstract away the data fetching logic and provide loading, error, and data states to the consuming components.\n\n### `frontend/src/pages/MembershipsPage.tsx`\nThis public page displays all available membership plans in an energetic and bold layout. It utilizes the `useMembershipPlans()` hook to fetch data. The page is structured with a prominent hero section, followed by a grid of membership cards, and a call-to-action section. Each membership card clearly presents the plan name, price, duration, and key features, with a 'Join Now' CTA button. The page content is wrapped in the `<Layout>` component from `core-ui`.\n\n**Page Sections:**\n1.  **Hero Section:**\n    *   Background: Dynamic image of a gym, e.g., `url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1920&q=80')` with a `bg-black bg-opacity-50` overlay.\n    *   Headline (`h1`): \"Ignite Your Potential at MultiFit Aundh!\"\n    *   Sub-headline (`p`): \"Choose a membership that fuels your fitness journey. Bold. Energetic. Unstoppable.\"\n    *   CTA Button: \"View Our Plans\" (Primary CTA style)\n2.  **Membership Plans Section:**\n    *   Heading (`h2`): \"Our Membership Plans\"\n    *   Description (`p`): \"Find the perfect plan to match your fitness goals and lifestyle.\"\n    *   Grid of `MembershipPlan` cards:\n        *   Each card displays `name`, `price`, `durationMonths`, and `features`.\n        *   CTA Button: \"Join Now\" (Primary CTA style)\n3.  **Call to Action Section:**\n    *   Heading (`h2`): \"Ready to Transform?\"\n    *   Description (`p`): \"Join the MultiFit Aundh community today and experience the difference.\"\n    *   CTA Button: \"Get Started\" (Primary CTA style)\n\n### `frontend/src/pages/MemberDashboardPage.tsx`\nThis protected page provides a personalized dashboard for logged-in members. It displays their current membership details, payment history, and a list of their booked classes. It uses `useUserMembership(userId)` from `useMemberships.ts` and `useUserBookings()` from `scheduling-ui`'s `useSchedule.ts` (assuming `useSchedule` provides a hook for user bookings). The page content is wrapped in `<ProtectedRoute>` from `core-ui` (with `allowedRoles={['MEMBER', 'ADMIN']}`) and then `<Layout>`.\n\n**Page Sections:**\n1.  **Hero Section (Personalized):**\n    *   Headline (`h1`): \"Welcome Back, [Member Name]!\"\n    *   Sub-headline (`p`): \"Your fitness journey continues at MultiFit Aundh.\"\n2.  **Current Membership Section:**\n    *   Heading (`h2`): \"Your Current Membership\"\n    *   Displays `membershipPlan.name`, `startDate`, `endDate`, and `status` from `UserMembership`.\n    *   CTA Button (if applicable): \"Renew Membership\" (Primary CTA style)\n3.  **Booked Classes Section:**\n    *   Heading (`h2`): \"Your Upcoming Classes\"\n    *   Lists classes fetched via `useSchedule.ts` (e.g., `useUserBookings()`). Each entry shows class name, date, and time.\n4.  **Payment History Section:**\n    *   Heading (`h2`): \"Payment History\"\n    *   Displays a table or list of `paymentHistory` from `UserMembership`, showing `amount`, `transactionDate`, and `status`.\n\n**Interactions:**\n*   `MembershipsPage.tsx` calls `useMemberships.useMembershipPlans()`.\n*   `MemberDashboardPage.tsx` calls `useMemberships.useUserMembership(userId)` and `useSchedule.useUserBookings(userId)` (assuming this hook exists in `scheduling-ui`).\n*   `useMemberships.ts` calls `membershipService.getMembershipPlans()` and `membershipService.getUserMembership()`.\n*   `membershipService.ts` makes API calls to `membership-backend` via `apiClient`.\n",
     "change_required" : true
   }, {
     "feature_name" : "scheduling-ui",
