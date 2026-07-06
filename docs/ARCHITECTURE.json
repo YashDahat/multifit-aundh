@@ -308,14 +308,24 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Implements UserDetailsService and handles user creation and retrieval.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "loadUserByUsername",
+      "parameters" : [ "String email" ],
+      "return_type" : "UserDetails",
+      "description" : "Loads user details by email for authentication. Throws UsernameNotFoundException if user not found."
+    }, {
+      "name" : "createUser",
+      "parameters" : [ "User user" ],
+      "return_type" : "User",
+      "description" : "Registers a new user after encrypting the password. Throws IllegalArgumentException if user with email already exists."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "backend/src/main/java/com/multifitaundh/repository/UserRepository.java" ],
     "depends_on" : [ ],
     "feature_name" : "authentication-backend",
-    "file_role" : null
+    "file_role" : "SERVICE layer — implements `UserDetailsService` and provides methods for user creation and retrieval, specifically `loadUserByUsername(String email): UserDetails` and `createUser(User user): User`."
   }, {
     "file_name" : "AuthController.java",
     "file_path" : "backend/src/main/java/com/multifitaundh/controller/AuthController.java",
@@ -325,14 +335,36 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Handles user registration and authentication (JWT token generation).",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "registerUser",
+      "parameters" : [ "AuthRequest request" ],
+      "return_type" : "ResponseEntity<AuthResponse>",
+      "description" : "Registers a new user and returns a JWT upon successful creation."
+    }, {
+      "name" : "authenticateUser",
+      "parameters" : [ "AuthRequest request" ],
+      "return_type" : "ResponseEntity<AuthResponse>",
+      "description" : "Authenticates an existing user and returns a JWT upon successful login."
+    } ],
     "public_variables" : null,
-    "api_endpoints" : null,
+    "api_endpoints" : [ {
+      "method" : "POST",
+      "path" : "/api/v1/auth/register",
+      "request_body" : "AuthRequest",
+      "response_body" : "AuthResponse",
+      "description" : "Registers a new user with email and password."
+    }, {
+      "method" : "POST",
+      "path" : "/api/v1/auth/login",
+      "request_body" : "AuthRequest",
+      "response_body" : "AuthResponse",
+      "description" : "Authenticates a user and returns a JWT."
+    } ],
     "api_endpoints_consumed" : null,
     "imports_from" : [ "backend/src/main/java/com/multifitaundh/dto/AuthRequest.java", "backend/src/main/java/com/multifitaundh/dto/AuthResponse.java", "backend/src/main/java/com/multifitaundh/util/JwtUtil.java", "backend/src/main/java/com/multifitaundh/service/UserService.java" ],
     "depends_on" : [ ],
     "feature_name" : "authentication-backend",
-    "file_role" : null
+    "file_role" : "CONTROLLER layer — exposes REST API endpoints for user registration and authentication, specifically `registerUser(AuthRequest request): ResponseEntity<AuthResponse>` and `authenticateUser(AuthRequest request): ResponseEntity<AuthResponse>`."
   }, {
     "file_name" : "AuthRequest.java",
     "file_path" : "backend/src/main/java/com/multifitaundh/dto/AuthRequest.java",
@@ -343,13 +375,21 @@
     "status" : "PLANNED",
     "description" : "DTO for login requests, containing username and password.",
     "public_functions" : null,
-    "public_variables" : null,
+    "public_variables" : [ {
+      "name" : "email",
+      "type" : "String",
+      "description" : "User's email address, must be a valid email format and not blank. (@NotBlank, @Email)"
+    }, {
+      "name" : "password",
+      "type" : "String",
+      "description" : "User's password, must not be blank. (@NotBlank)"
+    } ],
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "authentication-backend",
-    "file_role" : null
+    "file_role" : "DTO — Data Transfer Object for user login and registration requests."
   }, {
     "file_name" : "AuthResponse.java",
     "file_path" : "backend/src/main/java/com/multifitaundh/dto/AuthResponse.java",
@@ -360,13 +400,17 @@
     "status" : "PLANNED",
     "description" : "DTO for authentication responses, containing the JWT.",
     "public_functions" : null,
-    "public_variables" : null,
+    "public_variables" : [ {
+      "name" : "token",
+      "type" : "String",
+      "description" : "The generated JSON Web Token for authentication."
+    } ],
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "authentication-backend",
-    "file_role" : null
+    "file_role" : "DTO — Data Transfer Object for authentication responses, carrying the JWT."
   }, {
     "file_name" : "JwtUtil.java",
     "file_path" : "backend/src/main/java/com/multifitaundh/util/JwtUtil.java",
@@ -376,14 +420,29 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Utility class for generating, parsing, and validating JWTs.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "extractUsername",
+      "parameters" : [ "String token" ],
+      "return_type" : "String",
+      "description" : "Extracts the username (subject) from a JWT."
+    }, {
+      "name" : "generateToken",
+      "parameters" : [ "UserDetails userDetails" ],
+      "return_type" : "String",
+      "description" : "Generates a JWT for the given UserDetails."
+    }, {
+      "name" : "validateToken",
+      "parameters" : [ "String token", "UserDetails userDetails" ],
+      "return_type" : "boolean",
+      "description" : "Validates a JWT against user details and checks for expiration."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "authentication-backend",
-    "file_role" : null
+    "file_role" : "UTILITY class — provides methods for generating, parsing, and validating JWTs, specifically `extractUsername(String token): String`, `generateToken(UserDetails userDetails): String`, and `validateToken(String token, UserDetails userDetails): boolean`."
   }, {
     "file_name" : "JwtAuthFilter.java",
     "file_path" : "backend/src/main/java/com/multifitaundh/security/JwtAuthFilter.java",
@@ -393,14 +452,19 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Filter that intercepts requests, validates the JWT, and sets the security context.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "doFilterInternal",
+      "parameters" : [ "HttpServletRequest request", "HttpServletResponse response", "FilterChain filterChain" ],
+      "return_type" : "void",
+      "description" : "Intercepts HTTP requests to validate JWT and set authentication in the security context."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "backend/src/main/java/com/multifitaundh/util/JwtUtil.java", "backend/src/main/java/com/multifitaundh/service/UserService.java" ],
     "depends_on" : [ ],
     "feature_name" : "authentication-backend",
-    "file_role" : null
+    "file_role" : "CONFIG layer — a Spring Security filter that intercepts requests, validates the JWT from the Authorization header, and sets the security context."
   }, {
     "file_name" : "SecurityConfig.java",
     "file_path" : "backend/src/main/java/com/multifitaundh/config/SecurityConfig.java",
@@ -410,14 +474,29 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Configures Spring Security, including password encoder, filter chain, and CORS.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "securityFilterChain",
+      "parameters" : [ "HttpSecurity http" ],
+      "return_type" : "SecurityFilterChain",
+      "description" : "Defines the security filter chain, including CSRF disable, session management, authorization rules, and JWT filter."
+    }, {
+      "name" : "passwordEncoder",
+      "parameters" : [ ],
+      "return_type" : "PasswordEncoder",
+      "description" : "Provides a BCryptPasswordEncoder bean for password hashing."
+    }, {
+      "name" : "authenticationManager",
+      "parameters" : [ "AuthenticationConfiguration config" ],
+      "return_type" : "AuthenticationManager",
+      "description" : "Provides the AuthenticationManager bean."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "backend/src/main/java/com/multifitaundh/security/JwtAuthFilter.java" ],
     "depends_on" : [ ],
     "feature_name" : "authentication-backend",
-    "file_role" : null
+    "file_role" : "CONFIG layer — configures Spring Security's filter chain, password encoder, and authentication manager, exposing `securityFilterChain(HttpSecurity http): SecurityFilterChain`, `passwordEncoder(): PasswordEncoder`, and `authenticationManager(AuthenticationConfiguration config): AuthenticationManager`."
   }, {
     "file_name" : "Membership.java",
     "file_path" : "backend/src/main/java/com/multifitaundh/model/Membership.java",
@@ -1951,7 +2030,7 @@
     "feature_display_name" : "Authentication (Backend)",
     "feature_type" : "SHARED",
     "file_paths" : [ "backend/src/main/java/com/multifitaundh/service/UserService.java", "backend/src/main/java/com/multifitaundh/controller/AuthController.java", "backend/src/main/java/com/multifitaundh/dto/AuthRequest.java", "backend/src/main/java/com/multifitaundh/dto/AuthResponse.java", "backend/src/main/java/com/multifitaundh/util/JwtUtil.java", "backend/src/main/java/com/multifitaundh/security/JwtAuthFilter.java", "backend/src/main/java/com/multifitaundh/config/SecurityConfig.java" ],
-    "feature_instruction" : null,
+    "feature_instruction" : "The `authentication-backend` feature provides robust user authentication and authorization capabilities using JSON Web Tokens (JWTs) for the MultiFit Aundh application. It encompasses user registration, login, JWT generation, validation, and integration with Spring Security.\n\n## Core Flow:\n1.  **User Registration/Login:** A user sends their credentials (email, password) to the `AuthController` via `/api/v1/auth/register` or `/api/v1/auth/login` endpoints. The request body is an `AuthRequest` DTO.\n2.  **User Service Interaction:** The `AuthController` delegates to the `UserService` to either create a new user (for registration) or authenticate an existing user. The `UserService` interacts with the `UserRepository` (from `user-management-backend`) to persist or retrieve user data.\n3.  **JWT Generation:** Upon successful authentication, the `UserService` (or `AuthController` after `UserService` confirms authentication) utilizes the `JwtUtil` to generate a new JWT. This token is then wrapped in an `AuthResponse` DTO and returned to the client.\n4.  **Subsequent Request Authentication:** For all subsequent authenticated requests, the client includes the JWT in the `Authorization` header (e.g., `Bearer <token>`).\n5.  **JWT Validation Filter:** The `JwtAuthFilter` intercepts these requests. It extracts the JWT from the header, validates it using `JwtUtil`, and then loads the `UserDetails` (User entity from `user-management-backend`) via `UserService.loadUserByUsername()`. If valid, the filter sets the authentication context in Spring Security, allowing the request to proceed to the intended controller.\n6.  **Security Configuration:** The `SecurityConfig` class defines the overall security posture of the application. It configures the `JwtAuthFilter` to run before Spring Security's `UsernamePasswordAuthenticationFilter`, sets up a `BCryptPasswordEncoder` for secure password hashing, and defines authorization rules for different API paths (e.g., public, authenticated, admin-only).\n\n## File Interactions:\n*   `AuthController` injects `UserService` and `JwtUtil`.\n*   `UserService` injects `UserRepository` (from `user-management-backend`) and `BCryptPasswordEncoder`.\n*   `JwtAuthFilter` injects `JwtUtil` and `UserService`.\n*   `SecurityConfig` configures `JwtAuthFilter`, `UserService` (as `UserDetailsService`), `BCryptPasswordEncoder`, and `AuthenticationManager`.\n\n## Detailed Method Contracts:\n\n### `UserService.java`\n*   **`loadUserByUsername(String email): UserDetails`**\n    1.  Attempts to find a `User` by `email` using `UserRepository.findByEmail(email)`.\n    2.  If the user is not found, throws `UsernameNotFoundException`.\n    3.  Returns the `User` entity (which implements `UserDetails`) if found.\n*   **`createUser(User user): User`**\n    1.  Checks if a user with the given email already exists using `UserRepository.findByEmail(user.getEmail())`.\n    2.  If a user exists, throws `IllegalArgumentException` with a message like \"User with email {email} already exists.\"\n    3.  Encrypts the user's password using `BCryptPasswordEncoder.encode()`.\n    4.  Saves the new `User` entity using `UserRepository.save(user)`.\n    5.  Returns the saved `User` entity.\n\n### `AuthController.java`\n*   **`registerUser(@RequestBody @Valid AuthRequest request): ResponseEntity<AuthResponse>`**\n    1.  Creates a new `User` object from the `AuthRequest` (setting `email` and `password`).\n    2.  Calls `userService.createUser(user)`.\n    3.  Upon successful creation, generates a JWT for the newly registered user using `jwtUtil.generateToken(user)`.\n    4.  Returns `ResponseEntity.ok(new AuthResponse(token))` with HTTP status 200.\n    5.  **Error Cases:**\n        *   `IllegalArgumentException` (from `UserService`): Returns HTTP status 400 (Bad Request).\n        *   `MethodArgumentNotValidException` (from `@Valid`): Handled by `GlobalExceptionHandler` returning HTTP status 400.\n*   **`authenticateUser(@RequestBody @Valid AuthRequest request): ResponseEntity<AuthResponse>`**\n    1.  Attempts to authenticate the user using `authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword()))`.\n    2.  If authentication fails (e.g., bad credentials), `BadCredentialsException` is thrown.\n    3.  If authentication is successful, loads `UserDetails` using `userService.loadUserByUsername(request.getEmail())`.\n    4.  Generates a JWT using `jwtUtil.generateToken(userDetails)`.\n    5.  Returns `ResponseEntity.ok(new AuthResponse(token))` with HTTP status 200.\n    6.  **Error Cases:**\n        *   `BadCredentialsException`: Returns HTTP status 401 (Unauthorized).\n        *   `MethodArgumentNotValidException` (from `@Valid`): Handled by `GlobalExceptionHandler` returning HTTP status 400.\n\n### `JwtUtil.java`\n*   **`extractUsername(String token): String`**\n    1.  Parses the JWT and extracts the subject (which is the username/email).\n*   **`generateToken(UserDetails userDetails): String`**\n    1.  Creates claims including the subject (username/email) and any roles.\n    2.  Sets expiration date (e.g., 24 hours from now).\n    3.  Signs the token using `Keys.hmacShaKeyFor(Decoders.BASE64.decode(jwt.secret))`.\n    4.  Builds and returns the compact JWT string.\n*   **`validateToken(String token, UserDetails userDetails): boolean`**\n    1.  Extracts the username from the token.\n    2.  Checks if the extracted username matches `userDetails.getUsername()`.\n    3.  Checks if the token is expired.\n    4.  Returns `true` if valid, `false` otherwise.\n    5.  **Error Cases:** Throws `MalformedJwtException`, `ExpiredJwtException`, `UnsupportedJwtException`, `IllegalArgumentException` if token is invalid or malformed. These should be caught by the filter.\n\n### `JwtAuthFilter.java`\n*   **`doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain): void`**\n    1.  Extracts the `Authorization` header.\n    2.  If the header is present and starts with \"Bearer \", extracts the JWT.\n    3.  If a JWT is found and no authentication is currently set in the security context:\n        a.  Extracts the username from the JWT using `jwtUtil.extractUsername(jwt)`.\n        b.  Loads `UserDetails` using `userService.loadUserByUsername(username)`.\n        c.  Validates the token using `jwtUtil.validateToken(jwt, userDetails)`.\n        d.  If valid, creates a `UsernamePasswordAuthenticationToken` and sets it in the `SecurityContextHolder`.\n    4.  Calls `filterChain.doFilter(request, response)` to pass the request to the next filter in the chain.\n\n### `SecurityConfig.java`\n*   **`securityFilterChain(HttpSecurity http): SecurityFilterChain`**\n    1.  Disables CSRF: `.csrf(csrf -> csrf.disable())`.\n    2.  Configures session management to be stateless: `.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))`.\n    3.  Authorizes HTTP requests:\n        *   `.requestMatchers(\"/api/v1/auth/**\").permitAll()`\n        *   `.requestMatchers(\"/api/v1/admin/**\").hasRole(\"ADMIN\")`\n        *   `.requestMatchers(\"/api/**\").authenticated()`\n        *   `.anyRequest().permitAll()`\n    4.  Adds `JwtAuthFilter` before `UsernamePasswordAuthenticationFilter`.\n    5.  Builds and returns the `SecurityFilterChain`.\n*   **`passwordEncoder(): PasswordEncoder`**\n    1.  Returns a `BCryptPasswordEncoder` instance.\n*   **`authenticationManager(AuthenticationConfiguration config): AuthenticationManager`**\n    1.  Returns `config.getAuthenticationManager()`.\n\n## DTOs:\n*   `AuthRequest`: Used for user login and registration. Contains `email` and `password` fields with appropriate validation annotations.\n*   `AuthResponse`: Used to return the generated `token` after successful authentication.\n\n## Cross-Feature Contracts:\n*   This feature consumes `UserRepository.findByEmail(String email): Optional<User>` from `user-management-backend`.\n*   This feature consumes the `User` entity (which implements `UserDetails`) from `user-management-backend`.\n*   This feature uses `GlobalExceptionHandler` from `shared-infra-backend` for handling exceptions like `MethodArgumentNotValidException`.\n\n## Security Considerations:\n*   Passwords are encrypted using `BCryptPasswordEncoder`.\n*   JWT secret is configured in `application.properties` (e.g., `jwt.secret`).\n*   Roles are managed using `ROLE_` prefix (e.g., `ROLE_ADMIN`) and checked using `hasRole()` in `SecurityConfig` and `@PreAuthorize` annotations.\n*   Stateless session management is enforced for JWT-based authentication.",
     "change_required" : true
   }, {
     "feature_name" : "membership-backend",
