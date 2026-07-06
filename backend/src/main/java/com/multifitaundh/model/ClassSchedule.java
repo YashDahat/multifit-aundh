@@ -13,7 +13,13 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.UUID;
 import com.multifitaundh.model.GymClass;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "class_schedule")
 public class ClassSchedule {

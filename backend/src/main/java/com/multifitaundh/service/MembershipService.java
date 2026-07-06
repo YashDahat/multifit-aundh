@@ -116,6 +116,19 @@ public class MembershipService {
         return userMembershipRepository.findAllByUser_Id(userId);
     }
 
+    public UserMembership getUserMembershipById(UUID userMembershipId) {
+        return userMembershipRepository.findById(userMembershipId)
+                .orElseThrow(() -> new ResourceNotFoundException("User Membership not found with ID: " + userMembershipId));
+    }
+
+    public void activateUserMembership(UUID userMembershipId, java.time.Instant paymentDate, LocalDate endDate) {
+        UserMembership userMembership = userMembershipRepository.findById(userMembershipId)
+                .orElseThrow(() -> new ResourceNotFoundException("User Membership not found with ID: " + userMembershipId));
+        userMembership.setIsCurrent(true);
+        userMembership.setEndDate(endDate);
+        userMembershipRepository.save(userMembership);
+    }
+
     public void revokeUserMembership(UUID userMembershipId) {
         UserMembership userMembership = userMembershipRepository.findById(userMembershipId)
                 .orElseThrow(() -> new ResourceNotFoundException("User Membership not found with ID: " + userMembershipId));

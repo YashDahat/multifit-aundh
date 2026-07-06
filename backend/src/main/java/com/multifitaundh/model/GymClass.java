@@ -3,11 +3,14 @@ package com.multifitaundh.model;
 import jakarta.persistence.*;
 import java.util.UUID;
 
-// Assuming Trainer is in the same model package or a closely related one
-// as per the cross-feature contract, since no specific package for Trainer
-// from 'content-backend' was provided.
 import com.multifitaundh.model.Trainer;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "gym_classes")
 public class GymClass {

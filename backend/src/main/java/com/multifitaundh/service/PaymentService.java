@@ -75,7 +75,8 @@ public class PaymentService {
             // that returns a MembershipType, and that MembershipType (provided) has a
             // calculateEndDate(Instant) method.
             // As per the instruction, this call is included literally.
-            LocalDate endDate = payment.getUserMembership().getMembership().getDuration().calculateEndDate(payment.getPaymentDate());
+            int durationMonths = payment.getUserMembership().getMembership().getDurationInMonths();
+            LocalDate endDate = LocalDate.now().plusMonths(durationMonths);
             membershipService.activateUserMembership(payment.getUserMembership().getId(), payment.getPaymentDate(), endDate);
         }
 

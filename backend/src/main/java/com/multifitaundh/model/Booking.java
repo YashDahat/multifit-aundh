@@ -16,7 +16,13 @@ import java.util.UUID;
 import com.multifitaundh.model.User;
 import com.multifitaundh.model.ClassSchedule;
 import com.multifitaundh.model.BookingStatus;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "bookings")
 public class Booking {
@@ -41,7 +47,4 @@ public class Booking {
     @Column(name = "status", nullable = false)
     private BookingStatus status;
 
-    public Booking() {
-        // JPA no-arg constructor
-    }
 }

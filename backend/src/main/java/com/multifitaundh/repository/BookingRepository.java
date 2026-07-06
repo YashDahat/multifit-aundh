@@ -8,4 +8,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Repository
-public interface BookingRepository extends JpaRepository<Booking, UUID> {}
+public interface BookingRepository extends JpaRepository<Booking, UUID> {
+    List<Booking> findByUserIdAndClassScheduleId(UUID userId, UUID classScheduleId);
+    List<Booking> findByUserId(UUID userId);
+}

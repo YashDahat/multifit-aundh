@@ -9,7 +9,13 @@ import java.time.LocalDate;
 import java.util.UUID;
 import com.multifitaundh.model.User;
 import com.multifitaundh.model.Membership;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 public class UserMembership {
 
@@ -34,7 +40,4 @@ public class UserMembership {
     @Column(name = "is_current", nullable = false)
     private Boolean isCurrent;
 
-    // JPA requires a no-argument constructor
-    public UserMembership() {
-    }
 }

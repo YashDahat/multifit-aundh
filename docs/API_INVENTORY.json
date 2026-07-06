@@ -1,0 +1,409 @@
+{
+  "endpoints" : [ {
+    "method" : "POST",
+    "path" : "/api/v1/admin/memberships",
+    "handler" : "createMembership",
+    "request" : "MembershipDto",
+    "response" : "MembershipDto"
+  }, {
+    "method" : "PUT",
+    "path" : "/api/v1/admin/memberships/{id}",
+    "handler" : "updateMembership",
+    "request" : "MembershipDto",
+    "response" : "MembershipDto"
+  }, {
+    "method" : "DELETE",
+    "path" : "/api/v1/admin/memberships/{id}",
+    "handler" : "deleteMembership",
+    "request" : null,
+    "response" : null
+  }, {
+    "method" : "GET",
+    "path" : "/api/v1/content/trainers",
+    "handler" : "getAllTrainers",
+    "request" : null,
+    "response" : "TrainerDto[]"
+  }, {
+    "method" : "GET",
+    "path" : "/api/v1/content/trainers/{id}",
+    "handler" : "getTrainerById",
+    "request" : null,
+    "response" : "TrainerDto"
+  }, {
+    "method" : "GET",
+    "path" : "/api/v1/content/testimonials",
+    "handler" : "getAllTestimonials",
+    "request" : null,
+    "response" : "TestimonialDto[]"
+  }, {
+    "method" : "GET",
+    "path" : "/api/v1/content/testimonials/{id}",
+    "handler" : "getTestimonialById",
+    "request" : null,
+    "response" : "TestimonialDto"
+  }, {
+    "method" : "GET",
+    "path" : "/api/v1/admin/leads/trial",
+    "handler" : "getAllTrialLeads",
+    "request" : null,
+    "response" : "TrialLead[]"
+  }, {
+    "method" : "POST",
+    "path" : "/api/v1/admin/content/trainers",
+    "handler" : "createTrainer",
+    "request" : "TrainerDto",
+    "response" : "TrainerDto"
+  }, {
+    "method" : "PUT",
+    "path" : "/api/v1/admin/content/trainers/{id}",
+    "handler" : "updateTrainer",
+    "request" : "TrainerDto",
+    "response" : "TrainerDto"
+  }, {
+    "method" : "DELETE",
+    "path" : "/api/v1/admin/content/trainers/{id}",
+    "handler" : "deleteTrainer",
+    "request" : null,
+    "response" : null
+  }, {
+    "method" : "POST",
+    "path" : "/api/v1/admin/content/testimonials",
+    "handler" : "createTestimonial",
+    "request" : "TestimonialDto",
+    "response" : "TestimonialDto"
+  }, {
+    "method" : "PUT",
+    "path" : "/api/v1/admin/content/testimonials/{id}",
+    "handler" : "updateTestimonial",
+    "request" : "TestimonialDto",
+    "response" : "TestimonialDto"
+  }, {
+    "method" : "DELETE",
+    "path" : "/api/v1/admin/content/testimonials/{id}",
+    "handler" : "deleteTestimonial",
+    "request" : null,
+    "response" : null
+  }, {
+    "method" : "POST",
+    "path" : "/api/v1/auth/register",
+    "handler" : "registerUser",
+    "request" : "AuthRequest",
+    "response" : "AuthResponse"
+  }, {
+    "method" : "POST",
+    "path" : "/api/v1/auth/login",
+    "handler" : "authenticateUser",
+    "request" : "AuthRequest",
+    "response" : "AuthResponse"
+  }, {
+    "method" : "GET",
+    "path" : "/api/v1/memberships",
+    "handler" : "getAllMemberships",
+    "request" : null,
+    "response" : "MembershipDto[]"
+  }, {
+    "method" : "GET",
+    "path" : "/api/v1/memberships/{id}",
+    "handler" : "getMembershipById",
+    "request" : null,
+    "response" : "MembershipDto"
+  }, {
+    "method" : "POST",
+    "path" : "/api/v1/payments/initiate",
+    "handler" : "initiatePayment",
+    "request" : "InitiatePaymentRequest",
+    "response" : "PaymentOrderResponse"
+  }, {
+    "method" : "POST",
+    "path" : "/api/v1/payments/callback",
+    "handler" : "handlePaymentCallback",
+    "request" : "PaymentCallbackRequest",
+    "response" : "Payment"
+  }, {
+    "method" : "GET",
+    "path" : "/api/v1/admin/schedules",
+    "handler" : "getAllClassSchedules",
+    "request" : null,
+    "response" : "ClassScheduleDto[]"
+  }, {
+    "method" : "GET",
+    "path" : "/api/v1/admin/schedules/{id}",
+    "handler" : "getClassScheduleById",
+    "request" : null,
+    "response" : "ClassScheduleDto"
+  }, {
+    "method" : "POST",
+    "path" : "/api/v1/admin/schedules",
+    "handler" : "createClassSchedule",
+    "request" : "ClassScheduleDto",
+    "response" : "ClassScheduleDto"
+  }, {
+    "method" : "PUT",
+    "path" : "/api/v1/admin/schedules/{id}",
+    "handler" : "updateClassSchedule",
+    "request" : "ClassScheduleDto",
+    "response" : "ClassScheduleDto"
+  }, {
+    "method" : "DELETE",
+    "path" : "/api/v1/admin/schedules/{id}",
+    "handler" : "deleteClassSchedule",
+    "request" : null,
+    "response" : null
+  }, {
+    "method" : "POST",
+    "path" : "/api/v1/leads/trial",
+    "handler" : "submitTrialLead",
+    "request" : "CreateTrialLeadRequest",
+    "response" : "TrialLead"
+  }, {
+    "method" : "POST",
+    "path" : "/api/v1/bookings",
+    "handler" : "createBooking",
+    "request" : "Map",
+    "response" : "BookingDto"
+  }, {
+    "method" : "DELETE",
+    "path" : "/api/v1/bookings/{bookingId}",
+    "handler" : "cancelBooking",
+    "request" : null,
+    "response" : null
+  }, {
+    "method" : "GET",
+    "path" : "/api/v1/bookings/my-bookings",
+    "handler" : "getUserBookings",
+    "request" : null,
+    "response" : "BookingDto[]"
+  }, {
+    "method" : "GET",
+    "path" : "/api/v1/bookings/{bookingId}",
+    "handler" : "getBookingById",
+    "request" : null,
+    "response" : "BookingDto"
+  }, {
+    "method" : "GET",
+    "path" : "/api/v1/schedules",
+    "handler" : "getAllClassSchedules",
+    "request" : null,
+    "response" : "ClassScheduleDto[]"
+  }, {
+    "method" : "GET",
+    "path" : "/api/v1/schedules/{id}",
+    "handler" : "getClassScheduleById",
+    "request" : null,
+    "response" : "ClassScheduleDto"
+  }, {
+    "method" : "GET",
+    "path" : "/api/v1/schedules/date-range",
+    "handler" : "getClassSchedulesByDateRange",
+    "request" : null,
+    "response" : "ClassScheduleDto[]"
+  } ],
+  "types" : {
+    "Booking" : {
+      "fields" : {
+        "id" : "UUID",
+        "user" : "User?",
+        "classSchedule" : "ClassSchedule?",
+        "bookingTime" : "LocalDateTime?",
+        "status" : "BookingStatus?"
+      }
+    },
+    "TrialLead" : {
+      "fields" : {
+        "id" : "UUID",
+        "name" : "String?",
+        "email" : "String?",
+        "phone" : "String?",
+        "submissionDate" : "LocalDateTime?"
+      }
+    },
+    "Membership" : {
+      "fields" : {
+        "id" : "UUID",
+        "name" : "String?",
+        "description" : "String?",
+        "price" : "BigDecimal?",
+        "durationInMonths" : "Integer?",
+        "membershipType" : "MembershipType?",
+        "isActive" : "Boolean?"
+      }
+    },
+    "BookingStatus" : {
+      "constants" : [ "CONFIRMED", "CANCELLED" ]
+    },
+    "Trainer" : {
+      "fields" : {
+        "id" : "UUID",
+        "name" : "String?",
+        "specializations" : "String?",
+        "bio" : "String?",
+        "imageUrl" : "String?"
+      }
+    },
+    "User" : {
+      "fields" : {
+        "id" : "UUID",
+        "email" : "String?",
+        "password" : "String?",
+        "firstName" : "String?",
+        "lastName" : "String?"
+      }
+    },
+    "Testimonial" : {
+      "fields" : {
+        "id" : "UUID",
+        "author" : "String?",
+        "quote" : "String?",
+        "rating" : "Integer?"
+      }
+    },
+    "UserMembership" : {
+      "fields" : {
+        "id" : "UUID",
+        "user" : "User?",
+        "membership" : "Membership?",
+        "startDate" : "LocalDate?",
+        "endDate" : "LocalDate?",
+        "isCurrent" : "Boolean?"
+      }
+    },
+    "ClassSchedule" : {
+      "fields" : {
+        "id" : "UUID",
+        "gymClass" : "GymClass?",
+        "date" : "LocalDate?",
+        "startTime" : "LocalTime?",
+        "endTime" : "LocalTime?",
+        "currentBookings" : "int?",
+        "maxCapacity" : "int?"
+      }
+    },
+    "Payment" : {
+      "fields" : {
+        "id" : "UUID",
+        "userMembership" : "UserMembership?",
+        "amount" : "BigDecimal?",
+        "currency" : "String?",
+        "paymentGatewayOrderId" : "String?",
+        "paymentGatewayTransactionId" : "String?",
+        "status" : "PaymentStatus?",
+        "paymentDate" : "Instant?",
+        "createdAt" : "Instant?",
+        "updatedAt" : "Instant?"
+      }
+    },
+    "Role" : {
+      "constants" : [ "ROLE_USER", "ROLE_ADMIN" ]
+    },
+    "GymClass" : {
+      "fields" : {
+        "id" : "UUID",
+        "name" : "String?",
+        "description" : "String?",
+        "durationMinutes" : "int?",
+        "maxCapacity" : "int?",
+        "imageUrl" : "String?",
+        "trainer" : "Trainer?"
+      }
+    },
+    "MembershipType" : {
+      "constants" : [ "MONTHLY", "QUARTERLY", "YEARLY", "STANDARD", "PREMIUM" ]
+    },
+    "PaymentStatus" : {
+      "constants" : [ "PENDING", "SUCCESS", "FAILED" ]
+    },
+    "TrainerDto" : {
+      "fields" : {
+        "id" : "UUID?",
+        "name" : "String?",
+        "specializations" : "String?",
+        "bio" : "String?",
+        "imageUrl" : "String?"
+      }
+    },
+    "BookingDto" : {
+      "fields" : {
+        "id" : "UUID?",
+        "userId" : "UUID?",
+        "userName" : "String?",
+        "classScheduleId" : "UUID?",
+        "className" : "String?",
+        "scheduleDate" : "java.time.LocalDate?",
+        "startTime" : "LocalTime?",
+        "bookingTime" : "LocalDateTime?",
+        "status" : "BookingStatus?"
+      }
+    },
+    "ClassScheduleDto" : {
+      "fields" : {
+        "id" : "UUID?",
+        "gymClassId" : "UUID?",
+        "gymClassName" : "String?",
+        "gymClassDescription" : "String?",
+        "gymClassDurationMinutes" : "Integer?",
+        "trainerId" : "UUID?",
+        "trainerName" : "String?",
+        "scheduleDate" : "java.time.LocalDate?",
+        "startTime" : "LocalTime?",
+        "endTime" : "LocalTime?",
+        "maxCapacity" : "Integer?",
+        "bookedSlots" : "Integer?"
+      }
+    },
+    "TestimonialDto" : {
+      "fields" : {
+        "id" : "UUID?",
+        "author" : "String?",
+        "quote" : "String?",
+        "rating" : "Integer?"
+      }
+    },
+    "AuthResponse" : {
+      "fields" : {
+        "token" : "String?"
+      }
+    },
+    "AuthRequest" : {
+      "fields" : {
+        "email" : "String?",
+        "password" : "String?"
+      }
+    },
+    "MembershipDto" : {
+      "fields" : {
+        "id" : "UUID?",
+        "name" : "String",
+        "description" : "String",
+        "price" : "BigDecimal",
+        "durationInMonths" : "Integer",
+        "membershipType" : "MembershipType",
+        "isActive" : "Boolean?"
+      }
+    },
+    "ErrorResponse" : {
+      "fields" : {
+        "timestamp" : "java.time.LocalDateTime?",
+        "status" : "Integer?",
+        "error" : "String?",
+        "message" : "String?",
+        "path" : "String?"
+      }
+    },
+    "CreateTrialLeadRequest" : {
+      "fields" : {
+        "name" : "String?",
+        "email" : "String?",
+        "phone" : "String?"
+      }
+    },
+    "PaymentOrderResponse" : {
+      "fields" : {
+        "orderId" : "String?",
+        "amount" : "java.math.BigDecimal?",
+        "currency" : "String?",
+        "membershipId" : "UUID?",
+        "userId" : "UUID?"
+      }
+    }
+  }
+}

@@ -8,4 +8,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Repository
-public interface UserMembershipRepository extends JpaRepository<UserMembership, UUID> {}
+public interface UserMembershipRepository extends JpaRepository<UserMembership, UUID> {
+    Optional<UserMembership> findByUser_IdAndIsCurrentTrue(UUID userId);
+    List<UserMembership> findAllByUser_Id(UUID userId);
+}
