@@ -660,13 +660,41 @@
     "status" : "PLANNED",
     "description" : "Entity representing a type of class offered (e.g., 'Zumba', 'CrossFit').",
     "public_functions" : null,
-    "public_variables" : null,
+    "public_variables" : [ {
+      "name" : "id",
+      "type" : "UUID",
+      "description" : "Unique identifier for the gym class. Primary Key."
+    }, {
+      "name" : "name",
+      "type" : "String",
+      "description" : "Name of the class, e.g., 'Zumba'. Must be unique and not null."
+    }, {
+      "name" : "description",
+      "type" : "String",
+      "description" : "Detailed description of the class. Not null."
+    }, {
+      "name" : "durationMinutes",
+      "type" : "Integer",
+      "description" : "Duration of the class in minutes. Not null and positive."
+    }, {
+      "name" : "maxCapacity",
+      "type" : "Integer",
+      "description" : "Maximum number of participants allowed in the class. Not null and positive."
+    }, {
+      "name" : "trainer",
+      "type" : "com.multifitaundh.model.Trainer",
+      "description" : "The trainer associated with this class. Many-to-one relationship, not null."
+    }, {
+      "name" : "imageUrl",
+      "type" : "String",
+      "description" : "URL to an image representing the class. Nullable."
+    } ],
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "backend/src/main/java/com/multifitaundh/model/Trainer.java" ],
     "depends_on" : [ ],
     "feature_name" : "scheduling-core-backend",
-    "file_role" : null
+    "file_role" : "MODEL layer — defines the data structure for a gym class, including its name, description, duration, capacity, associated trainer, and image URL."
   }, {
     "file_name" : "ClassSchedule.java",
     "file_path" : "backend/src/main/java/com/multifitaundh/model/ClassSchedule.java",
@@ -677,13 +705,41 @@
     "status" : "PLANNED",
     "description" : "Entity representing a specific scheduled instance of a GymClass.",
     "public_functions" : null,
-    "public_variables" : null,
+    "public_variables" : [ {
+      "name" : "id",
+      "type" : "UUID",
+      "description" : "Unique identifier for the class schedule. Primary Key."
+    }, {
+      "name" : "gymClass",
+      "type" : "com.multifitaundh.model.GymClass",
+      "description" : "The type of gym class being scheduled. Many-to-one relationship, not null."
+    }, {
+      "name" : "date",
+      "type" : "java.time.LocalDate",
+      "description" : "The date of the scheduled class. Not null."
+    }, {
+      "name" : "startTime",
+      "type" : "java.time.LocalTime",
+      "description" : "The start time of the scheduled class. Not null."
+    }, {
+      "name" : "endTime",
+      "type" : "java.time.LocalTime",
+      "description" : "The end time of the scheduled class. Not null."
+    }, {
+      "name" : "currentBookings",
+      "type" : "Integer",
+      "description" : "Current number of bookings for this schedule. Not null, defaults to 0, non-negative."
+    }, {
+      "name" : "maxCapacity",
+      "type" : "Integer",
+      "description" : "Maximum booking capacity for this specific schedule. Not null and positive."
+    } ],
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "backend/src/main/java/com/multifitaundh/model/GymClass.java" ],
     "depends_on" : [ ],
     "feature_name" : "scheduling-core-backend",
-    "file_role" : null
+    "file_role" : "MODEL layer — defines the data structure for a specific scheduled instance of a gym class, including its date, time, and booking capacity."
   }, {
     "file_name" : "Booking.java",
     "file_path" : "backend/src/main/java/com/multifitaundh/model/Booking.java",
@@ -694,13 +750,33 @@
     "status" : "PLANNED",
     "description" : "Entity representing a user's booking for a specific class schedule.",
     "public_functions" : null,
-    "public_variables" : null,
+    "public_variables" : [ {
+      "name" : "id",
+      "type" : "UUID",
+      "description" : "Unique identifier for the booking. Primary Key."
+    }, {
+      "name" : "user",
+      "type" : "com.multifitaundh.model.User",
+      "description" : "The user who made the booking. Many-to-one relationship, not null."
+    }, {
+      "name" : "classSchedule",
+      "type" : "com.multifitaundh.model.ClassSchedule",
+      "description" : "The specific class schedule being booked. Many-to-one relationship, not null."
+    }, {
+      "name" : "bookingTime",
+      "type" : "java.time.LocalDateTime",
+      "description" : "Timestamp when the booking was made. Not null."
+    }, {
+      "name" : "status",
+      "type" : "com.multifitaundh.model.BookingStatus",
+      "description" : "The current status of the booking (e.g., CONFIRMED, CANCELLED). Not null, defaults to CONFIRMED."
+    } ],
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "backend/src/main/java/com/multifitaundh/model/User.java", "backend/src/main/java/com/multifitaundh/model/ClassSchedule.java", "backend/src/main/java/com/multifitaundh/model/BookingStatus.java" ],
     "depends_on" : [ ],
     "feature_name" : "scheduling-core-backend",
-    "file_role" : null
+    "file_role" : "MODEL layer — defines the data structure for a user's booking of a class schedule, including the user, schedule, booking time, and status."
   }, {
     "file_name" : "BookingStatus.java",
     "file_path" : "backend/src/main/java/com/multifitaundh/model/BookingStatus.java",
@@ -711,13 +787,21 @@
     "status" : "PLANNED",
     "description" : "Enum for the status of a booking (e.g., CONFIRMED, CANCELLED).",
     "public_functions" : null,
-    "public_variables" : null,
+    "public_variables" : [ {
+      "name" : "CONFIRMED",
+      "type" : "BookingStatus",
+      "description" : "Indicates the booking is confirmed."
+    }, {
+      "name" : "CANCELLED",
+      "type" : "BookingStatus",
+      "description" : "Indicates the booking has been cancelled."
+    } ],
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "scheduling-core-backend",
-    "file_role" : null
+    "file_role" : "MODEL layer — defines an enumeration for the possible states of a class booking."
   }, {
     "file_name" : "GymClassRepository.java",
     "file_path" : "backend/src/main/java/com/multifitaundh/repository/GymClassRepository.java",
@@ -727,14 +811,14 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Spring Data JPA repository for GymClass entities.",
-    "public_functions" : null,
+    "public_functions" : [ ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "backend/src/main/java/com/multifitaundh/model/GymClass.java" ],
     "depends_on" : [ ],
     "feature_name" : "scheduling-core-backend",
-    "file_role" : null
+    "file_role" : "REPOSITORY layer — provides standard CRUD operations for `GymClass` entities."
   }, {
     "file_name" : "ClassScheduleRepository.java",
     "file_path" : "backend/src/main/java/com/multifitaundh/repository/ClassScheduleRepository.java",
@@ -744,14 +828,14 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Spring Data JPA repository for ClassSchedule entities.",
-    "public_functions" : null,
+    "public_functions" : [ ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "backend/src/main/java/com/multifitaundh/model/ClassSchedule.java" ],
     "depends_on" : [ ],
     "feature_name" : "scheduling-core-backend",
-    "file_role" : null
+    "file_role" : "REPOSITORY layer — provides standard CRUD operations for `ClassSchedule` entities."
   }, {
     "file_name" : "BookingRepository.java",
     "file_path" : "backend/src/main/java/com/multifitaundh/repository/BookingRepository.java",
@@ -761,14 +845,14 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Spring Data JPA repository for Booking entities.",
-    "public_functions" : null,
+    "public_functions" : [ ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "backend/src/main/java/com/multifitaundh/model/Booking.java" ],
     "depends_on" : [ ],
     "feature_name" : "scheduling-core-backend",
-    "file_role" : null
+    "file_role" : "REPOSITORY layer — provides standard CRUD operations for `Booking` entities."
   }, {
     "file_name" : "ClassScheduleService.java",
     "file_path" : "backend/src/main/java/com/multifitaundh/service/ClassScheduleService.java",
@@ -2044,7 +2128,7 @@
     "feature_display_name" : "Class Scheduling Core (Backend)",
     "feature_type" : "BACKEND",
     "file_paths" : [ "backend/src/main/java/com/multifitaundh/model/GymClass.java", "backend/src/main/java/com/multifitaundh/model/ClassSchedule.java", "backend/src/main/java/com/multifitaundh/model/Booking.java", "backend/src/main/java/com/multifitaundh/model/BookingStatus.java", "backend/src/main/java/com/multifitaundh/repository/GymClassRepository.java", "backend/src/main/java/com/multifitaundh/repository/ClassScheduleRepository.java", "backend/src/main/java/com/multifitaundh/repository/BookingRepository.java" ],
-    "feature_instruction" : null,
+    "feature_instruction" : "The `scheduling-core-backend` feature establishes the foundational data models and persistence mechanisms for managing gym classes, class schedules, and user bookings. It comprises three core JPA entities: `GymClass`, `ClassSchedule`, and `Booking`, along with the `BookingStatus` enum. These entities are designed to be robust and interconnected, forming the backbone for class scheduling and reservation functionalities.\n\n1.  **`GymClass.java`**: This entity defines the various types of fitness classes offered by MultiFit Aundh, such as 'Zumba' or 'CrossFit'. Each `GymClass` has a unique `name`, a `description`, a `durationMinutes`, and a `maxCapacity`. It also includes a `trainer` (a Many-to-One relationship with the `Trainer` entity from the `content-backend` feature) and an optional `imageUrl` for visual representation. The `name` must be unique.\n\n2.  **`ClassSchedule.java`**: This entity represents a specific, scheduled instance of a `GymClass`. It links to a `GymClass` (Many-to-One relationship) and specifies the `date`, `startTime`, and `endTime` for that particular session. It also tracks the `currentBookings` and `maxCapacity` for this specific schedule, allowing for real-time availability checks. The `maxCapacity` for a schedule instance can be different from the `GymClass`'s default capacity.\n\n3.  **`Booking.java`**: This entity records a user's reservation for a `ClassSchedule`. It establishes Many-to-One relationships with both the `User` entity (from the `user-management-backend` feature) and the `ClassSchedule` entity. Each booking includes a `bookingTime` (timestamp of the booking) and a `status` (managed by the `BookingStatus` enum).\n\n4.  **`BookingStatus.java`**: This enum defines the possible states for a `Booking`, specifically `CONFIRMED` and `CANCELLED`.\n\n5.  **Repositories**: `GymClassRepository`, `ClassScheduleRepository`, and `BookingRepository` are Spring Data JPA repositories. They extend `JpaRepository` and provide standard CRUD (Create, Read, Update, Delete) operations for their respective entities. No custom query methods are defined in this core feature; advanced querying will be handled by services in the `scheduling-api-backend` feature.\n\n**Inter-file Wiring and Cross-Feature Contracts:**\n*   `GymClass` entity is linked to `Trainer` entity from `content-backend` via a `@ManyToOne` relationship on `trainer_id`.\n*   `ClassSchedule` entity is linked to `GymClass` entity via a `@ManyToOne` relationship on `gym_class_id`.\n*   `Booking` entity is linked to `User` entity from `user-management-backend` via a `@ManyToOne` relationship on `user_id`.\n*   `Booking` entity is linked to `ClassSchedule` entity via a `@ManyToOne` relationship on `class_schedule_id`.\n*   `Booking` entity uses the `BookingStatus` enum defined within this feature.\n\nAll entities use `java.util.UUID` as their primary key type. Date and time fields use `java.time.LocalDate`, `java.time.LocalTime`, and `java.time.LocalDateTime` for precise temporal representation.",
     "change_required" : true
   }, {
     "feature_name" : "scheduling-api-backend",
