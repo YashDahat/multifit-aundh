@@ -2931,14 +2931,19 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Layout for the admin section, including a sidebar for navigation.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "AdminLayout",
+      "parameters" : [ "React.PropsWithChildren<{}> children" ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders the admin portal layout, including navigation and content area, enforcing admin role access."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "admin-portal-shell",
-    "file_role" : null
+    "file_role" : "COMPONENT layer — provides the overarching layout for all admin-facing pages, including sidebar navigation, header, and authentication/authorization checks."
   }, {
     "file_name" : "AdminDashboardPage.tsx",
     "file_path" : "frontend/src/pages/AdminDashboardPage.tsx",
@@ -2948,14 +2953,19 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Main dashboard for the admin panel, showing key stats and navigation.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "AdminDashboardPage",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders the main dashboard content for administrators."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "admin-portal-shell",
-    "file_role" : null
+    "file_role" : "PAGE layer — serves as the landing page for the admin portal, displaying an overview and quick access points within the AdminLayout."
   }, {
     "file_name" : "AdminUsersPage.tsx",
     "file_path" : "frontend/src/pages/admin/AdminUsersPage.tsx",
@@ -3210,7 +3220,7 @@
     "feature_display_name" : "Admin Portal Shell",
     "feature_type" : "FRONTEND",
     "file_paths" : [ "frontend/src/components/AdminLayout.tsx", "frontend/src/pages/AdminDashboardPage.tsx" ],
-    "feature_instruction" : null,
+    "feature_instruction" : "## Design Tokens\n- Admin Layout Background: bg-[#1A1A1A]\n- Sidebar Background: bg-[#1A1A1A]\n- Sidebar Link Text: text-[#F5F5F5]\n- Sidebar Link Hover/Active: bg-[#333333] text-[#DFFF00]\n- Header Background: bg-[#1A1A1A]\n- Header Text: text-[#F5F5F5]\n- Main Content Area Background: bg-[#333333]\n- Dashboard Card Background: bg-[#1A1A1A] rounded-lg shadow-md p-6\n- Dashboard Card Text: text-[#F5F5F5]\n- Accent Text: text-[#DFFF00]\n- Button (Logout): bg-[#DFFF00] text-[#1A1A1A] font-semibold rounded-md px-4 py-2 transition-all duration-200\n- Hero h1: text-4xl md:text-6xl font-bold text-[#F5F5F5]\n- Body: text-[#F5F5F5] leading-relaxed\n\n## Feature Overview: Admin Portal Shell\nThis feature provides the foundational user interface for the MultiFit Aundh admin portal. It includes a consistent layout (`AdminLayout.tsx`) with navigation and authentication enforcement, and a landing dashboard page (`AdminDashboardPage.tsx`) for administrators.\n\n### AdminLayout.tsx\nThis component serves as the primary layout wrapper for all administrative pages. It ensures a consistent look and feel, provides navigation, and enforces access control for admin users.\n\n**Structure and Content:**\n1.  **Authentication and Authorization:**\n    *   Utilize the `useAuth` hook from the `auth-ui` feature to access the current user's authentication status and roles. Import `useNavigate` from `react-router-dom`.\n    *   Upon rendering, use `useEffect` to check if `isAuthenticated` is `true` and if the `user` object exists and its `roles` array includes the string 'ADMIN'.\n    *   If the user is not authenticated or does not have the 'ADMIN' role, redirect them to the `/login` page using `navigate('/login')`.\n2.  **Layout Structure:**\n    *   The layout should consist of a fixed sidebar on the left and a main content area that expands to fill the remaining width. Use a flexbox or grid layout for this.\n    *   A header should be present at the top of the main content area.\n3.  **Sidebar (`<aside>`):**\n    *   **Styling:** Apply `bg-[#1A1A1A]` for the background, `text-[#F5F5F5]` for default text, and appropriate padding/width (e.g., `w-64 h-screen fixed top-0 left-0`).\n    *   **Brand/Logo:** Display \"MultiFit Admin\" at the top, styled with `text-[#DFFF00]` for \"MultiFit\" and `text-[#F5F5F5]` for \"Admin\".\n    *   **Navigation Links:** Include `NavLink` components for the following admin sections. Each link should use `text-[#F5F5F5]` by default and `bg-[#333333] text-[#DFFF00]` when active or hovered. Ensure `NavLink` uses `className` for styling and `activeClassName` or a similar pattern for active state.\n        *   Dashboard: `/admin`\n        *   Users: `/admin/users`\n        *   Memberships: `/admin/memberships`\n        *   Bookings: `/admin/bookings`\n        *   Schedule: `/admin/schedule`\n        *   Trainers: `/admin/trainers`\n        *   Testimonials: `/admin/testimonials`\n        *   Leads: `/admin/leads`\n4.  **Header (`<header>`):**\n    *   **Styling:** Apply `bg-[#1A1A1A]` for the background, `text-[#F5F5F5]` for text, and appropriate padding. Position it at the top of the main content area (e.g., `sticky top-0`).\n    *   **Content:** Display a welcome message like \"Welcome, {user.email}\" (using the email from the `useAuth` hook's `user` object).\n    *   **Logout Button:** Include a button labeled \"Logout\" that, when clicked, calls the `logout` function from `useAuth` and redirects to `/login` using `navigate('/login')`. Style this button using the defined Button design token.\n5.  **Main Content Area (`<main>`):**\n    *   **Styling:** Apply `bg-[#333333]` for the background and `p-8` for padding. Ensure it takes up the remaining screen width next to the sidebar (e.g., `ml-64`).\n    *   **Children:** Render `children` prop within this area, allowing specific admin pages to be displayed.\n\n### AdminDashboardPage.tsx\nThis component represents the main dashboard page for the admin portal, providing an overview and quick access points.\n\n**Structure and Content:**\n1.  **Wrapper:** The page content will be rendered within the `AdminLayout` component.\n2.  **Heading:** Display a prominent heading \"Admin Dashboard\" using `text-[#F5F5F5]` and `font-bold text-3xl`.\n3.  **Overview Section:** Create a section with a grid of cards to display key metrics or quick links. Each card should use the `Dashboard Card Background` and `Dashboard Card Text` design tokens.\n    *   **Placeholder Cards:** Include at least three placeholder cards with titles and brief descriptions, e.g., \"Total Users\", \"Upcoming Classes\", \"New Leads\". The content should be motivational and high-energy, reflecting the brand tone.\n        *   Example Card 1: \"Total Members: 1500+\" - \"Keep the energy high!\"\n        *   Example Card 2: \"Upcoming Classes: 25\" - \"Stay on top of the schedule.\"\n        *   Example Card 3: \"New Trial Leads: 10\" - \"Convert potential into power!\"\n\n### Inter-file Wiring and Cross-Feature Contracts\n*   `AdminLayout.tsx` consumes the `useAuth` hook from the `auth-ui` feature to manage user authentication and authorization. It calls `useAuth().isAuthenticated`, `useAuth().user`, and `useAuth().logout()`. It also uses `useNavigate` from `react-router-dom` for redirection.\n*   `AdminDashboardPage.tsx` is rendered as a child of `AdminLayout.tsx` in the application's routing configuration.\n",
     "change_required" : true
   }, {
     "feature_name" : "admin-portal-members",
