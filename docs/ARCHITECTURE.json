@@ -2075,8 +2075,8 @@
     "file_type" : "FRONTEND",
     "layer" : "CONTEXT",
     "created_date" : "2024-07-28",
-    "updated_date" : "2024-07-28",
-    "status" : "PLANNED",
+    "updated_date" : "2026-07-06",
+    "status" : "GENERATED",
     "description" : "React context for managing global authentication state (user, token, login/logout).",
     "public_functions" : [ {
       "name" : "AuthProvider",
