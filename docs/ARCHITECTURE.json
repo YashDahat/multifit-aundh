@@ -1252,14 +1252,34 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Entity representing a gym trainer with their specializations and bio.",
-    "public_functions" : null,
-    "public_variables" : null,
+    "public_functions" : [ ],
+    "public_variables" : [ {
+      "name" : "id",
+      "type" : "UUID",
+      "description" : "Unique identifier for the trainer, auto-generated."
+    }, {
+      "name" : "name",
+      "type" : "String",
+      "description" : "Name of the trainer. Not null."
+    }, {
+      "name" : "specializations",
+      "type" : "String",
+      "description" : "Comma-separated list of the trainer's specializations. Not null."
+    }, {
+      "name" : "bio",
+      "type" : "String",
+      "description" : "Biographical information about the trainer, max 1000 characters."
+    }, {
+      "name" : "imageUrl",
+      "type" : "String",
+      "description" : "URL to the trainer's profile image."
+    } ],
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "content-backend",
-    "file_role" : null
+    "file_role" : "MODEL layer — defines the data structure for a gym trainer, including their name, specializations, bio, and image URL."
   }, {
     "file_name" : "Testimonial.java",
     "file_path" : "backend/src/main/java/com/multifitaundh/model/Testimonial.java",
@@ -1269,14 +1289,30 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Entity representing a customer testimonial.",
-    "public_functions" : null,
-    "public_variables" : null,
+    "public_functions" : [ ],
+    "public_variables" : [ {
+      "name" : "id",
+      "type" : "UUID",
+      "description" : "Unique identifier for the testimonial, auto-generated."
+    }, {
+      "name" : "author",
+      "type" : "String",
+      "description" : "Name of the testimonial author. Not null."
+    }, {
+      "name" : "quote",
+      "type" : "String",
+      "description" : "The testimonial quote, max 1000 characters. Not null."
+    }, {
+      "name" : "rating",
+      "type" : "Integer",
+      "description" : "Star rating given in the testimonial (1-5). Not null, min 1, max 5."
+    } ],
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "content-backend",
-    "file_role" : null
+    "file_role" : "MODEL layer — defines the data structure for a customer testimonial, including author, quote, and a rating."
   }, {
     "file_name" : "TrainerRepository.java",
     "file_path" : "backend/src/main/java/com/multifitaundh/repository/TrainerRepository.java",
@@ -1286,14 +1322,14 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Spring Data JPA repository for Trainer entities.",
-    "public_functions" : null,
+    "public_functions" : [ ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "backend/src/main/java/com/multifitaundh/model/Trainer.java" ],
     "depends_on" : [ ],
     "feature_name" : "content-backend",
-    "file_role" : null
+    "file_role" : "REPOSITORY layer — provides standard CRUD operations for `Trainer` entities."
   }, {
     "file_name" : "TestimonialRepository.java",
     "file_path" : "backend/src/main/java/com/multifitaundh/repository/TestimonialRepository.java",
@@ -1303,14 +1339,14 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Spring Data JPA repository for Testimonial entities.",
-    "public_functions" : null,
+    "public_functions" : [ ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "backend/src/main/java/com/multifitaundh/model/Testimonial.java" ],
     "depends_on" : [ ],
     "feature_name" : "content-backend",
-    "file_role" : null
+    "file_role" : "REPOSITORY layer — provides standard CRUD operations for `Testimonial` entities."
   }, {
     "file_name" : "ContentService.java",
     "file_path" : "backend/src/main/java/com/multifitaundh/service/ContentService.java",
@@ -1320,14 +1356,64 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Business logic for managing trainers and testimonials.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "getAllTrainers",
+      "parameters" : [ ],
+      "return_type" : "List<TrainerDto>",
+      "description" : "Retrieves all trainer profiles."
+    }, {
+      "name" : "getTrainerById",
+      "parameters" : [ "UUID id" ],
+      "return_type" : "TrainerDto",
+      "description" : "Retrieves a single trainer profile by ID. Throws ResourceNotFoundException if not found."
+    }, {
+      "name" : "createTrainer",
+      "parameters" : [ "TrainerDto trainerDto" ],
+      "return_type" : "TrainerDto",
+      "description" : "Creates a new trainer profile."
+    }, {
+      "name" : "updateTrainer",
+      "parameters" : [ "UUID id", "TrainerDto trainerDto" ],
+      "return_type" : "TrainerDto",
+      "description" : "Updates an existing trainer profile by ID. Throws ResourceNotFoundException if not found."
+    }, {
+      "name" : "deleteTrainer",
+      "parameters" : [ "UUID id" ],
+      "return_type" : "void",
+      "description" : "Deletes a trainer profile by ID. Throws ResourceNotFoundException if not found."
+    }, {
+      "name" : "getAllTestimonials",
+      "parameters" : [ ],
+      "return_type" : "List<TestimonialDto>",
+      "description" : "Retrieves all customer testimonials."
+    }, {
+      "name" : "getTestimonialById",
+      "parameters" : [ "UUID id" ],
+      "return_type" : "TestimonialDto",
+      "description" : "Retrieves a single testimonial by ID. Throws ResourceNotFoundException if not found."
+    }, {
+      "name" : "createTestimonial",
+      "parameters" : [ "TestimonialDto testimonialDto" ],
+      "return_type" : "TestimonialDto",
+      "description" : "Creates a new customer testimonial."
+    }, {
+      "name" : "updateTestimonial",
+      "parameters" : [ "UUID id", "TestimonialDto testimonialDto" ],
+      "return_type" : "TestimonialDto",
+      "description" : "Updates an existing customer testimonial by ID. Throws ResourceNotFoundException if not found."
+    }, {
+      "name" : "deleteTestimonial",
+      "parameters" : [ "UUID id" ],
+      "return_type" : "void",
+      "description" : "Deletes a customer testimonial by ID. Throws ResourceNotFoundException if not found."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "backend/src/main/java/com/multifitaundh/repository/TrainerRepository.java", "backend/src/main/java/com/multifitaundh/repository/TestimonialRepository.java" ],
     "depends_on" : [ ],
     "feature_name" : "content-backend",
-    "file_role" : null
+    "file_role" : "SERVICE layer — implements business logic for managing trainers and testimonials, including `getAllTrainers(): List<TrainerDto>`, `getTrainerById(UUID id): TrainerDto`, `createTrainer(TrainerDto trainerDto): TrainerDto`, `updateTrainer(UUID id, TrainerDto trainerDto): TrainerDto`, `deleteTrainer(UUID id): void`, and similar methods for testimonials."
   }, {
     "file_name" : "ContentController.java",
     "file_path" : "backend/src/main/java/com/multifitaundh/controller/ContentController.java",
@@ -1337,14 +1423,58 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Public REST controller for fetching trainers and testimonials.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "getAllTrainers",
+      "parameters" : [ ],
+      "return_type" : "ResponseEntity<List<TrainerDto>>",
+      "description" : "Handles GET requests to retrieve all trainers."
+    }, {
+      "name" : "getTrainerById",
+      "parameters" : [ "UUID id" ],
+      "return_type" : "ResponseEntity<TrainerDto>",
+      "description" : "Handles GET requests to retrieve a trainer by ID."
+    }, {
+      "name" : "getAllTestimonials",
+      "parameters" : [ ],
+      "return_type" : "ResponseEntity<List<TestimonialDto>>",
+      "description" : "Handles GET requests to retrieve all testimonials."
+    }, {
+      "name" : "getTestimonialById",
+      "parameters" : [ "UUID id" ],
+      "return_type" : "ResponseEntity<TestimonialDto>",
+      "description" : "Handles GET requests to retrieve a testimonial by ID."
+    } ],
     "public_variables" : null,
-    "api_endpoints" : null,
+    "api_endpoints" : [ {
+      "method" : "GET",
+      "path" : "/api/v1/content/trainers",
+      "request_body" : null,
+      "response_body" : "List<TrainerDto>",
+      "description" : "Retrieves a list of all gym trainers."
+    }, {
+      "method" : "GET",
+      "path" : "/api/v1/content/trainers/{id}",
+      "request_body" : null,
+      "response_body" : "TrainerDto",
+      "description" : "Retrieves a specific gym trainer by their ID. Returns 404 if not found."
+    }, {
+      "method" : "GET",
+      "path" : "/api/v1/content/testimonials",
+      "request_body" : null,
+      "response_body" : "List<TestimonialDto>",
+      "description" : "Retrieves a list of all customer testimonials."
+    }, {
+      "method" : "GET",
+      "path" : "/api/v1/content/testimonials/{id}",
+      "request_body" : null,
+      "response_body" : "TestimonialDto",
+      "description" : "Retrieves a specific customer testimonial by its ID. Returns 404 if not found."
+    } ],
     "api_endpoints_consumed" : null,
     "imports_from" : [ "backend/src/main/java/com/multifitaundh/service/ContentService.java" ],
     "depends_on" : [ ],
     "feature_name" : "content-backend",
-    "file_role" : null
+    "file_role" : "CONTROLLER layer — provides public REST API endpoints for fetching trainer and testimonial data."
   }, {
     "file_name" : "AdminContentController.java",
     "file_path" : "backend/src/main/java/com/multifitaundh/controller/AdminContentController.java",
@@ -1354,14 +1484,80 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Admin-only REST controller for CRUD operations on trainers and testimonials.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "createTrainer",
+      "parameters" : [ "TrainerDto trainerDto" ],
+      "return_type" : "ResponseEntity<TrainerDto>",
+      "description" : "Handles POST requests to create a new trainer."
+    }, {
+      "name" : "updateTrainer",
+      "parameters" : [ "UUID id", "TrainerDto trainerDto" ],
+      "return_type" : "ResponseEntity<TrainerDto>",
+      "description" : "Handles PUT requests to update an existing trainer by ID."
+    }, {
+      "name" : "deleteTrainer",
+      "parameters" : [ "UUID id" ],
+      "return_type" : "ResponseEntity<Void>",
+      "description" : "Handles DELETE requests to delete a trainer by ID."
+    }, {
+      "name" : "createTestimonial",
+      "parameters" : [ "TestimonialDto testimonialDto" ],
+      "return_type" : "ResponseEntity<TestimonialDto>",
+      "description" : "Handles POST requests to create a new testimonial."
+    }, {
+      "name" : "updateTestimonial",
+      "parameters" : [ "UUID id", "TestimonialDto testimonialDto" ],
+      "return_type" : "ResponseEntity<TestimonialDto>",
+      "description" : "Handles PUT requests to update an existing testimonial by ID."
+    }, {
+      "name" : "deleteTestimonial",
+      "parameters" : [ "UUID id" ],
+      "return_type" : "ResponseEntity<Void>",
+      "description" : "Handles DELETE requests to delete a testimonial by ID."
+    } ],
     "public_variables" : null,
-    "api_endpoints" : null,
+    "api_endpoints" : [ {
+      "method" : "POST",
+      "path" : "/api/v1/admin/content/trainers",
+      "request_body" : "TrainerDto",
+      "response_body" : "TrainerDto",
+      "description" : "Creates a new gym trainer profile. Requires ADMIN role."
+    }, {
+      "method" : "PUT",
+      "path" : "/api/v1/admin/content/trainers/{id}",
+      "request_body" : "TrainerDto",
+      "response_body" : "TrainerDto",
+      "description" : "Updates an existing gym trainer profile by ID. Returns 404 if not found. Requires ADMIN role."
+    }, {
+      "method" : "DELETE",
+      "path" : "/api/v1/admin/content/trainers/{id}",
+      "request_body" : null,
+      "response_body" : "void",
+      "description" : "Deletes a gym trainer profile by ID. Returns 404 if not found. Requires ADMIN role."
+    }, {
+      "method" : "POST",
+      "path" : "/api/v1/admin/content/testimonials",
+      "request_body" : "TestimonialDto",
+      "response_body" : "TestimonialDto",
+      "description" : "Creates a new customer testimonial. Requires ADMIN role."
+    }, {
+      "method" : "PUT",
+      "path" : "/api/v1/admin/content/testimonials/{id}",
+      "request_body" : "TestimonialDto",
+      "response_body" : "TestimonialDto",
+      "description" : "Updates an existing customer testimonial by ID. Returns 404 if not found. Requires ADMIN role."
+    }, {
+      "method" : "DELETE",
+      "path" : "/api/v1/admin/content/testimonials/{id}",
+      "request_body" : null,
+      "response_body" : "void",
+      "description" : "Deletes a customer testimonial by ID. Returns 404 if not found. Requires ADMIN role."
+    } ],
     "api_endpoints_consumed" : null,
     "imports_from" : [ "backend/src/main/java/com/multifitaundh/service/ContentService.java" ],
     "depends_on" : [ ],
     "feature_name" : "content-backend",
-    "file_role" : null
+    "file_role" : "CONTROLLER layer — provides admin-only REST API endpoints for CRUD operations on trainers and testimonials, requiring `ROLE_ADMIN`."
   }, {
     "file_name" : "TrainerDto.java",
     "file_path" : "backend/src/main/java/com/multifitaundh/dto/TrainerDto.java",
@@ -1371,14 +1567,34 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Data Transfer Object for Trainer entities.",
-    "public_functions" : null,
-    "public_variables" : null,
+    "public_functions" : [ ],
+    "public_variables" : [ {
+      "name" : "id",
+      "type" : "UUID",
+      "description" : "Unique identifier for the trainer."
+    }, {
+      "name" : "name",
+      "type" : "String",
+      "description" : "Name of the trainer. Must not be blank."
+    }, {
+      "name" : "specializations",
+      "type" : "String",
+      "description" : "Comma-separated list of the trainer's specializations. Must not be blank."
+    }, {
+      "name" : "bio",
+      "type" : "String",
+      "description" : "Biographical information about the trainer, max 1000 characters."
+    }, {
+      "name" : "imageUrl",
+      "type" : "String",
+      "description" : "URL to the trainer's profile image."
+    } ],
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "content-backend",
-    "file_role" : null
+    "file_role" : "Data Transfer Object for Trainer entities, used for request and response bodies in the API layer."
   }, {
     "file_name" : "TestimonialDto.java",
     "file_path" : "backend/src/main/java/com/multifitaundh/dto/TestimonialDto.java",
@@ -1388,14 +1604,30 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Data Transfer Object for Testimonial entities.",
-    "public_functions" : null,
-    "public_variables" : null,
+    "public_functions" : [ ],
+    "public_variables" : [ {
+      "name" : "id",
+      "type" : "UUID",
+      "description" : "Unique identifier for the testimonial."
+    }, {
+      "name" : "author",
+      "type" : "String",
+      "description" : "Name of the testimonial author. Must not be blank."
+    }, {
+      "name" : "quote",
+      "type" : "String",
+      "description" : "The testimonial quote, max 1000 characters. Must not be blank."
+    }, {
+      "name" : "rating",
+      "type" : "Integer",
+      "description" : "Star rating given in the testimonial (1-5). Must not be null, min 1, max 5."
+    } ],
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "content-backend",
-    "file_role" : null
+    "file_role" : "Data Transfer Object for Testimonial entities, used for request and response bodies in the API layer."
   }, {
     "file_name" : "TrialLead.java",
     "file_path" : "backend/src/main/java/com/multifitaundh/model/TrialLead.java",
@@ -2413,7 +2645,7 @@
     "feature_display_name" : "Content Management (Backend)",
     "feature_type" : "BACKEND",
     "file_paths" : [ "backend/src/main/java/com/multifitaundh/model/Trainer.java", "backend/src/main/java/com/multifitaundh/model/Testimonial.java", "backend/src/main/java/com/multifitaundh/repository/TrainerRepository.java", "backend/src/main/java/com/multifitaundh/repository/TestimonialRepository.java", "backend/src/main/java/com/multifitaundh/service/ContentService.java", "backend/src/main/java/com/multifitaundh/controller/ContentController.java", "backend/src/main/java/com/multifitaundh/controller/AdminContentController.java", "backend/src/main/java/com/multifitaundh/dto/TrainerDto.java", "backend/src/main/java/com/multifitaundh/dto/TestimonialDto.java" ],
-    "feature_instruction" : null,
+    "feature_instruction" : "The Content Management (Backend) feature provides a robust API for managing and retrieving gym trainer profiles and customer testimonials. It consists of `Trainer` and `Testimonial` JPA entities, their respective Spring Data JPA repositories, a `ContentService` for business logic, and two REST controllers: `ContentController` for public access and `AdminContentController` for administrative CRUD operations.\n\n## Data Models and DTOs\n- `Trainer.java` is the JPA entity for gym trainers, storing their `id` (UUID), `name` (String), `specializations` (String, comma-separated), `bio` (String, max 1000 chars), and `imageUrl` (String).\n- `Testimonial.java` is the JPA entity for customer testimonials, storing `id` (UUID), `author` (String), `quote` (String, max 1000 chars), and `rating` (Integer, 1-5).\n- `TrainerDto.java` and `TestimonialDto.java` are Data Transfer Objects used for request and response bodies, mirroring the entity fields but including Jakarta Bean Validation annotations (`@NotBlank`, `@Size`, `@NotNull`, `@Min`, `@Max`) to ensure data integrity at the API boundary.\n\n## Persistence Layer\n- `TrainerRepository.java` extends `JpaRepository<Trainer, UUID>` to provide standard CRUD operations for `Trainer` entities.\n- `TestimonialRepository.java` extends `JpaRepository<Testimonial, UUID>` to provide standard CRUD operations for `Testimonial` entities.\n\n## Service Layer\n- `ContentService.java` encapsulates the business logic. It is injected with `TrainerRepository` and `TestimonialRepository`.\n- It provides methods for:\n    - **Trainers:**\n        - `List<TrainerDto> getAllTrainers()`: Retrieves all trainers, maps them to `TrainerDto`.\n        - `TrainerDto getTrainerById(UUID id)`: Retrieves a trainer by ID. Throws `ResourceNotFoundException` if not found.\n        - `TrainerDto createTrainer(TrainerDto trainerDto)`: Creates a new trainer from a DTO, saves it, and returns the saved DTO.\n        - `TrainerDto updateTrainer(UUID id, TrainerDto trainerDto)`: Updates an existing trainer. Throws `ResourceNotFoundException` if the trainer ID does not exist. Updates `name`, `specializations`, `bio`, and `imageUrl`.\n        - `void deleteTrainer(UUID id)`: Deletes a trainer by ID. Throws `ResourceNotFoundException` if not found.\n    - **Testimonials:**\n        - `List<TestimonialDto> getAllTestimonials()`: Retrieves all testimonials, maps them to `TestimonialDto`.\n        - `TestimonialDto getTestimonialById(UUID id)`: Retrieves a testimonial by ID. Throws `ResourceNotFoundException` if not found.\n        - `TestimonialDto createTestimonial(TestimonialDto testimonialDto)`: Creates a new testimonial from a DTO, saves it, and returns the saved DTO.\n        - `TestimonialDto updateTestimonial(UUID id, TestimonialDto testimonialDto)`: Updates an existing testimonial. Throws `ResourceNotFoundException` if the testimonial ID does not exist. Updates `author`, `quote`, and `rating`.\n        - `void deleteTestimonial(UUID id)`: Deletes a testimonial by ID. Throws `ResourceNotFoundException` if not found.\n\n## API Layer\n- `ContentController.java` handles public API requests for fetching trainers and testimonials. It is annotated with `@RestController` and `@RequestMapping(\"/api/v1/content\")`. It injects `ContentService`.\n    - Endpoints: `GET /api/v1/content/trainers`, `GET /api/v1/content/trainers/{id}`, `GET /api/v1/content/testimonials`, `GET /api/v1/content/testimonials/{id}`.\n    - These endpoints are publicly accessible (permit all) and return `TrainerDto` or `TestimonialDto` lists/objects.\n- `AdminContentController.java` handles administrative API requests for CRUD operations on trainers and testimonials. It is annotated with `@RestController`, `@RequestMapping(\"/api/v1/admin/content\")`, and `@PreAuthorize(\"hasRole('ADMIN')\")` to enforce admin-only access. It injects `ContentService`.\n    - Endpoints: `POST /api/v1/admin/content/trainers`, `PUT /api/v1/admin/content/trainers/{id}`, `DELETE /api/v1/admin/content/trainers/{id}`, `POST /api/v1/admin/content/testimonials`, `PUT /api/v1/admin/content/testimonials/{id}`, `DELETE /api/v1/admin/content/testimonials/{id}`.\n    - These endpoints require an authenticated user with the `ROLE_ADMIN` authority.\n\n## Error Handling\n- Both controllers will leverage the `GlobalExceptionHandler` from `shared-infra-backend` to handle `ResourceNotFoundException` (returning HTTP 404 Not Found) and `MethodArgumentNotValidException` (returning HTTP 400 Bad Request for DTO validation failures).\n\n## Security Configuration\n- The `SecurityConfig` (from `authentication-backend`) must be updated to permit all requests to `/api/v1/content/**` paths, while `/api/v1/admin/content/**` paths must be secured with `hasRole(\"ADMIN\")`.",
     "change_required" : true
   }, {
     "feature_name" : "lead-backend",
