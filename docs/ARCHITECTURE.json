@@ -1637,14 +1637,34 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Entity to store information from the '3-Day Free Trial' lead capture form.",
-    "public_functions" : null,
-    "public_variables" : null,
+    "public_functions" : [ ],
+    "public_variables" : [ {
+      "name" : "id",
+      "type" : "UUID",
+      "description" : "Unique identifier for the trial lead. Generated automatically."
+    }, {
+      "name" : "name",
+      "type" : "String",
+      "description" : "Full name of the lead. Not null."
+    }, {
+      "name" : "email",
+      "type" : "String",
+      "description" : "Email address of the lead. Not null, must be a valid email format."
+    }, {
+      "name" : "phone",
+      "type" : "String",
+      "description" : "Phone number of the lead. Not null."
+    }, {
+      "name" : "submissionDate",
+      "type" : "LocalDateTime",
+      "description" : "Timestamp when the lead was submitted. Automatically set on creation."
+    } ],
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "lead-backend",
-    "file_role" : null
+    "file_role" : "MODEL layer — defines the data structure for a '3-Day Free Trial' lead, including its contact information and submission timestamp."
   }, {
     "file_name" : "TrialLeadRepository.java",
     "file_path" : "backend/src/main/java/com/multifitaundh/repository/TrialLeadRepository.java",
@@ -1654,14 +1674,24 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Spring Data JPA repository for TrialLead entities.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "save",
+      "parameters" : [ "TrialLead entity" ],
+      "return_type" : "TrialLead",
+      "description" : "Saves a given trial lead entity."
+    }, {
+      "name" : "findAll",
+      "parameters" : [ ],
+      "return_type" : "List<TrialLead>",
+      "description" : "Returns all trial lead entities."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "backend/src/main/java/com/multifitaundh/model/TrialLead.java" ],
     "depends_on" : [ ],
     "feature_name" : "lead-backend",
-    "file_role" : null
+    "file_role" : "REPOSITORY layer — provides standard CRUD operations for `TrialLead` entities."
   }, {
     "file_name" : "TrialLeadService.java",
     "file_path" : "backend/src/main/java/com/multifitaundh/service/TrialLeadService.java",
@@ -1671,14 +1701,24 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Business logic for capturing and managing trial leads.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "createTrialLead",
+      "parameters" : [ "CreateTrialLeadRequest request" ],
+      "return_type" : "TrialLead",
+      "description" : "Creates a new trial lead from the provided request DTO, setting the submission date, and persists it."
+    }, {
+      "name" : "getAllTrialLeads",
+      "parameters" : [ ],
+      "return_type" : "List<TrialLead>",
+      "description" : "Retrieves all captured trial leads."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "backend/src/main/java/com/multifitaundh/repository/TrialLeadRepository.java" ],
     "depends_on" : [ ],
     "feature_name" : "lead-backend",
-    "file_role" : null
+    "file_role" : "SERVICE layer — implements `createTrialLead(CreateTrialLeadRequest): TrialLead` for public submission and `getAllTrialLeads(): List<TrialLead>` for admin retrieval."
   }, {
     "file_name" : "TrialLeadController.java",
     "file_path" : "backend/src/main/java/com/multifitaundh/controller/TrialLeadController.java",
@@ -1688,14 +1728,25 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Public REST controller for submitting the free trial form.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "submitTrialLead",
+      "parameters" : [ "CreateTrialLeadRequest request" ],
+      "return_type" : "ResponseEntity<TrialLead>",
+      "description" : "Handles the submission of a new trial lead."
+    } ],
     "public_variables" : null,
-    "api_endpoints" : null,
+    "api_endpoints" : [ {
+      "method" : "POST",
+      "path" : "/api/v1/leads/trial",
+      "request_body" : "CreateTrialLeadRequest",
+      "response_body" : "TrialLead",
+      "description" : "Submits a new '3-Day Free Trial' lead."
+    } ],
     "api_endpoints_consumed" : null,
     "imports_from" : [ "backend/src/main/java/com/multifitaundh/service/TrialLeadService.java" ],
     "depends_on" : [ ],
     "feature_name" : "lead-backend",
-    "file_role" : null
+    "file_role" : "Public REST controller — exposes `POST /api/v1/leads/trial` for submitting free trial forms."
   }, {
     "file_name" : "AdminTrialLeadController.java",
     "file_path" : "backend/src/main/java/com/multifitaundh/controller/AdminTrialLeadController.java",
@@ -1705,14 +1756,25 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Admin-only REST controller for viewing and managing trial leads.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "getAllTrialLeads",
+      "parameters" : [ ],
+      "return_type" : "ResponseEntity<List<TrialLead>>",
+      "description" : "Retrieves all captured trial leads for administrative viewing."
+    } ],
     "public_variables" : null,
-    "api_endpoints" : null,
+    "api_endpoints" : [ {
+      "method" : "GET",
+      "path" : "/api/v1/admin/leads/trial",
+      "request_body" : null,
+      "response_body" : "List<TrialLead>",
+      "description" : "Retrieves a list of all submitted trial leads. Requires ADMIN role."
+    } ],
     "api_endpoints_consumed" : null,
     "imports_from" : [ "backend/src/main/java/com/multifitaundh/service/TrialLeadService.java" ],
     "depends_on" : [ ],
     "feature_name" : "lead-backend",
-    "file_role" : null
+    "file_role" : "Admin-only REST controller — exposes `GET /api/v1/admin/leads/trial` for viewing all trial leads, secured with `hasRole('ADMIN')`."
   }, {
     "file_name" : "CreateTrialLeadRequest.java",
     "file_path" : "backend/src/main/java/com/multifitaundh/dto/CreateTrialLeadRequest.java",
@@ -1722,14 +1784,26 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "DTO for the free trial submission form.",
-    "public_functions" : null,
-    "public_variables" : null,
+    "public_functions" : [ ],
+    "public_variables" : [ {
+      "name" : "name",
+      "type" : "String",
+      "description" : "Name of the prospective lead. Must not be blank."
+    }, {
+      "name" : "email",
+      "type" : "String",
+      "description" : "Email address of the prospective lead. Must not be blank and must be a valid email format."
+    }, {
+      "name" : "phone",
+      "type" : "String",
+      "description" : "Phone number of the prospective lead. Must not be blank and should match a common phone number pattern."
+    } ],
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "lead-backend",
-    "file_role" : null
+    "file_role" : "DTO — defines the request body structure for submitting a new trial lead."
   }, {
     "file_name" : "Payment.java",
     "file_path" : "backend/src/main/java/com/multifitaundh/model/Payment.java",
@@ -2652,7 +2726,7 @@
     "feature_display_name" : "Lead Capture (Backend)",
     "feature_type" : "BACKEND",
     "file_paths" : [ "backend/src/main/java/com/multifitaundh/model/TrialLead.java", "backend/src/main/java/com/multifitaundh/repository/TrialLeadRepository.java", "backend/src/main/java/com/multifitaundh/service/TrialLeadService.java", "backend/src/main/java/com/multifitaundh/controller/TrialLeadController.java", "backend/src/main/java/com/multifitaundh/controller/AdminTrialLeadController.java", "backend/src/main/java/com/multifitaundh/dto/CreateTrialLeadRequest.java" ],
-    "feature_instruction" : null,
+    "feature_instruction" : "The `lead-backend` feature provides a backend API for capturing and managing '3-Day Free Trial' leads for MultiFit Aundh. It consists of a data model (`TrialLead`), a repository (`TrialLeadRepository`), a service layer (`TrialLeadService`) for business logic, and two controllers: one public (`TrialLeadController`) for lead submission and one admin-only (`AdminTrialLeadController`) for viewing leads. A DTO (`CreateTrialLeadRequest`) is used for public lead submission.\n\n### Data Model (`TrialLead.java`)\nThis entity represents a single trial lead. It will have fields for `id` (UUID), `name` (String), `email` (String), `phone` (String), and `submissionDate` (LocalDateTime). All fields except `id` and `submissionDate` must be non-null.\n\n### DTO (`CreateTrialLeadRequest.java`)\nThis DTO is used for receiving lead submission data from the frontend. It will contain `name`, `email`, and `phone` fields, all marked with `@NotBlank` and `email` with `@Email` for validation. The `phone` field should also have a `@Pattern` annotation for basic phone number validation (e.g., allowing digits and common separators).\n\n### Repository (`TrialLeadRepository.java`)\nThis interface extends `JpaRepository<TrialLead, UUID>`, providing standard CRUD operations for `TrialLead` entities. No custom query methods are required for this feature.\n\n### Service (`TrialLeadService.java`)\n`TrialLeadService` encapsulates the business logic for trial leads. It will be injected with `TrialLeadRepository`.\n\n1.  **`createTrialLead(CreateTrialLeadRequest request): TrialLead`**\n    -   **Parameters:** `CreateTrialLeadRequest request`\n    -   **Return Type:** `TrialLead`\n    -   **Logic:**\n        1.  Create a new `TrialLead` entity.\n        2.  Map `request.getName()`, `request.getEmail()`, and `request.getPhone()` to the `TrialLead` entity.\n        3.  Set `submissionDate` to `LocalDateTime.now()`.\n        4.  Call `trialLeadRepository.save(trialLead)` to persist the entity.\n        5.  Return the saved `TrialLead` entity.\n    -   **Error Cases:** If validation fails at the controller level, a `MethodArgumentNotValidException` will be thrown and handled by `GlobalExceptionHandler` (from `shared-infra-backend`), returning HTTP 400.\n\n2.  **`getAllTrialLeads(): List<TrialLead>`**\n    -   **Parameters:** None\n    -   **Return Type:** `List<TrialLead>`\n    -   **Logic:**\n        1.  Call `trialLeadRepository.findAll()`.\n        2.  Return the list of `TrialLead` entities.\n    -   **Error Cases:** None specific to this method; any database errors would propagate as internal server errors.\n\n### Public Controller (`TrialLeadController.java`)\nThis controller exposes the public API for submitting trial leads. It will be injected with `TrialLeadService`.\n\n1.  **`submitTrialLead(@Valid @RequestBody CreateTrialLeadRequest request): ResponseEntity<TrialLead>`**\n    -   **HTTP Method:** `POST`\n    -   **Path:** `/api/v1/leads/trial`\n    -   **Logic:**\n        1.  Call `trialLeadService.createTrialLead(request)`.\n        2.  Return `ResponseEntity.status(HttpStatus.CREATED).body(createdLead)`.\n    -   **Error Cases:** `MethodArgumentNotValidException` (HTTP 400) for invalid request body, handled by `GlobalExceptionHandler`.\n\n### Admin Controller (`AdminTrialLeadController.java`)\nThis controller exposes admin-only API endpoints for managing trial leads. It will be injected with `TrialLeadService` and secured with `@PreAuthorize(\"hasRole('ADMIN')\")`.\n\n1.  **`getAllTrialLeads(): ResponseEntity<List<TrialLead>>`**\n    -   **HTTP Method:** `GET`\n    -   **Path:** `/api/v1/admin/leads/trial`\n    -   **Logic:**\n        1.  Call `trialLeadService.getAllTrialLeads()`.\n        2.  Return `ResponseEntity.ok(leads)`.\n    -   **Error Cases:** `AccessDeniedException` (HTTP 403) if the user does not have the ADMIN role.\n\n### Security Configuration\nIn the `SecurityConfig` (from `authentication-backend`), the following authorization rules must be added:\n-   `/api/v1/leads/trial` should be accessible to all (`permitAll()`).\n-   `/api/v1/admin/leads/trial` should require the `ADMIN` role (`hasRole(\"ADMIN\")`).\n\nExample `SecurityConfig` snippet (ensure this is integrated correctly with existing rules):\n```\n\njava\n.authorizeHttpRequests(auth -> auth\n    .requestMatchers(\"/api/v1/auth/**\").permitAll()\n    .requestMatchers(\"/api/v1/leads/trial\").permitAll()\n    .requestMatchers(\"/api/v1/admin/**\").hasRole(\"ADMIN\")\n    .requestMatchers(\"/api/**\").authenticated()\n    .anyRequest().permitAll()\n)\n\n\n```",
     "change_required" : true
   }, {
     "feature_name" : "payment-backend",
