@@ -163,14 +163,73 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Represents a user account, implementing Spring Security's UserDetails.",
-    "public_functions" : null,
-    "public_variables" : null,
+    "public_functions" : [ {
+      "name" : "getAuthorities",
+      "parameters" : [ ],
+      "return_type" : "Collection<? extends GrantedAuthority>",
+      "description" : "Returns the authorities granted to the user, based on their roles."
+    }, {
+      "name" : "getPassword",
+      "parameters" : [ ],
+      "return_type" : "String",
+      "description" : "Returns the password used to authenticate the user."
+    }, {
+      "name" : "getUsername",
+      "parameters" : [ ],
+      "return_type" : "String",
+      "description" : "Returns the username (email) used to authenticate the user."
+    }, {
+      "name" : "isAccountNonExpired",
+      "parameters" : [ ],
+      "return_type" : "boolean",
+      "description" : "Indicates whether the user's account has expired. Always returns true."
+    }, {
+      "name" : "isAccountNonLocked",
+      "parameters" : [ ],
+      "return_type" : "boolean",
+      "description" : "Indicates whether the user is locked or unlocked. Always returns true."
+    }, {
+      "name" : "isCredentialsNonExpired",
+      "parameters" : [ ],
+      "return_type" : "boolean",
+      "description" : "Indicates whether the user's credentials (password) have expired. Always returns true."
+    }, {
+      "name" : "isEnabled",
+      "parameters" : [ ],
+      "return_type" : "boolean",
+      "description" : "Indicates whether the user is enabled or disabled. Always returns true."
+    } ],
+    "public_variables" : [ {
+      "name" : "id",
+      "type" : "UUID",
+      "description" : "Unique identifier for the user. Primary key."
+    }, {
+      "name" : "email",
+      "type" : "String",
+      "description" : "User's email address, used as username. Must be unique and not null."
+    }, {
+      "name" : "password",
+      "type" : "String",
+      "description" : "Hashed password for the user. Not null."
+    }, {
+      "name" : "firstName",
+      "type" : "String",
+      "description" : "User's first name. Not null."
+    }, {
+      "name" : "lastName",
+      "type" : "String",
+      "description" : "User's last name. Not null."
+    }, {
+      "name" : "roles",
+      "type" : "Set<Role>",
+      "description" : "Collection of roles assigned to the user. Stored as strings in a separate table."
+    } ],
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "backend/src/main/java/com/multifitaundh/model/Role.java" ],
     "depends_on" : [ ],
     "feature_name" : "user-management-backend",
-    "file_role" : null
+    "file_role" : "MODEL layer — Represents a user account, implementing Spring Security's UserDetails interface for authentication and authorization."
   }, {
     "file_name" : "Role.java",
     "file_path" : "backend/src/main/java/com/multifitaundh/model/Role.java",
@@ -180,14 +239,22 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Enum defining user roles (e.g., ROLE_USER, ROLE_ADMIN).",
-    "public_functions" : null,
-    "public_variables" : null,
+    "public_functions" : [ ],
+    "public_variables" : [ {
+      "name" : "ROLE_USER",
+      "type" : "Role",
+      "description" : "Represents a standard authenticated user."
+    }, {
+      "name" : "ROLE_ADMIN",
+      "type" : "Role",
+      "description" : "Represents an administrator with elevated privileges."
+    } ],
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "user-management-backend",
-    "file_role" : null
+    "file_role" : "MODEL layer — Enum defining user roles (e.g., ROLE_USER, ROLE_ADMIN) for Spring Security authorization."
   }, {
     "file_name" : "UserRepository.java",
     "file_path" : "backend/src/main/java/com/multifitaundh/repository/UserRepository.java",
@@ -197,14 +264,19 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Spring Data JPA repository for User entities.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "findByEmail",
+      "parameters" : [ "String email" ],
+      "return_type" : "Optional<User>",
+      "description" : "Retrieves a user by their email address. Used for authentication."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "backend/src/main/java/com/multifitaundh/model/User.java" ],
     "depends_on" : [ ],
     "feature_name" : "user-management-backend",
-    "file_role" : null
+    "file_role" : "REPOSITORY layer — Provides data access operations for User entities, including finding users by email."
   }, {
     "file_name" : "AdminInitializer.java",
     "file_path" : "backend/src/main/java/com/multifitaundh/config/AdminInitializer.java",
@@ -214,14 +286,19 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Creates a default admin user on application startup if one doesn't exist.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "run",
+      "parameters" : [ "String... args" ],
+      "return_type" : "void",
+      "description" : "Executes on application startup to create a default admin user if one does not exist."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "backend/src/main/java/com/multifitaundh/model/User.java", "backend/src/main/java/com/multifitaundh/repository/UserRepository.java" ],
     "depends_on" : [ ],
     "feature_name" : "user-management-backend",
-    "file_role" : null
+    "file_role" : "CONFIG layer — Creates a default admin user on application startup if one doesn't exist, using UserRepository and PasswordEncoder."
   }, {
     "file_name" : "UserService.java",
     "file_path" : "backend/src/main/java/com/multifitaundh/service/UserService.java",
@@ -1867,7 +1944,7 @@
     "feature_display_name" : "User Management (Backend)",
     "feature_type" : "SHARED",
     "file_paths" : [ "backend/src/main/java/com/multifitaundh/model/User.java", "backend/src/main/java/com/multifitaundh/model/Role.java", "backend/src/main/java/com/multifitaundh/repository/UserRepository.java", "backend/src/main/java/com/multifitaundh/config/AdminInitializer.java" ],
-    "feature_instruction" : null,
+    "feature_instruction" : "This feature defines the core user entity and role enumeration for the MultiFit Aundh application, integrating with Spring Security for authentication and authorization. It also includes an initializer to ensure a default administrator account exists upon application startup.\n\n## Core Entities\n\n**User.java** serves as the primary entity for user accounts. It implements Spring Security's `UserDetails` interface, providing the necessary methods for authentication and authorization. Each user has a unique `id`, `email`, `password` (hashed), `firstName`, `lastName`, and a collection of `roles`. The `email` field is used as the username for authentication.\n\n**Role.java** is an enum defining the distinct roles within the application, specifically `ROLE_USER` and `ROLE_ADMIN`. These roles are used by Spring Security for access control.\n\n## Data Persistence\n\n**UserRepository.java** is a Spring Data JPA repository that provides standard CRUD operations for `User` entities. It also declares a custom query method, `findByEmail(String email)`, which is crucial for retrieving user details during the authentication process.\n\n## Application Initialization\n\n**AdminInitializer.java** is a `@Component` that implements Spring Boot's `CommandLineRunner` interface. Its `run` method is executed once the application context is loaded. This initializer is responsible for checking if an administrator user already exists in the database. If no user with the email 'admin@multifitaundh.com' is found, it proceeds to create a new `User` with the `ROLE_ADMIN` role. The password for this default admin user is 'admin123'. The initializer injects `UserRepository` to perform database operations and `PasswordEncoder` (expected to be provided by the `authentication-backend` feature's `SecurityConfig`) to securely hash the default password before saving the user.\n\n### AdminInitializer.run() Logic:\n1.  Check if a user with the email 'admin@multifitaundh.com' exists by calling `userRepository.findByEmail(\"admin@multifitaundh.com\")`.\n2.  If the `Optional<User>` returned is empty (i.e., no admin user exists):\n    a.  Create a new `User` instance.\n    b.  Set `email` to 'admin@multifitaundh.com'.\n    c.  Set `password` to the result of `passwordEncoder.encode(\"admin123\")`.\n    d.  Set `firstName` to 'Admin'.\n    e.  Set `lastName` to 'User'.\n    f.  Add `Role.ROLE_ADMIN` to the user's `roles` collection.\n    g.  Save the new admin user to the database using `userRepository.save(adminUser)`.\n    h.  Log a message indicating the default admin user has been created.\n3.  If an admin user already exists, log a message indicating that the default admin user already exists and no action is taken.\n\n## Inter-Feature Interactions\n\n*   This feature's `User` entity and `Role` enum are fundamental to the `authentication-backend` feature, which will use `UserRepository.findByEmail` in its `UserService` (implementing `UserDetailsService`) to load user details for authentication.\n*   `AdminInitializer` depends on a `PasswordEncoder` bean, which is expected to be configured and exposed by the `authentication-backend` feature's `SecurityConfig`.",
     "change_required" : true
   }, {
     "feature_name" : "authentication-backend",
