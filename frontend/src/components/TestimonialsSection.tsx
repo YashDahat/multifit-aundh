@@ -83,21 +83,14 @@ const TestimonialsSection: React.FC = () => {
           {/* Testimonial Card */}
           <div className="bg-[#333333] rounded-xl shadow-lg p-6 text-[#F5F5F5] max-w-2xl mx-auto w-full min-h-[250px] flex flex-col justify-between">
             <div>
-              <p className="text-lg leading-relaxed mb-4 italic">"{currentTestimonial.feedback}"</p>
+              <p className="text-lg leading-relaxed mb-4 italic">"{currentTestimonial.quote}"</p>
               <div className="flex items-center justify-between">
                 <div className="flex items-center">
-                  {currentTestimonial.imageUrl && (
-                    <img
-                      src={currentTestimonial.imageUrl}
-                      alt={currentTestimonial.author}
-                      className="w-12 h-12 rounded-full mr-4 object-cover"
-                    />
-                  )}
                   <div>
                     <p className="font-semibold text-lg">{currentTestimonial.author}</p>
                     <div className="text-[#DFFF00]">
-                      {Array(currentTestimonial.rating).fill('★').join('')}
-                      {Array(5 - currentTestimonial.rating).fill('☆').join('')}
+                      {Array(currentTestimonial.rating ?? 0).fill('★').join('')}
+                      {Array(5 - (currentTestimonial.rating ?? 0)).fill('☆').join('')}
                     </div>
                   </div>
                 </div>

@@ -1,11 +1,11 @@
 import React from 'react';
 import Layout from '@/components/Layout';
-import { Input } from '@/components/ui/Input';
-import { Button } from '@/components/ui/Button';
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
 import { Label } from '@radix-ui/react-label';
 
 const ContactPage: React.FC = () => {
-  const googleMapsApiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
+  const googleMapsApiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
   const mapSrc = `https://www.google.com/maps/embed/v1/place?key=${googleMapsApiKey}&q=18.562876,73.799898`;
 
   return (

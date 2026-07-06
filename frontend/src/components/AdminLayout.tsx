@@ -12,7 +12,7 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({ children }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!isAuthenticated || !user || !user.roles.includes('ADMIN')) {
+    if (!isAuthenticated || !user || !user.roles?.includes('ADMIN')) {
       navigate('/login');
     }
   }, [isAuthenticated, user, navigate]);

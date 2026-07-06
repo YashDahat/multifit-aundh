@@ -1,18 +1,20 @@
 import React, { createContext, useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { AuthUser, AuthRequest, AuthResponse } from '../types/auth';
+import { AuthUser, AuthResponse } from '../types/auth';
 import * as authService from '../services/authService';
 
 interface AuthContextType {
   user: AuthUser | null;
   token: string | null;
   isAuthenticated: boolean;
+  isLoading: boolean;
+  userRole: string | null;
   login: (email: string, password: string) => Promise<void>;
   register: (email: string, password: string) => Promise<void>;
   logout: () => void;
 }
 
-const AuthContext = createContext<AuthContextType | undefined>(undefined);
+export const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 interface AuthProviderProps {
   children: React.ReactNode;
@@ -22,6 +24,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [user, setUser] = useState<AuthUser | null>(null);
   const [token, setToken] = useState<string | null>(null);
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -38,8 +41,8 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
   const login = useCallback(async (email: string, password: string) => {
     try {
-      const response: AuthResponse = await authService.login({ email, password });
-      localStorage.setItem('token', response.token);
+      const response: AuthResponse = await authService.authenticateUser({ email, password });
+      localStorage.setItem('token', response.token ?? '');
       setToken(response.token);
       setIsAuthenticated(true);
       setUser({ email });
@@ -51,9 +54,9 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
   const register = useCallback(async (email: string, password: string) => {
     try {
-      const response: AuthResponse = await authService.register({ email, password });
-      localStorage.setItem('token', response.token);
-      setToken(response.token);
+      const response: AuthResponse = await authService.registerUser({ email, password });
+      localStorage.setItem('token', response.token ?? '');
+      setToken(response.token ?? '');
       setIsAuthenticated(true);
       setUser({ email });
     } catch (error) {
@@ -74,6 +77,8 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     user,
     token,
     isAuthenticated,
+    isLoading,
+    userRole: user?.roles?.[0] ?? null,
     login,
     register,
     logout,

@@ -2,114 +2,19 @@
 
 This file tracks each generation attempt.
 
-## Attempt 1 — 2026-07-06 [IN PROGRESS]
+## Attempt 1 — 2026-07-06 [COMPLETED]
 
 **Business:** MultiFit Aundh
-**Planned Files (105):**
-- backend/src/main/java/com/multifitaundh/exception/GlobalExceptionHandler.java
-- backend/src/main/java/com/multifitaundh/exception/ResourceNotFoundException.java
-- backend/src/main/java/com/multifitaundh/dto/ErrorResponse.java
-- backend/src/main/java/com/multifitaundh/controller/SpaController.java
-- backend/src/main/java/com/multifitaundh/config/DataSeeder.java
-- backend/src/main/java/com/multifitaundh/model/User.java
-- backend/src/main/java/com/multifitaundh/model/Role.java
-- backend/src/main/java/com/multifitaundh/repository/UserRepository.java
-- backend/src/main/java/com/multifitaundh/config/AdminInitializer.java
-- backend/src/main/java/com/multifitaundh/service/UserService.java
-- backend/src/main/java/com/multifitaundh/controller/AuthController.java
-- backend/src/main/java/com/multifitaundh/dto/AuthRequest.java
-- backend/src/main/java/com/multifitaundh/dto/AuthResponse.java
-- backend/src/main/java/com/multifitaundh/util/JwtUtil.java
-- backend/src/main/java/com/multifitaundh/security/JwtAuthFilter.java
-- backend/src/main/java/com/multifitaundh/config/SecurityConfig.java
-- backend/src/main/java/com/multifitaundh/model/Membership.java
-- backend/src/main/java/com/multifitaundh/model/MembershipType.java
-- backend/src/main/java/com/multifitaundh/model/UserMembership.java
-- backend/src/main/java/com/multifitaundh/repository/MembershipRepository.java
-- backend/src/main/java/com/multifitaundh/repository/UserMembershipRepository.java
-- backend/src/main/java/com/multifitaundh/service/MembershipService.java
-- backend/src/main/java/com/multifitaundh/controller/MembershipController.java
-- backend/src/main/java/com/multifitaundh/controller/AdminMembershipController.java
-- backend/src/main/java/com/multifitaundh/dto/MembershipDto.java
-- backend/src/main/java/com/multifitaundh/model/GymClass.java
-- backend/src/main/java/com/multifitaundh/model/ClassSchedule.java
-- backend/src/main/java/com/multifitaundh/model/Booking.java
-- backend/src/main/java/com/multifitaundh/model/BookingStatus.java
-- backend/src/main/java/com/multifitaundh/repository/GymClassRepository.java
-- backend/src/main/java/com/multifitaundh/repository/ClassScheduleRepository.java
-- backend/src/main/java/com/multifitaundh/repository/BookingRepository.java
-- backend/src/main/java/com/multifitaundh/service/ClassScheduleService.java
-- backend/src/main/java/com/multifitaundh/service/BookingService.java
-- backend/src/main/java/com/multifitaundh/controller/ClassScheduleController.java
-- backend/src/main/java/com/multifitaundh/controller/BookingController.java
-- backend/src/main/java/com/multifitaundh/controller/AdminClassScheduleController.java
-- backend/src/main/java/com/multifitaundh/dto/ClassScheduleDto.java
-- backend/src/main/java/com/multifitaundh/dto/BookingDto.java
-- backend/src/main/java/com/multifitaundh/model/Trainer.java
-- backend/src/main/java/com/multifitaundh/model/Testimonial.java
-- backend/src/main/java/com/multifitaundh/repository/TrainerRepository.java
-- backend/src/main/java/com/multifitaundh/repository/TestimonialRepository.java
-- backend/src/main/java/com/multifitaundh/service/ContentService.java
-- backend/src/main/java/com/multifitaundh/controller/ContentController.java
-- backend/src/main/java/com/multifitaundh/controller/AdminContentController.java
-- backend/src/main/java/com/multifitaundh/dto/TrainerDto.java
-- backend/src/main/java/com/multifitaundh/dto/TestimonialDto.java
-- backend/src/main/java/com/multifitaundh/model/TrialLead.java
-- backend/src/main/java/com/multifitaundh/repository/TrialLeadRepository.java
-- backend/src/main/java/com/multifitaundh/service/TrialLeadService.java
-- backend/src/main/java/com/multifitaundh/controller/TrialLeadController.java
-- backend/src/main/java/com/multifitaundh/controller/AdminTrialLeadController.java
-- backend/src/main/java/com/multifitaundh/dto/CreateTrialLeadRequest.java
-- backend/src/main/java/com/multifitaundh/model/Payment.java
-- backend/src/main/java/com/multifitaundh/model/PaymentStatus.java
-- backend/src/main/java/com/multifitaundh/repository/PaymentRepository.java
-- backend/src/main/java/com/multifitaundh/service/PaymentService.java
-- backend/src/main/java/com/multifitaundh/controller/PaymentController.java
-- backend/src/main/java/com/multifitaundh/dto/PaymentOrderResponse.java
-- backend/src/main/java/com/multifitaundh/service/EmailService.java
-- frontend/src/api/client.ts
-- frontend/src/context/AuthContext.tsx
-- frontend/src/services/authService.ts
-- frontend/src/hooks/useAuth.ts
-- frontend/src/types/auth.ts
-- frontend/src/pages/LoginPage.tsx
-- frontend/src/App.tsx
-- frontend/src/components/Layout.tsx
-- frontend/src/components/Header.tsx
-- frontend/src/components/Footer.tsx
-- frontend/src/components/ProtectedRoute.tsx
-- frontend/src/pages/HomePage.tsx
-- frontend/src/pages/AboutPage.tsx
-- frontend/src/pages/ContactPage.tsx
-- frontend/src/components/WhatsAppCTA.tsx
-- frontend/src/components/TrialForm.tsx
-- frontend/src/services/leadService.ts
-- frontend/src/hooks/useLeads.ts
-- frontend/src/types/lead.ts
-- frontend/src/components/TestimonialsSection.tsx
-- frontend/src/services/contentService.ts
-- frontend/src/hooks/useContent.ts
-- frontend/src/types/content.ts
-- frontend/src/pages/TrainersPage.tsx
-- frontend/src/pages/TrainerDetailPage.tsx
-- frontend/src/pages/MembershipsPage.tsx
-- frontend/src/pages/MemberDashboardPage.tsx
-- frontend/src/services/membershipService.ts
-- frontend/src/hooks/useMemberships.ts
-- frontend/src/types/membership.ts
-- frontend/src/pages/SchedulePage.tsx
-- frontend/src/services/scheduleService.ts
-- frontend/src/hooks/useSchedule.ts
-- frontend/src/types/schedule.ts
-- frontend/src/components/AdminLayout.tsx
-- frontend/src/pages/AdminDashboardPage.tsx
-- frontend/src/pages/admin/AdminUsersPage.tsx
-- frontend/src/pages/admin/AdminMembershipsPage.tsx
-- frontend/src/pages/admin/AdminBookingsPage.tsx
-- frontend/src/pages/admin/AdminSchedulePage.tsx
-- frontend/src/pages/admin/AdminTrainersPage.tsx
-- frontend/src/pages/admin/AdminTestimonialsPage.tsx
-- frontend/src/pages/admin/AdminLeadsPage.tsx
-- .github/workflows/ci.yml
+**Category:** Gym
+**Website Type:** BOOKING
+
+**Must-Have Features:**
+- Online membership purchase and management
+- Integrated class schedule with online booking
+- Prominent 'Get a 3-Day Free Trial' lead capture form
+- Mobile-first responsive design
+- Trainer profile pages with specializations
+- Integration with social media feeds (Instagram/Facebook)
+- Testimonials section featuring their high Google rating
 
 ---

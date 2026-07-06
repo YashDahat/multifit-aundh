@@ -9,7 +9,6 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 
 import { useSubmitTrialLead } from '@/hooks/useLeads';
-import type { CreateTrialLeadRequest } from '@/types/lead';
 
 const formSchema = z.object({
   name: z.string().min(1, 'Name is required'),
@@ -32,7 +31,7 @@ const TrialForm: React.FC = () => {
   const { mutate, isPending, isSuccess, isError, error } = useSubmitTrialLead();
 
   const onSubmit: SubmitHandler<FormData> = (data) => {
-    mutate(data);
+    mutate({ name: data.name, email: data.email, phone: data.phoneNumber });
   };
 
   React.useEffect(() => {
