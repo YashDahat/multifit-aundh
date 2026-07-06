@@ -2023,15 +2023,35 @@
     "created_date" : "2024-07-28",
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
-    "description" : "Service for sending transactional emails like booking confirmations and welcome messages.",
-    "public_functions" : null,
+    "description" : "Service for sending transactional emails like booking confirmations, welcome messages, booking cancellations, and membership updates.",
+    "public_functions" : [ {
+      "name" : "sendWelcomeEmail",
+      "parameters" : [ "String toEmail", "String userName" ],
+      "return_type" : "void",
+      "description" : "Sends a welcome email to a newly registered user of MultiFit Aundh."
+    }, {
+      "name" : "sendBookingConfirmationEmail",
+      "parameters" : [ "String toEmail", "String userName", "String className", "String classDate", "String classTime" ],
+      "return_type" : "void",
+      "description" : "Sends a confirmation email to a user after they successfully book a class at MultiFit Aundh."
+    }, {
+      "name" : "sendBookingCancellationEmail",
+      "parameters" : [ "String toEmail", "String userName", "String className", "String classDate", "String classTime" ],
+      "return_type" : "void",
+      "description" : "Sends a notification email to a user when their class booking at MultiFit Aundh is cancelled."
+    }, {
+      "name" : "sendMembershipConfirmationEmail",
+      "parameters" : [ "String toEmail", "String userName", "String membershipPlan", "String startDate", "String endDate" ],
+      "return_type" : "void",
+      "description" : "Sends a confirmation email to a user upon the purchase or renewal of a MultiFit Aundh membership."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "notification-backend",
-    "file_role" : null
+    "file_role" : "SERVICE layer — implements methods for sending various transactional emails, including `sendWelcomeEmail(String, String)`, `sendBookingConfirmationEmail(String, String, String, String, String)`, `sendBookingCancellationEmail(String, String, String, String, String)`, and `sendMembershipConfirmationEmail(String, String, String, String, String)`."
   }, {
     "file_name" : "client.ts",
     "file_path" : "frontend/src/api/client.ts",
@@ -2849,7 +2869,7 @@
     "feature_display_name" : "Email Notifications (Backend)",
     "feature_type" : "BACKEND",
     "file_paths" : [ "backend/src/main/java/com/multifitaundh/service/EmailService.java" ],
-    "feature_instruction" : null,
+    "feature_instruction" : "The `notification-backend` feature is responsible for sending various transactional emails to users of MultiFit Aundh. This feature contains a single service, `EmailService.java`, which encapsulates all email sending logic. It leverages Spring's `JavaMailSender` for sending emails and `SpringTemplateEngine` (Thymeleaf) for rendering dynamic HTML email templates.\n\n## EmailService.java\nThis service provides methods to send specific types of transactional emails. It is designed to be injected into other backend services (e.g., `scheduling-api-backend`'s `BookingService` or `user-management-backend`'s `UserService`) to trigger email notifications upon relevant events.\n\n**Dependencies:**\n*   `JavaMailSender`: Spring's interface for sending emails.\n*   `SpringTemplateEngine`: Used for processing Thymeleaf HTML templates to generate dynamic email content.\n\n**Configuration:**\nEmail sending requires configuration in `application.properties` (or `application.yml`) for the `JavaMailSender`, including host, port, username, password, and protocol. Example:\n```\n\nproperties\nspring.mail.host=smtp.example.com\nspring.mail.port=587\nspring.mail.username=your_email@example.com\nspring.mail.password=your_email_password\nspring.mail.properties.mail.smtp.auth=true\nspring.mail.properties.mail.smtp.starttls.enable=true\n\n\n```\n\n**Email Templates:**\nHTML email templates should be located in `src/main/resources/templates/emails/`. Each email type will correspond to a specific template file (e.g., `welcome-email.html`, `booking-confirmation-email.html`). These templates will use Thymeleaf syntax to display dynamic content passed via the `Context` object.\n\n**Public Methods:**\n\n1.  **`sendWelcomeEmail(String toEmail, String userName)`**\n    *   **Purpose:** Sends a welcome email to a newly registered user.\n    *   **Logic:**\n        1.  Create a `Context` object and add `userName` and `businessName` (\"MultiFit Aundh\") variables.\n        2.  Process the `welcome-email.html` template using `templateEngine.process()` to generate the HTML email body.\n        3.  Create a `MimeMessage` using `mailSender.createMimeMessage()`.\n        4.  Initialize a `MimeMessageHelper` with the `MimeMessage`, setting `true` for multipart content to enable HTML.\n        5.  Set the email's `from` address (e.g., \"noreply@multifitaundh.com\"), `to` address (`toEmail`), and `subject` (e.g., \"Welcome to MultiFit Aundh, [userName]!\").\n        6.  Set the email's content using `helper.setText(htmlContent, true)`.\n        7.  Send the email using `mailSender.send(message)`.\n    *   **Error Cases:** Throws `jakarta.mail.MessagingException` if there's an issue with message construction, or `org.springframework.mail.MailException` if there's an issue during sending (e.g., connection problems).\n\n2.  **`sendBookingConfirmationEmail(String toEmail, String userName, String className, String classDate, String classTime)`**\n    *   **Purpose:** Sends a confirmation email after a user successfully books a class.\n    *   **Logic:**\n        1.  Create a `Context` object and add `userName`, `className`, `classDate`, `classTime`, and `businessName` (\"MultiFit Aundh\") variables.\n        2.  Process the `booking-confirmation-email.html` template using `templateEngine.process()`.\n        3.  Create and configure `MimeMessage` and `MimeMessageHelper` as described above.\n        4.  Set the `subject` (e.g., \"Your MultiFit Aundh Class Booking is Confirmed!\").\n        5.  Set the HTML content and send the email.\n    *   **Error Cases:** Throws `jakarta.mail.MessagingException` or `org.springframework.mail.MailException`.\n\n3.  **`sendBookingCancellationEmail(String toEmail, String userName, String className, String classDate, String classTime)`**\n    *   **Purpose:** Notifies a user that their class booking has been cancelled.\n    *   **Logic:**\n        1.  Create a `Context` object and add `userName`, `className`, `classDate`, `classTime`, and `businessName` (\"MultiFit Aundh\") variables.\n        2.  Process the `booking-cancellation-email.html` template using `templateEngine.process()`.\n        3.  Create and configure `MimeMessage` and `MimeMessageHelper` as described above.\n        4.  Set the `subject` (e.g., \"MultiFit Aundh: Your Class Booking Has Been Cancelled\").\n        5.  Set the HTML content and send the email.\n    *   **Error Cases:** Throws `jakarta.mail.MessagingException` or `org.springframework.mail.MailException`.\n\n4.  **`sendMembershipConfirmationEmail(String toEmail, String userName, String membershipPlan, String startDate, String endDate)`**\n    *   **Purpose:** Sends a confirmation email when a user purchases or renews a membership.\n    *   **Logic:**\n        1.  Create a `Context` object and add `userName`, `membershipPlan`, `startDate`, `endDate`, and `businessName` (\"MultiFit Aundh\") variables.\n        2.  Process the `membership-confirmation-email.html` template using `templateEngine.process()`.\n        3.  Create and configure `MimeMessage` and `MimeMessageHelper` as described above.\n        4.  Set the `subject` (e.g., \"Welcome to Your New MultiFit Aundh Membership, [userName]!\").\n        5.  Set the HTML content and send the email.\n    *   **Error Cases:** Throws `jakarta.mail.MessagingException` or `org.springframework.mail.MailException`.",
     "change_required" : true
   }, {
     "feature_name" : "auth-ui",
