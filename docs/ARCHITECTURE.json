@@ -3065,14 +3065,19 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Admin page for CRUD operations on the class schedule.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "AdminSchedulePage",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders the admin page for managing class schedules."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "admin-portal-content",
-    "file_role" : null
+    "file_role" : "Admin page for managing gym class schedules. It displays a table of schedules and provides forms for creating, updating, and deleting them."
   }, {
     "file_name" : "AdminTrainersPage.tsx",
     "file_path" : "frontend/src/pages/admin/AdminTrainersPage.tsx",
@@ -3082,14 +3087,19 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Admin page for CRUD operations on trainer profiles.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "AdminTrainersPage",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders the admin page for managing trainer profiles."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "admin-portal-content",
-    "file_role" : null
+    "file_role" : "Admin page for managing trainer profiles. It displays a table of trainers and provides forms for creating, updating, and deleting them."
   }, {
     "file_name" : "AdminTestimonialsPage.tsx",
     "file_path" : "frontend/src/pages/admin/AdminTestimonialsPage.tsx",
@@ -3099,14 +3109,19 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Admin page for CRUD operations on customer testimonials.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "AdminTestimonialsPage",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders the admin page for managing customer testimonials."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "admin-portal-content",
-    "file_role" : null
+    "file_role" : "Admin page for managing customer testimonials. It displays a table of testimonials and provides forms for creating, updating, and deleting them."
   }, {
     "file_name" : "AdminLeadsPage.tsx",
     "file_path" : "frontend/src/pages/admin/AdminLeadsPage.tsx",
@@ -3116,14 +3131,19 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Admin page for viewing and managing free trial leads.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "AdminLeadsPage",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders the admin page for viewing trial leads."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "admin-portal-content",
-    "file_role" : null
+    "file_role" : "Admin page for viewing free trial leads. It displays a read-only table of submitted leads."
   }, {
     "file_name" : "ci.yml",
     "file_path" : ".github/workflows/ci.yml",
@@ -3273,7 +3293,7 @@
     "feature_display_name" : "Admin Portal (Content)",
     "feature_type" : "FRONTEND",
     "file_paths" : [ "frontend/src/pages/admin/AdminSchedulePage.tsx", "frontend/src/pages/admin/AdminTrainersPage.tsx", "frontend/src/pages/admin/AdminTestimonialsPage.tsx", "frontend/src/pages/admin/AdminLeadsPage.tsx" ],
-    "feature_instruction" : null,
+    "feature_instruction" : "## Design Tokens\n- Navbar: bg-[#1A1A1A] text-[#F5F5F5]\n- Primary CTA: bg-[#DFFF00] hover:bg-[#c2e600] text-[#1A1A1A] font-semibold rounded-full px-8 py-3 transition-all duration-200\n- Brand text accent: text-[#DFFF00]\n- Section bg: bg-[#F5F5F5] (odd sections) / bg-gray-50 (even sections)\n- Card: bg-white rounded-xl shadow-md border border-gray-100 p-6\n- Section container: <section className=\"py-16 px-4\"><div className=\"max-w-7xl mx-auto\">\n- Hero h1: text-4xl md:text-6xl font-bold text-white\n- Body: text-gray-700 leading-relaxed\n- Admin Table Header: bg-[#333333] text-[#F5F5F5]\n- Admin Button Primary: bg-[#DFFF00] hover:bg-[#c2e600] text-[#1A1A1A] font-semibold py-2 px-4 rounded\n- Admin Button Danger: bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded\n- Admin Input Field: border border-gray-300 rounded-md p-2 focus:ring-[#DFFF00] focus:border-[#DFFF00]\n\nThis feature provides the administrative interface for managing various content aspects of MultiFit Aundh, including class schedules, trainer profiles, customer testimonials, and trial leads. All pages within this feature are accessible only to authenticated users with the `ADMIN` role and are wrapped by the `AdminLayout` component from the `admin-portal-shell` feature for consistent navigation and styling. Each page will implement CRUD (Create, Read, Update, Delete) operations where applicable, using data tables for listing items and modal forms for creation and editing. Data fetching and mutations will be handled by React Query hooks, which will interact with dedicated frontend services that call the respective backend API endpoints.\n\n### Common Implementation Details\n- **Authentication & Authorization**: All pages must be wrapped in `<ProtectedRoute allowedRoles={['ADMIN']}>` from `@/components/ProtectedRoute` (from `core-ui`).\n- **Layout**: All page content must be rendered within `<AdminLayout>` from `@/components/AdminLayout` (from `admin-portal-shell`).\n- **Forms**: Forms for creating and editing entities will utilize `react-hook-form` with `zod` for validation. The zod schemas must precisely match the backend DTOs (e.g., `ClassScheduleDto`, `TrainerDto`, `TestimonialDto`). String fields that are `@NotBlank` in the backend should be `z.string().min(1)` in zod. Numeric fields should use `z.coerce.number()`.\n- **Data Management**: Use React Query hooks (e.g., `useQuery`, `useMutation`) for efficient data fetching, caching, and invalidation. These hooks will call specific frontend services (e.g., `scheduleService.ts`, `contentService.ts`, `leadService.ts`) which encapsulate the API calls.\n\n### AdminSchedulePage.tsx\nThis page allows administrators to manage the gym's class schedule. It will display a paginated table of all scheduled classes with options to view, create, edit, and delete entries.\n\n**Sections:**\n1.  **Header**: \"Manage Class Schedules\" (text-3xl font-bold text-[#1A1A1A]) with a \"Add New Schedule\" button (Admin Button Primary).\n2.  **Class Schedule Table**: A table listing `ClassSchedule` entries with columns for Class Name, Trainer, Date, Start Time, End Time, Capacity, and Actions (Edit, Delete buttons).\n3.  **Create/Edit Schedule Modal**: A modal form that appears when adding a new schedule or editing an existing one. Fields include:\n    -   `gymClassId`: Dropdown/autocomplete for selecting an existing `GymClass`.\n    -   `trainerId`: Dropdown/autocomplete for selecting an existing `Trainer`.\n    -   `scheduleDate`: Date input.\n    -   `startTime`: Time input.\n    -   `endTime`: Time input.\n    -   `capacity`: Number input.\n\n**API Interactions (via frontend services/hooks)**:\n-   **Fetch all schedules**: Calls `GET /api/v1/admin/schedules` (returns `List<ClassScheduleDto>`).\n-   **Fetch single schedule**: Calls `GET /api/v1/admin/schedules/{id}` (returns `ClassScheduleDto`).\n-   **Create schedule**: Calls `POST /api/v1/admin/schedules` with `ClassScheduleDto` (returns `ClassScheduleDto`).\n-   **Update schedule**: Calls `PUT /api/v1/admin/schedules/{id}` with `ClassScheduleDto` (returns `ClassScheduleDto`).\n-   **Delete schedule**: Calls `DELETE /api/v1/admin/schedules/{id}` (returns `void`).\n\n### AdminTrainersPage.tsx\nThis page enables administrators to manage trainer profiles. It will feature a table of trainers and forms for creating, updating, and deleting trainer information.\n\n**Sections:**\n1.  **Header**: \"Manage Trainers\" (text-3xl font-bold text-[#1A1A1A]) with an \"Add New Trainer\" button (Admin Button Primary).\n2.  **Trainers Table**: A table listing `Trainer` entries with columns for Name, Specialization, Bio (truncated), Image, and Actions (Edit, Delete buttons).\n3.  **Create/Edit Trainer Modal**: A modal form for adding or modifying trainer details. Fields include:\n    -   `name`: Text input.\n    -   `specialization`: Text input.\n    -   `bio`: Textarea.\n    -   `imageUrl`: Text input (URL for trainer's photo).\n\n**API Interactions (via frontend services/hooks)**:\n-   **Fetch all trainers**: Calls `GET /api/v1/content/trainers` (returns `List<TrainerDto>`).\n-   **Fetch single trainer**: Calls `GET /api/v1/content/trainers/{id}` (returns `TrainerDto`).\n-   **Create trainer**: Calls `POST /api/v1/admin/content/trainers` with `TrainerDto` (returns `TrainerDto`).\n-   **Update trainer**: Calls `PUT /api/v1/admin/content/trainers/{id}` with `TrainerDto` (returns `TrainerDto`).\n-   **Delete trainer**: Calls `DELETE /api/v1/admin/content/trainers/{id}` (returns `void`).\n\n### AdminTestimonialsPage.tsx\nThis page is for managing customer testimonials. It will display a table of testimonials and provide functionality to add, edit, and remove them.\n\n**Sections:**\n1.  **Header**: \"Manage Testimonials\" (text-3xl font-bold text-[#1A1A1A]) with an \"Add New Testimonial\" button (Admin Button Primary).\n2.  **Testimonials Table**: A table listing `Testimonial` entries with columns for Author, Quote (truncated), Rating, Image, and Actions (Edit, Delete buttons).\n3.  **Create/Edit Testimonial Modal**: A modal form for adding or modifying testimonial details. Fields include:\n    -   `authorName`: Text input.\n    -   `quote`: Textarea.\n    -   `imageUrl`: Text input (URL for author's photo, optional).\n    -   `rating`: Number input (1-5).\n\n**API Interactions (via frontend services/hooks)**:\n-   **Fetch all testimonials**: Calls `GET /api/v1/content/testimonials` (returns `List<TestimonialDto>`).\n-   **Fetch single testimonial**: Calls `GET /api/v1/content/testimonials/{id}` (returns `TestimonialDto`).\n-   **Create testimonial**: Calls `POST /api/v1/admin/content/testimonials` with `TestimonialDto` (returns `TestimonialDto`).\n-   **Update testimonial**: Calls `PUT /api/v1/admin/content/testimonials/{id}` with `TestimonialDto` (returns `TestimonialDto`).\n-   **Delete testimonial**: Calls `DELETE /api/v1/admin/content/testimonials/{id}` (returns `void`).\n\n### AdminLeadsPage.tsx\nThis page provides a read-only view of all free trial leads submitted through the website. It will display a table of lead information.\n\n**Sections:**\n1.  **Header**: \"Manage Trial Leads\" (text-3xl font-bold text-[#1A1A1A]).\n2.  **Trial Leads Table**: A table listing `TrialLead` entries with columns for Name, Email, Phone, and Submission Date.\n\n**API Interactions (via frontend services/hooks)**:\n-   **Fetch all trial leads**: Calls `GET /api/v1/admin/leads/trial` (returns `List<TrialLead>`).",
     "change_required" : true
   }, {
     "feature_name" : "infrastructure",
