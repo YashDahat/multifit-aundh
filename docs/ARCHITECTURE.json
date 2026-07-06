@@ -2222,14 +2222,19 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Main application component that sets up routing for all pages.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "App",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders the main application, including AuthProvider and all defined routes."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/pages/HomePage.tsx", "frontend/src/pages/MembershipsPage.tsx", "frontend/src/pages/SchedulePage.tsx", "frontend/src/pages/TrainersPage.tsx", "frontend/src/pages/TrainerDetailPage.tsx", "frontend/src/pages/ContactPage.tsx", "frontend/src/pages/AboutPage.tsx", "frontend/src/pages/LoginPage.tsx", "frontend/src/pages/AdminDashboardPage.tsx", "frontend/src/components/Layout.tsx", "frontend/src/components/AdminLayout.tsx", "frontend/src/components/ProtectedRoute.tsx", "frontend/src/context/AuthContext.tsx" ],
     "depends_on" : [ ],
     "feature_name" : "core-ui",
-    "file_role" : null
+    "file_role" : "Main application component responsible for setting up client-side routing and providing global authentication context."
   }, {
     "file_name" : "Layout.tsx",
     "file_path" : "frontend/src/components/Layout.tsx",
@@ -2239,14 +2244,19 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Main layout component including Header, Footer, and content area for public pages.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "Layout",
+      "parameters" : [ "React.PropsWithChildren<{}> children" ],
+      "return_type" : "JSX.Element",
+      "description" : "Wraps page content with the site-wide header, footer, and WhatsApp CTA."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/components/Header.tsx", "frontend/src/components/Footer.tsx" ],
     "depends_on" : [ ],
     "feature_name" : "core-ui",
-    "file_role" : null
+    "file_role" : "Root layout component for public-facing pages, providing consistent header, footer, and content wrapper."
   }, {
     "file_name" : "Header.tsx",
     "file_path" : "frontend/src/components/Header.tsx",
@@ -2256,14 +2266,19 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Site-wide header with navigation links and logo.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "Header",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders the responsive navigation bar with logo, public links, and auth-dependent links."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "core-ui",
-    "file_role" : null
+    "file_role" : "Navigation header component for the public site, displaying the brand logo and main navigation links, dynamically adjusting for authentication status."
   }, {
     "file_name" : "Footer.tsx",
     "file_path" : "frontend/src/components/Footer.tsx",
@@ -2273,14 +2288,19 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Site-wide footer with contact info, social links, and a Google Maps embed.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "Footer",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders the site footer with contact details, social links, and a map."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "core-ui",
-    "file_role" : null
+    "file_role" : "Footer component for the public site, displaying business contact information, social links, and an embedded Google Map."
   }, {
     "file_name" : "ProtectedRoute.tsx",
     "file_path" : "frontend/src/components/ProtectedRoute.tsx",
@@ -2290,14 +2310,19 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "A wrapper component that restricts access to routes based on authentication status.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "ProtectedRoute",
+      "parameters" : [ "React.PropsWithChildren<{}> children", "string[] allowedRoles" ],
+      "return_type" : "JSX.Element",
+      "description" : "Protects routes by checking user authentication and roles, redirecting if unauthorized."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/hooks/useAuth.ts" ],
     "depends_on" : [ ],
     "feature_name" : "core-ui",
-    "file_role" : null
+    "file_role" : "A higher-order component that enforces authentication and optional role-based authorization for specific routes."
   }, {
     "file_name" : "HomePage.tsx",
     "file_path" : "frontend/src/pages/HomePage.tsx",
@@ -2307,14 +2332,19 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Landing page with a high-energy hero video, the 3-day trial form, testimonials, and class highlights.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "HomePage",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders the main landing page with hero, trial form, testimonials, and class highlights sections."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/components/TrialForm.tsx", "frontend/src/components/TestimonialsSection.tsx" ],
     "depends_on" : [ ],
     "feature_name" : "core-ui",
-    "file_role" : null
+    "file_role" : "Landing page of the application, designed to engage visitors with a high-energy introduction, calls to action, and integrated lead/content components."
   }, {
     "file_name" : "AboutPage.tsx",
     "file_path" : "frontend/src/pages/AboutPage.tsx",
@@ -2324,14 +2354,19 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Page describing the gym's philosophy, with a 360-degree virtual tour embed and team intro.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "AboutPage",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders the About Us page with sections on philosophy, virtual tour, and team."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "core-ui",
-    "file_role" : null
+    "file_role" : "Information page detailing the gym's philosophy, facilities through a virtual tour, and introducing the team."
   }, {
     "file_name" : "ContactPage.tsx",
     "file_path" : "frontend/src/pages/ContactPage.tsx",
@@ -2341,14 +2376,19 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Contact page with address, large embedded Google Map, contact form, and hours.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "ContactPage",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders the Contact Us page with contact information, a form, and a map."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "core-ui",
-    "file_role" : null
+    "file_role" : "Page providing comprehensive contact details, a contact form, and an embedded map for the gym's location."
   }, {
     "file_name" : "WhatsAppCTA.tsx",
     "file_path" : "frontend/src/components/WhatsAppCTA.tsx",
@@ -2358,14 +2398,19 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "A floating action button that links to the business's WhatsApp for inquiries.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "WhatsAppCTA",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders a fixed, floating WhatsApp button linking to the business's WhatsApp number."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "core-ui",
-    "file_role" : null
+    "file_role" : "Floating action button component that provides a direct link to the business's WhatsApp for quick inquiries."
   }, {
     "file_name" : "TrialForm.tsx",
     "file_path" : "frontend/src/components/TrialForm.tsx",
@@ -2942,7 +2987,7 @@
     "feature_display_name" : "Core UI & Pages",
     "feature_type" : "FRONTEND",
     "file_paths" : [ "frontend/src/App.tsx", "frontend/src/components/Layout.tsx", "frontend/src/components/Header.tsx", "frontend/src/components/Footer.tsx", "frontend/src/components/ProtectedRoute.tsx", "frontend/src/pages/HomePage.tsx", "frontend/src/pages/AboutPage.tsx", "frontend/src/pages/ContactPage.tsx", "frontend/src/components/WhatsAppCTA.tsx" ],
-    "feature_instruction" : null,
+    "feature_instruction" : "## Design Tokens\n- Navbar: bg-[#1A1A1A] text-[#F5F5F5]\n- Primary CTA: bg-[#DFFF00] hover:bg-[#c2e600] text-[#1A1A1A] font-bold rounded-full px-8 py-3 transition-all duration-200 shadow-lg\n- Secondary CTA: bg-[#333333] hover:bg-[#1A1A1A] text-[#F5F5F5] font-semibold rounded-full px-6 py-2 transition-all duration-200\n- Brand text accent: text-[#DFFF00]\n- Section bg: bg-[#F5F5F5] (odd sections) / bg-gray-100 (even sections)\n- Card: bg-white rounded-xl shadow-md border border-gray-100 p-6\n- Section container: <section className=\"py-16 px-4 md:py-24\"><div className=\"max-w-7xl mx-auto\">\n- Hero h1: text-4xl md:text-6xl font-extrabold text-[#F5F5F5] leading-tight\n- Hero subheadline: text-xl md:text-2xl text-[#F5F5F5] opacity-90 mt-4\n- Body: text-[#333333] leading-relaxed\n- Footer bg: bg-[#1A1A1A] text-[#F5F5F5]\n\nThis feature provides the core UI components and public-facing pages for the MultiFit Aundh application. It establishes the main application structure, routing, and shared layout elements, ensuring a consistent and energetic user experience across the site.\n\n### App.tsx\n`App.tsx` is the main entry point for the React application, responsible for setting up client-side routing using `react-router-dom` and providing global authentication context. It wraps the entire application with `AuthContext.AuthProvider` from the `auth-ui` feature to manage user authentication state. The application defines several routes:\n1.  **Public Routes:** Paths like `/`, `/memberships`, `/schedule`, `/trainers`, `/trainers/:id`, `/contact`, `/about`, and `/login` are rendered within the `Layout` component. These routes are accessible to all users.\n2.  **Admin Routes:** Paths starting with `/admin` (e.g., `/admin`, `/admin/*`) are rendered within the `AdminLayout` component (from `admin-portal-shell` feature) and are protected by the `ProtectedRoute` component. The `ProtectedRoute` ensures that only authenticated users with the 'ADMIN' role can access these routes. The `allowedRoles` prop for admin routes should be `['ADMIN']`.\n3.  **Login Route:** The `/login` route is a public route and should not be wrapped by `ProtectedRoute`.\n\n### Layout.tsx\n`Layout.tsx` serves as the primary layout component for all public-facing pages. It receives `children` as a prop and renders the `Header` component at the top, followed by a `main` HTML element containing the `children` (the page content), and finally the `Footer` component at the bottom. The `WhatsAppCTA` component is also rendered within the `Layout` to ensure it appears consistently on all public pages, providing easy access to WhatsApp support.\n\n### Header.tsx\n`Header.tsx` implements the site-wide navigation bar. It displays the brand logo, \"MultiFit Aundh\", with \"MultiFit\" in `text-[#DFFF00]` and \"Aundh\" in `text-[#F5F5F5]`. It includes primary navigation links to `Home` (`/`), `Memberships` (`/memberships`), `Schedule` (`/schedule`), `Trainers` (`/trainers`), `About` (`/about`), and `Contact` (`/contact`). The header dynamically displays authentication-related links based on the user's login status, which is determined by calling `useAuth()` from the `auth-ui` feature. If a user is authenticated, a \"Dashboard\" link (`/admin`) and a \"Logout\" button (which calls `AuthContext.logout()`) are shown. If not authenticated, a \"Login\" link (`/login`) is displayed. The header must be responsive, featuring a hamburger menu for mobile viewports and a full navigation bar for desktop.\n\n### Footer.tsx\n`Footer.tsx` provides the site-wide footer, displaying essential business information and navigation. It includes:\n-   The business name: \"MultiFit Aundh\"\n-   The full address: \"Multifit Aundh , D.P. Road Medipoint Hospital Road, opp. to Indian Bank, Aundh, Pune, Maharashtra 411067\"\n-   Phone number: \"075070 08009\"\n-   Opening hours: \"Mon-Sat: 6 AM - 10 PM | Sun: 8 AM - 6 PM\"\n-   Social media links (placeholder icons for Facebook, Instagram, YouTube).\n-   A large embedded Google Map, centered on the coordinates `18.562876, 73.799898` (for MultiFit Aundh, Pune). The map embed should use an iframe with the `src` attribute pointing to `https://www.google.com/maps/embed/v1/place?key=YOUR_API_KEY&q=18.562876,73.799898` (API key should be an environment variable).\n\n### ProtectedRoute.tsx\n`ProtectedRoute.tsx` is a higher-order component designed to restrict access to routes based on the user's authentication status and roles. It accepts `children: React.ReactNode` and an optional `allowedRoles?: string[]` prop. It utilizes the `useAuth()` hook from the `auth-ui` feature to retrieve `isAuthenticated`, `userRole`, and `isLoading` status. If `isLoading` is true, it renders a loading indicator. If the user is not `isAuthenticated`, they are redirected to the `/login` page. If `allowedRoles` are specified and the `userRole` does not match any of the allowed roles, the user is redirected to the home page (`/`). Otherwise, it renders its `children` components.\n\n### HomePage.tsx\n`HomePage.tsx` is the landing page, designed to be energetic and action-oriented. It consists of several key sections:\n1.  **Hero Section:** A full-width section (`className=\"relative h-[60vh] md:h-[80vh] flex items-center justify-center text-center\"`) with a dynamic background image (`https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1920&q=80`) and a `bg-black bg-opacity-50` overlay. It features a bold headline \"Unleash Your Potential at MultiFit Aundh\" (using `Hero h1` token) and a subheadline \"Experience high-energy workouts, expert trainers, and a supportive community.\" (using `Hero subheadline` token). A prominent \"Start Your Free 3-Day Trial\" CTA (using `Primary CTA` token) links to the trial form section (`#trial-form`).\n2.  **Trial Form Section:** This section (`className=\"bg-[#F5F5F5] py-16 px-4 md:py-24\"`) includes a heading \"Claim Your Free 3-Day Trial\" and a subheading \"Experience MultiFit Aundh firsthand. No commitments, just pure fitness.\" It renders the `TrialForm` component from the `lead-ui` feature.\n3.  **Testimonials Section:** This section (`className=\"bg-gray-100 py-16 px-4 md:py-24\"`) features a heading \"Hear From Our Thriving Community\" and renders the `TestimonialsSection` component from the `content-ui` feature.\n4.  **Class Highlights Section:** This section (`className=\"bg-[#F5F5F5] py-16 px-4 md:py-24\"`) has a heading \"Our Signature Classes\" and a subheading \"From high-intensity interval training to calming yoga, find your perfect fit.\" It includes placeholder cards showcasing popular classes.\n\n### AboutPage.tsx\n`AboutPage.tsx` provides detailed information about MultiFit Aundh's philosophy and facilities:\n1.  **Hero Section:** Similar to the home page, with a background image (`https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1920&q=80`) and `bg-black bg-opacity-50` overlay. The headline is \"Our Story: More Than Just a Gym\" and the subheadline is \"Discover the MultiFit Aundh philosophy and what drives our passion for fitness.\"\n2.  **Philosophy Section:** (`className=\"bg-[#F5F5F5] py-16 px-4 md:py-24\"`) Features a heading \"Our Philosophy: Empowering Your Fitness Journey\" and body text describing the gym's values, community focus, expert guidance, and holistic well-being approach.\n3.  **Virtual Tour Section:** (`className=\"bg-gray-100 py-16 px-4 md:py-24\"`) Includes a heading \"Explore Our State-of-the-Art Facility\" and a subheading \"Take a 360-degree virtual tour of MultiFit Aundh.\" It contains a placeholder iframe for an embedded virtual tour video (e.g., from YouTube).\n4.  **Team Intro Section:** (`className=\"bg-[#F5F5F5] py-16 px-4 md:py-24\"`) Presents a heading \"Meet Our Expert Trainers\" and a subheading \"Dedicated professionals committed to your success.\" It includes placeholder cards for trainer profiles (images, names, specializations).\n\n### ContactPage.tsx\n`ContactPage.tsx` provides all necessary contact information and methods for MultiFit Aundh:\n1.  **Hero Section:** Features a background image (`https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1920&q=80`) with a `bg-black bg-opacity-50` overlay. The headline is \"Get in Touch with MultiFit Aundh\" and the subheadline is \"We're here to answer your questions and help you start your fitness journey.\"\n2.  **Contact Info Section:** (`className=\"bg-[#F5F5F5] py-16 px-4 md:py-24\"`) Includes a heading \"Visit Us or Give Us a Call\" and displays the business address, phone number, and opening hours.\n3.  **Contact Form Section:** (`className=\"bg-gray-100 py-16 px-4 md:py-24\"`) Contains a heading \"Send Us a Message\" and a placeholder contact form with fields for Name, Email, Subject, and Message, along with a submit button.\n4.  **Google Map Section:** (`className=\"py-16 px-4 md:py-24\"`) Features a heading \"Find Us Easily\" and a large embedded Google Map, identical to the one in the footer, showing the gym's location.\n\n### WhatsAppCTA.tsx\n`WhatsAppCTA.tsx` is a floating action button that provides a direct link to the MultiFit Aundh WhatsApp number. It is positioned fixed at the bottom-right of the viewport (`bottom-4 right-4`), styled with a WhatsApp green background (`bg-[#25D366]`), white text, rounded shape, and a shadow. The button contains a WhatsApp logo icon and links to `https://wa.me/917507008009` (using the business phone number, prepending `91` for India).\n",
     "change_required" : true
   }, {
     "feature_name" : "lead-ui",
