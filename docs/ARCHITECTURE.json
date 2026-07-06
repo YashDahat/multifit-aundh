@@ -2800,14 +2800,19 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Interactive weekly class schedule grid allowing users to view class details and book a spot.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "SchedulePage",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders the main class schedule page with a hero section and an interactive weekly schedule grid."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/hooks/useSchedule.ts" ],
     "depends_on" : [ ],
     "feature_name" : "scheduling-ui",
-    "file_role" : null
+    "file_role" : "PAGE layer — Renders the interactive weekly class schedule grid, displaying class details and allowing users to book or cancel spots by interacting with the `useSchedule` hook."
   }, {
     "file_name" : "scheduleService.ts",
     "file_path" : "frontend/src/services/scheduleService.ts",
@@ -2817,14 +2822,47 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Service for fetching class schedules and handling bookings.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "fetchClassSchedules",
+      "parameters" : [ "string startDate", "string endDate" ],
+      "return_type" : "Promise<ClassSchedule[]>",
+      "description" : "Fetches a list of class schedules from the backend within a specified date range."
+    }, {
+      "name" : "bookClass",
+      "parameters" : [ "string classScheduleId" ],
+      "return_type" : "Promise<Booking>",
+      "description" : "Submits a request to the backend to book a specific class schedule for the authenticated user."
+    }, {
+      "name" : "cancelClassBooking",
+      "parameters" : [ "string bookingId" ],
+      "return_type" : "Promise<void>",
+      "description" : "Submits a request to the backend to cancel an existing class booking for the authenticated user."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
-    "api_endpoints_consumed" : null,
+    "api_endpoints_consumed" : [ {
+      "method" : "GET",
+      "path" : "/api/v1/schedules/by-date-range?startDate={startDate}&endDate={endDate}",
+      "request_body" : null,
+      "response_body" : null,
+      "description" : "Fetches class schedules for a given date range."
+    }, {
+      "method" : "POST",
+      "path" : "/api/v1/bookings/{classScheduleId}",
+      "request_body" : null,
+      "response_body" : null,
+      "description" : "Books a class for the authenticated user."
+    }, {
+      "method" : "DELETE",
+      "path" : "/api/v1/bookings/{bookingId}",
+      "request_body" : null,
+      "response_body" : null,
+      "description" : "Cancels a class booking for the authenticated user."
+    } ],
     "imports_from" : [ "frontend/src/api/client.ts", "frontend/src/types/schedule.ts" ],
     "depends_on" : [ ],
     "feature_name" : "scheduling-ui",
-    "file_role" : null
+    "file_role" : "SERVICE layer — Provides asynchronous functions to interact with the backend API for fetching class schedules and managing user bookings, returning typed data."
   }, {
     "file_name" : "useSchedule.ts",
     "file_path" : "frontend/src/hooks/useSchedule.ts",
@@ -2834,14 +2872,19 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "React Query hook for fetching class schedules and managing booking mutations.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "useSchedule",
+      "parameters" : [ "string startDate", "string endDate" ],
+      "return_type" : "{ schedules: ClassSchedule[], isLoading: boolean, isError: boolean, error: Error | null, bookClass: UseMutationResult<Booking, Error, string, unknown>, cancelBooking: UseMutationResult<void, Error, string, unknown> }",
+      "description" : "Provides class schedule data, loading/error states, and functions to book/cancel classes using React Query."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/services/scheduleService.ts", "frontend/src/types/schedule.ts" ],
     "depends_on" : [ ],
     "feature_name" : "scheduling-ui",
-    "file_role" : null
+    "file_role" : "HOOK layer — A React Query hook that encapsulates data fetching and mutation logic for class schedules and bookings, providing loading states, error handling, and data invalidation."
   }, {
     "file_name" : "schedule.ts",
     "file_path" : "frontend/src/types/schedule.ts",
@@ -2852,13 +2895,33 @@
     "status" : "PLANNED",
     "description" : "TypeScript types for class schedules and bookings.",
     "public_functions" : null,
-    "public_variables" : null,
+    "public_variables" : [ {
+      "name" : "Trainer",
+      "type" : "{ id: string; name: string; specialization: string; bio: string; imageUrl: string; }",
+      "description" : "Interface for a gym trainer."
+    }, {
+      "name" : "GymClass",
+      "type" : "{ id: string; name: string; description: string; durationMinutes: number; capacity: number; trainer: Trainer; imageUrl: string; }",
+      "description" : "Interface for a gym class."
+    }, {
+      "name" : "ClassSchedule",
+      "type" : "{ id: string; gymClass: GymClass; scheduleDate: string; startTime: string; endTime: string; capacity: number; bookedSlots: number; }",
+      "description" : "Interface for a specific scheduled instance of a gym class."
+    }, {
+      "name" : "BookingStatus",
+      "type" : "'PENDING' | 'CONFIRMED' | 'CANCELLED'",
+      "description" : "Type for the status of a class booking."
+    }, {
+      "name" : "Booking",
+      "type" : "{ id: string; userId: string; classSchedule: ClassSchedule; bookingTime: string; status: BookingStatus; }",
+      "description" : "Interface for a user's booking of a class schedule."
+    } ],
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "scheduling-ui",
-    "file_role" : null
+    "file_role" : "Generated from the backend API contract — TypeScript interfaces defining the structure of class-related data entities like trainers, gym classes, schedules, and bookings."
   }, {
     "file_name" : "AdminLayout.tsx",
     "file_path" : "frontend/src/components/AdminLayout.tsx",
@@ -3140,7 +3203,7 @@
     "feature_display_name" : "Class Scheduling UI",
     "feature_type" : "FRONTEND",
     "file_paths" : [ "frontend/src/pages/SchedulePage.tsx", "frontend/src/services/scheduleService.ts", "frontend/src/hooks/useSchedule.ts", "frontend/src/types/schedule.ts" ],
-    "feature_instruction" : null,
+    "feature_instruction" : "## Design Tokens\n- Navbar: bg-[#1A1A1A] text-[#F5F5F5]\n- Primary CTA: bg-[#DFFF00] hover:bg-[#c2e600] text-[#1A1A1A] font-semibold rounded-full px-8 py-3 transition-all duration-200\n- Brand text accent: text-[#DFFF00]\n- Section bg: bg-[#F5F5F5] (odd sections) / bg-gray-50 (even sections)\n- Card: bg-white rounded-xl shadow-md border border-gray-100 p-6\n- Section container: <section className=\"py-16 px-4\"><div className=\"max-w-7xl mx-auto\">\n- Hero h1: text-4xl md:text-6xl font-bold text-[#F5F5F5]\n- Body: text-gray-700 leading-relaxed\n\n## Feature Instruction: Class Scheduling UI\n\nThis feature provides an interactive weekly class schedule for users to view class details and book a spot. It consists of a React page (`SchedulePage.tsx`), a frontend service (`scheduleService.ts`), a React Query hook (`useSchedule.ts`), and TypeScript type definitions (`schedule.ts`).\n\n### 1. `frontend/src/types/schedule.ts`\nThis file defines the TypeScript interfaces for `Trainer`, `GymClass`, `ClassSchedule`, and `Booking`, mirroring the backend DTOs. These types are used across the frontend service and hook to ensure type safety.\n\n### 2. `frontend/src/services/scheduleService.ts`\nThis service is responsible for making API calls to the `scheduling-api-backend` to fetch class schedules and handle booking/cancellation requests. It uses the `apiClient` from `frontend/src/api/client.ts` for authenticated requests.\n\n- **`fetchClassSchedules(startDate: string, endDate: string): Promise<ClassSchedule[]>`**\n  1. Makes a GET request to `/api/v1/schedules/by-date-range` with `startDate` and `endDate` query parameters.\n  2. Returns a `Promise` resolving to an array of `ClassSchedule` objects.\n  3. Throws an error if the API call fails.\n\n- **`bookClass(classScheduleId: string): Promise<Booking>`**\n  1. Makes a POST request to `/api/v1/bookings/{classScheduleId}`.\n  2. Returns a `Promise` resolving to the created `Booking` object.\n  3. Throws an error if the API call fails (e.g., class full, already booked).\n\n- **`cancelClassBooking(bookingId: string): Promise<void>`**\n  1. Makes a DELETE request to `/api/v1/bookings/{bookingId}`.\n  2. Returns a `Promise` resolving to `void` on success.\n  3. Throws an error if the API call fails (e.g., booking not found, not authorized).\n\n### 3. `frontend/src/hooks/useSchedule.ts`\nThis React Query hook provides an abstraction over `scheduleService.ts` for fetching and mutating class schedule and booking data. It manages loading states, errors, and data caching, making it easy for `SchedulePage.tsx` to consume.\n\n- **`useSchedule(startDate: string, endDate: string): { schedules: ClassSchedule[], isLoading: boolean, isError: boolean, error: Error | null, bookClass: UseMutationResult, cancelBooking: UseMutationResult }`**\n  1. Uses `react-query`'s `useQuery` to call `scheduleService.fetchClassSchedules` with the provided `startDate` and `endDate`.\n  2. Returns `schedules`, `isLoading`, `isError`, and `error` from the query.\n  3. Provides a `bookClass` mutation using `useMutation` that calls `scheduleService.bookClass`. On success, it invalidates the `['schedules']` query to refetch the latest schedule data.\n  4. Provides a `cancelBooking` mutation using `useMutation` that calls `scheduleService.cancelClassBooking`. On success, it invalidates the `['schedules']` query to refetch the latest schedule data.\n\n### 4. `frontend/src/pages/SchedulePage.tsx`\nThis page renders the interactive weekly class schedule grid. It consumes the `useSchedule` hook to display class data and handle user interactions for booking and cancellation.\n\n- **Structure and Content:**\n  - The page will be wrapped in the `<Layout>` component from `@/components/Layout`.\n  - **Hero Section:**\n    - Background: Use a dynamic gym image from Unsplash: `https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1920&q=80` with a `bg-black bg-opacity-50` overlay.\n    - Headline (`h1`): \"YOUR WEEK. YOUR WORKOUT. YOUR TRANSFORMATION.\"\n    - Subheadline (`p`): \"Browse our diverse class schedule and book your spot to unleash your full potential at MultiFit Aundh.\"\n    - CTA Button: \"Book Your First Class\" (links to the schedule grid below), styled with `Primary CTA` tokens.\n  - **Schedule Grid Section:**\n    - Title (`h2`): \"MultiFit Aundh Class Schedule\", styled with `text-[#1A1A1A]`.\n    - A weekly view of classes, allowing navigation between weeks (e.g., previous/next week buttons).\n    - Each day displays a list of `ClassSchedule` entries.\n    - Each class entry will show:\n      - Class Name (`gymClass.name`)\n      - Trainer Name (`gymClass.trainer.name`)\n      - Time (`startTime` - `endTime`)\n      - Available Slots (`capacity - bookedSlots`)\n      - A \"Book Now\" button (if slots are available and not already booked by the current user), styled with `Primary CTA` tokens.\n      - A \"Cancel Booking\" button (if the user has booked this class), styled with a secondary button style (e.g., `bg-gray-300 text-gray-800 hover:bg-gray-400`).\n    - Loading state: Display a spinner or \"Loading schedule...\" message when `isLoading` is true.\n    - Error state: Display an error message (e.g., \"Failed to load schedule. Please try again later.\") when `isError` is true.\n\n- **Interactions:**\n  - When a user clicks \"Book Now\" for a class, `useSchedule().bookClass.mutate(classSchedule.id)` is called.\n  - When a user clicks \"Cancel Booking\" for a booked class, `useSchedule().cancelBooking.mutate(booking.id)` is called.\n  - Success/error messages for booking/cancellation should be displayed using a toast notification system (if available in `core-ui` or a common utility).\n\n**Cross-Feature Interactions:**\n- `SchedulePage.tsx` imports `Layout` from `core-ui`.\n- `scheduleService.ts` uses `apiClient` from `frontend/src/api/client.ts` (shared-infra-backend).\n- Authentication status (e.g., current user ID) is implicitly handled by the `apiClient`'s JWT token and the backend's `Authentication` object in `scheduling-api-backend` controllers. The frontend does not explicitly pass `userId` for booking/cancellation; the backend infers it from the authenticated user's token.\n",
     "change_required" : true
   }, {
     "feature_name" : "admin-portal-shell",
