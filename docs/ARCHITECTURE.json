@@ -138,8 +138,8 @@
     "file_type" : "BACKEND",
     "layer" : "CONFIG",
     "created_date" : "2024-07-28",
-    "updated_date" : "2024-07-28",
-    "status" : "PLANNED",
+    "updated_date" : "2026-07-06",
+    "status" : "GENERATED",
     "description" : "Populates the database with initial data on startup (e.g., membership tiers, class types).",
     "public_functions" : [ {
       "name" : "run",
@@ -283,8 +283,8 @@
     "file_type" : "BACKEND",
     "layer" : "CONFIG",
     "created_date" : "2024-07-28",
-    "updated_date" : "2024-07-28",
-    "status" : "PLANNED",
+    "updated_date" : "2026-07-06",
+    "status" : "GENERATED",
     "description" : "Creates a default admin user on application startup if one doesn't exist.",
     "public_functions" : [ {
       "name" : "run",
@@ -449,8 +449,8 @@
     "file_type" : "BACKEND",
     "layer" : "CONFIG",
     "created_date" : "2024-07-28",
-    "updated_date" : "2024-07-28",
-    "status" : "PLANNED",
+    "updated_date" : "2026-07-06",
+    "status" : "GENERATED",
     "description" : "Filter that intercepts requests, validates the JWT, and sets the security context.",
     "public_functions" : [ {
       "name" : "doFilterInternal",
@@ -471,8 +471,8 @@
     "file_type" : "BACKEND",
     "layer" : "CONFIG",
     "created_date" : "2024-07-28",
-    "updated_date" : "2024-07-28",
-    "status" : "PLANNED",
+    "updated_date" : "2026-07-06",
+    "status" : "GENERATED",
     "description" : "Configures Spring Security, including password encoder, filter chain, and CORS.",
     "public_functions" : [ {
       "name" : "securityFilterChain",
