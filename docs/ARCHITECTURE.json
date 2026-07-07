@@ -2181,15 +2181,20 @@
     "created_date" : "2024-07-28",
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
-    "description" : "Landing page with a high-energy hero video, prominent '3-Day Trial' form, testimonials, and class highlights.",
-    "public_functions" : null,
+    "description" : "Landing page with a high-energy hero section, prominent '3-Day Trial' form, testimonials, class highlights, and social media links, all designed to be energetic and action-oriented.",
+    "public_functions" : [ {
+      "name" : "HomePage",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders the main landing page with various marketing sections."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/components/TrialForm.tsx", "frontend/src/components/TestimonialsSection.tsx", "frontend/src/components/SocialFeed.tsx" ],
     "depends_on" : [ ],
     "feature_name" : "static-pages",
-    "file_role" : null
+    "file_role" : "PAGE layer — the main landing page for MultiFit Aundh, integrating TrialForm, TestimonialsSection, and SocialFeed components."
   }, {
     "file_name" : "ContactPage.tsx",
     "file_path" : "frontend/src/pages/ContactPage.tsx",
@@ -2198,15 +2203,20 @@
     "created_date" : "2024-07-28",
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
-    "description" : "Displays contact information, a contact form, business hours, and an embedded Google Map.",
-    "public_functions" : null,
+    "description" : "Displays contact information, a client-side contact form, business hours, and an embedded Google Map, styled to match the brand's modern aesthetic.",
+    "public_functions" : [ {
+      "name" : "ContactPage",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders the contact page with gym details and a map."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/components/GoogleMapsEmbed.tsx" ],
     "depends_on" : [ ],
     "feature_name" : "static-pages",
-    "file_role" : null
+    "file_role" : "PAGE layer — displays MultiFit Aundh's contact information, a contact form, business hours, and an embedded Google Map."
   }, {
     "file_name" : "TrialForm.tsx",
     "file_path" : "frontend/src/components/TrialForm.tsx",
@@ -2215,15 +2225,20 @@
     "created_date" : "2024-07-28",
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
-    "description" : "Lead capture form for the '3-Day Free Trial' offer.",
-    "public_functions" : null,
+    "description" : "Lead capture form for the '3-Day Free Trial' offer, with fields for name, email, and phone, and client-side validation.",
+    "public_functions" : [ {
+      "name" : "TrialForm",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders a form for users to sign up for a free trial."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/hooks/useLeads.ts" ],
     "depends_on" : [ ],
     "feature_name" : "static-pages",
-    "file_role" : null
+    "file_role" : "COMPONENT layer — a reusable lead capture form for the '3-Day Free Trial' offer, utilizing the `useLeads` hook for submission."
   }, {
     "file_name" : "TestimonialsSection.tsx",
     "file_path" : "frontend/src/components/TestimonialsSection.tsx",
@@ -2232,15 +2247,20 @@
     "created_date" : "2024-07-28",
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
-    "description" : "Displays a rotating carousel of customer testimonials, highlighting the high Google rating.",
-    "public_functions" : null,
+    "description" : "Displays a rotating carousel of customer testimonials, highlighting the high Google rating and fetching data from the content management backend.",
+    "public_functions" : [ {
+      "name" : "TestimonialsSection",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders a section showcasing customer testimonials."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/hooks/useContent.ts" ],
     "depends_on" : [ ],
     "feature_name" : "static-pages",
-    "file_role" : null
+    "file_role" : "COMPONENT layer — displays a rotating carousel or grid of customer testimonials, fetching data via the `useContent` hook."
   }, {
     "file_name" : "SocialFeed.tsx",
     "file_path" : "frontend/src/components/SocialFeed.tsx",
@@ -2249,15 +2269,20 @@
     "created_date" : "2024-07-28",
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
-    "description" : "A simple component that displays links or an embedded view of social media feeds.",
-    "public_functions" : null,
+    "description" : "A simple component that displays links or an embedded view of social media feeds, styled to fit the brand's aesthetic.",
+    "public_functions" : [ {
+      "name" : "SocialFeed",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders links to social media profiles."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "static-pages",
-    "file_role" : null
+    "file_role" : "COMPONENT layer — a simple presentational component that displays links to social media feeds."
   }, {
     "file_name" : "GoogleMapsEmbed.tsx",
     "file_path" : "frontend/src/components/GoogleMapsEmbed.tsx",
@@ -2266,15 +2291,20 @@
     "created_date" : "2024-07-28",
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
-    "description" : "Embeds an interactive Google Map showing the gym's location.",
-    "public_functions" : null,
+    "description" : "Embeds an interactive Google Map showing the gym's location, accepting latitude and longitude as props for dynamic centering.",
+    "public_functions" : [ {
+      "name" : "GoogleMapsEmbed",
+      "parameters" : [ "number latitude", "number longitude" ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders an embedded Google Map centered at the given coordinates."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "static-pages",
-    "file_role" : null
+    "file_role" : "COMPONENT layer — embeds an interactive Google Map showing the gym's location based on provided coordinates."
   }, {
     "file_name" : "leadService.ts",
     "file_path" : "frontend/src/services/leadService.ts",
@@ -2283,15 +2313,26 @@
     "created_date" : "2024-07-28",
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
-    "description" : "Provides functions for submitting lead capture form data to the backend.",
-    "public_functions" : null,
+    "description" : "Provides functions for submitting lead capture form data to the backend API, specifically for trial leads.",
+    "public_functions" : [ {
+      "name" : "submitTrialLead",
+      "parameters" : [ "CreateTrialLeadRequest lead" ],
+      "return_type" : "Promise<TrialLeadResponse>",
+      "description" : "Submits a new trial lead to the backend."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
-    "api_endpoints_consumed" : null,
+    "api_endpoints_consumed" : [ {
+      "method" : "POST",
+      "path" : "/api/v1/leads/trial",
+      "request_body" : null,
+      "response_body" : null,
+      "description" : "Submits a new trial lead to the lead-management-be feature."
+    } ],
     "imports_from" : [ "frontend/src/api/client.ts", "frontend/src/types/lead.ts" ],
     "depends_on" : [ ],
     "feature_name" : "static-pages",
-    "file_role" : null
+    "file_role" : "SERVICE layer — provides the `submitTrialLead(lead: CreateTrialLeadRequest): Promise<TrialLeadResponse>` function for submitting lead capture form data to the backend."
   }, {
     "file_name" : "useLeads.ts",
     "file_path" : "frontend/src/hooks/useLeads.ts",
@@ -2300,15 +2341,20 @@
     "created_date" : "2024-07-28",
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
-    "description" : "React Query hook for submitting new trial leads.",
-    "public_functions" : null,
+    "description" : "React Query hook for submitting new trial leads, providing mutation capabilities and managing loading/error states.",
+    "public_functions" : [ {
+      "name" : "useSubmitTrialLead",
+      "parameters" : [ ],
+      "return_type" : "UseMutationResult<TrialLeadResponse, Error, CreateTrialLeadRequest>",
+      "description" : "Provides a mutation function to submit trial lead data."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/services/leadService.ts", "frontend/src/types/lead.ts" ],
     "depends_on" : [ ],
     "feature_name" : "static-pages",
-    "file_role" : null
+    "file_role" : "HOOK layer — a React Query hook `useSubmitTrialLead()` for submitting new trial leads via `leadService`."
   }, {
     "file_name" : "lead.ts",
     "file_path" : "frontend/src/types/lead.ts",
@@ -2317,15 +2363,23 @@
     "created_date" : "2024-07-28",
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
-    "description" : "TypeScript types for trial lead data.",
+    "description" : "TypeScript types and interfaces for trial lead data, ensuring type safety for lead capture forms and API interactions.",
     "public_functions" : null,
-    "public_variables" : null,
+    "public_variables" : [ {
+      "name" : "CreateTrialLeadRequest",
+      "type" : "{ name: string; email: string; phone: string; }",
+      "description" : "Interface for the request body when creating a new trial lead, matching TrialLeadDto from lead-management-be."
+    }, {
+      "name" : "TrialLeadResponse",
+      "type" : "{ id: string; name: string; email: string; phone: string; submissionDate: string; }",
+      "description" : "Interface for the response body after a trial lead is created, matching TrialLeadDto from lead-management-be."
+    } ],
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "static-pages",
-    "file_role" : null
+    "file_role" : "TypeScript types for trial lead data, defining the request and response structures for lead submission."
   }, {
     "file_name" : "MembershipsPage.tsx",
     "file_path" : "frontend/src/pages/MembershipsPage.tsx",
@@ -2806,7 +2860,7 @@
     "feature_display_name" : "Frontend: Static & Marketing Pages",
     "feature_type" : "FRONTEND",
     "file_paths" : [ "frontend/src/pages/HomePage.tsx", "frontend/src/pages/ContactPage.tsx", "frontend/src/components/TrialForm.tsx", "frontend/src/components/TestimonialsSection.tsx", "frontend/src/components/SocialFeed.tsx", "frontend/src/components/GoogleMapsEmbed.tsx", "frontend/src/services/leadService.ts", "frontend/src/hooks/useLeads.ts", "frontend/src/types/lead.ts" ],
-    "feature_instruction" : null,
+    "feature_instruction" : "## Design Tokens\n- Navbar: bg-[#1A1A1A] text-[#F5F5F5]\n- Primary CTA: bg-[#DFFF00] hover:bg-opacity-80 text-[#1A1A1A] font-bold rounded-full px-8 py-3 transition-all duration-200\n- Brand text accent: text-[#DFFF00]\n- Section bg (dark): bg-[#1A1A1A] text-[#F5F5F5]\n- Section bg (medium dark): bg-[#333333] text-[#F5F5F5]\n- Card: bg-[#333333] rounded-xl shadow-lg border border-[#1A1A1A] p-6 text-[#F5F5F5]\n- Section container: <section className=\"py-16 px-4\"><div className=\"max-w-7xl mx-auto\">\n- Hero h1: text-4xl md:text-6xl font-extrabold text-[#DFFF00]\n- Body: text-[#F5F5F5] leading-relaxed\n\nThis feature implements the public-facing static and marketing pages for MultiFit Aundh, including the landing page, contact page, and supporting components. It focuses on lead generation through a '3-Day Trial' form and showcasing the gym's vibrant community and offerings. The pages are designed to be energetic, bold, and modern, aligning with the brand's identity as 'the antidote to boring gyms,' using the defined design tokens for a consistent visual experience. Data for testimonials is fetched from the `content-management-be` feature, and trial lead submissions are handled by the `lead-management-be` feature.\n\n### HomePage.tsx\nThis page serves as the main landing page for MultiFit Aundh. It should be structured into several key sections:\n1.  **Hero Section**: A full-width section with a dynamic background image (Unsplash URL: https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1920&q=80) with a `bg-black bg-opacity-50` overlay. It features a prominent `h1` headline: \"UNLEASH YOUR POTENTIAL AT MULTIFIT AUNDH\" and a sub-headline: \"Experience the energy, embrace the community. Your fitness journey starts here.\" Below the headlines, include a call-to-action button: \"START YOUR 3-DAY FREE TRIAL\" styled with the Primary CTA tokens, which scrolls down to the Trial Form section.\n2.  **Trial Form Section**: This section, styled with `Section bg (dark)` tokens, prominently displays the `TrialForm` component. It should have a heading: \"CLAIM YOUR FREE 3-DAY TRIAL\" and a sub-heading encouraging sign-ups.\n3.  **Class Highlights Section**: This section, styled with `Section bg (medium dark)` tokens, showcases a few key class types offered by MultiFit Aundh (e.g., \"High-Intensity Interval Training\", \"Yoga & Flexibility\", \"Strength & Conditioning\"). Each highlight should include a brief description and an image. This section should have a heading: \"OUR CLASSES: FIND YOUR FIRE.\"\n4.  **Testimonials Section**: This section, styled with `Section bg (dark)` tokens, integrates the `TestimonialsSection` component to display customer reviews. It should have a heading: \"WHAT OUR MEMBERS SAY: REAL RESULTS, REAL COMMUNITY.\"\n5.  **Social Feed Section**: This section, styled with `Section bg (medium dark)` tokens, integrates the `SocialFeed` component to display links to MultiFit Aundh's social media profiles. It should have a heading: \"JOIN THE MULTIFIT AUNDH COMMUNITY ONLINE.\"\nAll content on the page must be wrapped in the `<Layout>` component from `shared-ui`.\n\n### ContactPage.tsx\nThis page provides all necessary contact information for MultiFit Aundh. It should be structured into the following sections:\n1.  **Hero Section**: A smaller hero section with a background image (can reuse the gym image or a relevant one) and a simple `h1` headline: \"GET IN TOUCH WITH MULTIFIT AUNDH\".\n2.  **Contact Details Section**: This section, styled with `Section bg (dark)` tokens, displays the gym's address, phone number, and opening hours. Use the exact business context details:\n    -   **Address**: Multifit Aundh , D.P. Road Medipoint Hospital Road, opp. to Indian Bank, Aundh, Pune, Maharashtra 411067\n    -   **Phone**: 075070 08009\n    -   **Opening Hours**: Monday - Saturday: 6:00 AM - 10:00 PM, Sunday: 8:00 AM - 6:00 PM (placeholder, as not provided in context).\n3.  **Contact Form Section**: This section, styled with `Section bg (medium dark)` tokens, includes a simple contact form with fields for Name, Email, Subject, and Message. This form will be a client-side only form for now, with no backend integration in this feature. A submit button should be styled with `Primary CTA` tokens.\n4.  **Google Map Section**: This section, styled with `Section bg (dark)` tokens, integrates the `GoogleMapsEmbed` component to display the gym's location using the coordinates `18.562876, 73.784389`. It should have a heading: \"FIND US HERE.\"\nAll content on the page must be wrapped in the `<Layout>` component from `shared-ui`.\n\n### TrialForm.tsx\nThis component is a reusable form for capturing trial lead information. It uses `react-hook-form` and `zod` for validation. The form should have fields for `name`, `email`, and `phone`. Upon successful submission, it calls the `useSubmitTrialLead` hook. The form fields should have appropriate labels and placeholders. The submit button should be styled with `Primary CTA` tokens.\n\n### TestimonialsSection.tsx\nThis component displays a carousel or grid of customer testimonials. It utilizes the `useContent` hook from the `content-display-ui` feature to fetch testimonials. Each testimonial card should display the `author`, `text`, and `rating` (e.g., as star icons). The cards should be styled with `Card` tokens. The component should handle loading and error states gracefully.\n\n### SocialFeed.tsx\nThis is a simple presentational component that displays links to MultiFit Aundh's social media profiles (e.g., Instagram, Facebook, Twitter). It should use icons for each social media platform and link to placeholder URLs. The links should be styled to fit the overall dark theme.\n\n### GoogleMapsEmbed.tsx\nThis component embeds an interactive Google Map. It accepts `latitude` and `longitude` as props to center the map on the gym's location. The map should be responsive and display a marker at the specified coordinates. The component should use an `iframe` to embed the map, constructing the `src` URL with the provided coordinates.\n\n### leadService.ts\nThis service file provides the `submitTrialLead` function, which is responsible for making the API call to the `lead-management-be` feature to record new trial leads. It uses the `apiClient` from `frontend/src/api/client.ts`.\n\n### useLeads.ts\nThis React Query hook provides a mutation for submitting trial lead data. It wraps the `leadService.submitTrialLead` function, providing `isLoading`, `isError`, `isSuccess`, and `error` states, and a `mutate` function for form submission. It should invalidate relevant queries if needed (though none are present for leads in this feature).\n\n### lead.ts\nThis file defines the TypeScript interfaces for the trial lead data, ensuring type safety across the frontend application when dealing with lead information. These interfaces should align with the `TrialLeadDto` data shape from the `lead-management-be` feature.\n",
     "change_required" : true
   }, {
     "feature_name" : "membership-flow",
