@@ -2389,14 +2389,19 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Displays available membership plans in a bold pricing table with clear calls-to-action.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "MembershipsPage",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders the page displaying all active membership plans."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/hooks/useMemberships.ts", "frontend/src/types/membership.ts" ],
     "depends_on" : [ ],
     "feature_name" : "membership-flow",
-    "file_role" : null
+    "file_role" : "PAGE layer — displays available membership plans and provides calls-to-action for purchase."
   }, {
     "file_name" : "AccountPage.tsx",
     "file_path" : "frontend/src/pages/AccountPage.tsx",
@@ -2406,14 +2411,19 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Authenticated user's portal to view their current membership, payment history, and booked classes.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "AccountPage",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders the user's account dashboard, showing membership and bookings."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/hooks/useMemberships.ts", "frontend/src/hooks/useBookings.ts" ],
     "depends_on" : [ ],
     "feature_name" : "membership-flow",
-    "file_role" : null
+    "file_role" : "PAGE layer — provides an authenticated user's portal to view their current membership and booked classes."
   }, {
     "file_name" : "membershipService.ts",
     "file_path" : "frontend/src/services/membershipService.ts",
@@ -2423,14 +2433,47 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Service functions for fetching membership plans and managing user subscriptions.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "getAllMembershipPlans",
+      "parameters" : [ ],
+      "return_type" : "Promise<MembershipPlanDto[]>",
+      "description" : "Fetches all active membership plans from the backend."
+    }, {
+      "name" : "getUserActiveMembership",
+      "parameters" : [ ],
+      "return_type" : "Promise<UserMembershipDto | null>",
+      "description" : "Fetches the authenticated user's active membership from the backend."
+    }, {
+      "name" : "purchaseMembership",
+      "parameters" : [ "string planId" ],
+      "return_type" : "Promise<UserMembershipDto>",
+      "description" : "Initiates a membership purchase for the authenticated user."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
-    "api_endpoints_consumed" : null,
+    "api_endpoints_consumed" : [ {
+      "method" : "GET",
+      "path" : "/api/v1/memberships/plans",
+      "request_body" : null,
+      "response_body" : null,
+      "description" : "Fetches a list of all active membership plans."
+    }, {
+      "method" : "GET",
+      "path" : "/api/v1/memberships/my-membership",
+      "request_body" : null,
+      "response_body" : null,
+      "description" : "Fetches the authenticated user's active membership."
+    }, {
+      "method" : "POST",
+      "path" : "/api/v1/memberships/purchase/{planId}",
+      "request_body" : null,
+      "response_body" : null,
+      "description" : "Purchases a membership plan for the authenticated user."
+    } ],
     "imports_from" : [ "frontend/src/api/client.ts", "frontend/src/types/membership.ts" ],
     "depends_on" : [ ],
     "feature_name" : "membership-flow",
-    "file_role" : null
+    "file_role" : "SERVICE layer — implements functions for fetching membership plans and managing user subscriptions by interacting with the backend API."
   }, {
     "file_name" : "useMemberships.ts",
     "file_path" : "frontend/src/hooks/useMemberships.ts",
@@ -2440,14 +2483,29 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "React Query hooks for fetching membership plans and user-specific membership data.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "useAllMembershipPlans",
+      "parameters" : [ ],
+      "return_type" : "UseQueryResult<MembershipPlanDto[], Error>",
+      "description" : "React Query hook to fetch all active membership plans."
+    }, {
+      "name" : "useUserActiveMembership",
+      "parameters" : [ ],
+      "return_type" : "UseQueryResult<UserMembershipDto | null, Error>",
+      "description" : "React Query hook to fetch the authenticated user's active membership."
+    }, {
+      "name" : "usePurchaseMembership",
+      "parameters" : [ ],
+      "return_type" : "UseMutationResult<UserMembershipDto, Error, string>",
+      "description" : "React Query hook to purchase a membership plan."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/services/membershipService.ts", "frontend/src/types/membership.ts" ],
     "depends_on" : [ ],
     "feature_name" : "membership-flow",
-    "file_role" : null
+    "file_role" : "HOOK layer — provides React Query hooks for fetching membership plans and user-specific membership data, wrapping `membershipService.ts`."
   }, {
     "file_name" : "membership.ts",
     "file_path" : "frontend/src/types/membership.ts",
@@ -2458,13 +2516,29 @@
     "status" : "PLANNED",
     "description" : "TypeScript types and interfaces for membership plans and user subscriptions.",
     "public_functions" : null,
-    "public_variables" : null,
+    "public_variables" : [ {
+      "name" : "MembershipPlanDto",
+      "type" : "{ id: string; name: string; description: string; price: number; durationInMonths: number; isActive: boolean; }",
+      "description" : "Interface for a membership plan, mirroring backend's MembershipPlanDto."
+    }, {
+      "name" : "UserDto",
+      "type" : "{ id: string; email: string; firstName: string; lastName: string; }",
+      "description" : "Simplified interface for user details within a UserMembershipDto."
+    }, {
+      "name" : "MembershipStatus",
+      "type" : "enum",
+      "description" : "Enum representing the status of a user's membership (ACTIVE, EXPIRED, CANCELLED, PENDING)."
+    }, {
+      "name" : "UserMembershipDto",
+      "type" : "{ id: string; user: UserDto; membershipPlan: MembershipPlanDto; startDate: string; endDate: string; status: MembershipStatus; }",
+      "description" : "Interface for a user's active membership, mirroring backend's UserMembershipDto."
+    } ],
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "membership-flow",
-    "file_role" : null
+    "file_role" : "Generated from the backend API contract — defines TypeScript interfaces and enums for membership plans and user subscriptions."
   }, {
     "file_name" : "SchedulePage.tsx",
     "file_path" : "frontend/src/pages/SchedulePage.tsx",
@@ -2867,7 +2941,7 @@
     "feature_display_name" : "Frontend: Membership & Account",
     "feature_type" : "FRONTEND",
     "file_paths" : [ "frontend/src/pages/MembershipsPage.tsx", "frontend/src/pages/AccountPage.tsx", "frontend/src/services/membershipService.ts", "frontend/src/hooks/useMemberships.ts", "frontend/src/types/membership.ts" ],
-    "feature_instruction" : null,
+    "feature_instruction" : "## Design Tokens\n- Navbar: bg-[#1A1A1A] text-[#F5F5F5]\n- Primary CTA: bg-[#DFFF00] hover:bg-[#c2e600] text-[#1A1A1A] font-semibold rounded-full px-8 py-3 transition-all duration-200\n- Brand text accent: text-[#DFFF00]\n- Section bg: bg-[#1A1A1A] (dark sections) / bg-[#333333] (slightly lighter sections) text-[#F5F5F5]\n- Card: bg-[#333333] rounded-xl shadow-md border border-gray-700 p-6 text-[#F5F5F5]\n- Section container: <section className=\"py-16 px-4 bg-[#1A1A1A] text-[#F5F5F5]\"><div className=\"max-w-7xl mx-auto\">\n- Hero h1: text-4xl md:text-6xl font-bold text-[#F5F5F5]\n- Body: text-gray-300 leading-relaxed\n\nThis feature provides the frontend user interface for viewing available membership plans and managing a user's account, including their current membership and booked classes. It consists of two main pages: `MembershipsPage.tsx` for displaying plans and `AccountPage.tsx` for user-specific information. These pages leverage `membershipService.ts` and `useMemberships.ts` for data fetching related to memberships, and integrate with the `class-booking-ui` feature's `useBookings.ts` for managing class bookings.\n\n### `MembershipsPage.tsx`\nThis page displays all active membership plans from MultiFit Aundh in an engaging pricing table format. It uses the `Layout` component from `shared-ui` for consistent navigation and footer.\n\n1.  **Hero Section**: A full-width hero section with a dynamic background image (`https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1920&q=80`) and a `bg-black bg-opacity-50` overlay. The main headline will be \"Unleash Your Potential at MultiFit Aundh\" (using `Hero h1` tokens) and a subheadline \"Join our vibrant community and transform your fitness journey with flexible membership plans.\" (using `Body` tokens).\n2.  **Membership Plans Section**: This section will fetch all active membership plans using `useMemberships.useAllMembershipPlans()`. It will display each `MembershipPlanDto` in a card-like structure (using `Card` tokens) within a responsive grid.\n    *   Each card will clearly show the `name`, `price` (formatted as currency), `durationInMonths`, and `description` of the plan.\n    *   A \"Choose Plan\" button (using `Primary CTA` tokens) will be present on each card. This button will eventually trigger the `useMemberships.usePurchaseMembership()` mutation, passing the `id` of the selected plan. For now, it can be a placeholder.\n3.  **Call to Action Section**: A concluding section encouraging users to sign up. It will feature a heading \"Ready to Start Your Transformation?\" and a sub-heading \"Become a part of MultiFit Aundh today and experience fitness like never before.\" with a prominent \"Join MultiFit Now\" button (using `Primary CTA` tokens).\n\n### `AccountPage.tsx`\nThis page serves as the authenticated user's personal portal, displaying their current membership status, booked classes, and a placeholder for payment history. It also uses the `Layout` component from `shared-ui`.\n\n1.  **User Dashboard Section**: A welcoming section with a heading \"Welcome, [User's First Name]!\" and a sub-heading \"Your MultiFit Aundh Account Overview.\"\n2.  **Current Membership Section**: This section fetches the user's active membership using `useMemberships.useUserActiveMembership()`. If an active membership (`UserMembershipDto`) is found, it displays details such as `membershipPlan.name`, `startDate`, `endDate`, and `status`. If no active membership is found, it prompts the user to visit the `MembershipsPage` with a \"View Plans\" button (using `Primary CTA` tokens).\n    *   A \"Manage Membership\" button (using `Primary CTA` tokens) will be present, serving as a placeholder for future functionality like upgrading or canceling.\n3.  **Your Booked Classes Section**: This section integrates with the `class-booking-ui` feature by using `useBookings.useUserBookings()` (from `frontend/src/hooks/useBookings.ts`). It displays a list of the user's `ClassBookingDto`s.\n    *   Each booking entry will show the `gymClass.name`, `gymClass.date`, `gymClass.startTime`, and `gymClass.trainerName`.\n    *   A \"Cancel Booking\" button will be available for each booking. Clicking this button will trigger the `useBookings.useCancelBooking()` mutation, passing the `id` of the `ClassBookingDto`.\n4.  **Payment History Section**: A placeholder section with the heading \"Payment History\" and content \"Your payment history will appear here.\" for future integration.\n\n### `membershipService.ts`\nThis service file acts as a client for the `membership-payment-be` backend API. It uses the shared `client` from `frontend/src/api/client.ts` to make HTTP requests.\n\n1.  `getAllMembershipPlans()`: Makes a GET request to `/api/v1/memberships/plans` to retrieve a list of all active `MembershipPlanDto`s.\n2.  `getUserActiveMembership()`: Makes a GET request to `/api/v1/memberships/my-membership` to retrieve the currently authenticated user's active `UserMembershipDto`. It should handle a 404 response by returning `null` if no active membership is found.\n3.  `purchaseMembership(planId: string)`: Makes a POST request to `/api/v1/memberships/purchase/{planId}` to initiate a membership purchase for the authenticated user with the specified `planId`. It returns the newly created `UserMembershipDto`.\n\n### `useMemberships.ts`\nThis file provides React Query hooks that abstract the data fetching and mutation logic for membership-related operations. It utilizes `membershipService.ts`.\n\n1.  `useAllMembershipPlans()`: A `useQuery` hook to fetch all active membership plans. Its `queryKey` is `['membershipPlans']`.\n2.  `useUserActiveMembership()`: A `useQuery` hook to fetch the authenticated user's active membership. Its `queryKey` is `['userActiveMembership']`.\n3.  `usePurchaseMembership()`: A `useMutation` hook for purchasing a membership. Upon successful purchase, it invalidates the `['userActiveMembership']` and `['membershipPlans']` queries to ensure the UI reflects the updated membership status and potentially updated plan availability.\n\n### `membership.ts`\nThis file defines the TypeScript interfaces and enums that mirror the DTOs and enums exposed by the `membership-payment-be` backend feature. These types ensure strong typing across the frontend application when dealing with membership data.\n\n1.  `MembershipPlanDto`: Interface for membership plan data.\n2.  `UserDto`: A simplified interface for user data, containing `id`, `email`, `firstName`, and `lastName`.\n3.  `MembershipStatus`: An enum representing the possible statuses of a user's membership (e.g., ACTIVE, EXPIRED, CANCELLED, PENDING).\n4.  `UserMembershipDto`: Interface for a user's specific membership, including references to `UserDto` and `MembershipPlanDto`.\n",
     "change_required" : true
   }, {
     "feature_name" : "class-booking-ui",
