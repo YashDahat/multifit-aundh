@@ -38,8 +38,8 @@ const TrainerDetailPage = () => {
               {/* Image Column */}
               <div className="md:w-1/3 flex-shrink-0">
                 <img
-                  src={trainer.photoUrl}
-                  alt={trainer.name}
+                  src={trainer.photoUrl ?? undefined}
+                  alt={trainer.name ?? undefined}
                   className="w-full h-auto rounded-xl object-cover border-2 border-[#DFFF00]"
                 />
               </div>

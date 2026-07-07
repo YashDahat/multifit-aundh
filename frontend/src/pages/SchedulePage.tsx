@@ -8,8 +8,7 @@ import {
   useUserBookings,
 } from '@/hooks/useGymClasses';
 import { useCancelBooking } from '@/hooks/useBookings';
-import type { GymClassDto, ClassBookingDto } from '@/types/gymClass';
-import clsx from 'clsx';
+import type { GymClassDto } from '@/types/gymClass';
 
 // Placeholder for useAuth hook as it's not provided in dependencies.
 // In a real application, this would be imported from an authentication context/hook

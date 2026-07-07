@@ -67,7 +67,7 @@ const TestimonialsSection: React.FC = () => {
             >
               <div>
                 <p className="text-lg italic mb-4 leading-relaxed">
-                  "{testimonial.description}"
+                  "{testimonial.bio}"
                 </p>
               </div>
               <p className="font-semibold text-[#DFFF00] text-right mt-4">- {testimonial.name}</p>

@@ -1,6 +1,5 @@
 import { Link, useNavigate } from 'react-router-dom';
-import { useAuth } from '../../context/AuthContext';
-import clsx from 'clsx';
+import useAuth from '@/hooks/useAuth';
 
 const Header = () => {
   const { isAuthenticated, logout } = useAuth();

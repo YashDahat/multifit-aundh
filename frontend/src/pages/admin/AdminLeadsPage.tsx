@@ -2,7 +2,7 @@ import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 import AdminLayout from '@/components/AdminLayout';
 import { TrialLeadDto } from '@/types/lead'; // Assumed path based on rules
-import { trialLeadService } from '@/services/trialLeadService'; // Assumed path based on rules
+import * as trialLeadService from '@/services/leadService';
 
 const AdminLeadsPage: React.FC = () => {
   const { data: leads, isLoading, isError, error } = useQuery<TrialLeadDto[], Error>({

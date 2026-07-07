@@ -11,7 +11,6 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 import {
   Dialog,
   DialogContent,
-  DialogHeader,
   DialogTitle,
   DialogTrigger,
 } from '@radix-ui/react-dialog';
@@ -21,28 +20,21 @@ import {
   AlertDialogCancel,
   AlertDialogContent,
   AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
 } from '@radix-ui/react-alert-dialog';
-import { Label } from '@radix-ui/react-label';
-import { Textarea } from '@/components/ui/textarea'; // Assuming Textarea exists in ui components
+import { Label } from '@/components/ui/label';
+import { Textarea } from '@/components/ui/textarea';
 
-// Assuming these types and services exist as per the prompt's ground truth rule
-// and are derived from the backend contract.
 interface Testimonial {
-  id: string; // UUID
+  id: string;
   author: string;
   text: string;
-  rating: number; // Integer
+  rating: number;
 }
 
-// Placeholder for actual service calls
-// In a real scenario, these would be imported from frontend/src/services/testimonialService.ts
 const testimonialService = {
   getAllTestimonials: async (): Promise<Testimonial[]> => {
-    // Simulate API call
     return new Promise((resolve) =>
       setTimeout(
         () =>
@@ -55,17 +47,14 @@ const testimonialService = {
     );
   },
   createTestimonial: async (testimonial: Omit<Testimonial, 'id'>): Promise<Testimonial> => {
-    console.log('Creating testimonial:', testimonial);
     return new Promise((resolve) =>
       setTimeout(() => resolve({ ...testimonial, id: crypto.randomUUID() }), 500)
     );
   },
   updateTestimonial: async (id: string, testimonial: Omit<Testimonial, 'id'>): Promise<Testimonial> => {
-    console.log('Updating testimonial:', id, testimonial);
     return new Promise((resolve) => setTimeout(() => resolve({ ...testimonial, id }), 500));
   },
   deleteTestimonial: async (id: string): Promise<void> => {
-    console.log('Deleting testimonial:', id);
     return new Promise((resolve) => setTimeout(() => resolve(), 500));
   },
 };
@@ -73,7 +62,7 @@ const testimonialService = {
 const testimonialSchema = z.object({
   author: z.string().min(1, 'Author is required'),
   text: z.string().min(1, 'Testimonial text is required'),
-  rating: z.coerce.number().min(1, 'Rating must be at least 1').max(5, 'Rating cannot exceed 5'),
+  rating: z.number().min(1, 'Rating must be at least 1').max(5, 'Rating cannot exceed 5'),
 });
 
 type TestimonialFormValues = z.infer<typeof testimonialSchema>;
@@ -182,10 +171,10 @@ const AdminTestimonialsPage: React.FC = () => {
                     Add New Testimonial
                   </Button>
                 </DialogTrigger>
-                <DialogContent className="fixed left-[50%] top-[50%] z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border bg-background p-6 shadow-lg duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] sm:rounded-lg">
-                  <DialogHeader>
+                <DialogContent className="fixed left-[50%] top-[50%] z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border bg-white p-6 shadow-lg sm:rounded-lg">
+                  <div className="flex flex-col space-y-1.5">
                     <DialogTitle>{editingTestimonial ? 'Edit Testimonial' : 'Create New Testimonial'}</DialogTitle>
-                  </DialogHeader>
+                  </div>
                   <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
                     <div>
                       <Label htmlFor="author">Author</Label>
@@ -210,7 +199,7 @@ const AdminTestimonialsPage: React.FC = () => {
                       <Input
                         id="rating"
                         type="number"
-                        {...register('rating')}
+                        {...register('rating', { valueAsNumber: true })}
                         className="border border-gray-300 rounded-md p-2 focus:ring-2 focus:ring-[#DFFF00] focus:border-transparent"
                       />
                       {errors.rating && <p className="text-red-500 text-sm mt-1">{errors.rating.message}</p>}
@@ -266,15 +255,15 @@ const AdminTestimonialsPage: React.FC = () => {
                                 Delete
                               </Button>
                             </AlertDialogTrigger>
-                            <AlertDialogContent className="fixed left-[50%] top-[50%] z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border bg-background p-6 shadow-lg duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] sm:rounded-lg">
-                              <AlertDialogHeader>
+                            <AlertDialogContent className="fixed left-[50%] top-[50%] z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border bg-white p-6 shadow-lg sm:rounded-lg">
+                              <div className="flex flex-col space-y-1.5">
                                 <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
                                 <AlertDialogDescription>
                                   This action cannot be undone. This will permanently delete the testimonial by{' '}
                                   <strong>{testimonial.author}</strong>.
                                 </AlertDialogDescription>
-                              </AlertDialogHeader>
-                              <AlertDialogFooter>
+                              </div>
+                              <div className="flex justify-end space-x-2">
                                 <AlertDialogCancel className="bg-[#333333] hover:bg-gray-700 text-[#F5F5F5] font-semibold rounded-md px-4 py-2 transition-all duration-200">
                                   Cancel
                                 </AlertDialogCancel>
@@ -285,7 +274,7 @@ const AdminTestimonialsPage: React.FC = () => {
                                 >
                                   Delete
                                 </AlertDialogAction>
-                              </AlertDialogFooter>
+                              </div>
                             </AlertDialogContent>
                           </AlertDialog>
                         </TableCell>

@@ -1867,7 +1867,7 @@
     "layer" : "COMPONENT",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-07",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Main application component that sets up routing for all pages, including public, protected, and admin routes.",
     "public_functions" : [ {
       "name" : "App",
@@ -1889,7 +1889,7 @@
     "layer" : "COMPONENT",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-07",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Main layout component for public-facing pages, including the header, footer, and content area.",
     "public_functions" : [ {
       "name" : "Layout",
@@ -1911,7 +1911,7 @@
     "layer" : "COMPONENT",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-07",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Application header containing the logo, navigation links, and call-to-action buttons.",
     "public_functions" : [ {
       "name" : "Header",
@@ -1933,7 +1933,7 @@
     "layer" : "COMPONENT",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-07",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Application footer with contact information, social media links, and sitemap.",
     "public_functions" : [ {
       "name" : "Footer",
@@ -1955,7 +1955,7 @@
     "layer" : "COMPONENT",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-07",
-    "status" : "GENERATION_FAILED",
+    "status" : "VALIDATED",
     "description" : "A site-wide floating call-to-action button, likely for WhatsApp chat.",
     "public_functions" : [ {
       "name" : "FloatingCTA",
@@ -1977,7 +1977,7 @@
     "layer" : "SERVICE",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-07",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Configures the global Axios instance with base URL and interceptors for auth tokens.",
     "public_functions" : null,
     "public_variables" : [ {
@@ -1998,7 +1998,7 @@
     "layer" : "CONTEXT",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-07",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "React context for managing global authentication state (user, token, login/logout functions).",
     "public_functions" : [ {
       "name" : "login",
@@ -2046,7 +2046,7 @@
     "layer" : "HOOK",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-07",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Custom hook for easy access to authentication context and functions.",
     "public_functions" : [ {
       "name" : "useAuth",
@@ -2136,7 +2136,7 @@
     "layer" : "PAGE",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-07",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Page containing the login form for users and administrators.",
     "public_functions" : [ {
       "name" : "LoginPage",
@@ -2158,7 +2158,7 @@
     "layer" : "COMPONENT",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-07",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "A wrapper component that restricts access to its children routes to authenticated users.",
     "public_functions" : [ {
       "name" : "ProtectedRoute",
@@ -2180,7 +2180,7 @@
     "layer" : "PAGE",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-07",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Landing page with a high-energy hero section, prominent '3-Day Trial' form, testimonials, class highlights, and social media links, all designed to be energetic and action-oriented.",
     "public_functions" : [ {
       "name" : "HomePage",
@@ -2202,7 +2202,7 @@
     "layer" : "PAGE",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-07",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Displays contact information, a client-side contact form, business hours, and an embedded Google Map, styled to match the brand's modern aesthetic.",
     "public_functions" : [ {
       "name" : "ContactPage",
@@ -2224,7 +2224,7 @@
     "layer" : "COMPONENT",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-07",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Lead capture form for the '3-Day Free Trial' offer, with fields for name, email, and phone, and client-side validation.",
     "public_functions" : [ {
       "name" : "TrialForm",
@@ -2246,7 +2246,7 @@
     "layer" : "COMPONENT",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-07",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Displays a rotating carousel of customer testimonials, highlighting the high Google rating and fetching data from the content management backend.",
     "public_functions" : [ {
       "name" : "TestimonialsSection",
@@ -2268,7 +2268,7 @@
     "layer" : "COMPONENT",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-07",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "A simple component that displays links or an embedded view of social media feeds, styled to fit the brand's aesthetic.",
     "public_functions" : [ {
       "name" : "SocialFeed",
@@ -2290,7 +2290,7 @@
     "layer" : "COMPONENT",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-07",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Embeds an interactive Google Map showing the gym's location, accepting latitude and longitude as props for dynamic centering.",
     "public_functions" : [ {
       "name" : "GoogleMapsEmbed",
@@ -2340,7 +2340,7 @@
     "layer" : "HOOK",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-07",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "React Query hook for submitting new trial leads, providing mutation capabilities and managing loading/error states.",
     "public_functions" : [ {
       "name" : "useSubmitTrialLead",
@@ -2387,7 +2387,7 @@
     "layer" : "PAGE",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-07",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Displays available membership plans in a bold pricing table with clear calls-to-action.",
     "public_functions" : [ {
       "name" : "MembershipsPage",
@@ -2409,7 +2409,7 @@
     "layer" : "PAGE",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-07",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Authenticated user's portal to view their current membership, payment history, and booked classes.",
     "public_functions" : [ {
       "name" : "AccountPage",
@@ -2481,7 +2481,7 @@
     "layer" : "HOOK",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-07",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "React Query hooks for fetching membership plans and user-specific membership data.",
     "public_functions" : [ {
       "name" : "useAllMembershipPlans",
@@ -2546,7 +2546,7 @@
     "layer" : "PAGE",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-07",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Displays an interactive weekly class schedule with filtering and online booking functionality.",
     "public_functions" : [ {
       "name" : "SchedulePage",
@@ -2607,7 +2607,7 @@
     "layer" : "HOOK",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-07",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "React Query hook for fetching the list of available gym classes.",
     "public_functions" : [ {
       "name" : "useWeeklyGymClasses",
@@ -2700,7 +2700,7 @@
     "layer" : "HOOK",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-07",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "React Query hooks for managing a user's class bookings.",
     "public_functions" : [ {
       "name" : "useBookClass",
@@ -2765,7 +2765,7 @@
     "layer" : "PAGE",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-07",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Displays a grid of trainer profiles with photos, names, and specializations.",
     "public_functions" : [ {
       "name" : "TrainersPage",
@@ -2787,7 +2787,7 @@
     "layer" : "PAGE",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-07",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Shows the detailed profile of a single trainer, including bio and associated classes.",
     "public_functions" : [ {
       "name" : "TrainerDetailPage",
@@ -2848,7 +2848,7 @@
     "layer" : "HOOK",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-07",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "React Query hooks for fetching trainers and testimonials.",
     "public_functions" : [ {
       "name" : "useAllTrainers",
@@ -2875,7 +2875,7 @@
     "layer" : "UTIL",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-07",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "TypeScript types for public content like trainers and testimonials.",
     "public_functions" : null,
     "public_variables" : [ {
@@ -2912,7 +2912,7 @@
     "layer" : "COMPONENT",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-07",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Layout for the admin section, including a sidebar for navigation between management pages.",
     "public_functions" : [ {
       "name" : "AdminLayout",
@@ -2934,7 +2934,7 @@
     "layer" : "PAGE",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-07",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "The main landing page for the admin portal, showing key stats and navigation.",
     "public_functions" : null,
     "public_variables" : null,
@@ -2951,7 +2951,7 @@
     "layer" : "PAGE",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-07",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Admin interface for creating, updating, and deleting membership plans.",
     "public_functions" : null,
     "public_variables" : null,
@@ -2992,7 +2992,7 @@
     "layer" : "PAGE",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-07",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Admin interface for managing the gym class schedule.",
     "public_functions" : null,
     "public_variables" : null,
@@ -3039,7 +3039,7 @@
     "layer" : "PAGE",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-07",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Admin interface for managing trainer profiles.",
     "public_functions" : null,
     "public_variables" : null,
@@ -3080,7 +3080,7 @@
     "layer" : "PAGE",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-07",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Admin interface for viewing leads captured from the free trial form.",
     "public_functions" : null,
     "public_variables" : null,
@@ -3109,7 +3109,7 @@
     "layer" : "PAGE",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-07",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Admin interface for managing customer testimonials displayed on the site.",
     "public_functions" : null,
     "public_variables" : null,

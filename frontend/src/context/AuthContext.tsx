@@ -88,8 +88,9 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   // Login function
   const login = useCallback(async (email: string, password: string) => {
     try {
-      const response = await authService.login({ email, password });
-      const jwtToken = response.jwtToken;
+      const response = await authService.authenticateUser({ email, password });
+      const jwtToken = response.jwtToken ?? '';
+      if (!jwtToken) throw new Error('No token received.');
 
       localStorage.setItem('token', jwtToken);
       const decodedUser = decodeJwt(jwtToken);

@@ -19,12 +19,25 @@ import {
   TableRow,
 } from '@/components/ui/table';
 
-// Radix UI Dialog and AlertDialog
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogClose } from '@radix-ui/react-dialog';
-import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from '@radix-ui/react-alert-dialog';
+// Radix UI Dialog and AlertDialog (only use what they actually export)
+import {
+  Dialog,
+  DialogContent,
+  DialogTitle,
+  DialogTrigger,
+  DialogClose,
+} from '@radix-ui/react-dialog';
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from '@radix-ui/react-alert-dialog';
 
-// Inferred API types and service functions (assuming these are pre-generated ground truth)
-import type { MembershipPlanDto, CreateMembershipPlanRequest, UpdateMembershipPlanRequest } from '@/types/membership';
+import type { MembershipPlanDto } from '@/types/membership';
 import {
   getAllMembershipPlans,
   createMembershipPlan,
@@ -33,10 +46,10 @@ import {
 } from '@/services/membershipService';
 
 const membershipPlanSchema = z.object({
-  name: z.string().min(1, "Name is required"),
-  description: z.string().min(1, "Description is required"),
-  price: z.coerce.number().positive("Price must be a positive number"),
-  durationInMonths: z.coerce.number().int().positive("Duration must be a positive integer"),
+  name: z.string().min(1, 'Name is required'),
+  description: z.string().min(1, 'Description is required'),
+  price: z.number().positive('Price must be a positive number'),
+  durationInMonths: z.number().int().positive('Duration must be a positive integer'),
   isActive: z.boolean(),
 });
 
@@ -80,7 +93,8 @@ const AdminMembershipsPage: React.FC = () => {
   });
 
   const updateMutation = useMutation({
-    mutationFn: ({ id, data }: { id: string; data: UpdateMembershipPlanRequest }) => updateMembershipPlan(id, data),
+    mutationFn: ({ id, data }: { id: string; data: MembershipPlanDto }) =>
+      updateMembershipPlan(id, data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['membershipPlans'] });
       setIsFormDialogOpen(false);
@@ -98,19 +112,22 @@ const AdminMembershipsPage: React.FC = () => {
 
   const handleCreateOrUpdate = (values: MembershipPlanFormValues) => {
     if (editingPlan) {
-      updateMutation.mutate({ id: editingPlan.id, data: { ...values, id: editingPlan.id } });
+      updateMutation.mutate({
+        id: editingPlan.id ?? '',
+        data: { ...values, id: editingPlan.id },
+      });
     } else {
-      createMutation.mutate(values);
+      createMutation.mutate({ ...values, id: null });
     }
   };
 
   const openEditDialog = (plan: MembershipPlanDto) => {
     setEditingPlan(plan);
-    setValue('name', plan.name);
-    setValue('description', plan.description);
-    setValue('price', plan.price);
-    setValue('durationInMonths', plan.durationInMonths);
-    setValue('isActive', plan.isActive);
+    setValue('name', plan.name ?? '');
+    setValue('description', plan.description ?? '');
+    setValue('price', plan.price ?? 0);
+    setValue('durationInMonths', plan.durationInMonths ?? 1);
+    setValue('isActive', plan.isActive ?? true);
     setIsFormDialogOpen(true);
   };
 
@@ -142,7 +159,7 @@ const AdminMembershipsPage: React.FC = () => {
           <div className="max-w-7xl mx-auto">
             <h2 className="text-2xl md:text-3xl font-semibold text-[#1A1A1A] mb-6">Membership Plans</h2>
             <div className="bg-white rounded-lg shadow-sm p-6 text-red-600">
-              <p>Error loading membership plans: {error.message}</p>
+              <p>Error loading membership plans: {(error as Error).message}</p>
             </div>
           </div>
         </section>
@@ -170,12 +187,12 @@ const AdminMembershipsPage: React.FC = () => {
                   Add New Plan
                 </Button>
               </DialogTrigger>
-              <DialogContent className="fixed left-[50%] top-[50%] z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border bg-white p-6 shadow-lg duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] sm:rounded-lg">
-                <DialogHeader>
+              <DialogContent className="fixed left-[50%] top-[50%] z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border bg-white p-6 shadow-lg sm:rounded-lg">
+                <div className="flex flex-col space-y-1.5">
                   <DialogTitle className="text-xl font-semibold">
                     {editingPlan ? 'Edit Membership Plan' : 'Create New Membership Plan'}
                   </DialogTitle>
-                </DialogHeader>
+                </div>
                 <form onSubmit={handleSubmit(handleCreateOrUpdate)} className="space-y-4">
                   <div>
                     <Label htmlFor="name">Name</Label>
@@ -201,7 +218,7 @@ const AdminMembershipsPage: React.FC = () => {
                       id="price"
                       type="number"
                       step="0.01"
-                      {...register('price')}
+                      {...register('price', { valueAsNumber: true })}
                       className="border border-gray-300 rounded-md p-2 focus:ring-2 focus:ring-[#DFFF00] focus:border-transparent w-full"
                     />
                     {errors.price && <p className="text-red-500 text-sm mt-1">{errors.price.message}</p>}
@@ -211,7 +228,7 @@ const AdminMembershipsPage: React.FC = () => {
                     <Input
                       id="durationInMonths"
                       type="number"
-                      {...register('durationInMonths')}
+                      {...register('durationInMonths', { valueAsNumber: true })}
                       className="border border-gray-300 rounded-md p-2 focus:ring-2 focus:ring-[#DFFF00] focus:border-transparent w-full"
                     />
                     {errors.durationInMonths && <p className="text-red-500 text-sm mt-1">{errors.durationInMonths.message}</p>}
@@ -266,10 +283,10 @@ const AdminMembershipsPage: React.FC = () => {
                   </TableHeader>
                   <TableBody>
                     {membershipPlans.map((plan) => (
-                      <TableRow key={plan.id}>
+                      <TableRow key={plan.id ?? undefined}>
                         <TableCell className="font-medium">{plan.name}</TableCell>
                         <TableCell>{plan.description}</TableCell>
-                        <TableCell>${plan.price.toFixed(2)}</TableCell>
+                        <TableCell>${(plan.price ?? 0).toFixed(2)}</TableCell>
                         <TableCell>{plan.durationInMonths}</TableCell>
                         <TableCell>{plan.isActive ? 'Yes' : 'No'}</TableCell>
                         <TableCell className="text-right space-x-2">
@@ -291,31 +308,29 @@ const AdminMembershipsPage: React.FC = () => {
                                 Delete
                               </Button>
                             </AlertDialogTrigger>
-                            <AlertDialogContent className="fixed left-[50%] top-[50%] z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border bg-white p-6 shadow-lg duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] sm:rounded-lg">
-                              <AlertDialogHeader>
+                            <AlertDialogContent className="fixed left-[50%] top-[50%] z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border bg-white p-6 shadow-lg sm:rounded-lg">
+                              <div className="flex flex-col space-y-1.5">
                                 <AlertDialogTitle className="text-xl font-semibold">Are you absolutely sure?</AlertDialogTitle>
                                 <AlertDialogDescription>
                                   This action cannot be undone. This will permanently delete the membership plan &quot;{plan.name}&quot;.
                                 </AlertDialogDescription>
-                              </AlertDialogHeader>
-                              <AlertDialogFooter>
+                              </div>
+                              <div className="flex justify-end space-x-2">
                                 <AlertDialogCancel asChild>
-                                  <Button
-                                    className="bg-[#333333] hover:bg-gray-700 text-[#F5F5F5] font-semibold rounded-md px-4 py-2 transition-all duration-200"
-                                  >
+                                  <Button className="bg-[#333333] hover:bg-gray-700 text-[#F5F5F5] font-semibold rounded-md px-4 py-2 transition-all duration-200">
                                     Cancel
                                   </Button>
                                 </AlertDialogCancel>
                                 <AlertDialogAction asChild>
                                   <Button
                                     className="bg-red-600 hover:bg-red-700 text-white font-semibold rounded-md px-4 py-2 transition-all duration-200"
-                                    onClick={() => deleteMutation.mutate(plan.id)}
+                                    onClick={() => deleteMutation.mutate(plan.id ?? '')}
                                     disabled={deleteMutation.isPending}
                                   >
                                     Delete
                                   </Button>
                                 </AlertDialogAction>
-                              </AlertDialogFooter>
+                              </div>
                             </AlertDialogContent>
                           </AlertDialog>
                         </TableCell>

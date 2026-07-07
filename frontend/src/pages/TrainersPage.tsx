@@ -47,8 +47,8 @@ const TrainersPage: React.FC = () => {
                   className="bg-[#333333] rounded-xl shadow-md border border-gray-700 p-6 text-[#F5F5F5] flex flex-col items-center text-center"
                 >
                   <img
-                    src={trainer.photoUrl}
-                    alt={trainer.name}
+                    src={trainer.photoUrl ?? undefined}
+                    alt={trainer.name ?? undefined}
                     className="w-32 h-32 rounded-full object-cover mb-4 border-2 border-[#DFFF00]"
                   />
                   <h3 className="text-xl font-semibold text-[#F5F5F5] mb-1">

@@ -21,7 +21,6 @@ import {
   Dialog,
   DialogContent,
   DialogDescription,
-  DialogHeader,
   DialogTitle,
   DialogTrigger,
 } from '@radix-ui/react-dialog';
@@ -31,7 +30,6 @@ import {
   AlertDialogCancel,
   AlertDialogContent,
   AlertDialogDescription,
-  AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
 } from '@radix-ui/react-alert-dialog';
@@ -45,9 +43,13 @@ import {
 } from '@/components/ui/form';
 
 import type { TrainerDto } from '@/types/trainer';
-import { trainerService } from '@/services/trainerService';
+import {
+  getAllTrainers,
+  createTrainer,
+  updateTrainer,
+  deleteTrainer,
+} from '@/services/trainerService';
 
-// Zod schema for trainer form
 const trainerFormSchema = z.object({
   name: z.string().min(1, 'Name is required'),
   specialization: z.string().min(1, 'Specialization is required'),
@@ -72,15 +74,14 @@ const AdminTrainersPage: React.FC = () => {
     },
   });
 
-  // Fetch all trainers
   const { data: trainers, isLoading, isError } = useQuery<TrainerDto[]>({
     queryKey: ['trainers'],
-    queryFn: trainerService.getAllTrainers,
+    queryFn: getAllTrainers,
   });
 
-  // Create trainer mutation
   const createTrainerMutation = useMutation({
-    mutationFn: (newTrainer: TrainerFormValues) => trainerService.createTrainer(newTrainer),
+    mutationFn: (newTrainer: TrainerFormValues) =>
+      createTrainer({ ...newTrainer, id: null }),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['trainers'] });
       setIsDialogOpen(false);
@@ -88,10 +89,9 @@ const AdminTrainersPage: React.FC = () => {
     },
   });
 
-  // Update trainer mutation
   const updateTrainerMutation = useMutation({
     mutationFn: ({ id, updatedTrainer }: { id: string; updatedTrainer: TrainerFormValues }) =>
-      trainerService.updateTrainer(id, updatedTrainer),
+      updateTrainer(id, { ...updatedTrainer, id }),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['trainers'] });
       setIsDialogOpen(false);
@@ -100,9 +100,8 @@ const AdminTrainersPage: React.FC = () => {
     },
   });
 
-  // Delete trainer mutation
   const deleteTrainerMutation = useMutation({
-    mutationFn: (id: string) => trainerService.deleteTrainer(id),
+    mutationFn: (id: string) => deleteTrainer(id),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['trainers'] });
     },
@@ -110,7 +109,7 @@ const AdminTrainersPage: React.FC = () => {
 
   const onSubmit = (values: TrainerFormValues) => {
     if (editingTrainer) {
-      updateTrainerMutation.mutate({ id: editingTrainer.id, updatedTrainer: values });
+      updateTrainerMutation.mutate({ id: editingTrainer.id ?? '', updatedTrainer: values });
     } else {
       createTrainerMutation.mutate(values);
     }
@@ -125,10 +124,10 @@ const AdminTrainersPage: React.FC = () => {
   const handleEdit = (trainer: TrainerDto) => {
     setEditingTrainer(trainer);
     form.reset({
-      name: trainer.name,
-      specialization: trainer.specialization,
-      bio: trainer.bio,
-      photoUrl: trainer.photoUrl,
+      name: trainer.name ?? '',
+      specialization: trainer.specialization ?? '',
+      bio: trainer.bio ?? '',
+      photoUrl: trainer.photoUrl ?? '',
     });
     setIsDialogOpen(true);
   };
@@ -152,8 +151,8 @@ const AdminTrainersPage: React.FC = () => {
                   <Plus className="mr-2 h-4 w-4" /> Add New Trainer
                 </Button>
               </DialogTrigger>
-              <DialogContent className="fixed left-[50%] top-[50%] z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border bg-background p-6 shadow-lg duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] sm:rounded-lg bg-white">
-                <DialogHeader>
+              <DialogContent className="fixed left-[50%] top-[50%] z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border bg-white p-6 shadow-lg sm:rounded-lg">
+                <div className="flex flex-col space-y-1.5">
                   <DialogTitle className="text-xl font-bold text-[#1A1A1A]">
                     {editingTrainer ? 'Edit Trainer' : 'Create New Trainer'}
                   </DialogTitle>
@@ -162,7 +161,7 @@ const AdminTrainersPage: React.FC = () => {
                       ? 'Update the details of the trainer.'
                       : 'Fill in the details to add a new trainer.'}
                   </DialogDescription>
-                </DialogHeader>
+                </div>
                 <Form {...form}>
                   <form onSubmit={form.handleSubmit(onSubmit)} className="mt-4 space-y-4">
                     <FormField
@@ -287,7 +286,7 @@ const AdminTrainersPage: React.FC = () => {
                   </TableHeader>
                   <TableBody>
                     {trainers.map((trainer) => (
-                      <TableRow key={trainer.id}>
+                      <TableRow key={trainer.id ?? undefined}>
                         <TableCell className="font-medium">{trainer.name}</TableCell>
                         <TableCell>{trainer.specialization}</TableCell>
                         <TableCell>{trainer.bio}</TableCell>
@@ -295,7 +294,7 @@ const AdminTrainersPage: React.FC = () => {
                           {trainer.photoUrl ? (
                             <img
                               src={trainer.photoUrl}
-                              alt={trainer.name}
+                              alt={trainer.name ?? undefined}
                               className="h-12 w-12 object-cover rounded-full"
                             />
                           ) : (
@@ -321,8 +320,8 @@ const AdminTrainersPage: React.FC = () => {
                                 <Trash2 className="h-4 w-4" />
                               </Button>
                             </AlertDialogTrigger>
-                            <AlertDialogContent className="fixed left-[50%] top-[50%] z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border bg-background p-6 shadow-lg duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] sm:rounded-lg bg-white">
-                              <AlertDialogHeader>
+                            <AlertDialogContent className="fixed left-[50%] top-[50%] z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border bg-white p-6 shadow-lg sm:rounded-lg">
+                              <div className="flex flex-col space-y-1.5">
                                 <AlertDialogTitle className="text-xl font-bold text-[#1A1A1A]">
                                   Are you absolutely sure?
                                 </AlertDialogTitle>
@@ -330,15 +329,13 @@ const AdminTrainersPage: React.FC = () => {
                                   This action cannot be undone. This will permanently delete the{' '}
                                   <span className="font-semibold">{trainer.name}</span> trainer.
                                 </AlertDialogDescription>
-                              </AlertDialogHeader>
+                              </div>
                               <div className="flex justify-end space-x-2 mt-4">
-                                <AlertDialogCancel
-                                  className="bg-[#333333] hover:bg-gray-700 text-[#F5F5F5] font-semibold rounded-md px-4 py-2 transition-all duration-200"
-                                >
+                                <AlertDialogCancel className="bg-[#333333] hover:bg-gray-700 text-[#F5F5F5] font-semibold rounded-md px-4 py-2 transition-all duration-200">
                                   Cancel
                                 </AlertDialogCancel>
                                 <AlertDialogAction
-                                  onClick={() => handleDelete(trainer.id)}
+                                  onClick={() => handleDelete(trainer.id ?? '')}
                                   disabled={deleteTrainerMutation.isPending}
                                   className="bg-red-600 hover:bg-red-700 text-white font-semibold rounded-md px-4 py-2 transition-all duration-200"
                                 >
