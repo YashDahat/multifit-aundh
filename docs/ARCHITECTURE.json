@@ -1866,8 +1866,8 @@
     "file_type" : "FRONTEND",
     "layer" : "COMPONENT",
     "created_date" : "2024-07-28",
-    "updated_date" : "2024-07-28",
-    "status" : "PLANNED",
+    "updated_date" : "2026-07-07",
+    "status" : "GENERATED",
     "description" : "Main application component that sets up routing for all pages, including public, protected, and admin routes.",
     "public_functions" : [ {
       "name" : "App",
