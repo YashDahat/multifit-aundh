@@ -2548,14 +2548,19 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Displays an interactive weekly class schedule with filtering and online booking functionality.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "SchedulePage",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders the main class schedule page, fetching and displaying gym classes and user bookings."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/hooks/useGymClasses.ts", "frontend/src/hooks/useBookings.ts", "frontend/src/types/gymClass.ts" ],
     "depends_on" : [ ],
     "feature_name" : "class-booking-ui",
-    "file_role" : null
+    "file_role" : "PAGE layer — Displays an interactive weekly class schedule, allowing users to view classes, filter, and perform booking/cancellation actions."
   }, {
     "file_name" : "gymClassService.ts",
     "file_path" : "frontend/src/services/gymClassService.ts",
@@ -2565,14 +2570,36 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Service functions for fetching the gym class schedule from the backend.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "getWeeklySchedule",
+      "parameters" : [ "string startDate", "string endDate" ],
+      "return_type" : "Promise<GymClassDto[]>",
+      "description" : "Fetches a list of gym classes for a specified week from the backend."
+    }, {
+      "name" : "getGymClassById",
+      "parameters" : [ "string classId" ],
+      "return_type" : "Promise<GymClassDto>",
+      "description" : "Fetches details for a single gym class by its ID."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
-    "api_endpoints_consumed" : null,
+    "api_endpoints_consumed" : [ {
+      "method" : "GET",
+      "path" : "/api/v1/classes/weekly",
+      "request_body" : null,
+      "response_body" : null,
+      "description" : "Fetches a list of gym classes for a given date range."
+    }, {
+      "method" : "GET",
+      "path" : "/api/v1/classes/{classId}",
+      "request_body" : null,
+      "response_body" : null,
+      "description" : "Fetches details of a specific gym class by ID."
+    } ],
     "imports_from" : [ "frontend/src/api/client.ts", "frontend/src/types/gymClass.ts" ],
     "depends_on" : [ ],
     "feature_name" : "class-booking-ui",
-    "file_role" : null
+    "file_role" : "SERVICE layer — Provides asynchronous functions for fetching gym class data from the backend API."
   }, {
     "file_name" : "useGymClasses.ts",
     "file_path" : "frontend/src/hooks/useGymClasses.ts",
@@ -2582,14 +2609,19 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "React Query hook for fetching the list of available gym classes.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "useWeeklyGymClasses",
+      "parameters" : [ "string startDate", "string endDate" ],
+      "return_type" : "UseQueryResult<GymClassDto[], Error>",
+      "description" : "A React Query hook to fetch the weekly gym class schedule."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/services/gymClassService.ts", "frontend/src/types/gymClass.ts" ],
     "depends_on" : [ ],
     "feature_name" : "class-booking-ui",
-    "file_role" : null
+    "file_role" : "HOOK layer — Provides React Query hooks for fetching gym class data, abstracting service calls and managing caching."
   }, {
     "file_name" : "gymClass.ts",
     "file_path" : "frontend/src/types/gymClass.ts",
@@ -2600,13 +2632,17 @@
     "status" : "PLANNED",
     "description" : "TypeScript types and interfaces for gym class data.",
     "public_functions" : null,
-    "public_variables" : null,
+    "public_variables" : [ {
+      "name" : "GymClassDto",
+      "type" : "{ id: string; name: string; description: string; date: string; startTime: string; endTime: string; capacity: number; currentBookings: number; trainerId: string; trainerName: string; }",
+      "description" : "Data transfer object for gym class information."
+    } ],
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "class-booking-ui",
-    "file_role" : null
+    "file_role" : "Generated from the backend API contract — Defines TypeScript interfaces for gym class data."
   }, {
     "file_name" : "bookingService.ts",
     "file_path" : "frontend/src/services/bookingService.ts",
@@ -2616,14 +2652,47 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Service functions for creating, viewing, and canceling class bookings.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "bookClass",
+      "parameters" : [ "string classId" ],
+      "return_type" : "Promise<ClassBookingDto>",
+      "description" : "Sends a request to the backend to book a specific gym class for the authenticated user."
+    }, {
+      "name" : "cancelBooking",
+      "parameters" : [ "string bookingId" ],
+      "return_type" : "Promise<void>",
+      "description" : "Sends a request to the backend to cancel an existing class booking for the authenticated user."
+    }, {
+      "name" : "getUserBookings",
+      "parameters" : [ ],
+      "return_type" : "Promise<ClassBookingDto[]>",
+      "description" : "Fetches a list of all class bookings for the authenticated user from the backend."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
-    "api_endpoints_consumed" : null,
+    "api_endpoints_consumed" : [ {
+      "method" : "POST",
+      "path" : "/api/v1/classes/{classId}/book",
+      "request_body" : null,
+      "response_body" : null,
+      "description" : "Books a gym class for the authenticated user."
+    }, {
+      "method" : "DELETE",
+      "path" : "/api/v1/bookings/{bookingId}",
+      "request_body" : null,
+      "response_body" : null,
+      "description" : "Cancels an existing class booking for the authenticated user."
+    }, {
+      "method" : "GET",
+      "path" : "/api/v1/bookings/my-bookings",
+      "request_body" : null,
+      "response_body" : null,
+      "description" : "Retrieves all class bookings for the authenticated user."
+    } ],
     "imports_from" : [ "frontend/src/api/client.ts", "frontend/src/types/booking.ts" ],
     "depends_on" : [ ],
     "feature_name" : "class-booking-ui",
-    "file_role" : null
+    "file_role" : "SERVICE layer — Provides asynchronous functions for creating, viewing, and canceling class bookings via the backend API."
   }, {
     "file_name" : "useBookings.ts",
     "file_path" : "frontend/src/hooks/useBookings.ts",
@@ -2633,14 +2702,29 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "React Query hooks for managing a user's class bookings.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "useBookClass",
+      "parameters" : [ ],
+      "return_type" : "UseMutationResult<ClassBookingDto, Error, string>",
+      "description" : "A React Query mutation hook to book a gym class."
+    }, {
+      "name" : "useCancelBooking",
+      "parameters" : [ ],
+      "return_type" : "UseMutationResult<void, Error, string>",
+      "description" : "A React Query mutation hook to cancel a class booking."
+    }, {
+      "name" : "useUserBookings",
+      "parameters" : [ ],
+      "return_type" : "UseQueryResult<ClassBookingDto[], Error>",
+      "description" : "A React Query hook to fetch the authenticated user's class bookings."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/services/bookingService.ts", "frontend/src/types/booking.ts" ],
     "depends_on" : [ ],
     "feature_name" : "class-booking-ui",
-    "file_role" : null
+    "file_role" : "HOOK layer — Provides React Query hooks for managing user class bookings, abstracting service calls and managing caching."
   }, {
     "file_name" : "booking.ts",
     "file_path" : "frontend/src/types/booking.ts",
@@ -2651,13 +2735,29 @@
     "status" : "PLANNED",
     "description" : "TypeScript types and interfaces for class booking data.",
     "public_functions" : null,
-    "public_variables" : null,
+    "public_variables" : [ {
+      "name" : "UserPublicDto",
+      "type" : "{ id: string; email: string; firstName: string; lastName: string; }",
+      "description" : "Public data transfer object for user information."
+    }, {
+      "name" : "BookingStatus",
+      "type" : "'CONFIRMED' | 'CANCELLED'",
+      "description" : "Enum for the status of a class booking."
+    }, {
+      "name" : "ClassBookingDto",
+      "type" : "{ id: string; user: UserPublicDto; gymClass: GymClassDto; bookingTime: string; status: BookingStatus; }",
+      "description" : "Data transfer object for class booking information."
+    }, {
+      "name" : "CreateBookingRequest",
+      "type" : "{ classId: string; }",
+      "description" : "Request body for booking a new class."
+    } ],
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "class-booking-ui",
-    "file_role" : null
+    "file_role" : "Generated from the backend API contract — Defines TypeScript interfaces for class booking data."
   }, {
     "file_name" : "TrainersPage.tsx",
     "file_path" : "frontend/src/pages/TrainersPage.tsx",
@@ -2948,7 +3048,7 @@
     "feature_display_name" : "Frontend: Class Booking UI",
     "feature_type" : "FRONTEND",
     "file_paths" : [ "frontend/src/pages/SchedulePage.tsx", "frontend/src/services/gymClassService.ts", "frontend/src/hooks/useGymClasses.ts", "frontend/src/types/gymClass.ts", "frontend/src/services/bookingService.ts", "frontend/src/hooks/useBookings.ts", "frontend/src/types/booking.ts" ],
-    "feature_instruction" : null,
+    "feature_instruction" : "## Design Tokens\n- Navbar: bg-[#1A1A1A] text-[#F5F5F5]\n- Primary CTA: bg-[#DFFF00] hover:bg-[#B3CC00] text-[#1A1A1A] font-semibold rounded-full px-8 py-3 transition-all duration-200\n- Brand text accent: text-[#DFFF00]\n- Section bg: bg-[#F5F5F5] (odd sections) / bg-gray-100 (even sections)\n- Card: bg-white rounded-xl shadow-md border border-gray-100 p-6\n- Section container: <section className=\"py-16 px-4\"><div className=\"max-w-7xl mx-auto\">\n- Hero h1: text-4xl md:text-6xl font-bold text-white\n- Body: text-gray-700 leading-relaxed\n\nThis feature implements the frontend UI for displaying the gym class schedule and allowing users to book and manage their classes. It consists of a main schedule page, React Query hooks for data fetching and mutations, and frontend service layers that interact with the backend API. TypeScript types are defined to ensure strong typing throughout the application.\n\n### SchedulePage.tsx\n`SchedulePage.tsx` is the primary entry point for this feature. It will render an interactive weekly class schedule. The page will utilize the `Layout` component from `shared-ui` for consistent navigation and footer. The schedule will display classes grouped by day, showing details such as class name, time, trainer, and current booking status. Users will be able to filter classes (e.g., by date or trainer, though initial implementation focuses on weekly view). Each class entry will have a 'Book Now' or 'Cancel Booking' button, conditionally rendered based on user authentication and booking status.\n\n**Page Sections and Content:**\n1.  **Hero Section:**\n    *   Background: `url(https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1920&q=80)` with `<div className=\"absolute inset-0 bg-black bg-opacity-50\" />` overlay.\n    *   Headline: `<h1>Unleash Your Potential at MultiFit Aundh!</h1>` (text-4xl md:text-6xl font-bold text-white)\n    *   Subheadline: `<p className=\"mt-4 text-xl text-white\">Join our high-energy classes and transform your fitness journey.</p>`\n2.  **Weekly Schedule Section:**\n    *   Heading: `<h2 className=\"text-3xl font-bold text-[#1A1A1A] mb-8\">Our Dynamic Class Schedule</h2>`\n    *   A calendar navigation component (e.g., to select a week or day).\n    *   A grid or list displaying classes for the selected week/day. Each class card will show `name`, `startTime`, `endTime`, `trainerName`, `currentBookings`, and `capacity`.\n    *   Booking/Cancellation buttons: If a user is authenticated, a 'Book Now' button (Primary CTA style) will be shown if `currentBookings < capacity` and the user has not booked. If the user has booked, a 'Cancel Booking' button (e.g., bg-red-500) will be shown.\n    *   Loading state: Display a spinner or skeleton loader while `useWeeklyGymClasses` and `useUserBookings` are fetching data.\n    *   Error state: Display an error message if data fetching fails.\n\n### Data Flow and Interaction\n1.  `SchedulePage.tsx` will use the `useAuth` hook from `auth-flow` to check user authentication status and retrieve user details (specifically `userId`).\n2.  `SchedulePage.tsx` will call `useWeeklyGymClasses(startDate, endDate)` to fetch the weekly class schedule. This hook, in turn, calls `gymClassService.getWeeklySchedule(startDate, endDate)`. `gymClassService` makes an `axios` GET request to `/api/v1/classes/weekly` on the `class-scheduling-be` backend.\n3.  `SchedulePage.tsx` will also call `useUserBookings()` to fetch the currently logged-in user's bookings. This hook calls `bookingService.getUserBookings()`, which makes an `axios` GET request to `/api/v1/bookings/my-bookings` on the `class-scheduling-be` backend.\n4.  When a user clicks 'Book Now', `SchedulePage.tsx` will call `useBookClass().mutate(classId)`. This mutation hook calls `bookingService.bookClass(classId)`, which makes an `axios` POST request to `/api/v1/classes/{classId}/book` on the `class-scheduling-be` backend.\n5.  When a user clicks 'Cancel Booking', `SchedulePage.tsx` will call `useCancelBooking().mutate(bookingId)`. This mutation hook calls `bookingService.cancelBooking(bookingId)`, which makes an `axios` DELETE request to `/api/v1/bookings/{bookingId}` on the `class-scheduling-be` backend.\n6.  All `axios` requests will use the `client` instance from `frontend/src/api/client.ts`, which includes an interceptor to attach the JWT token from `localStorage.getItem('token')` to authenticated requests.\n7.  After successful booking or cancellation, the React Query caches for `useWeeklyGymClasses` and `useUserBookings` should be invalidated to refetch the latest data and update the UI.\n\n### Type Definitions\n- `gymClass.ts` defines the `GymClassDto` interface, mirroring the backend `GymClassDto` structure.\n- `booking.ts` defines `UserPublicDto`, `BookingStatus`, and `ClassBookingDto` interfaces, mirroring the backend `ClassBookingDto` structure (with `gymClass` as `GymClassDto` and `user` as `UserPublicDto`). It also defines `CreateBookingRequest` for booking a class.\n\n### Error Handling\n- All service calls should include `try-catch` blocks to handle API errors. Errors should be propagated to the hooks and then to the UI for display (e.g., using `toast` notifications or inline error messages).\n- Authentication errors (e.g., 401 Unauthorized) should be handled by the `client` interceptor, potentially redirecting to the login page.\n",
     "change_required" : true
   }, {
     "feature_name" : "content-display-ui",
