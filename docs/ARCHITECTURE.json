@@ -2914,14 +2914,19 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Layout for the admin section, including a sidebar for navigation between management pages.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "AdminLayout",
+      "parameters" : [ "React.ReactNode children" ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders the admin layout with a header, sidebar, and the provided children content."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "admin-portal",
-    "file_role" : null
+    "file_role" : "COMPONENT layer — provides a consistent layout for all admin pages, including a header and sidebar navigation."
   }, {
     "file_name" : "AdminDashboardPage.tsx",
     "file_path" : "frontend/src/pages/admin/AdminDashboardPage.tsx",
@@ -2938,7 +2943,7 @@
     "imports_from" : [ "frontend/src/components/AdminLayout.tsx" ],
     "depends_on" : [ ],
     "feature_name" : "admin-portal",
-    "file_role" : null
+    "file_role" : "PAGE layer — serves as the main landing page for the admin portal, providing an overview and navigation links."
   }, {
     "file_name" : "AdminMembershipsPage.tsx",
     "file_path" : "frontend/src/pages/admin/AdminMembershipsPage.tsx",
@@ -2951,11 +2956,35 @@
     "public_functions" : null,
     "public_variables" : null,
     "api_endpoints" : null,
-    "api_endpoints_consumed" : null,
+    "api_endpoints_consumed" : [ {
+      "method" : "GET",
+      "path" : "/api/v1/admin/memberships/plans",
+      "request_body" : null,
+      "response_body" : null,
+      "description" : "Fetches a list of all membership plans."
+    }, {
+      "method" : "POST",
+      "path" : "/api/v1/admin/memberships/plans",
+      "request_body" : null,
+      "response_body" : null,
+      "description" : "Creates a new membership plan."
+    }, {
+      "method" : "PUT",
+      "path" : "/api/v1/admin/memberships/plans/{id}",
+      "request_body" : null,
+      "response_body" : null,
+      "description" : "Updates an existing membership plan by ID."
+    }, {
+      "method" : "DELETE",
+      "path" : "/api/v1/admin/memberships/plans/{id}",
+      "request_body" : null,
+      "response_body" : null,
+      "description" : "Deletes a membership plan by ID."
+    } ],
     "imports_from" : [ "frontend/src/components/AdminLayout.tsx" ],
     "depends_on" : [ ],
     "feature_name" : "admin-portal",
-    "file_role" : null
+    "file_role" : "PAGE layer — provides an interface for administrators to manage (CRUD) membership plans."
   }, {
     "file_name" : "AdminSchedulePage.tsx",
     "file_path" : "frontend/src/pages/admin/AdminSchedulePage.tsx",
@@ -2968,11 +2997,41 @@
     "public_functions" : null,
     "public_variables" : null,
     "api_endpoints" : null,
-    "api_endpoints_consumed" : null,
+    "api_endpoints_consumed" : [ {
+      "method" : "GET",
+      "path" : "/api/v1/admin/classes",
+      "request_body" : null,
+      "response_body" : null,
+      "description" : "Fetches a list of all gym classes."
+    }, {
+      "method" : "POST",
+      "path" : "/api/v1/admin/classes",
+      "request_body" : null,
+      "response_body" : null,
+      "description" : "Creates a new gym class."
+    }, {
+      "method" : "PUT",
+      "path" : "/api/v1/admin/classes/{classId}",
+      "request_body" : null,
+      "response_body" : null,
+      "description" : "Updates an existing gym class by ID."
+    }, {
+      "method" : "DELETE",
+      "path" : "/api/v1/admin/classes/{classId}",
+      "request_body" : null,
+      "response_body" : null,
+      "description" : "Deletes a gym class by ID."
+    }, {
+      "method" : "GET",
+      "path" : "/api/v1/admin/trainers",
+      "request_body" : null,
+      "response_body" : null,
+      "description" : "Fetches a list of all trainers to populate the trainer selection dropdown for gym classes."
+    } ],
     "imports_from" : [ "frontend/src/components/AdminLayout.tsx" ],
     "depends_on" : [ ],
     "feature_name" : "admin-portal",
-    "file_role" : null
+    "file_role" : "PAGE layer — provides an interface for administrators to manage (CRUD) gym class schedules."
   }, {
     "file_name" : "AdminTrainersPage.tsx",
     "file_path" : "frontend/src/pages/admin/AdminTrainersPage.tsx",
@@ -2985,11 +3044,35 @@
     "public_functions" : null,
     "public_variables" : null,
     "api_endpoints" : null,
-    "api_endpoints_consumed" : null,
+    "api_endpoints_consumed" : [ {
+      "method" : "GET",
+      "path" : "/api/v1/admin/trainers",
+      "request_body" : null,
+      "response_body" : null,
+      "description" : "Fetches a list of all trainer profiles."
+    }, {
+      "method" : "POST",
+      "path" : "/api/v1/admin/trainers",
+      "request_body" : null,
+      "response_body" : null,
+      "description" : "Creates a new trainer profile."
+    }, {
+      "method" : "PUT",
+      "path" : "/api/v1/admin/trainers/{id}",
+      "request_body" : null,
+      "response_body" : null,
+      "description" : "Updates an existing trainer profile by ID."
+    }, {
+      "method" : "DELETE",
+      "path" : "/api/v1/admin/trainers/{id}",
+      "request_body" : null,
+      "response_body" : null,
+      "description" : "Deletes a trainer profile by ID."
+    } ],
     "imports_from" : [ "frontend/src/components/AdminLayout.tsx" ],
     "depends_on" : [ ],
     "feature_name" : "admin-portal",
-    "file_role" : null
+    "file_role" : "PAGE layer — provides an interface for administrators to manage (CRUD) trainer profiles."
   }, {
     "file_name" : "AdminLeadsPage.tsx",
     "file_path" : "frontend/src/pages/admin/AdminLeadsPage.tsx",
@@ -3002,11 +3085,23 @@
     "public_functions" : null,
     "public_variables" : null,
     "api_endpoints" : null,
-    "api_endpoints_consumed" : null,
+    "api_endpoints_consumed" : [ {
+      "method" : "GET",
+      "path" : "/api/v1/admin/leads/trial",
+      "request_body" : null,
+      "response_body" : null,
+      "description" : "Fetches a list of all trial leads."
+    }, {
+      "method" : "GET",
+      "path" : "/api/v1/admin/leads/trial/{id}",
+      "request_body" : null,
+      "response_body" : null,
+      "description" : "Fetches a specific trial lead by ID."
+    } ],
     "imports_from" : [ "frontend/src/components/AdminLayout.tsx" ],
     "depends_on" : [ ],
     "feature_name" : "admin-portal",
-    "file_role" : null
+    "file_role" : "PAGE layer — provides an interface for administrators to view customer leads."
   }, {
     "file_name" : "AdminTestimonialsPage.tsx",
     "file_path" : "frontend/src/pages/admin/AdminTestimonialsPage.tsx",
@@ -3019,11 +3114,35 @@
     "public_functions" : null,
     "public_variables" : null,
     "api_endpoints" : null,
-    "api_endpoints_consumed" : null,
+    "api_endpoints_consumed" : [ {
+      "method" : "GET",
+      "path" : "/api/v1/admin/testimonials",
+      "request_body" : null,
+      "response_body" : null,
+      "description" : "Fetches a list of all customer testimonials."
+    }, {
+      "method" : "POST",
+      "path" : "/api/v1/admin/testimonials",
+      "request_body" : null,
+      "response_body" : null,
+      "description" : "Creates a new customer testimonial."
+    }, {
+      "method" : "PUT",
+      "path" : "/api/v1/admin/testimonials/{id}",
+      "request_body" : null,
+      "response_body" : null,
+      "description" : "Updates an existing customer testimonial by ID."
+    }, {
+      "method" : "DELETE",
+      "path" : "/api/v1/admin/testimonials/{id}",
+      "request_body" : null,
+      "response_body" : null,
+      "description" : "Deletes a customer testimonial by ID."
+    } ],
     "imports_from" : [ "frontend/src/components/AdminLayout.tsx" ],
     "depends_on" : [ ],
     "feature_name" : "admin-portal",
-    "file_role" : null
+    "file_role" : "PAGE layer — provides an interface for administrators to manage (CRUD) customer testimonials."
   }, {
     "file_name" : "ci.yml",
     "file_path" : ".github/workflows/ci.yml",
@@ -3124,7 +3243,7 @@
     "feature_display_name" : "Frontend: Admin Portal",
     "feature_type" : "FRONTEND",
     "file_paths" : [ "frontend/src/components/AdminLayout.tsx", "frontend/src/pages/admin/AdminDashboardPage.tsx", "frontend/src/pages/admin/AdminMembershipsPage.tsx", "frontend/src/pages/admin/AdminSchedulePage.tsx", "frontend/src/pages/admin/AdminTrainersPage.tsx", "frontend/src/pages/admin/AdminLeadsPage.tsx", "frontend/src/pages/admin/AdminTestimonialsPage.tsx" ],
-    "feature_instruction" : null,
+    "feature_instruction" : "## Design Tokens\n- Admin Sidebar: bg-[#1A1A1A] text-[#F5F5F5]\n- Admin Sidebar Active Link: bg-[#333333] text-[#DFFF00] font-bold\n- Admin Header: bg-[#1A1A1A] text-[#F5F5F5]\n- Admin Main Content Background: bg-gray-100\n- Primary Button: bg-[#DFFF00] hover:bg-yellow-400 text-[#1A1A1A] font-semibold rounded-md px-4 py-2 transition-all duration-200\n- Secondary Button: bg-[#333333] hover:bg-gray-700 text-[#F5F5F5] font-semibold rounded-md px-4 py-2 transition-all duration-200\n- Danger Button: bg-red-600 hover:bg-red-700 text-white font-semibold rounded-md px-4 py-2 transition-all duration-200\n- Card/Panel: bg-white rounded-lg shadow-sm p-6\n- Heading: text-2xl font-bold text-[#1A1A1A]\n- Input Field: border border-gray-300 rounded-md p-2 focus:ring-2 focus:ring-[#DFFF00] focus:border-transparent\n\n## Feature: Admin Portal\nThis feature provides the administrative interface for MultiFit Aundh, allowing authorized users (ADMIN role) to manage various aspects of the gym's operations, including membership plans, class schedules, trainer profiles, customer leads, and testimonials. All pages within this feature are protected by the `ProtectedRoute` from the `auth-flow` feature and utilize the `AdminLayout` component for consistent navigation and structure.\n\n### AdminLayout.tsx\nThis component serves as the overarching layout for all admin pages. It provides a consistent header and a sidebar navigation. The header will display the business name \"MultiFit Aundh Admin\" and a logout button. The sidebar will contain links to the various admin management pages: Dashboard, Memberships, Schedule, Trainers, Leads, and Testimonials. Each navigation link should be styled according to the 'Admin Sidebar' and 'Admin Sidebar Active Link' design tokens. The `AdminLayout` component receives `children` as props, which will be the content of the specific admin page.\n\n### AdminDashboardPage.tsx\nThis is the landing page for the admin portal. It will display a welcome message and provide quick links or summary statistics (e.g., total members, upcoming classes, new leads) to other management sections. The content should be structured using 'Card/Panel' design tokens for information display. No direct API calls are made from this page; it primarily serves as a navigation hub.\n\n### AdminMembershipsPage.tsx\nThis page allows administrators to perform CRUD operations on `MembershipPlan` entities. It will display a table of existing membership plans, with options to view details, create new plans, edit existing plans, and delete plans. \n\n**Data Model:** `MembershipPlanDto` (id: UUID, name: String, description: String, price: BigDecimal, durationInMonths: Integer, isActive: Boolean)\n\n**Operations:**\n1.  **Fetch All Membership Plans:** On component mount, fetch all membership plans using `GET /api/v1/admin/memberships/plans`.\n2.  **Create Membership Plan:** A form will be provided to create a new `MembershipPlan`. The form fields will correspond to `name`, `description`, `price`, `durationInMonths`, and `isActive`. Input validation will be handled using `react-hook-form` and `zod`. `price` will be a string input, converted to `z.coerce.number()` for validation. `durationInMonths` will be `z.coerce.number().positive()`. Upon submission, call `POST /api/v1/admin/memberships/plans` with the `CreateMembershipPlanRequest` body.\n3.  **Update Membership Plan:** When editing, pre-fill the form with the existing `MembershipPlanDto` data. Upon submission, call `PUT /api/v1/admin/memberships/plans/{id}` with the `UpdateMembershipPlanRequest` body, where `{id}` is the UUID of the plan being updated.\n4.  **Delete Membership Plan:** Provide a confirmation dialog before calling `DELETE /api/v1/admin/memberships/plans/{id}`.\n\n### AdminSchedulePage.tsx\nThis page enables administrators to manage `GymClass` entities. It will display a list or calendar view of gym classes, with functionalities to create new classes, edit existing ones, and delete them.\n\n**Data Model:** `GymClassDto` (id: UUID, name: String, description: String, date: LocalDate, startTime: LocalTime, endTime: LocalTime, capacity: Integer, currentBookings: Integer, trainerId: UUID, trainerName: String)\n\n**Operations:**\n1.  **Fetch All Gym Classes:** On component mount, fetch all gym classes using `GET /api/v1/admin/classes`.\n2.  **Create Gym Class:** A form will be provided for creating a new `GymClass`. Fields include `name`, `description`, `date`, `startTime`, `endTime`, `capacity`, and `trainerId`. `date` will be a date picker, `startTime` and `endTime` time pickers, and `capacity` `z.coerce.number().positive()`. `trainerId` will be a dropdown populated by trainers fetched from `GET /api/v1/admin/trainers`. Input validation will use `react-hook-form` and `zod`. Upon submission, call `POST /api/v1/admin/classes` with the `CreateGymClassRequest` body.\n3.  **Update Gym Class:** Pre-fill the form with existing `GymClassDto` data. Upon submission, call `PUT /api/v1/admin/classes/{classId}` with the `UpdateGymClassRequest` body, where `{classId}` is the UUID of the class being updated.\n4.  **Delete Gym Class:** Provide a confirmation dialog before calling `DELETE /api/v1/admin/classes/{classId}`.\n\n### AdminTrainersPage.tsx\nThis page allows administrators to manage `Trainer` profiles. It will display a list of trainers, with options to create new trainers, edit existing ones, and delete them.\n\n**Data Model:** `TrainerDto` (id: UUID, name: String, specialization: String, bio: String, photoUrl: String)\n\n**Operations:**\n1.  **Fetch All Trainers:** On component mount, fetch all trainers using `GET /api/v1/admin/trainers`.\n2.  **Create Trainer:** A form will be provided for creating a new `Trainer`. Fields include `name`, `specialization`, `bio`, and `photoUrl`. Input validation will use `react-hook-form` and `zod`. Upon submission, call `POST /api/v1/admin/trainers` with the `TrainerDto` body.\n3.  **Update Trainer:** Pre-fill the form with existing `TrainerDto` data. Upon submission, call `PUT /api/v1/admin/trainers/{id}` with the `TrainerDto` body, where `{id}` is the UUID of the trainer being updated.\n4.  **Delete Trainer:** Provide a confirmation dialog before calling `DELETE /api/v1/admin/trainers/{id}`.\n\n### AdminLeadsPage.tsx\nThis page enables administrators to view `TrialLead` entries captured from the public-facing free trial form. It will display a list of leads with their details.\n\n**Data Model:** `TrialLeadDto` (name: String, email: String, phone: String)\n\n**Operations:**\n1.  **Fetch All Trial Leads:** On component mount, fetch all trial leads using `GET /api/v1/admin/leads/trial`.\n2.  **View Lead Details:** Allow viewing individual lead details, potentially by calling `GET /api/v1/admin/leads/trial/{id}`.\n\n### AdminTestimonialsPage.tsx\nThis page allows administrators to manage `Testimonial` entries displayed on the website. It will display a list of testimonials, with options to create new testimonials, edit existing ones, and delete them.\n\n**Data Model:** `Testimonial` (id: UUID, author: String, text: String, rating: Integer)\n\n**Operations:**\n1.  **Fetch All Testimonials:** On component mount, fetch all testimonials using `GET /api/v1/admin/testimonials`.\n2.  **Create Testimonial:** A form will be provided for creating a new `Testimonial`. Fields include `author`, `text`, and `rating`. `rating` will be `z.coerce.number().min(1).max(5)`. Input validation will use `react-hook-form` and `zod`. Upon submission, call `POST /api/v1/admin/testimonials` with the `Testimonial` body.\n3.  **Update Testimonial:** Pre-fill the form with existing `Testimonial` data. Upon submission, call `PUT /api/v1/admin/testimonials/{id}` with the `Testimonial` body, where `{id}` is the UUID of the testimonial being updated.\n4.  **Delete Testimonial:** Provide a confirmation dialog before calling `DELETE /api/v1/admin/testimonials/{id}`.\n",
     "change_required" : true
   }, {
     "feature_name" : "infrastructure",
