@@ -2767,14 +2767,19 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Displays a grid of trainer profiles with photos, names, and specializations.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "TrainersPage",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders the page with a hero section and a grid of trainer cards."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/hooks/useContent.ts", "frontend/src/types/content.ts" ],
     "depends_on" : [ ],
     "feature_name" : "content-display-ui",
-    "file_role" : null
+    "file_role" : "Public page displaying a list of gym trainers, using the `useAllTrainers` hook to fetch data and rendering them in a grid."
   }, {
     "file_name" : "TrainerDetailPage.tsx",
     "file_path" : "frontend/src/pages/TrainerDetailPage.tsx",
@@ -2784,14 +2789,19 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Shows the detailed profile of a single trainer, including bio and associated classes.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "TrainerDetailPage",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders the page with a hero section and detailed trainer information."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/hooks/useContent.ts", "frontend/src/types/content.ts" ],
     "depends_on" : [ ],
     "feature_name" : "content-display-ui",
-    "file_role" : null
+    "file_role" : "Public page displaying the detailed profile of a single gym trainer, using the `useTrainer` hook to fetch data based on the URL parameter."
   }, {
     "file_name" : "contentService.ts",
     "file_path" : "frontend/src/services/contentService.ts",
@@ -2801,14 +2811,36 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Service functions for fetching public content like trainers and testimonials.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "getAllTrainers",
+      "parameters" : [ ],
+      "return_type" : "Promise<Trainer[]>",
+      "description" : "Fetches a list of all trainers from the backend API."
+    }, {
+      "name" : "getTrainerById",
+      "parameters" : [ "string id" ],
+      "return_type" : "Promise<Trainer>",
+      "description" : "Fetches a single trainer's details by their ID from the backend API."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
-    "api_endpoints_consumed" : null,
+    "api_endpoints_consumed" : [ {
+      "method" : "GET",
+      "path" : "/api/v1/content/trainers",
+      "request_body" : null,
+      "response_body" : null,
+      "description" : "Fetches a list of all trainers."
+    }, {
+      "method" : "GET",
+      "path" : "/api/v1/content/trainers/{id}",
+      "request_body" : null,
+      "response_body" : null,
+      "description" : "Fetches a single trainer by their ID."
+    } ],
     "imports_from" : [ "frontend/src/api/client.ts", "frontend/src/types/content.ts" ],
     "depends_on" : [ ],
     "feature_name" : "content-display-ui",
-    "file_role" : null
+    "file_role" : "Frontend service layer — implements `getAllTrainers(): Promise<Trainer[]>` to fetch all trainers and `getTrainerById(id: string): Promise<Trainer>` to fetch a single trainer from the backend."
   }, {
     "file_name" : "useContent.ts",
     "file_path" : "frontend/src/hooks/useContent.ts",
@@ -2818,14 +2850,24 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "React Query hooks for fetching trainers and testimonials.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "useAllTrainers",
+      "parameters" : [ ],
+      "return_type" : "UseQueryResult<Trainer[], Error>",
+      "description" : "A React Query hook to fetch and manage the state of all trainers."
+    }, {
+      "name" : "useTrainer",
+      "parameters" : [ "string id" ],
+      "return_type" : "UseQueryResult<Trainer, Error>",
+      "description" : "A React Query hook to fetch and manage the state of a single trainer by ID."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/services/contentService.ts", "frontend/src/types/content.ts" ],
     "depends_on" : [ ],
     "feature_name" : "content-display-ui",
-    "file_role" : null
+    "file_role" : "React Query hooks for fetching trainer data, exposing `useAllTrainers()` for a list of trainers and `useTrainer(id: string)` for a single trainer."
   }, {
     "file_name" : "content.ts",
     "file_path" : "frontend/src/types/content.ts",
@@ -2836,13 +2878,33 @@
     "status" : "PLANNED",
     "description" : "TypeScript types for public content like trainers and testimonials.",
     "public_functions" : null,
-    "public_variables" : null,
+    "public_variables" : [ {
+      "name" : "id",
+      "type" : "string",
+      "description" : "Unique identifier for the trainer."
+    }, {
+      "name" : "name",
+      "type" : "string",
+      "description" : "Full name of the trainer."
+    }, {
+      "name" : "specialization",
+      "type" : "string",
+      "description" : "The trainer's area of expertise (e.g., 'Strength Training', 'Yoga')."
+    }, {
+      "name" : "bio",
+      "type" : "string",
+      "description" : "A short biography of the trainer."
+    }, {
+      "name" : "photoUrl",
+      "type" : "string",
+      "description" : "URL to the trainer's profile photo."
+    } ],
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "content-display-ui",
-    "file_role" : null
+    "file_role" : "Generated from the backend API contract — defines the TypeScript interface for Trainer data."
   }, {
     "file_name" : "AdminLayout.tsx",
     "file_path" : "frontend/src/components/AdminLayout.tsx",
@@ -3055,7 +3117,7 @@
     "feature_display_name" : "Frontend: Content Display (Trainers)",
     "feature_type" : "FRONTEND",
     "file_paths" : [ "frontend/src/pages/TrainersPage.tsx", "frontend/src/pages/TrainerDetailPage.tsx", "frontend/src/services/contentService.ts", "frontend/src/hooks/useContent.ts", "frontend/src/types/content.ts" ],
-    "feature_instruction" : null,
+    "feature_instruction" : "## Design Tokens\n- Navbar: bg-[#1A1A1A] text-[#F5F5F5]\n- Primary CTA: bg-[#DFFF00] hover:bg-[#c2e600] text-[#1A1A1A] font-semibold rounded-full px-8 py-3 transition-all duration-200\n- Brand text accent: text-[#DFFF00]\n- Section bg: bg-[#1A1A1A]\n- Card: bg-[#333333] rounded-xl shadow-md border border-gray-700 p-6 text-[#F5F5F5]\n- Section container: <section className=\"py-16 px-4 bg-[#1A1A1A] text-[#F5F5F5]\"><div className=\"max-w-7xl mx-auto\">\n- Hero h1: text-4xl md:text-6xl font-bold text-[#DFFF00]\n- Body: text-[#F5F5F5] leading-relaxed\n\nThe `content-display-ui` feature is responsible for publicly displaying information about MultiFit Aundh's trainers. It consists of TypeScript types for trainer data, a frontend service to interact with the backend content API, React Query hooks for data fetching, and two public-facing pages: one for listing all trainers and one for displaying a single trainer's detailed profile. All UI components must adhere strictly to the provided design tokens and visual direction, emphasizing an energetic, bold, and modern aesthetic.\n\n### `frontend/src/types/content.ts`\nThis file defines the TypeScript interface for `Trainer` objects, mirroring the `TrainerDto` structure from the `content-management-be` feature.\n\n```\n\ntypescript\nexport interface Trainer {\n  id: string;\n  name: string;\n  specialization: string;\n  bio: string;\n  photoUrl: string;\n}\n\n\n```\n\n### `frontend/src/services/contentService.ts`\nThis service provides asynchronous functions to fetch trainer data from the `content-management-be` backend. It uses the `apiClient` from `frontend/src/api/client.ts` for HTTP requests.\n\n1.  **`getAllTrainers(): Promise<Trainer[]>`**\n    *   **Logic**: Makes a GET request to `/api/v1/content/trainers` using `apiClient.get<Trainer[]>('/api/v1/content/trainers')`.\n    *   **Return Type**: `Promise<Trainer[]>`\n    *   **Error Cases**: Throws an error if the API call fails (e.g., network error, 5xx status).\n\n2.  **`getTrainerById(id: string): Promise<Trainer>`**\n    *   **Logic**: Makes a GET request to `/api/v1/content/trainers/{id}` using `apiClient.get<Trainer>(`/api/v1/content/trainers/${id}`)`.\n    *   **Return Type**: `Promise<Trainer>`\n    *   **Error Cases**: Throws an error if the API call fails or if the trainer is not found (e.g., 404 response).\n\n### `frontend/src/hooks/useContent.ts`\nThis file provides React Query hooks for efficient data fetching and caching of trainer information.\n\n1.  **`useAllTrainers()`**\n    *   **Signature**: `useAllTrainers(): UseQueryResult<Trainer[], Error>`\n    *   **Logic**: Uses `react-query`'s `useQuery` hook.\n        *   `queryKey`: `['trainers']`\n        *   `queryFn`: `contentService.getAllTrainers`\n    *   **Return Type**: A `UseQueryResult` object containing `data` (list of `Trainer`), `isLoading`, `isError`, `error`, etc.\n\n2.  **`useTrainer(id: string)`**\n    *   **Signature**: `useTrainer(id: string): UseQueryResult<Trainer, Error>`\n    *   **Logic**: Uses `react-query`'s `useQuery` hook.\n        *   `queryKey`: `['trainer', id]`\n        *   `queryFn`: `() => contentService.getTrainerById(id)`\n        *   `enabled`: `!!id` (only fetch if `id` is provided and truthy)\n    *   **Return Type**: A `UseQueryResult` object containing `data` (single `Trainer`), `isLoading`, `isError`, `error`, etc.\n\n### `frontend/src/pages/TrainersPage.tsx`\nThis page displays a grid of all trainers. It wraps its content in the `<Layout>` component from `shared-ui` and utilizes the `useAllTrainers` hook to fetch and display trainer data. Each trainer card links to their respective detail page.\n\n**Structure:**\n*   **Root Element**: `<Layout>`\n*   **Hero Section**: This section provides a dynamic, motivational introduction to the trainers.\n    *   `className`: `relative h-[400px] bg-cover bg-center text-white flex items-center justify-center`\n    *   `style`: `backgroundImage: url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1920&q=80')` (Gym/fitness image)\n    *   Overlay: `<div className=\"absolute inset-0 bg-black bg-opacity-50\" />`\n    *   Content:\n        *   `h1` with `className=\"relative z-10 text-4xl md:text-6xl font-bold text-[#DFFF00] text-center\"`: \"Meet Our Elite Trainers at MultiFit Aundh\"\n        *   `p` with `className=\"relative z-10 mt-4 text-lg md:text-xl text-[#F5F5F5] text-center max-w-2xl\"`: \"Our dedicated professionals are here to guide you to your fitness goals with expertise and passion.\"\n*   **Trainers Grid Section**: This section displays all trainers in an organized grid.\n    *   `className`: `py-16 px-4 bg-[#1A1A1A] text-[#F5F5F5]`\n    *   Container: `<div className=\"max-w-7xl mx-auto\">`\n    *   Heading: `h2` with `className=\"text-3xl md:text-4xl font-bold text-[#DFFF00] text-center mb-12\"`: \"Our Expert Team\"\n    *   Loading State: If `isLoading` from `useAllTrainers` is true, display a loading spinner or a \"Loading trainers...\" message.\n    *   Error State: If `isError` from `useAllTrainers` is true, display an error message like \"Failed to load trainers: {error.message}\".\n    *   Trainers Grid: If `!isLoading` and `!isError` and `trainers` data is available:\n        *   `className`: `grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8`\n        *   Map over `trainers` data. For each `trainer`:\n            *   Render a card (`className=\"bg-[#333333] rounded-xl shadow-md border border-gray-700 p-6 text-[#F5F5F5] flex flex-col items-center text-center\"`)\n            *   Image: `img` with `src={trainer.photoUrl}`, `alt={trainer.name}`, `className=\"w-32 h-32 rounded-full object-cover mb-4 border-2 border-[#DFFF00]\"`\n            *   Name: `h3` with `className=\"text-xl font-semibold text-[#F5F5F5] mb-1\"`: `{trainer.name}`\n            *   Specialization: `p` with `className=\"text-[#DFFF00] mb-3\"`: `{trainer.specialization}`\n            *   Link to `TrainerDetailPage`: `Link` component from `react-router-dom` to `/trainers/${trainer.id}` with `className=\"mt-4 inline-block bg-[#DFFF00] hover:bg-[#c2e600] text-[#1A1A1A] font-semibold rounded-full px-6 py-2 transition-all duration-200\"`: \"View Profile\"\n\n### `frontend/src/pages/TrainerDetailPage.tsx`\nThis page displays the detailed profile of a single trainer, identified by an `id` from the URL parameters. It wraps its content in the `<Layout>` component from `shared-ui` and uses the `useTrainer` hook to fetch the specific trainer's data.\n\n**Structure:**\n*   **Root Element**: `<Layout>`\n*   **Hero Section**: This section features the trainer's name and specialization prominently.\n    *   `className`: `relative h-[400px] bg-cover bg-center text-white flex items-center justify-center`\n    *   `style`: `backgroundImage: url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1920&q=80')` (Gym/fitness image)\n    *   Overlay: `<div className=\"absolute inset-0 bg-black bg-opacity-50\" />`\n    *   Content:\n        *   `h1` with `className=\"relative z-10 text-4xl md:text-6xl font-bold text-[#DFFF00] text-center\"`: `{trainer.name}` (dynamic, if trainer data is available)\n        *   `p` with `className=\"relative z-10 mt-4 text-lg md:text-xl text-[#F5F5F5] text-center max-w-2xl\"`: `{trainer.specialization}` (dynamic, if trainer data is available)\n*   **Trainer Detail Section**: This section presents the trainer's photo, bio, and specialization.\n    *   `className`: `py-16 px-4 bg-[#1A1A1A] text-[#F5F5F5]`\n    *   Container: `<div className=\"max-w-7xl mx-auto flex flex-col md:flex-row items-start gap-8\">`\n    *   Loading State: If `isLoading` from `useTrainer` is true, display a loading spinner or a \"Loading trainer details...\" message.\n    *   Error State: If `isError` from `useTrainer` is true, display an error message like \"Failed to load trainer: {error.message}\".\n    *   Trainer Not Found: If `!trainer && !isLoading && !isError`, display a \"Trainer not found.\" message.\n    *   Trainer Content (if `trainer` exists):\n        *   Image Column (`className=\"md:w-1/3 flex-shrink-0\"`):\n            *   `img` with `src={trainer.photoUrl}`, `alt={trainer.name}`, `className=\"w-full h-auto rounded-xl object-cover border-2 border-[#DFFF00]\"`\n        *   Details Column (`className=\"md:w-2/3\"`):\n            *   `h2` with `className=\"text-3xl font-bold text-[#DFFF00] mb-4\"`: \"About {trainer.name}\"\n            *   `p` with `className=\"text-lg leading-relaxed mb-6\"`: `{trainer.bio}`\n            *   `h3` with `className=\"text-2xl font-bold text-[#DFFF00] mb-3\"`: \"Specialization\"\n            *   `p` with `className=\"text-lg\"`: `{trainer.specialization}`\n            *   Back button: `Link` component from `react-router-dom` to `/trainers` with `className=\"mt-8 inline-block bg-[#DFFF00] hover:bg-[#c2e600] text-[#1A1A1A] font-semibold rounded-full px-6 py-2 transition-all duration-200\"`: \"Back to Trainers\"",
     "change_required" : true
   }, {
     "feature_name" : "admin-portal",
