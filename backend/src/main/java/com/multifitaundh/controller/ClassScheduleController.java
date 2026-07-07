@@ -1,5 +1,6 @@
 package com.multifitaundh.controller;
 
+import com.multifitaundh.dto.ClassBookingDto;
 import com.multifitaundh.dto.GymClassDto;
 import com.multifitaundh.exception.ResourceNotFoundException;
 import com.multifitaundh.model.User;

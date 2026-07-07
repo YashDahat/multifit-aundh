@@ -65,21 +65,20 @@ public class DataSeeder implements CommandLineRunner {
 
         // Seed Membership Plans
         if (membershipPlanRepository.count() == 0) {
-            List<MembershipPlan> plans = Arrays.asList(
-                new MembershipPlan(UUID.randomUUID(), "Basic Plan", "Access to gym facilities during off-peak hours.", 29.99, 1, true),
-                new MembershipPlan(UUID.randomUUID(), "Standard Plan", "Full access to gym facilities and 2 group classes per month.", 49.99, 3, true),
-                new MembershipPlan(UUID.randomUUID(), "Premium Plan", "Full access, unlimited group classes, and 1 personal training session.", 79.99, 6, true),
-                new MembershipPlan(UUID.randomUUID(), "Annual Plan", "Premium plan benefits for a full year at a discounted rate.", 799.99, 12, true)
-            );
+            MembershipPlan p1 = new MembershipPlan(); p1.setName("Basic Plan"); p1.setDescription("Access to gym facilities during off-peak hours."); p1.setPrice(new java.math.BigDecimal("29.99")); p1.setDurationInMonths(1); p1.setIsActive(true);
+            MembershipPlan p2 = new MembershipPlan(); p2.setName("Standard Plan"); p2.setDescription("Full access to gym facilities and 2 group classes per month."); p2.setPrice(new java.math.BigDecimal("49.99")); p2.setDurationInMonths(3); p2.setIsActive(true);
+            MembershipPlan p3 = new MembershipPlan(); p3.setName("Premium Plan"); p3.setDescription("Full access, unlimited group classes, and 1 personal training session."); p3.setPrice(new java.math.BigDecimal("79.99")); p3.setDurationInMonths(6); p3.setIsActive(true);
+            MembershipPlan p4 = new MembershipPlan(); p4.setName("Annual Plan"); p4.setDescription("Premium plan benefits for a full year at a discounted rate."); p4.setPrice(new java.math.BigDecimal("799.99")); p4.setDurationInMonths(12); p4.setIsActive(true);
+            List<MembershipPlan> plans = Arrays.asList(p1, p2, p3, p4);
             membershipPlanRepository.saveAll(plans);
             System.out.println("Seeded " + plans.size() + " membership plans.");
         }
 
         // Seed Trainers
         if (trainerRepository.count() == 0) {
-            Trainer trainer1 = new Trainer(UUID.randomUUID(), "John Doe", "Strength Training", "Certified strength and conditioning specialist with 10 years experience.");
-            Trainer trainer2 = new Trainer(UUID.randomUUID(), "Jane Smith", "Yoga & Flexibility", "Experienced yoga instructor focusing on holistic wellness.");
-            Trainer trainer3 = new Trainer(UUID.randomUUID(), "Mike Johnson", "Cardio & HIIT", "High-intensity interval training expert, helping clients achieve peak fitness.");
+            Trainer trainer1 = new Trainer(UUID.randomUUID(), "John Doe", "Strength Training", "Certified strength and conditioning specialist with 10 years experience.", null);
+            Trainer trainer2 = new Trainer(UUID.randomUUID(), "Jane Smith", "Yoga & Flexibility", "Experienced yoga instructor focusing on holistic wellness.", null);
+            Trainer trainer3 = new Trainer(UUID.randomUUID(), "Mike Johnson", "Cardio & HIIT", "High-intensity interval training expert, helping clients achieve peak fitness.", null);
 
             List<Trainer> trainers = Arrays.asList(trainer1, trainer2, trainer3);
             trainerRepository.saveAll(trainers);
@@ -88,10 +87,10 @@ public class DataSeeder implements CommandLineRunner {
             // Seed Gym Classes (using the seeded trainers)
             if (gymClassRepository.count() == 0) {
                 List<GymClass> classes = Arrays.asList(
-                    new GymClass(UUID.randomUUID(), "Morning Yoga", "Start your day with a calming yoga session.", LocalTime.of(7, 0), LocalTime.of(8, 0), LocalDate.now().plusDays(1), trainer2),
-                    new GymClass(UUID.randomUUID(), "HIIT Blast", "High-intensity interval training for maximum calorie burn.", LocalTime.of(18, 0), LocalTime.of(19, 0), LocalDate.now().plusDays(1), trainer3),
-                    new GymClass(UUID.randomUUID(), "Strength & Core", "Build strength and improve core stability.", LocalTime.of(10, 0), LocalTime.of(11, 0), LocalDate.now().plusDays(2), trainer1),
-                    new GymClass(UUID.randomUUID(), "Evening Stretch", "Relax and unwind with a gentle stretching class.", LocalTime.of(19, 30), LocalTime.of(20, 30), LocalDate.now().plusDays(2), trainer2)
+                    new GymClass("Morning Yoga", "Start your day with a calming yoga session.", LocalDate.now().plusDays(1), LocalTime.of(7, 0), LocalTime.of(8, 0), 20, trainer2),
+                    new GymClass("HIIT Blast", "High-intensity interval training for maximum calorie burn.", LocalDate.now().plusDays(1), LocalTime.of(18, 0), LocalTime.of(19, 0), 20, trainer3),
+                    new GymClass("Strength & Core", "Build strength and improve core stability.", LocalDate.now().plusDays(2), LocalTime.of(10, 0), LocalTime.of(11, 0), 15, trainer1),
+                    new GymClass("Evening Stretch", "Relax and unwind with a gentle stretching class.", LocalDate.now().plusDays(2), LocalTime.of(19, 30), LocalTime.of(20, 30), 25, trainer2)
                 );
                 gymClassRepository.saveAll(classes);
                 System.out.println("Seeded " + classes.size() + " gym classes.");
@@ -112,8 +111,8 @@ public class DataSeeder implements CommandLineRunner {
         // Seed Trial Leads
         if (trialLeadRepository.count() == 0) {
             List<TrialLead> leads = Arrays.asList(
-                new TrialLead(UUID.randomUUID(), "David Lee", "david.lee@example.com", "123-456-7890", LocalDate.now().plusDays(7), "Interested in strength training."),
-                new TrialLead(UUID.randomUUID(), "Eve Adams", "eve.adams@example.com", "098-765-4321", LocalDate.now().plusDays(10), "Looking for yoga classes.")
+                new TrialLead(UUID.randomUUID(), "David Lee", "david.lee@example.com", "123-456-7890", LocalDate.now().plusDays(7).atStartOfDay()),
+                new TrialLead(UUID.randomUUID(), "Eve Adams", "eve.adams@example.com", "098-765-4321", LocalDate.now().plusDays(10).atStartOfDay())
             );
             trialLeadRepository.saveAll(leads);
             System.out.println("Seeded " + leads.size() + " trial leads.");

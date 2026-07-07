@@ -4,6 +4,7 @@ import jakarta.validation.constraints.*;
 import java.util.List;
 import java.util.UUID;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import lombok.Data;
 import lombok.Builder;
 import lombok.NoArgsConstructor;

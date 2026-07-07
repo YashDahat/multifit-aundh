@@ -1,6 +1,8 @@
 package com.multifitaundh.controller.admin;
 
+import com.multifitaundh.dto.CreateGymClassRequest;
 import com.multifitaundh.dto.GymClassDto;
+import com.multifitaundh.dto.UpdateGymClassRequest;
 import com.multifitaundh.service.ClassScheduleService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

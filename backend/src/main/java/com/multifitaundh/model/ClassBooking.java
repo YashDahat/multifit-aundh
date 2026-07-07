@@ -44,6 +44,21 @@ public class ClassBooking {
     public ClassBooking() {
     }
 
+    public UUID getId() { return id; }
+    public void setId(UUID id) { this.id = id; }
+
+    public User getUser() { return user; }
+    public void setUser(User user) { this.user = user; }
+
+    public GymClass getGymClass() { return gymClass; }
+    public void setGymClass(GymClass gymClass) { this.gymClass = gymClass; }
+
+    public LocalDateTime getBookingTime() { return bookingTime; }
+    public void setBookingTime(LocalDateTime bookingTime) { this.bookingTime = bookingTime; }
+
+    public BookingStatus getStatus() { return status; }
+    public void setStatus(BookingStatus status) { this.status = status; }
+
     // Inner enum for BookingStatus to encapsulate status types within the ClassBooking entity
     public enum BookingStatus {
         CONFIRMED,

@@ -10,8 +10,10 @@ import com.multifitaundh.repository.ClassBookingRepository;
 import com.multifitaundh.repository.GymClassRepository;
 import com.multifitaundh.repository.TrainerRepository;
 import com.multifitaundh.repository.UserRepository;
-import com.multifitaundh.service.membership.MembershipService; // Assumed path based on instruction
-
+import com.multifitaundh.dto.ClassBookingDto;
+import com.multifitaundh.dto.CreateGymClassRequest;
+import com.multifitaundh.dto.UpdateGymClassRequest;
+import com.multifitaundh.service.MembershipService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.stereotype.Service;
@@ -23,7 +25,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
-import com.multifitaundh.service.MembershipService;
 
 @Service
 public class ClassScheduleService {

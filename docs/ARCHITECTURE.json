@@ -14,7 +14,7 @@
     "layer" : "MODEL",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-07",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Represents a user account, including authentication details and personal information.",
     "public_functions" : null,
     "public_variables" : [ {
@@ -55,7 +55,7 @@
     "layer" : "MODEL",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-07",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Defines user roles within the application (e.g., ROLE_USER, ROLE_ADMIN).",
     "public_functions" : null,
     "public_variables" : [ {
@@ -80,7 +80,7 @@
     "layer" : "REPOSITORY",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-07",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Spring Data JPA repository for CRUD operations on User entities.",
     "public_functions" : [ {
       "name" : "findByEmail",
@@ -102,7 +102,7 @@
     "layer" : "SERVICE",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-07",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Service layer for user-related business logic, including loading users for security.",
     "public_functions" : [ {
       "name" : "loadUserByUsername",
@@ -129,7 +129,7 @@
     "layer" : "CONTROLLER",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-07",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Handles user registration and authentication requests, issuing JWTs upon successful login.",
     "public_functions" : [ {
       "name" : "registerUser",
@@ -168,7 +168,7 @@
     "layer" : "DTO",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-07",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Data Transfer Object for capturing user login credentials (email/password).",
     "public_functions" : null,
     "public_variables" : [ {
@@ -193,7 +193,7 @@
     "layer" : "DTO",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-07",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Data Transfer Object for sending the JWT back to the client upon successful authentication.",
     "public_functions" : null,
     "public_variables" : [ {
@@ -214,7 +214,7 @@
     "layer" : "UTIL",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-07",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Utility class for generating, validating, and parsing JSON Web Tokens (JWTs).",
     "public_functions" : [ {
       "name" : "generateToken",
@@ -246,7 +246,7 @@
     "layer" : "CONFIG",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-07",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Servlet filter that intercepts requests to validate the JWT and set the security context.",
     "public_functions" : null,
     "public_variables" : null,
@@ -263,7 +263,7 @@
     "layer" : "CONFIG",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-07",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Configures Spring Security, defining authorization rules, password encoder, and filter chain.",
     "public_functions" : [ {
       "name" : "securityFilterChain",
@@ -295,7 +295,7 @@
     "layer" : "MODEL",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-07",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Represents a purchasable gym membership plan (e.g., Monthly, Annual).",
     "public_functions" : null,
     "public_variables" : [ {
@@ -336,7 +336,7 @@
     "layer" : "REPOSITORY",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-07",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Spring Data JPA repository for CRUD operations on MembershipPlan entities.",
     "public_functions" : [ {
       "name" : "findByIsActiveTrue",
@@ -358,7 +358,7 @@
     "layer" : "MODEL",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-07",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Links a User to a MembershipPlan, representing an active or past subscription.",
     "public_functions" : null,
     "public_variables" : [ {
@@ -399,7 +399,7 @@
     "layer" : "REPOSITORY",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-07",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Spring Data JPA repository for CRUD operations on UserMembership entities.",
     "public_functions" : [ {
       "name" : "findByUser_IdAndStatus",
@@ -421,7 +421,7 @@
     "layer" : "SERVICE",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-07",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Handles business logic for memberships, including purchase and status management.",
     "public_functions" : [ {
       "name" : "getAllActiveMembershipPlans",
@@ -473,7 +473,7 @@
     "layer" : "CONTROLLER",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-07",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Exposes public endpoints for fetching membership plans and user-specific endpoints for managing them.",
     "public_functions" : [ {
       "name" : "getAllMembershipPlans",
@@ -534,7 +534,7 @@
     "layer" : "CONTROLLER",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-07",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Provides admin-only endpoints for CRUD operations on MembershipPlan entities.",
     "public_functions" : [ {
       "name" : "createMembershipPlan",
@@ -595,7 +595,7 @@
     "layer" : "DTO",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-07",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Data Transfer Object for membership plan data exposed to the client.",
     "public_functions" : null,
     "public_variables" : [ {
@@ -636,7 +636,7 @@
     "layer" : "MODEL",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-07",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Represents a single class on the schedule (e.g., Yoga, CrossFit).",
     "public_functions" : null,
     "public_variables" : [ {
@@ -689,7 +689,7 @@
     "layer" : "REPOSITORY",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-07",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Spring Data JPA repository for CRUD operations on GymClass entities.",
     "public_functions" : [ {
       "name" : "findByDateOrderByStartTime",
@@ -721,7 +721,7 @@
     "layer" : "MODEL",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-07",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Represents a user's booking for a specific gym class.",
     "public_functions" : null,
     "public_variables" : [ {
@@ -758,7 +758,7 @@
     "layer" : "REPOSITORY",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-07",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Spring Data JPA repository for CRUD operations on ClassBooking entities.",
     "public_functions" : [ {
       "name" : "findByUser_Id",
@@ -800,7 +800,7 @@
     "layer" : "SERVICE",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-07",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Handles business logic for fetching class schedules and managing user bookings.",
     "public_functions" : [ {
       "name" : "getGymClassesByDate",
@@ -880,7 +880,7 @@
     "layer" : "CONTROLLER",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-07",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Exposes endpoints for viewing the class schedule and for users to book/cancel classes.",
     "public_functions" : [ {
       "name" : "getClassesByDate",
@@ -963,7 +963,7 @@
     "layer" : "CONTROLLER",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-07",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Provides admin-only endpoints for CRUD operations on GymClass entities.",
     "public_functions" : [ {
       "name" : "createGymClass",
@@ -1024,7 +1024,7 @@
     "layer" : "DTO",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-07",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Data Transfer Object for gym class data exposed to the client.",
     "public_functions" : null,
     "public_variables" : [ {
@@ -1081,7 +1081,7 @@
     "layer" : "MODEL",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-07",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Represents a trainer, including their profile, photo, and specializations.",
     "public_functions" : null,
     "public_variables" : [ {
@@ -1118,7 +1118,7 @@
     "layer" : "REPOSITORY",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-07",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Spring Data JPA repository for CRUD operations on Trainer entities.",
     "public_functions" : [ {
       "name" : "findAll",
@@ -1160,7 +1160,7 @@
     "layer" : "MODEL",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-07",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Represents a customer testimonial with text, author, and rating.",
     "public_functions" : null,
     "public_variables" : [ {
@@ -1193,7 +1193,7 @@
     "layer" : "REPOSITORY",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-07",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Spring Data JPA repository for CRUD operations on Testimonial entities.",
     "public_functions" : [ {
       "name" : "findAll",
@@ -1235,7 +1235,7 @@
     "layer" : "SERVICE",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-07",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Handles business logic for fetching public content like trainers and testimonials.",
     "public_functions" : [ {
       "name" : "getAllTrainers",
@@ -1302,7 +1302,7 @@
     "layer" : "CONTROLLER",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-07",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Exposes public endpoints for fetching trainers and testimonials.",
     "public_functions" : [ {
       "name" : "getAllTrainers",
@@ -1341,7 +1341,7 @@
     "layer" : "CONTROLLER",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-07",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Provides admin-only endpoints for CRUD operations on Trainer and Testimonial entities.",
     "public_functions" : [ {
       "name" : "getAllTrainers",
@@ -1468,7 +1468,7 @@
     "layer" : "DTO",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-07",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Data Transfer Object for trainer profile data exposed to the client.",
     "public_functions" : null,
     "public_variables" : [ {
@@ -1505,7 +1505,7 @@
     "layer" : "MODEL",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-07",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Represents a lead captured from the '3-Day Free Trial' form.",
     "public_functions" : null,
     "public_variables" : [ {
@@ -1542,7 +1542,7 @@
     "layer" : "REPOSITORY",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-07",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Spring Data JPA repository for CRUD operations on TrialLead entities.",
     "public_functions" : [ {
       "name" : "save",
@@ -1574,7 +1574,7 @@
     "layer" : "SERVICE",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-07",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Handles business logic for capturing and managing trial leads, including sending confirmation emails.",
     "public_functions" : [ {
       "name" : "captureTrialLead",
@@ -1606,7 +1606,7 @@
     "layer" : "CONTROLLER",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-07",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Exposes a public endpoint for submitting the 'Free Trial' form.",
     "public_functions" : [ {
       "name" : "submitTrialLead",
@@ -1634,7 +1634,7 @@
     "layer" : "CONTROLLER",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-07",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Provides admin-only endpoints for viewing and managing captured leads.",
     "public_functions" : [ {
       "name" : "getAllTrialLeads",
@@ -1673,7 +1673,7 @@
     "layer" : "DTO",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-07",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Data Transfer Object for trial lead data submitted by the user.",
     "public_functions" : null,
     "public_variables" : [ {
@@ -1702,7 +1702,7 @@
     "layer" : "CONTROLLER",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-07",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Forwards all non-API, non-static resource requests to index.html for SPA routing.",
     "public_functions" : [ {
       "name" : "forwardToIndex",
@@ -1736,7 +1736,7 @@
     "layer" : "EXCEPTION",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-07",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Centralized exception handler to convert exceptions into consistent JSON error responses.",
     "public_functions" : [ {
       "name" : "handleResourceNotFoundException",
@@ -1773,7 +1773,7 @@
     "layer" : "DTO",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-07",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Standardized JSON structure for returning error details from the API.",
     "public_functions" : null,
     "public_variables" : [ {
@@ -1806,7 +1806,7 @@
     "layer" : "EXCEPTION",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-07",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Custom exception thrown when a requested resource is not found in the database.",
     "public_functions" : null,
     "public_variables" : null,
@@ -1823,7 +1823,7 @@
     "layer" : "CONFIG",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-07",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Creates a default admin user on application startup if one does not exist.",
     "public_functions" : [ {
       "name" : "run",
@@ -1845,7 +1845,7 @@
     "layer" : "CONFIG",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-07",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Populates the database with initial sample data for development and demonstration.",
     "public_functions" : [ {
       "name" : "run",
@@ -2067,8 +2067,8 @@
     "file_type" : "FRONTEND",
     "layer" : "SERVICE",
     "created_date" : "2024-07-28",
-    "updated_date" : "2024-07-28",
-    "status" : "PLANNED",
+    "updated_date" : "2026-07-07",
+    "status" : "VALIDATED",
     "description" : "Service functions for making API calls related to authentication (login, register).",
     "public_functions" : [ {
       "name" : "login",
@@ -2106,8 +2106,8 @@
     "file_type" : "FRONTEND",
     "layer" : "UTIL",
     "created_date" : "2024-07-28",
-    "updated_date" : "2024-07-28",
-    "status" : "PLANNED",
+    "updated_date" : "2026-07-07",
+    "status" : "VALIDATED",
     "description" : "TypeScript types and interfaces for authentication data structures.",
     "public_functions" : null,
     "public_variables" : [ {
@@ -2311,8 +2311,8 @@
     "file_type" : "FRONTEND",
     "layer" : "SERVICE",
     "created_date" : "2024-07-28",
-    "updated_date" : "2024-07-28",
-    "status" : "PLANNED",
+    "updated_date" : "2026-07-07",
+    "status" : "VALIDATED",
     "description" : "Provides functions for submitting lead capture form data to the backend API, specifically for trial leads.",
     "public_functions" : [ {
       "name" : "submitTrialLead",
@@ -2361,8 +2361,8 @@
     "file_type" : "FRONTEND",
     "layer" : "UTIL",
     "created_date" : "2024-07-28",
-    "updated_date" : "2024-07-28",
-    "status" : "PLANNED",
+    "updated_date" : "2026-07-07",
+    "status" : "VALIDATED",
     "description" : "TypeScript types and interfaces for trial lead data, ensuring type safety for lead capture forms and API interactions.",
     "public_functions" : null,
     "public_variables" : [ {
@@ -2430,8 +2430,8 @@
     "file_type" : "FRONTEND",
     "layer" : "SERVICE",
     "created_date" : "2024-07-28",
-    "updated_date" : "2024-07-28",
-    "status" : "PLANNED",
+    "updated_date" : "2026-07-07",
+    "status" : "VALIDATED",
     "description" : "Service functions for fetching membership plans and managing user subscriptions.",
     "public_functions" : [ {
       "name" : "getAllMembershipPlans",
@@ -2512,8 +2512,8 @@
     "file_type" : "FRONTEND",
     "layer" : "UTIL",
     "created_date" : "2024-07-28",
-    "updated_date" : "2024-07-28",
-    "status" : "PLANNED",
+    "updated_date" : "2026-07-07",
+    "status" : "VALIDATED",
     "description" : "TypeScript types and interfaces for membership plans and user subscriptions.",
     "public_functions" : null,
     "public_variables" : [ {
@@ -2567,8 +2567,8 @@
     "file_type" : "FRONTEND",
     "layer" : "SERVICE",
     "created_date" : "2024-07-28",
-    "updated_date" : "2024-07-28",
-    "status" : "PLANNED",
+    "updated_date" : "2026-07-07",
+    "status" : "VALIDATED",
     "description" : "Service functions for fetching the gym class schedule from the backend.",
     "public_functions" : [ {
       "name" : "getWeeklySchedule",
@@ -2628,8 +2628,8 @@
     "file_type" : "FRONTEND",
     "layer" : "UTIL",
     "created_date" : "2024-07-28",
-    "updated_date" : "2024-07-28",
-    "status" : "PLANNED",
+    "updated_date" : "2026-07-07",
+    "status" : "VALIDATED",
     "description" : "TypeScript types and interfaces for gym class data.",
     "public_functions" : null,
     "public_variables" : [ {
@@ -2649,8 +2649,8 @@
     "file_type" : "FRONTEND",
     "layer" : "SERVICE",
     "created_date" : "2024-07-28",
-    "updated_date" : "2024-07-28",
-    "status" : "PLANNED",
+    "updated_date" : "2026-07-07",
+    "status" : "VALIDATED",
     "description" : "Service functions for creating, viewing, and canceling class bookings.",
     "public_functions" : [ {
       "name" : "bookClass",
@@ -2731,8 +2731,8 @@
     "file_type" : "FRONTEND",
     "layer" : "UTIL",
     "created_date" : "2024-07-28",
-    "updated_date" : "2024-07-28",
-    "status" : "PLANNED",
+    "updated_date" : "2026-07-07",
+    "status" : "VALIDATED",
     "description" : "TypeScript types and interfaces for class booking data.",
     "public_functions" : null,
     "public_variables" : [ {
@@ -2808,8 +2808,8 @@
     "file_type" : "FRONTEND",
     "layer" : "SERVICE",
     "created_date" : "2024-07-28",
-    "updated_date" : "2024-07-28",
-    "status" : "PLANNED",
+    "updated_date" : "2026-07-07",
+    "status" : "VALIDATED",
     "description" : "Service functions for fetching public content like trainers and testimonials.",
     "public_functions" : [ {
       "name" : "getAllTrainers",
@@ -2874,8 +2874,8 @@
     "file_type" : "FRONTEND",
     "layer" : "UTIL",
     "created_date" : "2024-07-28",
-    "updated_date" : "2024-07-28",
-    "status" : "PLANNED",
+    "updated_date" : "2026-07-07",
+    "status" : "GENERATED",
     "description" : "TypeScript types for public content like trainers and testimonials.",
     "public_functions" : null,
     "public_variables" : [ {

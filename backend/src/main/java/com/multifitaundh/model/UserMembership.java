@@ -12,6 +12,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import java.time.LocalDate;
 import java.util.UUID;
+import com.multifitaundh.model.MembershipStatus;
 import com.multifitaundh.model.User;
 import com.multifitaundh.model.MembershipPlan;
 
@@ -44,4 +45,22 @@ public class UserMembership {
     // No-arg constructor required by JPA
     public UserMembership() {
     }
+
+    public UUID getId() { return id; }
+    public void setId(UUID id) { this.id = id; }
+
+    public User getUser() { return user; }
+    public void setUser(User user) { this.user = user; }
+
+    public MembershipPlan getMembershipPlan() { return membershipPlan; }
+    public void setMembershipPlan(MembershipPlan membershipPlan) { this.membershipPlan = membershipPlan; }
+
+    public LocalDate getStartDate() { return startDate; }
+    public void setStartDate(LocalDate startDate) { this.startDate = startDate; }
+
+    public LocalDate getEndDate() { return endDate; }
+    public void setEndDate(LocalDate endDate) { this.endDate = endDate; }
+
+    public MembershipStatus getStatus() { return status; }
+    public void setStatus(MembershipStatus status) { this.status = status; }
 }

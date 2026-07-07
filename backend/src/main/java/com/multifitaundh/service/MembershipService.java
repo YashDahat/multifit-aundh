@@ -11,6 +11,7 @@ import com.multifitaundh.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.multifitaundh.model.MembershipStatus;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;

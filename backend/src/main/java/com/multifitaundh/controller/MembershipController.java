@@ -1,6 +1,7 @@
 package com.multifitaundh.controller;
 
 import com.multifitaundh.dto.MembershipPlanDto;
+import com.multifitaundh.service.MembershipService.UserMembershipDto;
 import com.multifitaundh.model.User;
 import com.multifitaundh.service.MembershipService;
 import org.springframework.beans.factory.annotation.Autowired;
