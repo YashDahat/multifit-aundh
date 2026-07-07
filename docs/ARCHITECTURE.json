@@ -2000,14 +2000,45 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "React context for managing global authentication state (user, token, login/logout functions).",
-    "public_functions" : null,
-    "public_variables" : null,
+    "public_functions" : [ {
+      "name" : "login",
+      "parameters" : [ "string email", "string password" ],
+      "return_type" : "Promise<void>",
+      "description" : "Authenticates a user, stores the JWT, and updates authentication state."
+    }, {
+      "name" : "logout",
+      "parameters" : [ ],
+      "return_type" : "void",
+      "description" : "Clears the JWT and user data, and updates authentication state."
+    }, {
+      "name" : "checkAuthStatus",
+      "parameters" : [ ],
+      "return_type" : "void",
+      "description" : "Checks for an existing JWT in local storage and restores authentication state."
+    } ],
+    "public_variables" : [ {
+      "name" : "token",
+      "type" : "string | null",
+      "description" : "The JWT token for the authenticated user."
+    }, {
+      "name" : "user",
+      "type" : "{ id: string; email: string; roles: string[] } | null",
+      "description" : "Simplified user object for the authenticated user."
+    }, {
+      "name" : "isAuthenticated",
+      "type" : "boolean",
+      "description" : "True if a user is authenticated, false otherwise."
+    }, {
+      "name" : "isLoading",
+      "type" : "boolean",
+      "description" : "True if the authentication status is currently being checked."
+    } ],
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "auth-flow",
-    "file_role" : null
+    "file_role" : "React context for managing global authentication state (user, token, login/logout functions). Provides `AuthContext.Provider` and exposes `login(email: string, password: string): Promise<void>`, `logout(): void`, and `checkAuthStatus(): void`."
   }, {
     "file_name" : "useAuth.ts",
     "file_path" : "frontend/src/hooks/useAuth.ts",
@@ -2017,14 +2048,19 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Custom hook for easy access to authentication context and functions.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "useAuth",
+      "parameters" : [ ],
+      "return_type" : "{ token: string | null; user: { id: string; email: string; roles: string[] } | null; isAuthenticated: boolean; isLoading: boolean; login: (email: string, password: string) => Promise<void>; logout: () => void; }",
+      "description" : "Provides access to the authentication context's state and functions."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/context/AuthContext.tsx", "frontend/src/services/authService.ts" ],
     "depends_on" : [ ],
     "feature_name" : "auth-flow",
-    "file_role" : null
+    "file_role" : "Custom hook for easy access to authentication context and functions. Exposes `useAuth()` to provide authentication state and actions."
   }, {
     "file_name" : "authService.ts",
     "file_path" : "frontend/src/services/authService.ts",
@@ -2034,14 +2070,36 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Service functions for making API calls related to authentication (login, register).",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "login",
+      "parameters" : [ "AuthRequest credentials" ],
+      "return_type" : "Promise<AuthResponse>",
+      "description" : "Sends user credentials to the backend for authentication."
+    }, {
+      "name" : "register",
+      "parameters" : [ "AuthRequest userData" ],
+      "return_type" : "Promise<AuthResponse>",
+      "description" : "Sends user registration data to the backend."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
-    "api_endpoints_consumed" : null,
+    "api_endpoints_consumed" : [ {
+      "method" : "POST",
+      "path" : "/api/v1/auth/login",
+      "request_body" : null,
+      "response_body" : null,
+      "description" : "Authenticates a user and returns a JWT."
+    }, {
+      "method" : "POST",
+      "path" : "/api/v1/auth/register",
+      "request_body" : null,
+      "response_body" : null,
+      "description" : "Registers a new user and returns a JWT."
+    } ],
     "imports_from" : [ "frontend/src/api/client.ts", "frontend/src/types/auth.ts" ],
     "depends_on" : [ ],
     "feature_name" : "auth-flow",
-    "file_role" : null
+    "file_role" : "Service functions for making API calls related to authentication (login, register). Implements `login(AuthRequest): Promise<AuthResponse>` and `register(AuthRequest): Promise<AuthResponse>`."
   }, {
     "file_name" : "auth.ts",
     "file_path" : "frontend/src/types/auth.ts",
@@ -2052,13 +2110,25 @@
     "status" : "PLANNED",
     "description" : "TypeScript types and interfaces for authentication data structures.",
     "public_functions" : null,
-    "public_variables" : null,
+    "public_variables" : [ {
+      "name" : "AuthRequest",
+      "type" : "{ email: string; password: string; }",
+      "description" : "Request body for user login and registration."
+    }, {
+      "name" : "AuthResponse",
+      "type" : "{ jwtToken: string; }",
+      "description" : "Response body containing the JWT token after successful authentication."
+    }, {
+      "name" : "User",
+      "type" : "{ id: string; email: string; roles: string[]; }",
+      "description" : "Simplified user object for frontend state."
+    } ],
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "auth-flow",
-    "file_role" : null
+    "file_role" : "Generated from the backend API contract — TypeScript types and interfaces for authentication data structures."
   }, {
     "file_name" : "LoginPage.tsx",
     "file_path" : "frontend/src/pages/LoginPage.tsx",
@@ -2068,14 +2138,19 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Page containing the login form for users and administrators.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "LoginPage",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders the login form and handles user authentication."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/hooks/useAuth.ts" ],
     "depends_on" : [ ],
     "feature_name" : "auth-flow",
-    "file_role" : null
+    "file_role" : "Page containing the login form for users and administrators. Renders the login UI and interacts with `useAuth` to perform authentication."
   }, {
     "file_name" : "ProtectedRoute.tsx",
     "file_path" : "frontend/src/components/ProtectedRoute.tsx",
@@ -2085,14 +2160,19 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "A wrapper component that restricts access to its children routes to authenticated users.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "ProtectedRoute",
+      "parameters" : [ "React.ReactNode children" ],
+      "return_type" : "JSX.Element",
+      "description" : "Protects routes by redirecting unauthenticated users to the login page."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/hooks/useAuth.ts" ],
     "depends_on" : [ ],
     "feature_name" : "auth-flow",
-    "file_role" : null
+    "file_role" : "A wrapper component that restricts access to its children routes to authenticated users. Uses `useAuth` to check authentication status and redirects unauthenticated users."
   }, {
     "file_name" : "HomePage.tsx",
     "file_path" : "frontend/src/pages/HomePage.tsx",
@@ -2719,7 +2799,7 @@
     "feature_display_name" : "Frontend: Authentication Flow",
     "feature_type" : "FRONTEND",
     "file_paths" : [ "frontend/src/context/AuthContext.tsx", "frontend/src/hooks/useAuth.ts", "frontend/src/services/authService.ts", "frontend/src/types/auth.ts", "frontend/src/pages/LoginPage.tsx", "frontend/src/components/ProtectedRoute.tsx" ],
-    "feature_instruction" : null,
+    "feature_instruction" : "## Design Tokens\n- Navbar: bg-[#1A1A1A] text-[#F5F5F5]\n- Primary CTA: bg-[#DFFF00] hover:bg-[#c2e600] text-[#1A1A1A] font-semibold rounded-full px-8 py-3 transition-all duration-200\n- Secondary CTA: bg-[#333333] hover:bg-[#444444] text-[#F5F5F5] font-semibold rounded-full px-8 py-3 transition-all duration-200\n- Brand text accent: text-[#DFFF00]\n- Section bg: bg-[#1A1A1A] (dark sections) / bg-white (light sections)\n- Card: bg-white rounded-xl shadow-md border border-gray-100 p-6\n- Section container: <section className=\"py-16 px-4\"><div className=\"max-w-7xl mx-auto\">\n- Hero h1: text-4xl md:text-6xl font-bold text-[#F5F5F5]\n- Body: text-gray-700 leading-relaxed\n\n## Feature: Frontend Authentication Flow\nThis feature provides a complete client-side authentication system, enabling users to log in, maintain their session, and protect routes based on their authentication status. It consists of a React Context for global state management, a custom hook for easy access, a service for API interactions, type definitions, a login page, and a protected route component.\n\n### 1. `frontend/src/types/auth.ts`\nThis file defines the TypeScript interfaces for authentication-related data structures, mirroring the backend `AuthRequest` and `AuthResponse` DTOs, and a simplified `User` interface for frontend use. These types are crucial for ensuring type safety across the authentication flow.\n\n### 2. `frontend/src/services/authService.ts`\nThis service handles all direct API communication with the backend's authentication endpoints. It uses the `axios` instance from `@/api/client.ts` to make HTTP requests. It provides functions for user login and registration, returning the `AuthResponse` which contains the JWT token.\n\n**Public Functions:**\n- `login(credentials: AuthRequest): Promise<AuthResponse>`: Sends a POST request to `/api/v1/auth/login` with user credentials. On success, returns the `AuthResponse` containing the JWT token. Throws an error on failure (e.g., invalid credentials).\n- `register(userData: AuthRequest): Promise<AuthResponse>`: Sends a POST request to `/api/v1/auth/register` with user registration data. On success, returns the `AuthResponse` containing the JWT token. Throws an error on failure (e.g., email already exists).\n\n### 3. `frontend/src/context/AuthContext.tsx`\nThis file establishes the React Context for managing the global authentication state. It provides an `AuthContext.Provider` component that wraps the application (or relevant parts) and makes the authentication state and functions available to all descendant components. The context manages the JWT token, user information, authentication status, and loading state.\n\n**State Variables:**\n- `token: string | null`: Stores the JWT received from the backend. Persisted in `localStorage` under the key `'token'`.\n- `user: { id: string; email: string; roles: string[] } | null`: Stores simplified user details (ID, email, roles) after successful login.\n- `isAuthenticated: boolean`: Derived from the presence of a token and user.\n- `isLoading: boolean`: Indicates if the authentication status is currently being checked (e.g., on initial app load).\n\n**Public Functions (provided by context):**\n- `login(email: string, password: string): Promise<void>`:\n    1. Calls `authService.login({ email, password })`.\n    2. On success, stores the received `jwtToken` in `localStorage` using the key `'token'`.\n    3. Decodes the JWT to extract user information (e.g., email, roles) and sets the `user` state.\n    4. Sets `token` state and `isAuthenticated` to `true`.\n    5. Handles errors by setting appropriate state and potentially throwing.\n- `logout(): void`:\n    1. Removes the JWT token from `localStorage` using the key `'token'`.\n    2. Clears the `token` and `user` states.\n    3. Sets `isAuthenticated` to `false`.\n- `checkAuthStatus(): void`:\n    1. Called on initial component mount of the `AuthProvider`.\n    2. Sets `isLoading` to `true`.\n    3. Retrieves the token from `localStorage` using the key `'token'`.\n    4. If a token exists, attempts to decode it to extract user information and set the `user` and `token` states, and `isAuthenticated` to `true`.\n    5. If no token or an invalid token, clears states and sets `isAuthenticated` to `false`.\n    6. Sets `isLoading` to `false`.\n\n### 4. `frontend/src/hooks/useAuth.ts`\nThis custom React hook provides a convenient way for functional components to access the authentication context. It abstracts away the `useContext` boilerplate and makes the `token`, `user`, `isAuthenticated`, `isLoading`, `login`, and `logout` functions easily available.\n\n**Public Functions:**\n- `useAuth(): { token: string | null; user: { id: string; email: string; roles: string[] } | null; isAuthenticated: boolean; isLoading: boolean; login: (email: string, password: string) => Promise<void>; logout: () => void; }`\n\n### 5. `frontend/src/pages/LoginPage.tsx`\nThis page renders the user login form. It utilizes the `useAuth` hook to access the `login` function and authentication state. The form will include fields for email and password, with validation. Upon successful login, the user should be redirected to the home page or a dashboard.\n\n**Design Details:**\n- The page should feature a prominent, high-energy hero section with a background image relevant to a gym (e.g., `https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1920&q=80`). An overlay `div` with `className=\"absolute inset-0 bg-black bg-opacity-50\"` should be applied over the image.\n- The main headline should be \"Unleash Your Potential. Log In.\", using `text-4xl md:text-6xl font-bold text-[#F5F5F5]`.\n- A subheadline \"Access your personalized fitness journey.\" should follow.\n- The login form itself should be centrally located, perhaps within a `bg-white` or `bg-[#1A1A1A]` card with `rounded-xl shadow-md p-8`.\n- Input fields for email and password should be clearly labeled.\n- The login button should use the `Primary CTA` design token: `bg-[#DFFF00] hover:bg-[#c2e600] text-[#1A1A1A] font-semibold rounded-full px-8 py-3 transition-all duration-200`.\n- Include a link for \"Don't have an account? Register here.\" that navigates to a registration page (if one exists in another feature, otherwise it can be a placeholder).\n- Error messages for failed login attempts should be displayed clearly to the user.\n\n### 6. `frontend/src/components/ProtectedRoute.tsx`\nThis component acts as a wrapper for routes that require authentication. It uses the `useAuth` hook to check if the user is authenticated. If not, it redirects the user to the `LoginPage`. If the authentication status is still loading, it can display a loading spinner or similar indicator.\n\n**Public Functions:**\n- `ProtectedRoute({ children }: { children: React.ReactNode }): JSX.Element`:\n    1. Retrieves `isAuthenticated` and `isLoading` from `useAuth()`.\n    2. If `isLoading` is `true`, renders a loading indicator (e.g., `<div>Loading...</div>`).\n    3. If `isLoading` is `false` and `isAuthenticated` is `false`, redirects to `/login` using `react-router-dom`'s `Navigate` component.\n    4. Otherwise (authenticated), renders `children`.\n",
     "change_required" : true
   }, {
     "feature_name" : "static-pages",
