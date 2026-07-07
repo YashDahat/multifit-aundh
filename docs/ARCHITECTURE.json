@@ -1869,14 +1869,19 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Main application component that sets up routing for all pages, including public, protected, and admin routes.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "App",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders the main application structure and defines all routes."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/pages/HomePage.tsx", "frontend/src/pages/MembershipsPage.tsx", "frontend/src/pages/SchedulePage.tsx", "frontend/src/pages/TrainersPage.tsx", "frontend/src/pages/ContactPage.tsx", "frontend/src/pages/LoginPage.tsx", "frontend/src/pages/AccountPage.tsx", "frontend/src/pages/admin/AdminDashboardPage.tsx", "frontend/src/components/Layout.tsx", "frontend/src/components/ProtectedRoute.tsx", "frontend/src/context/AuthContext.tsx" ],
     "depends_on" : [ ],
     "feature_name" : "shared-ui",
-    "file_role" : null
+    "file_role" : "Main application component that sets up routing for all pages, including public, protected, and admin routes, and integrates the AuthContext."
   }, {
     "file_name" : "Layout.tsx",
     "file_path" : "frontend/src/components/Layout.tsx",
@@ -1886,14 +1891,19 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Main layout component for public-facing pages, including the header, footer, and content area.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "Layout",
+      "parameters" : [ "React.ReactNode children" ],
+      "return_type" : "JSX.Element",
+      "description" : "Wraps page content with a consistent header and footer."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/components/Header.tsx", "frontend/src/components/Footer.tsx" ],
     "depends_on" : [ ],
     "feature_name" : "shared-ui",
-    "file_role" : null
+    "file_role" : "Main layout component for public-facing pages, providing a consistent structure with a header, footer, and a content area for child components."
   }, {
     "file_name" : "Header.tsx",
     "file_path" : "frontend/src/components/Header.tsx",
@@ -1903,14 +1913,19 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Application header containing the logo, navigation links, and call-to-action buttons.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "Header",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders the global application header with navigation and auth actions."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "shared-ui",
-    "file_role" : null
+    "file_role" : "Application header component displaying the MultiFit Aundh logo, primary navigation links, and dynamic call-to-action buttons (Login/Account)."
   }, {
     "file_name" : "Footer.tsx",
     "file_path" : "frontend/src/components/Footer.tsx",
@@ -1920,14 +1935,19 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Application footer with contact information, social media links, and sitemap.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "Footer",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders the global application footer with contact details and navigation."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "shared-ui",
-    "file_role" : null
+    "file_role" : "Application footer component displaying MultiFit Aundh's contact information, social media links, and a sitemap."
   }, {
     "file_name" : "FloatingCTA.tsx",
     "file_path" : "frontend/src/components/FloatingCTA.tsx",
@@ -1937,14 +1957,19 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "A site-wide floating call-to-action button, likely for WhatsApp chat.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "FloatingCTA",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders a fixed-position floating CTA button, typically for WhatsApp."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "shared-ui",
-    "file_role" : null
+    "file_role" : "A site-wide floating call-to-action button, typically for WhatsApp chat, positioned at the bottom right of the screen."
   }, {
     "file_name" : "client.ts",
     "file_path" : "frontend/src/api/client.ts",
@@ -1955,13 +1980,17 @@
     "status" : "PLANNED",
     "description" : "Configures the global Axios instance with base URL and interceptors for auth tokens.",
     "public_functions" : null,
-    "public_variables" : null,
+    "public_variables" : [ {
+      "name" : "axiosInstance",
+      "type" : "AxiosInstance",
+      "description" : "Configured Axios instance for making API requests, including JWT interceptor."
+    } ],
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "shared-ui",
-    "file_role" : null
+    "file_role" : "Configures the global Axios instance with a base URL and an interceptor to attach the JWT authentication token to outgoing requests."
   }, {
     "file_name" : "AuthContext.tsx",
     "file_path" : "frontend/src/context/AuthContext.tsx",
@@ -2683,7 +2712,7 @@
     "feature_display_name" : "Frontend: Shared UI Components",
     "feature_type" : "FRONTEND",
     "file_paths" : [ "frontend/src/App.tsx", "frontend/src/components/Layout.tsx", "frontend/src/components/Header.tsx", "frontend/src/components/Footer.tsx", "frontend/src/components/FloatingCTA.tsx", "frontend/src/api/client.ts" ],
-    "feature_instruction" : null,
+    "feature_instruction" : "## Design Tokens\n- Navbar: `bg-[#1A1A1A]` text-white\n- Primary CTA: `bg-[#DFFF00]` hover:bg-opacity-80 text-black font-semibold rounded-full px-8 py-3 transition-all duration-200\n- Brand text accent: `text-[#DFFF00]`\n- Section bg: `bg-[#F5F5F5]` (odd sections) / `bg-gray-100` (even sections)\n- Card: `bg-white` rounded-xl shadow-md border border-gray-100 p-6\n- Section container: `<section className=\"py-16 px-4\"><div className=\"max-w-7xl mx-auto\">`\n- Hero h1: text-4xl md:text-6xl font-bold `text-[#F5F5F5]`\n- Body: `text-[#333333]` leading-relaxed\n\nThe `shared-ui` feature provides the foundational UI components and global configurations for the MultiFit Aundh frontend application. It includes the main application entry point (`App.tsx`), the public page layout (`Layout.tsx`), common structural elements like the `Header.tsx` and `Footer.tsx`, a persistent `FloatingCTA.tsx`, and the global Axios client configuration (`client.ts`).\n\n1.  **`App.tsx`**: This is the root component that sets up the application's routing using `react-router-dom`.\n    *   It wraps the entire application within an `AuthProvider` (from the `auth-flow` feature at `frontend/src/context/AuthContext.tsx`) to manage global authentication state.\n    *   It defines public routes for `HomePage`, `MembershipsPage`, `SchedulePage`, `TrainersPage`, `ContactPage`, and `LoginPage`.\n    *   It defines a protected route for `/account` using the `ProtectedRoute` component (from the `auth-flow` feature at `frontend/src/components/ProtectedRoute.tsx`), ensuring only authenticated users can access it.\n    *   It defines an admin-specific protected route for `AdminDashboardPage` and all `/admin/*` paths, also using `ProtectedRoute` and verifying the user has an 'ADMIN' role via the `AuthContext`'s `isAdmin` property.\n    *   The `FloatingCTA` component is rendered globally, outside the main routing structure, to be present on all pages.\n\n2.  **`Layout.tsx`**: This component provides the consistent structural wrapper for all public-facing pages.\n    *   It accepts `children` of type `React.ReactNode` as a prop, which represents the main content of the page.\n    *   It renders the `Header` component at the top, the `children` within a `<main>` content area, and the `Footer` component at the bottom.\n    *   It does not include any authentication logic itself, relying on `App.tsx` to handle route protection.\n\n3.  **`Header.tsx`**: This component displays the application's global navigation and branding.\n    *   It prominently features the \"MultiFit Aundh\" brand name. The brand text accent `text-[#DFFF00]` should be applied to the brand name.\n    *   It includes navigation links to the main public sections: Home (`/`), Memberships (`/memberships`), Schedule (`/schedule`), Trainers (`/trainers`), and Contact (`/contact`).\n    *   It utilizes the `useAuth` hook (from the `auth-flow` feature) to dynamically display either a \"Login\" button (navigating to `/login`) or \"My Account\" (navigating to `/account`) and \"Logout\" buttons based on the user's authentication status. The \"Logout\" button calls the `logout` function from `AuthContext`.\n    *   Styling adheres to the design tokens: `bg-[#1A1A1A]` for the background and `text-white` for text. The CTA buttons should use the Primary CTA design token.\n\n4.  **`Footer.tsx`**: This component provides essential contact information and navigation at the bottom of every public page.\n    *   It displays the \"MultiFit Aundh\" brand.\n    *   It includes the gym's physical address: `Multifit Aundh , D.P. Road Medipoint Hospital Road, opp. to Indian Bank, Aundh, Pune, Maharashtra 411067`.\n    *   It lists the phone number: `075070 08009`.\n    *   It includes placeholder opening hours: \"Mon-Fri: 6 AM - 10 PM, Sat-Sun: 8 AM - 8 PM\".\n    *   It features social media links (e.g., Facebook, Instagram, Twitter icons linking to placeholder URLs). These icons should be styled to match the overall design.\n    *   It provides a sitemap with links to the main public pages.\n    *   Styling adheres to the design tokens: `bg-[#1A1A1A]` for the background and `text-white` for text.\n\n5.  **`FloatingCTA.tsx`**: This component provides a persistent, easily accessible call-to-action.\n    *   It renders a fixed-position button, typically a WhatsApp chat icon, at the bottom-right of the viewport. The button should have a `z-50` class to ensure it floats above other content.\n    *   Clicking the button should open a WhatsApp chat with the business phone number (`https://wa.me/917507008009`).\n    *   The button uses the `bg-[#DFFF00]` accent color for high visibility and `text-black` for the icon.\n\n6.  **`client.ts`**: This file configures the global Axios HTTP client for all API interactions.\n    *   It creates an `axiosInstance` with a `baseURL` of `/api/v1`.\n    *   It implements a request interceptor that checks `localStorage` for an authentication token stored under the key `'token'`.\n    *   If a token is found, it is added to the request headers as `Authorization: Bearer <token>`. This ensures all authenticated API calls automatically include the JWT.\n    *   This `axiosInstance` is exported and used by all frontend service files (e.g., `authService.ts`, `membershipService.ts`, etc.) to make API requests.",
     "change_required" : true
   }, {
     "feature_name" : "auth-flow",
