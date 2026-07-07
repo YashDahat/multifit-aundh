@@ -54,8 +54,8 @@
     "file_type" : "BACKEND",
     "layer" : "MODEL",
     "created_date" : "2024-07-28",
-    "updated_date" : "2024-07-28",
-    "status" : "PLANNED",
+    "updated_date" : "2026-07-07",
+    "status" : "GENERATED",
     "description" : "Defines user roles within the application (e.g., ROLE_USER, ROLE_ADMIN).",
     "public_functions" : null,
     "public_variables" : [ {
