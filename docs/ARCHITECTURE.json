@@ -1923,14 +1923,19 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "The main landing page featuring a bold hero section, class highlights, membership tiers, testimonials, and the 3-day trial form.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "HomePage",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders the main landing page composed of various content sections."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/components/home/HeroSection.tsx", "frontend/src/components/home/ClassHighlightsSection.tsx", "frontend/src/components/home/MembershipTiersSection.tsx", "frontend/src/components/home/TestimonialsSection.tsx", "frontend/src/components/home/TrialFormSection.tsx", "frontend/src/components/home/SocialFeedSection.tsx" ],
     "depends_on" : [ ],
     "feature_name" : "content-frontend",
-    "file_role" : null,
+    "file_role" : "PAGE layer — orchestrates the display of various content sections by consuming data from `useContent`, `useMemberships`, and `useSchedule` hooks.",
     "change_required" : null
   }, {
     "file_name" : "HeroSection.tsx",
@@ -1941,14 +1946,19 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Full-bleed, high-energy hero section with a motivational headline and primary call-to-action.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "HeroSection",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders the hero section with background image, headline, subheadline, and CTAs."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "content-frontend",
-    "file_role" : null,
+    "file_role" : "COMPONENT layer — displays a full-bleed hero section with a motivational headline and calls-to-action.",
     "change_required" : null
   }, {
     "file_name" : "ClassHighlightsSection.tsx",
@@ -1959,14 +1969,19 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Displays a dynamic grid of featured classes to showcase variety and energy.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "ClassHighlightsSection",
+      "parameters" : [ "{ gymClasses: GymClassDto[] }" ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders a grid of highlighted gym classes."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "content-frontend",
-    "file_role" : null,
+    "file_role" : "COMPONENT layer — displays a grid of featured classes, consuming `GymClassDto[]` as props.",
     "change_required" : null
   }, {
     "file_name" : "MembershipTiersSection.tsx",
@@ -1977,14 +1992,19 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Presents the main membership options in clear, comparable cards.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "MembershipTiersSection",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders a section displaying available membership plans."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/hooks/useMemberships.ts" ],
     "depends_on" : [ ],
     "feature_name" : "content-frontend",
-    "file_role" : null,
+    "file_role" : "COMPONENT layer — presents membership options by fetching data using `useMemberships().getAllActiveMembershipPlans()`.",
     "change_required" : null
   }, {
     "file_name" : "TestimonialsSection.tsx",
@@ -1995,14 +2015,19 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Showcases customer testimonials and high Google rating to build social proof.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "TestimonialsSection",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders a section displaying customer testimonials."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/hooks/useContent.ts" ],
     "depends_on" : [ ],
     "feature_name" : "content-frontend",
-    "file_role" : null,
+    "file_role" : "COMPONENT layer — showcases customer testimonials by fetching data using `useContent().getAllTestimonials()`.",
     "change_required" : null
   }, {
     "file_name" : "TrialFormSection.tsx",
@@ -2013,14 +2038,19 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "A prominent lead capture form for the 'Get a 3-Day Free Trial' offer.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "TrialFormSection",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders the 3-day free trial lead capture form."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/hooks/useContent.ts" ],
     "depends_on" : [ ],
     "feature_name" : "content-frontend",
-    "file_role" : null,
+    "file_role" : "COMPONENT layer — provides a lead capture form for the free trial offer, submitting data via `useContent().submitTrialLead()`.",
     "change_required" : null
   }, {
     "file_name" : "SocialFeedSection.tsx",
@@ -2031,14 +2061,19 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Displays an embedded or curated feed from Instagram to show gym activity and community.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "SocialFeedSection",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders a placeholder for a social media feed."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "content-frontend",
-    "file_role" : null,
+    "file_role" : "COMPONENT layer — displays an embedded or curated social media feed.",
     "change_required" : null
   }, {
     "file_name" : "ContactPage.tsx",
@@ -2049,14 +2084,19 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Provides contact information, a map, and business hours.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "ContactPage",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders the contact page with business details and a map."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "content-frontend",
-    "file_role" : null,
+    "file_role" : "PAGE layer — displays business contact information, including address, phone, hours, and a map.",
     "change_required" : null
   }, {
     "file_name" : "contentService.ts",
@@ -2067,14 +2107,62 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Provides functions for fetching trainers, testimonials, and submitting trial leads.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "getAllTrainers",
+      "parameters" : [ ],
+      "return_type" : "Promise<TrainerDto[]>",
+      "description" : "Fetches all trainer profiles from the backend."
+    }, {
+      "name" : "getTrainerById",
+      "parameters" : [ "string id" ],
+      "return_type" : "Promise<TrainerDto>",
+      "description" : "Fetches a single trainer profile by ID from the backend."
+    }, {
+      "name" : "getAllTestimonials",
+      "parameters" : [ ],
+      "return_type" : "Promise<TestimonialDto[]>",
+      "description" : "Fetches all customer testimonials from the backend."
+    }, {
+      "name" : "submitTrialLead",
+      "parameters" : [ "TrialLeadDto data" ],
+      "return_type" : "Promise<TrialLeadDto>",
+      "description" : "Submits a new trial lead to the backend."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
-    "api_endpoints_consumed" : null,
+    "api_endpoints_consumed" : [ {
+      "method" : "GET",
+      "path" : "/api/v1/trainers",
+      "request_body" : null,
+      "response_body" : null,
+      "description" : "Fetches all trainer profiles.",
+      "access" : null
+    }, {
+      "method" : "GET",
+      "path" : "/api/v1/trainers/{id}",
+      "request_body" : null,
+      "response_body" : null,
+      "description" : "Fetches a single trainer profile by ID.",
+      "access" : null
+    }, {
+      "method" : "GET",
+      "path" : "/api/v1/testimonials",
+      "request_body" : null,
+      "response_body" : null,
+      "description" : "Fetches all customer testimonials.",
+      "access" : null
+    }, {
+      "method" : "POST",
+      "path" : "/api/v1/trial-leads",
+      "request_body" : null,
+      "response_body" : null,
+      "description" : "Submits a new trial lead.",
+      "access" : null
+    } ],
     "imports_from" : [ "frontend/src/api/client.ts", "frontend/src/types/content.ts" ],
     "depends_on" : [ ],
     "feature_name" : "content-frontend",
-    "file_role" : null,
+    "file_role" : "SERVICE layer — provides functions for fetching trainers, testimonials, and submitting trial leads by calling the `content-backend` API.",
     "change_required" : null
   }, {
     "file_name" : "useContent.ts",
@@ -2085,14 +2173,34 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "React Query hook for fetching and managing content data like trainers and testimonials.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "useAllTrainers",
+      "parameters" : [ ],
+      "return_type" : "UseQueryResult<TrainerDto[], Error>",
+      "description" : "React Query hook to fetch all trainer profiles."
+    }, {
+      "name" : "useTrainerById",
+      "parameters" : [ "string id" ],
+      "return_type" : "UseQueryResult<TrainerDto, Error>",
+      "description" : "React Query hook to fetch a single trainer profile by ID."
+    }, {
+      "name" : "useAllTestimonials",
+      "parameters" : [ ],
+      "return_type" : "UseQueryResult<TestimonialDto[], Error>",
+      "description" : "React Query hook to fetch all customer testimonials."
+    }, {
+      "name" : "useSubmitTrialLead",
+      "parameters" : [ ],
+      "return_type" : "UseMutationResult<TrialLeadDto, Error, TrialLeadDto>",
+      "description" : "React Query hook to submit a new trial lead."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/services/contentService.ts", "frontend/src/types/content.ts" ],
     "depends_on" : [ ],
     "feature_name" : "content-frontend",
-    "file_role" : null,
+    "file_role" : "HOOK layer — provides React Query hooks for fetching and managing content data like trainers and testimonials, and for submitting trial leads.",
     "change_required" : null
   }, {
     "file_name" : "content.ts",
@@ -2104,13 +2212,25 @@
     "status" : "PLANNED",
     "description" : "TypeScript types for content entities like Trainer, Testimonial, and TrialLead.",
     "public_functions" : null,
-    "public_variables" : null,
+    "public_variables" : [ {
+      "name" : "TrainerDto",
+      "type" : "{ id: string; name: string; specialization: string; bio: string; imageUrl: string; }",
+      "description" : "DTO for trainer profiles."
+    }, {
+      "name" : "TestimonialDto",
+      "type" : "{ id: string; authorName: string; rating: number; content: string; displayDate: string; }",
+      "description" : "DTO for customer testimonials."
+    }, {
+      "name" : "TrialLeadDto",
+      "type" : "{ name: string; email: string; phoneNumber: string; }",
+      "description" : "DTO for trial lead submissions."
+    } ],
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "content-frontend",
-    "file_role" : null,
+    "file_role" : "Generated from the backend API contract — defines TypeScript types for content entities like TrainerDto, TestimonialDto, and TrialLeadDto.",
     "change_required" : null
   }, {
     "file_name" : "MembershipsPage.tsx",
@@ -2373,14 +2493,19 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Displays a grid of all trainers with links to their individual profile pages.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "TrainersPage",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders the page displaying a grid of all trainers."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/hooks/useContent.ts", "frontend/src/components/trainers/TrainerGrid.tsx" ],
     "depends_on" : [ ],
     "feature_name" : "content-frontend",
-    "file_role" : null,
+    "file_role" : "PAGE layer — displays a grid of all trainers by fetching data using `useContent().getAllTrainers()` and rendering `TrainerGrid`.",
     "change_required" : null
   }, {
     "file_name" : "TrainerDetailPage.tsx",
@@ -2391,14 +2516,19 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Shows the detailed profile of a single trainer, including bio, specializations, and photo.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "TrainerDetailPage",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders the detailed profile page for a single trainer."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/hooks/useContent.ts" ],
     "depends_on" : [ ],
     "feature_name" : "content-frontend",
-    "file_role" : null,
+    "file_role" : "PAGE layer — shows the detailed profile of a single trainer by fetching data using `useContent().getTrainerById(id)`.",
     "change_required" : null
   }, {
     "file_name" : "TrainerGrid.tsx",
@@ -2409,14 +2539,19 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "A component that lays out trainer profiles in a responsive grid.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "TrainerGrid",
+      "parameters" : [ "{ trainers: TrainerDto[] }" ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders a responsive grid of trainer cards."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/components/trainers/TrainerCard.tsx", "frontend/src/types/content.ts" ],
     "depends_on" : [ ],
     "feature_name" : "content-frontend",
-    "file_role" : null,
+    "file_role" : "COMPONENT layer — lays out trainer profiles in a responsive grid, consuming `TrainerDto[]` as props.",
     "change_required" : null
   }, {
     "file_name" : "TrainerCard.tsx",
@@ -2427,14 +2562,19 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "A card component to display a summary of a trainer's profile.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "TrainerCard",
+      "parameters" : [ "{ trainer: TrainerDto }" ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders a card displaying a summary of a trainer's profile."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/types/content.ts" ],
     "depends_on" : [ ],
     "feature_name" : "content-frontend",
-    "file_role" : null,
+    "file_role" : "COMPONENT layer — displays a summary of a trainer's profile, consuming `TrainerDto` as props.",
     "change_required" : null
   }, {
     "file_name" : "AdminDashboardPage.tsx",
@@ -2748,8 +2888,8 @@
     "feature_display_name" : "Content & Static Pages",
     "feature_type" : "FRONTEND",
     "file_paths" : [ "frontend/src/pages/HomePage.tsx", "frontend/src/components/home/HeroSection.tsx", "frontend/src/components/home/ClassHighlightsSection.tsx", "frontend/src/components/home/MembershipTiersSection.tsx", "frontend/src/components/home/TestimonialsSection.tsx", "frontend/src/components/home/TrialFormSection.tsx", "frontend/src/components/home/SocialFeedSection.tsx", "frontend/src/pages/ContactPage.tsx", "frontend/src/services/contentService.ts", "frontend/src/hooks/useContent.ts", "frontend/src/types/content.ts", "frontend/src/pages/TrainersPage.tsx", "frontend/src/pages/TrainerDetailPage.tsx", "frontend/src/components/trainers/TrainerGrid.tsx", "frontend/src/components/trainers/TrainerCard.tsx" ],
-    "feature_instruction" : null,
-    "depends_on_features" : null,
+    "feature_instruction" : "## Design Tokens\n- Navbar: bg-[#1A1A1A] text-[#F5F5F5]\n- Primary CTA: bg-[#DFFF00] hover:bg-[#c2e600] text-[#1A1A1A] font-semibold rounded-full px-8 py-3 transition-all duration-200\n- Secondary CTA: border border-[#DFFF00] text-[#DFFF00] hover:bg-[#DFFF00] hover:text-[#1A1A1A] font-semibold rounded-full px-8 py-3 transition-all duration-200\n- Brand text accent: text-[#DFFF00]\n- Section bg: bg-white (odd sections) / bg-gray-50 (even sections)\n- Card: bg-white rounded-xl shadow-md border border-gray-100 p-6\n- Section container: <section className=\"py-16 px-4\"><div className=\"max-w-7xl mx-auto\">\n- Hero h1: text-4xl md:text-6xl font-bold text-white\n- Body: text-gray-700 leading-relaxed\n\nThis feature provides all the static content pages and components for the MultiFit Aundh gym website, including the homepage, contact page, and trainer profiles. It interacts with the `content-backend` feature to fetch dynamic data like trainers and testimonials, and to submit trial lead forms. It also fetches membership plans from the `membership-backend` to display on the homepage.\n\n### `HomePage.tsx`\nThis page serves as the main landing page for the gym. It is composed of several sections:\n1.  **HeroSection**: A full-width, high-energy section with a background image/video, a bold headline \"Unleash Your Potential at MultiFit Aundh\", a subheadline \"The antidote to boring gyms. Join our vibrant community and transform your fitness journey.\", and two call-to-action buttons: \"Start Your Free Trial\" (primary CTA, links to the trial form section) and \"Explore Memberships\" (secondary CTA, links to `/memberships`).\n2.  **ClassHighlightsSection**: Displays a grid of featured gym classes. This section should fetch a list of `GymClassDto` objects from the `scheduling-backend` using `useSchedule().getAllGymClasses()` and display a selection of them. Each class card should include the class name, a short description, and a trainer name. It should have a heading \"Our Signature Classes\" and a subheadline \"Find your passion, push your limits.\"\n3.  **MembershipTiersSection**: Presents the available membership plans. This section will fetch `MembershipPlanDto` objects from the `membership-backend` using `useMemberships().getAllActiveMembershipPlans()`. It should display each plan in a card format, showing the `name`, `price` (formatted in INR), and `description`. It should have a heading \"Choose Your Path to Fitness\" and a subheadline \"Flexible plans designed for every goal.\"\n4.  **TestimonialsSection**: Showcases customer testimonials. This section fetches `TestimonialDto` objects from `content-backend` via `useContent().getAllTestimonials()`. It should display the `authorName`, `rating` (e.g., as stars), and `content` of each testimonial. It should have a heading \"Hear From Our Community\" and a subheadline \"Real stories, real results.\"\n5.  **TrialFormSection**: A lead capture form for the \"Get a 3-Day Free Trial\" offer. This form collects `name`, `email`, and `phoneNumber`. Upon submission, it calls `useContent().submitTrialLead(formData)`. It should have a heading \"Ready to Transform?\" and a subheadline \"Claim your FREE 3-day trial today!\"\n6.  **SocialFeedSection**: An embedded or curated feed from Instagram to display gym activity and community engagement. This section will contain placeholder content for an Instagram feed.\n\nAll monetary values (membership prices) must be displayed in Indian Rupees (₹) using `toLocaleString('en-IN', { style: 'currency', currency: 'INR' })`.\n\n### `HeroSection.tsx`\nThis component renders the hero section for the `HomePage.tsx`. It will feature a full-bleed background image (`https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1920&q=80`) with a `bg-black bg-opacity-50` overlay. It displays a motivational `h1` headline \"Unleash Your Potential at MultiFit Aundh\" and a subheadline \"The antidote to boring gyms. Join our vibrant community and transform your fitness journey.\". It includes two buttons: a primary CTA \"Start Your Free Trial\" (linking to `#trial-form`) and a secondary CTA \"Explore Memberships\" (linking to `/memberships`).\n\n### `ClassHighlightsSection.tsx`\nThis component displays a grid of featured classes. It receives `gymClasses: GymClassDto[]` as props. It should render a responsive grid of `GymClassCard` components (to be created in the `scheduling-frontend` feature), each displaying the class `name`, `description`, and `trainerName`. The section includes a heading \"Our Signature Classes\" and a subheadline \"Find your passion, push your limits.\"\n\n### `MembershipTiersSection.tsx`\nThis component displays membership plans. It fetches data using `useMemberships().getAllActiveMembershipPlans()`. It renders a grid of cards, each representing a `MembershipPlanDto`. Each card will display the `name`, `description`, and `price` (formatted in INR) of the membership plan. It should include a call-to-action button \"View Details\" or \"Join Now\" that navigates to `/memberships`. The section includes a heading \"Choose Your Path to Fitness\" and a subheadline \"Flexible plans designed for every goal.\"\n\n### `TestimonialsSection.tsx`\nThis component displays customer testimonials. It fetches data using `useContent().getAllTestimonials()`. It renders a carousel or grid of testimonial cards. Each card displays the `authorName`, `rating` (e.g., 5 stars), and `content` from the `TestimonialDto`. The section includes a heading \"Hear From Our Community\" and a subheadline \"Real stories, real results.\"\n\n### `TrialFormSection.tsx`\nThis component renders the 3-day free trial lead capture form. It uses `useContent().submitTrialLead()` to handle form submissions. The form should include input fields for `name`, `email`, and `phoneNumber`. Upon successful submission, it should display a success message using a toast notification (e.g., from `sonner`). The section includes a heading \"Ready to Transform?\" and a subheadline \"Claim your FREE 3-day trial today!\"\n\n### `SocialFeedSection.tsx`\nThis component displays a placeholder for an embedded Instagram feed. It will contain static content or a simple message indicating where the social feed would be.\n\n### `ContactPage.tsx`\nThis page provides contact information for MultiFit Aundh. It should display the business `address` (\"Multifit Aundh , D.P. Road Medipoint Hospital Road, opp. to Indian Bank, Aundh, Pune, Maharashtra 411067\"), `phone` number (\"075070 08009\"), and `opening hours` (placeholder text for now). It should also embed a Google Map using the provided `coordinates` (18.562876, 73.799999 - assuming a valid longitude for Pune). The page content should be wrapped in the `Layout` component from `shared-frontend`.\n\n### `contentService.ts`\nThis service provides functions to interact with the `content-backend` API. It includes `getAllTrainers()`, `getTrainerById(id: UUID)`, `getAllTestimonials()`, and `submitTrialLead(data: TrialLeadDto)`. It uses `axios` from `frontend/src/api/client.ts` for HTTP requests.\n\n### `useContent.ts`\nThis React Query hook provides an interface for components to fetch and mutate content-related data. It exposes `useQuery` for `getAllTrainers`, `getTrainerById`, and `getAllTestimonials`, and `useMutation` for `submitTrialLead`. It uses the `contentService.ts` for data fetching.\n\n### `content.ts`\nThis file defines TypeScript interfaces for the data structures used in the content feature, including `TrainerDto`, `TestimonialDto`, and `TrialLeadDto`. These types should precisely match the DTOs exposed by the `content-backend` feature.\n\n### `TrainersPage.tsx`\nThis page displays a grid of all trainers. It fetches trainer data using `useContent().getAllTrainers()`. It renders a `TrainerGrid` component, passing the fetched `TrainerDto[]` as props. The page should have a heading \"Meet Our Expert Trainers\" and a subheadline \"Dedicated to your fitness journey.\". The page content should be wrapped in the `Layout` component from `shared-frontend`.\n\n### `TrainerDetailPage.tsx`\nThis page displays the detailed profile of a single trainer. It retrieves the `trainerId` from the URL parameters and fetches the specific `TrainerDto` using `useContent().getTrainerById(trainerId)`. It displays the trainer's `name`, `specialization`, `bio`, and `imageUrl`. The page content should be wrapped in the `Layout` component from `shared-frontend`.\n\n### `TrainerGrid.tsx`\nThis component renders a responsive grid of `TrainerCard` components. It accepts `trainers: TrainerDto[]` as props. Each `TrainerCard` displays a summary of a trainer's profile.\n\n### `TrainerCard.tsx`\nThis component displays a summary of a single trainer's profile. It accepts `trainer: TrainerDto` as props. It should display the trainer's `name`, `specialization`, and `imageUrl`. Clicking on the card should navigate to the `TrainerDetailPage` for that trainer (`/trainers/{trainer.id}`).\n",
+    "depends_on_features" : [ "content-backend", "membership-backend", "scheduling-backend", "shared-frontend", "membership-frontend" ],
     "change_required" : true,
     "change_instruction" : null
   }, {
