@@ -1594,14 +1594,14 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Configures the global Axios instance with base URL and interceptors for JWT authentication.",
-    "public_functions" : null,
-    "public_variables" : null,
+    "public_functions" : [ ],
+    "public_variables" : [ ],
     "api_endpoints" : null,
-    "api_endpoints_consumed" : null,
+    "api_endpoints_consumed" : [ ],
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "shared-frontend",
-    "file_role" : null,
+    "file_role" : "Global Axios instance configuration — sets base URL and adds an interceptor for JWT authentication.",
     "change_required" : null
   }, {
     "file_name" : "App.tsx",
@@ -1612,14 +1612,19 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "The root component that sets up the React Query client, auth provider, and router.",
-    "public_functions" : null,
-    "public_variables" : null,
+    "public_functions" : [ {
+      "name" : "App",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders the main application, providing global context for React Query and authentication, and setting up routing."
+    } ],
+    "public_variables" : [ ],
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/context/AuthContext.tsx" ],
     "depends_on" : [ ],
     "feature_name" : "shared-frontend",
-    "file_role" : null,
+    "file_role" : "Root React component — sets up React Query client, AuthContext provider, and router.",
     "change_required" : null
   }, {
     "file_name" : "Layout.tsx",
@@ -1630,14 +1635,19 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Main application layout for public pages, including the header, footer, and main content area.",
-    "public_functions" : null,
-    "public_variables" : null,
+    "public_functions" : [ {
+      "name" : "Layout",
+      "parameters" : [ "{ children: React.ReactNode }" ],
+      "return_type" : "JSX.Element",
+      "description" : "Provides a consistent layout for public pages, wrapping content with the Header and Footer."
+    } ],
+    "public_variables" : [ ],
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "frontend/src/components/Header.tsx", "frontend/src/components/Footer.tsx" ],
     "depends_on" : [ ],
     "feature_name" : "shared-frontend",
-    "file_role" : null,
+    "file_role" : "Main application layout for public pages — includes Header, Footer, and main content area.",
     "change_required" : null
   }, {
     "file_name" : "Header.tsx",
@@ -1648,14 +1658,19 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Site-wide header component with logo, navigation links, and call-to-action buttons.",
-    "public_functions" : null,
-    "public_variables" : null,
+    "public_functions" : [ {
+      "name" : "Header",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders the main navigation and branding for the public site."
+    } ],
+    "public_variables" : [ ],
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "shared-frontend",
-    "file_role" : null,
+    "file_role" : "Site-wide header component — displays logo, navigation links, and call-to-action buttons.",
     "change_required" : null
   }, {
     "file_name" : "Footer.tsx",
@@ -1666,14 +1681,19 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Site-wide footer component with contact information, social links, and sitemap.",
-    "public_functions" : null,
-    "public_variables" : null,
+    "public_functions" : [ {
+      "name" : "Footer",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders the footer with business details and navigation."
+    } ],
+    "public_variables" : [ ],
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "shared-frontend",
-    "file_role" : null,
+    "file_role" : "Site-wide footer component — displays contact information, social links, and sitemap.",
     "change_required" : null
   }, {
     "file_name" : "AdminLayout.tsx",
@@ -1684,14 +1704,19 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Layout for the admin section, including a sidebar for navigation and a main content area.",
-    "public_functions" : null,
-    "public_variables" : null,
+    "public_functions" : [ {
+      "name" : "AdminLayout",
+      "parameters" : [ "{ children: React.ReactNode }" ],
+      "return_type" : "JSX.Element",
+      "description" : "Provides a consistent layout for admin pages, including a sidebar for navigation."
+    } ],
+    "public_variables" : [ ],
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "shared-frontend",
-    "file_role" : null,
+    "file_role" : "Layout for the admin section — includes a sidebar for navigation and a main content area.",
     "change_required" : null
   }, {
     "file_name" : "ProtectedRoute.tsx",
@@ -1810,14 +1835,19 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "A user-friendly 404 page shown when a route does not match.",
-    "public_functions" : null,
-    "public_variables" : null,
+    "public_functions" : [ {
+      "name" : "NotFoundPage",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders a 404 error page with a link to the homepage."
+    } ],
+    "public_variables" : [ ],
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "shared-frontend",
-    "file_role" : null,
+    "file_role" : "A user-friendly 404 page — shown when a route does not match.",
     "change_required" : null
   }, {
     "file_name" : "HomePage.tsx",
@@ -2635,8 +2665,8 @@
     "feature_display_name" : "Shared Frontend",
     "feature_type" : "FRONTEND",
     "file_paths" : [ "frontend/src/api/client.ts", "frontend/src/App.tsx", "frontend/src/components/Layout.tsx", "frontend/src/components/Header.tsx", "frontend/src/components/Footer.tsx", "frontend/src/components/AdminLayout.tsx", "frontend/src/pages/NotFoundPage.tsx" ],
-    "feature_instruction" : null,
-    "depends_on_features" : null,
+    "feature_instruction" : "This feature provides the foundational frontend infrastructure and shared UI components for the MultiFit Aundh application. It includes the global Axios client configuration, the root `App` component for setting up React Query and authentication, and the main `Layout` components for both public-facing pages and the admin portal. It also defines common UI elements like the `Header`, `Footer`, and a `NotFoundPage`.\n\n## Design Tokens\n- Navbar: bg-[#1A1A1A] text-[#F5F5F5]\n- Primary CTA: bg-[#DFFF00] hover:bg-[#c2e600] text-[#1A1A1A] font-semibold rounded-full px-8 py-3 transition-all duration-200\n- Brand text accent: text-[#DFFF00]\n- Section bg: bg-white (odd sections) / bg-gray-50 (even sections)\n- Card: bg-white rounded-xl shadow-md border border-gray-100 p-6\n- Section container: <section className=\"py-16 px-4\"><div className=\"max-w-7xl mx-auto\">\n- Hero h1: text-4xl md:text-6xl font-bold text-[#F5F5F5]\n- Body: text-gray-700 leading-relaxed\n\n### `frontend/src/api/client.ts`\nThis file configures the global Axios instance. It sets the `baseURL` to `/api/v1` and adds an interceptor to include the JWT token from `localStorage` in the `Authorization` header for every outgoing request. The token is stored under the key 'token'.\n\n### `frontend/src/App.tsx`\nThis is the root component of the React application. It sets up the `QueryClientProvider` for React Query, ensuring that data fetching and caching are globally available. It also wraps the application with `AuthProvider` from `auth-frontend` to manage global authentication state and `BrowserRouter` from `react-router-dom` to handle client-side routing. The `App` component will render the main application routes.\n\n### `frontend/src/components/Layout.tsx`\nThis component provides the main layout structure for all public-facing pages. It includes the `Header` at the top, the `Footer` at the bottom, and a `main` content area in between. The `Header` and `Footer` components are imported and rendered directly. The `Layout` component accepts `children` as props, which will be rendered within the `main` content area. The header will include navigation links for Home, Memberships, Schedule, Trainers, and Contact, along with a \"Login\" button and a \"Join Now\" CTA. The footer will display business contact information, social media links, and a sitemap.\n\n### `frontend/src/components/Header.tsx`\nThis component renders the site-wide header. It will display the MultiFit Aundh logo (as text for now), primary navigation links (Home, Memberships, Schedule, Trainers, Contact), and call-to-action buttons for \"Login\" and \"Join Now\". The navigation links will use `react-router-dom`'s `Link` component. The \"Login\" button will navigate to `/login` and the \"Join Now\" button will navigate to `/memberships`.\n\n### `frontend/src/components/Footer.tsx`\nThis component renders the site-wide footer. It will display the business name \"MultiFit Aundh\", the address \"Multifit Aundh , D.P. Road Medipoint Hospital Road, opp. to Indian Bank, Aundh, Pune, Maharashtra 411067\", phone number \"075070 08009\", and opening hours. It will also include placeholder links for social media and a sitemap. All monetary values (if any were displayed here) would use `toLocaleString('en-IN', { style: 'currency', currency: 'INR' })`.\n\n### `frontend/src/components/AdminLayout.tsx`\nThis component provides the layout for the admin section of the application. It includes a sidebar for admin navigation and a main content area. The sidebar will contain links to manage Memberships, Scheduling, Trainers, and Testimonials. The `AdminLayout` component accepts `children` as props, which will be rendered within the main content area.\n\n### `frontend/src/pages/NotFoundPage.tsx`\nThis page is displayed when a user navigates to a route that does not exist. It will present a user-friendly 404 message, such as \"Page Not Found\" and a link back to the homepage. The design should be clean and consistent with the overall brand aesthetic, using the defined design tokens.",
+    "depends_on_features" : [ "auth-frontend" ],
     "change_required" : true,
     "change_instruction" : null
   }, {
