@@ -1,5 +1,6 @@
 package com.multifitaundh.service;
 
+import com.multifitaundh.dto.BookingDto;
 import com.multifitaundh.dto.ClassScheduleDto;
 import com.multifitaundh.dto.GymClassDto;
 import com.multifitaundh.exception.BookingConflictException;

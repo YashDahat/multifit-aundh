@@ -14,7 +14,7 @@
     "layer" : "EXCEPTION",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Handles all uncaught exceptions and formats them into a consistent ErrorResponse.",
     "public_functions" : [ {
       "name" : "handleResourceNotFoundException",
@@ -42,7 +42,7 @@
     "layer" : "EXCEPTION",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Custom exception for when a requested entity (e.g., MembershipPlan, Trainer) is not found.",
     "public_functions" : null,
     "public_variables" : null,
@@ -60,7 +60,7 @@
     "layer" : "EXCEPTION",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Custom exception for when a user tries to book a class that is already full or at the same time as another booking.",
     "public_functions" : [ {
       "name" : "BookingConflictException",
@@ -83,7 +83,7 @@
     "layer" : "DTO",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Standardized JSON response body for API errors.",
     "public_functions" : null,
     "public_variables" : [ {
@@ -121,7 +121,7 @@
     "layer" : "CONTROLLER",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Forwards all non-API, non-static requests to index.html, enabling client-side routing in the React SPA.",
     "public_functions" : [ {
       "name" : "forwardSpaRoutes",
@@ -151,7 +151,7 @@
     "layer" : "CONFIG",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Seeds the database with initial domain data like membership plans, gym classes, and trainers on application startup.",
     "public_functions" : [ {
       "name" : "run",
@@ -174,7 +174,7 @@
     "layer" : "MODEL",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Represents a purchasable gym membership tier (e.g., '3 Month Unlimited', '1 Year CrossFit').",
     "public_functions" : [ ],
     "public_variables" : [ {
@@ -216,7 +216,7 @@
     "layer" : "MODEL",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Links a User to a MembershipPlan, representing an active or past subscription with start and end dates.",
     "public_functions" : [ ],
     "public_variables" : [ {
@@ -258,7 +258,7 @@
     "layer" : "REPOSITORY",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Spring Data JPA repository for CRUD operations on MembershipPlan entities.",
     "public_functions" : [ {
       "name" : "findByIsActiveTrue",
@@ -281,7 +281,7 @@
     "layer" : "REPOSITORY",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Spring Data JPA repository for CRUD operations on MemberSubscription entities.",
     "public_functions" : [ {
       "name" : "findByUserId",
@@ -309,7 +309,7 @@
     "layer" : "SERVICE",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Handles business logic for purchasing and managing memberships, integrating with the PaymentService.",
     "public_functions" : [ {
       "name" : "getAllActiveMembershipPlans",
@@ -357,7 +357,7 @@
     "layer" : "CONTROLLER",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Exposes public API endpoints for listing membership plans and initiating a purchase.",
     "public_functions" : [ {
       "name" : "getAllActiveMembershipPlans",
@@ -399,7 +399,7 @@
     "layer" : "CONTROLLER",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Exposes secured admin API endpoints for creating, updating, and deleting membership plans.",
     "public_functions" : [ {
       "name" : "createMembershipPlan",
@@ -453,7 +453,7 @@
     "layer" : "DTO",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Data Transfer Object for MembershipPlan entities, used in API responses and requests.",
     "public_functions" : [ ],
     "public_variables" : [ {
@@ -495,7 +495,7 @@
     "layer" : "MODEL",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Represents a type of class offered, like 'Zumba', 'CrossFit', or 'Yoga'.",
     "public_functions" : [ ],
     "public_variables" : [ {
@@ -533,7 +533,7 @@
     "layer" : "MODEL",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Represents a specific, bookable instance of a GymClass at a given date and time.",
     "public_functions" : [ ],
     "public_variables" : [ {
@@ -579,7 +579,7 @@
     "layer" : "MODEL",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Links a User to a ClassSchedule, representing a confirmed booking for a class.",
     "public_functions" : [ ],
     "public_variables" : [ {
@@ -613,7 +613,7 @@
     "layer" : "REPOSITORY",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Spring Data JPA repository for CRUD operations on GymClass entities.",
     "public_functions" : [ {
       "name" : "findAll",
@@ -651,7 +651,7 @@
     "layer" : "REPOSITORY",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Spring Data JPA repository for CRUD operations on ClassSchedule entities.",
     "public_functions" : [ {
       "name" : "findAll",
@@ -699,7 +699,7 @@
     "layer" : "REPOSITORY",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Spring Data JPA repository for CRUD operations on Booking entities.",
     "public_functions" : [ {
       "name" : "findAll",
@@ -747,7 +747,7 @@
     "layer" : "SERVICE",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Handles business logic for fetching class schedules and managing user bookings.",
     "public_functions" : [ {
       "name" : "getAllGymClasses",
@@ -825,7 +825,7 @@
     "layer" : "CONTROLLER",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Exposes public API endpoints for viewing the class schedule and making bookings.",
     "public_functions" : [ {
       "name" : "getAllGymClasses",
@@ -915,7 +915,7 @@
     "layer" : "CONTROLLER",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Exposes secured admin API endpoints for managing gym classes and their schedules.",
     "public_functions" : [ {
       "name" : "createGymClass",
@@ -1005,7 +1005,7 @@
     "layer" : "DTO",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Data Transfer Object for GymClass entities.",
     "public_functions" : [ ],
     "public_variables" : [ {
@@ -1047,7 +1047,7 @@
     "layer" : "DTO",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Data Transfer Object for ClassSchedule entities, often including related GymClass info.",
     "public_functions" : [ ],
     "public_variables" : [ {
@@ -1101,7 +1101,7 @@
     "layer" : "MODEL",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Represents a gym trainer with their profile, specializations, and photo.",
     "public_functions" : [ ],
     "public_variables" : [ {
@@ -1139,7 +1139,7 @@
     "layer" : "MODEL",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Represents a customer testimonial with author, rating, and text content.",
     "public_functions" : [ ],
     "public_variables" : [ {
@@ -1177,7 +1177,7 @@
     "layer" : "MODEL",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Represents a lead captured from the '3-Day Free Trial' form.",
     "public_functions" : [ ],
     "public_variables" : [ {
@@ -1215,7 +1215,7 @@
     "layer" : "REPOSITORY",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Spring Data JPA repository for CRUD operations on Trainer entities.",
     "public_functions" : [ ],
     "public_variables" : null,
@@ -1233,7 +1233,7 @@
     "layer" : "REPOSITORY",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Spring Data JPA repository for CRUD operations on Testimonial entities.",
     "public_functions" : [ ],
     "public_variables" : null,
@@ -1251,7 +1251,7 @@
     "layer" : "REPOSITORY",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Spring Data JPA repository for CRUD operations on TrialLead entities.",
     "public_functions" : [ ],
     "public_variables" : null,
@@ -1269,7 +1269,7 @@
     "layer" : "SERVICE",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Handles business logic for managing trainers, testimonials, and trial leads.",
     "public_functions" : [ {
       "name" : "getAllTrainers",
@@ -1342,7 +1342,7 @@
     "layer" : "CONTROLLER",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Exposes public API endpoints for fetching trainers, testimonials, and submitting trial leads.",
     "public_functions" : [ {
       "name" : "getAllTrainers",
@@ -1396,7 +1396,7 @@
     "layer" : "CONTROLLER",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Exposes secured admin API endpoints for managing trainers and testimonials.",
     "public_functions" : [ {
       "name" : "createTrainer",
@@ -1486,7 +1486,7 @@
     "layer" : "DTO",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Data Transfer Object for Trainer entities.",
     "public_functions" : [ ],
     "public_variables" : [ {
@@ -1524,7 +1524,7 @@
     "layer" : "DTO",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Data Transfer Object for Testimonial entities.",
     "public_functions" : [ ],
     "public_variables" : [ {
@@ -1562,7 +1562,7 @@
     "layer" : "DTO",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Data Transfer Object for submitting a new TrialLead.",
     "public_functions" : [ ],
     "public_variables" : [ {
@@ -1591,8 +1591,8 @@
     "file_type" : "FRONTEND",
     "layer" : "SERVICE",
     "created_date" : "2024-07-28",
-    "updated_date" : "2024-07-28",
-    "status" : "PLANNED",
+    "updated_date" : "2026-07-26",
+    "status" : "VALIDATED",
     "description" : "Configures the global Axios instance with base URL and interceptors for JWT authentication.",
     "public_functions" : [ ],
     "public_variables" : [ ],
@@ -1609,8 +1609,8 @@
     "file_type" : "FRONTEND",
     "layer" : "COMPONENT",
     "created_date" : "2024-07-28",
-    "updated_date" : "2024-07-28",
-    "status" : "PLANNED",
+    "updated_date" : "2026-07-26",
+    "status" : "VALIDATED",
     "description" : "The root component that sets up the React Query client, auth provider, and router.",
     "public_functions" : [ {
       "name" : "App",
@@ -1798,8 +1798,8 @@
     "file_type" : "FRONTEND",
     "layer" : "SERVICE",
     "created_date" : "2024-07-28",
-    "updated_date" : "2024-07-28",
-    "status" : "PLANNED",
+    "updated_date" : "2026-07-26",
+    "status" : "VALIDATED",
     "description" : "Provides functions for making API calls to authentication endpoints (login, register).",
     "public_functions" : [ {
       "name" : "loginUser",
@@ -1840,8 +1840,8 @@
     "file_type" : "FRONTEND",
     "layer" : "UTIL",
     "created_date" : "2024-07-28",
-    "updated_date" : "2024-07-28",
-    "status" : "PLANNED",
+    "updated_date" : "2026-07-26",
+    "status" : "VALIDATED",
     "description" : "TypeScript types and interfaces for authentication data structures (User, AuthResponse).",
     "public_functions" : null,
     "public_variables" : [ {
@@ -2099,72 +2099,6 @@
     "file_role" : "PAGE layer — displays business contact information, including address, phone, hours, and a map.",
     "change_required" : null
   }, {
-    "file_name" : "contentService.ts",
-    "file_path" : "frontend/src/services/contentService.ts",
-    "file_type" : "FRONTEND",
-    "layer" : "SERVICE",
-    "created_date" : "2024-07-28",
-    "updated_date" : "2024-07-28",
-    "status" : "PLANNED",
-    "description" : "Provides functions for fetching trainers, testimonials, and submitting trial leads.",
-    "public_functions" : [ {
-      "name" : "getAllTrainers",
-      "parameters" : [ ],
-      "return_type" : "Promise<TrainerDto[]>",
-      "description" : "Fetches all trainer profiles from the backend."
-    }, {
-      "name" : "getTrainerById",
-      "parameters" : [ "string id" ],
-      "return_type" : "Promise<TrainerDto>",
-      "description" : "Fetches a single trainer profile by ID from the backend."
-    }, {
-      "name" : "getAllTestimonials",
-      "parameters" : [ ],
-      "return_type" : "Promise<TestimonialDto[]>",
-      "description" : "Fetches all customer testimonials from the backend."
-    }, {
-      "name" : "submitTrialLead",
-      "parameters" : [ "TrialLeadDto data" ],
-      "return_type" : "Promise<TrialLeadDto>",
-      "description" : "Submits a new trial lead to the backend."
-    } ],
-    "public_variables" : null,
-    "api_endpoints" : null,
-    "api_endpoints_consumed" : [ {
-      "method" : "GET",
-      "path" : "/api/v1/trainers",
-      "request_body" : null,
-      "response_body" : null,
-      "description" : "Fetches all trainer profiles.",
-      "access" : null
-    }, {
-      "method" : "GET",
-      "path" : "/api/v1/trainers/{id}",
-      "request_body" : null,
-      "response_body" : null,
-      "description" : "Fetches a single trainer profile by ID.",
-      "access" : null
-    }, {
-      "method" : "GET",
-      "path" : "/api/v1/testimonials",
-      "request_body" : null,
-      "response_body" : null,
-      "description" : "Fetches all customer testimonials.",
-      "access" : null
-    }, {
-      "method" : "POST",
-      "path" : "/api/v1/trial-leads",
-      "request_body" : null,
-      "response_body" : null,
-      "description" : "Submits a new trial lead.",
-      "access" : null
-    } ],
-    "imports_from" : [ "frontend/src/api/client.ts", "frontend/src/types/content.ts" ],
-    "depends_on" : [ ],
-    "feature_name" : "content-frontend",
-    "file_role" : "SERVICE layer — provides functions for fetching trainers, testimonials, and submitting trial leads by calling the `content-backend` API.",
-    "change_required" : null
-  }, {
     "file_name" : "useContent.ts",
     "file_path" : "frontend/src/hooks/useContent.ts",
     "file_type" : "FRONTEND",
@@ -2197,7 +2131,7 @@
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
-    "imports_from" : [ "frontend/src/services/contentService.ts", "frontend/src/types/content.ts" ],
+    "imports_from" : [ "frontend/src/types/content.ts" ],
     "depends_on" : [ ],
     "feature_name" : "content-frontend",
     "file_role" : "HOOK layer — provides React Query hooks for fetching and managing content data like trainers and testimonials, and for submitting trial leads.",
@@ -2208,8 +2142,8 @@
     "file_type" : "FRONTEND",
     "layer" : "UTIL",
     "created_date" : "2024-07-28",
-    "updated_date" : "2024-07-28",
-    "status" : "PLANNED",
+    "updated_date" : "2026-07-26",
+    "status" : "GENERATED",
     "description" : "TypeScript types for content entities like Trainer, Testimonial, and TrialLead.",
     "public_functions" : null,
     "public_variables" : [ {
@@ -2353,8 +2287,8 @@
     "file_type" : "FRONTEND",
     "layer" : "SERVICE",
     "created_date" : "2024-07-28",
-    "updated_date" : "2024-07-28",
-    "status" : "PLANNED",
+    "updated_date" : "2026-07-26",
+    "status" : "VALIDATED",
     "description" : "Provides functions for making API calls related to memberships.",
     "public_functions" : [ {
       "name" : "getAllActiveMembershipPlans",
@@ -2440,8 +2374,8 @@
     "file_type" : "FRONTEND",
     "layer" : "UTIL",
     "created_date" : "2024-07-28",
-    "updated_date" : "2024-07-28",
-    "status" : "PLANNED",
+    "updated_date" : "2026-07-26",
+    "status" : "VALIDATED",
     "description" : "TypeScript types for membership-related data structures.",
     "public_functions" : null,
     "public_variables" : [ {
@@ -2534,48 +2468,6 @@
     "file_role" : "COMPONENT layer — presents a dialog for users to confirm their class booking selection, interacting with the `useSchedule` hook.",
     "change_required" : null
   }, {
-    "file_name" : "schedulingService.ts",
-    "file_path" : "frontend/src/services/schedulingService.ts",
-    "file_type" : "FRONTEND",
-    "layer" : "SERVICE",
-    "created_date" : "2024-07-28",
-    "updated_date" : "2024-07-28",
-    "status" : "PLANNED",
-    "description" : "Provides functions for making API calls related to class schedules and bookings.",
-    "public_functions" : [ {
-      "name" : "getWeeklySchedule",
-      "parameters" : [ "string startDate" ],
-      "return_type" : "Promise<ClassScheduleDto[]>",
-      "description" : "Fetches the weekly class schedule from the backend, starting from the given date."
-    }, {
-      "name" : "bookClass",
-      "parameters" : [ "string classScheduleId" ],
-      "return_type" : "Promise<BookingDto>",
-      "description" : "Submits a request to book a specific class schedule."
-    } ],
-    "public_variables" : [ ],
-    "api_endpoints" : [ ],
-    "api_endpoints_consumed" : [ {
-      "method" : "GET",
-      "path" : "/api/v1/schedule/weekly?startDate={startDate}",
-      "request_body" : null,
-      "response_body" : null,
-      "description" : "Fetches the weekly class schedule from the backend.",
-      "access" : null
-    }, {
-      "method" : "POST",
-      "path" : "/api/v1/bookings/{classScheduleId}",
-      "request_body" : null,
-      "response_body" : null,
-      "description" : "Books a specific class schedule for the authenticated user.",
-      "access" : null
-    } ],
-    "imports_from" : [ "frontend/src/api/client.ts", "frontend/src/types/schedule.ts" ],
-    "depends_on" : [ ],
-    "feature_name" : "scheduling-frontend",
-    "file_role" : "SERVICE layer — provides asynchronous functions for interacting with the scheduling backend API, specifically for fetching schedules and booking classes.",
-    "change_required" : null
-  }, {
     "file_name" : "useSchedule.ts",
     "file_path" : "frontend/src/hooks/useSchedule.ts",
     "file_type" : "FRONTEND",
@@ -2598,7 +2490,7 @@
     "public_variables" : [ ],
     "api_endpoints" : [ ],
     "api_endpoints_consumed" : [ ],
-    "imports_from" : [ "frontend/src/services/schedulingService.ts", "frontend/src/types/schedule.ts" ],
+    "imports_from" : [ "frontend/src/types/schedule.ts" ],
     "depends_on" : [ ],
     "feature_name" : "scheduling-frontend",
     "file_role" : "HOOK layer — provides React Query hooks for fetching weekly class schedules and handling class bookings, abstracting API calls and managing loading/error states.",
@@ -2609,8 +2501,8 @@
     "file_type" : "FRONTEND",
     "layer" : "UTIL",
     "created_date" : "2024-07-28",
-    "updated_date" : "2024-07-28",
-    "status" : "PLANNED",
+    "updated_date" : "2026-07-26",
+    "status" : "VALIDATED",
     "description" : "TypeScript types for schedule and booking data structures.",
     "public_functions" : [ ],
     "public_variables" : [ {
@@ -3047,6 +2939,24 @@
     "feature_name" : "admin-portal",
     "file_role" : "COMPONENT layer — a reusable dialog component to confirm deletion of any admin-managed entity.",
     "change_required" : null
+  }, {
+    "file_name" : "routes.ts",
+    "file_path" : "frontend/src/routes.ts",
+    "file_type" : "FRONTEND",
+    "layer" : "UTIL",
+    "created_date" : null,
+    "updated_date" : null,
+    "status" : "VALIDATED",
+    "description" : "Derived route registry — regenerated every attempt, never LLM-written",
+    "public_functions" : null,
+    "public_variables" : null,
+    "api_endpoints" : null,
+    "api_endpoints_consumed" : null,
+    "imports_from" : null,
+    "depends_on" : null,
+    "feature_name" : null,
+    "file_role" : null,
+    "change_required" : null
   } ],
   "features" : [ {
     "feature_name" : "shared-backend",
@@ -3106,7 +3016,7 @@
     "feature_name" : "content-frontend",
     "feature_display_name" : "Content & Static Pages",
     "feature_type" : "FRONTEND",
-    "file_paths" : [ "frontend/src/pages/HomePage.tsx", "frontend/src/components/home/HeroSection.tsx", "frontend/src/components/home/ClassHighlightsSection.tsx", "frontend/src/components/home/MembershipTiersSection.tsx", "frontend/src/components/home/TestimonialsSection.tsx", "frontend/src/components/home/TrialFormSection.tsx", "frontend/src/components/home/SocialFeedSection.tsx", "frontend/src/pages/ContactPage.tsx", "frontend/src/services/contentService.ts", "frontend/src/hooks/useContent.ts", "frontend/src/types/content.ts", "frontend/src/pages/TrainersPage.tsx", "frontend/src/pages/TrainerDetailPage.tsx", "frontend/src/components/trainers/TrainerGrid.tsx", "frontend/src/components/trainers/TrainerCard.tsx" ],
+    "file_paths" : [ "frontend/src/pages/HomePage.tsx", "frontend/src/components/home/HeroSection.tsx", "frontend/src/components/home/ClassHighlightsSection.tsx", "frontend/src/components/home/MembershipTiersSection.tsx", "frontend/src/components/home/TestimonialsSection.tsx", "frontend/src/components/home/TrialFormSection.tsx", "frontend/src/components/home/SocialFeedSection.tsx", "frontend/src/pages/ContactPage.tsx", "frontend/src/hooks/useContent.ts", "frontend/src/types/content.ts", "frontend/src/pages/TrainersPage.tsx", "frontend/src/pages/TrainerDetailPage.tsx", "frontend/src/components/trainers/TrainerGrid.tsx", "frontend/src/components/trainers/TrainerCard.tsx" ],
     "feature_instruction" : "## Design Tokens\n- Navbar: bg-[#1A1A1A] text-[#F5F5F5]\n- Primary CTA: bg-[#DFFF00] hover:bg-[#c2e600] text-[#1A1A1A] font-semibold rounded-full px-8 py-3 transition-all duration-200\n- Secondary CTA: border border-[#DFFF00] text-[#DFFF00] hover:bg-[#DFFF00] hover:text-[#1A1A1A] font-semibold rounded-full px-8 py-3 transition-all duration-200\n- Brand text accent: text-[#DFFF00]\n- Section bg: bg-white (odd sections) / bg-gray-50 (even sections)\n- Card: bg-white rounded-xl shadow-md border border-gray-100 p-6\n- Section container: <section className=\"py-16 px-4\"><div className=\"max-w-7xl mx-auto\">\n- Hero h1: text-4xl md:text-6xl font-bold text-white\n- Body: text-gray-700 leading-relaxed\n\nThis feature provides all the static content pages and components for the MultiFit Aundh gym website, including the homepage, contact page, and trainer profiles. It interacts with the `content-backend` feature to fetch dynamic data like trainers and testimonials, and to submit trial lead forms. It also fetches membership plans from the `membership-backend` to display on the homepage.\n\n### `HomePage.tsx`\nThis page serves as the main landing page for the gym. It is composed of several sections:\n1.  **HeroSection**: A full-width, high-energy section with a background image/video, a bold headline \"Unleash Your Potential at MultiFit Aundh\", a subheadline \"The antidote to boring gyms. Join our vibrant community and transform your fitness journey.\", and two call-to-action buttons: \"Start Your Free Trial\" (primary CTA, links to the trial form section) and \"Explore Memberships\" (secondary CTA, links to `/memberships`).\n2.  **ClassHighlightsSection**: Displays a grid of featured gym classes. This section should fetch a list of `GymClassDto` objects from the `scheduling-backend` using `useSchedule().getAllGymClasses()` and display a selection of them. Each class card should include the class name, a short description, and a trainer name. It should have a heading \"Our Signature Classes\" and a subheadline \"Find your passion, push your limits.\"\n3.  **MembershipTiersSection**: Presents the available membership plans. This section will fetch `MembershipPlanDto` objects from the `membership-backend` using `useMemberships().getAllActiveMembershipPlans()`. It should display each plan in a card format, showing the `name`, `price` (formatted in INR), and `description`. It should have a heading \"Choose Your Path to Fitness\" and a subheadline \"Flexible plans designed for every goal.\"\n4.  **TestimonialsSection**: Showcases customer testimonials. This section fetches `TestimonialDto` objects from `content-backend` via `useContent().getAllTestimonials()`. It should display the `authorName`, `rating` (e.g., as stars), and `content` of each testimonial. It should have a heading \"Hear From Our Community\" and a subheadline \"Real stories, real results.\"\n5.  **TrialFormSection**: A lead capture form for the \"Get a 3-Day Free Trial\" offer. This form collects `name`, `email`, and `phoneNumber`. Upon submission, it calls `useContent().submitTrialLead(formData)`. It should have a heading \"Ready to Transform?\" and a subheadline \"Claim your FREE 3-day trial today!\"\n6.  **SocialFeedSection**: An embedded or curated feed from Instagram to display gym activity and community engagement. This section will contain placeholder content for an Instagram feed.\n\nAll monetary values (membership prices) must be displayed in Indian Rupees (₹) using `toLocaleString('en-IN', { style: 'currency', currency: 'INR' })`.\n\n### `HeroSection.tsx`\nThis component renders the hero section for the `HomePage.tsx`. It will feature a full-bleed background image (`https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1920&q=80`) with a `bg-black bg-opacity-50` overlay. It displays a motivational `h1` headline \"Unleash Your Potential at MultiFit Aundh\" and a subheadline \"The antidote to boring gyms. Join our vibrant community and transform your fitness journey.\". It includes two buttons: a primary CTA \"Start Your Free Trial\" (linking to `#trial-form`) and a secondary CTA \"Explore Memberships\" (linking to `/memberships`).\n\n### `ClassHighlightsSection.tsx`\nThis component displays a grid of featured classes. It receives `gymClasses: GymClassDto[]` as props. It should render a responsive grid of `GymClassCard` components (to be created in the `scheduling-frontend` feature), each displaying the class `name`, `description`, and `trainerName`. The section includes a heading \"Our Signature Classes\" and a subheadline \"Find your passion, push your limits.\"\n\n### `MembershipTiersSection.tsx`\nThis component displays membership plans. It fetches data using `useMemberships().getAllActiveMembershipPlans()`. It renders a grid of cards, each representing a `MembershipPlanDto`. Each card will display the `name`, `description`, and `price` (formatted in INR) of the membership plan. It should include a call-to-action button \"View Details\" or \"Join Now\" that navigates to `/memberships`. The section includes a heading \"Choose Your Path to Fitness\" and a subheadline \"Flexible plans designed for every goal.\"\n\n### `TestimonialsSection.tsx`\nThis component displays customer testimonials. It fetches data using `useContent().getAllTestimonials()`. It renders a carousel or grid of testimonial cards. Each card displays the `authorName`, `rating` (e.g., 5 stars), and `content` from the `TestimonialDto`. The section includes a heading \"Hear From Our Community\" and a subheadline \"Real stories, real results.\"\n\n### `TrialFormSection.tsx`\nThis component renders the 3-day free trial lead capture form. It uses `useContent().submitTrialLead()` to handle form submissions. The form should include input fields for `name`, `email`, and `phoneNumber`. Upon successful submission, it should display a success message using a toast notification (e.g., from `sonner`). The section includes a heading \"Ready to Transform?\" and a subheadline \"Claim your FREE 3-day trial today!\"\n\n### `SocialFeedSection.tsx`\nThis component displays a placeholder for an embedded Instagram feed. It will contain static content or a simple message indicating where the social feed would be.\n\n### `ContactPage.tsx`\nThis page provides contact information for MultiFit Aundh. It should display the business `address` (\"Multifit Aundh , D.P. Road Medipoint Hospital Road, opp. to Indian Bank, Aundh, Pune, Maharashtra 411067\"), `phone` number (\"075070 08009\"), and `opening hours` (placeholder text for now). It should also embed a Google Map using the provided `coordinates` (18.562876, 73.799999 - assuming a valid longitude for Pune). The page content should be wrapped in the `Layout` component from `shared-frontend`.\n\n### `contentService.ts`\nThis service provides functions to interact with the `content-backend` API. It includes `getAllTrainers()`, `getTrainerById(id: UUID)`, `getAllTestimonials()`, and `submitTrialLead(data: TrialLeadDto)`. It uses `axios` from `frontend/src/api/client.ts` for HTTP requests.\n\n### `useContent.ts`\nThis React Query hook provides an interface for components to fetch and mutate content-related data. It exposes `useQuery` for `getAllTrainers`, `getTrainerById`, and `getAllTestimonials`, and `useMutation` for `submitTrialLead`. It uses the `contentService.ts` for data fetching.\n\n### `content.ts`\nThis file defines TypeScript interfaces for the data structures used in the content feature, including `TrainerDto`, `TestimonialDto`, and `TrialLeadDto`. These types should precisely match the DTOs exposed by the `content-backend` feature.\n\n### `TrainersPage.tsx`\nThis page displays a grid of all trainers. It fetches trainer data using `useContent().getAllTrainers()`. It renders a `TrainerGrid` component, passing the fetched `TrainerDto[]` as props. The page should have a heading \"Meet Our Expert Trainers\" and a subheadline \"Dedicated to your fitness journey.\". The page content should be wrapped in the `Layout` component from `shared-frontend`.\n\n### `TrainerDetailPage.tsx`\nThis page displays the detailed profile of a single trainer. It retrieves the `trainerId` from the URL parameters and fetches the specific `TrainerDto` using `useContent().getTrainerById(trainerId)`. It displays the trainer's `name`, `specialization`, `bio`, and `imageUrl`. The page content should be wrapped in the `Layout` component from `shared-frontend`.\n\n### `TrainerGrid.tsx`\nThis component renders a responsive grid of `TrainerCard` components. It accepts `trainers: TrainerDto[]` as props. Each `TrainerCard` displays a summary of a trainer's profile.\n\n### `TrainerCard.tsx`\nThis component displays a summary of a single trainer's profile. It accepts `trainer: TrainerDto` as props. It should display the trainer's `name`, `specialization`, and `imageUrl`. Clicking on the card should navigate to the `TrainerDetailPage` for that trainer (`/trainers/{trainer.id}`).\n",
     "depends_on_features" : [ "content-backend", "membership-backend", "scheduling-backend", "shared-frontend", "membership-frontend" ],
     "change_required" : true,
@@ -3124,7 +3034,7 @@
     "feature_name" : "scheduling-frontend",
     "feature_display_name" : "Class Booking Flow",
     "feature_type" : "FRONTEND",
-    "file_paths" : [ "frontend/src/pages/SchedulePage.tsx", "frontend/src/components/schedule/ScheduleCalendar.tsx", "frontend/src/components/schedule/BookingConfirmationDialog.tsx", "frontend/src/services/schedulingService.ts", "frontend/src/hooks/useSchedule.ts", "frontend/src/types/schedule.ts" ],
+    "file_paths" : [ "frontend/src/pages/SchedulePage.tsx", "frontend/src/components/schedule/ScheduleCalendar.tsx", "frontend/src/components/schedule/BookingConfirmationDialog.tsx", "frontend/src/hooks/useSchedule.ts", "frontend/src/types/schedule.ts" ],
     "feature_instruction" : "## Design Tokens\n- Navbar: bg-[#1A1A1A] text-[#F5F5F5]\n- Primary CTA: bg-[#DFFF00] hover:bg-[#c2e600] text-[#1A1A1A] font-semibold rounded-full px-8 py-3 transition-all duration-200\n- Brand text accent: text-[#DFFF00]\n- Section bg: bg-[#F5F5F5] (odd sections) / bg-gray-100 (even sections)\n- Card: bg-white rounded-xl shadow-md border border-gray-100 p-6\n- Section container: <section className=\"py-16 px-4\"><div className=\"max-w-7xl mx-auto\">\n- Hero h1: text-4xl md:text-6xl font-bold text-white\n- Body: text-gray-700 leading-relaxed\n\nThis feature implements the class booking flow for MultiFit Aundh, allowing users to view the weekly schedule and book classes. It consists of a main schedule page, a calendar component, a booking confirmation dialog, a service for API interactions, a React Query hook for data management, and TypeScript types for data structures.\n\n### `SchedulePage.tsx`\nThis page serves as the entry point for users to view and interact with the class schedule. It uses the `Layout` component from `shared-frontend` for consistent navigation and branding. The page will display a weekly calendar view powered by `ScheduleCalendar.tsx` and manage the state for booking classes using the `useSchedule` hook. When a user selects a class, a `BookingConfirmationDialog.tsx` will appear to finalize the booking. All monetary values, if any, will be displayed in Indian Rupees (₹) using the `en-IN` locale.\n\n### `ScheduleCalendar.tsx`\nThis component renders an interactive calendar displaying the weekly class schedule. It receives `weeklySchedule` data, `currentDate` for navigation, `onDateChange` to update the displayed week, and `onClassSelect` to trigger the booking flow for a specific class. The calendar will visually represent classes, their times, names, and trainer names. It will use the `ClassScheduleDto` and `GymClassDto` types from `frontend/src/types/schedule.ts` to render class details.\n\n### `BookingConfirmationDialog.tsx`\nThis dialog component is responsible for confirming a user's intent to book a class. It receives `isOpen`, `onClose`, and `classSchedule` as props. When opened, it displays details of the selected class (name, date, time, trainer). It provides a 'Confirm Booking' button that, when clicked, calls the `bookClass` mutation from `useSchedule.ts`. It also handles success and error states for the booking, providing user feedback using a toast notification (e.g., from `sonner`).\n\n### `schedulingService.ts`\nThis service acts as an intermediary between the frontend components and the `scheduling-backend` API. It exports asynchronous functions to fetch the weekly class schedule and to book a class. It uses the `apiClient` from `frontend/src/api/client.ts` to make HTTP requests and handles potential errors. All API calls require authentication.\n\n### `useSchedule.ts`\nThis React Query hook provides an abstraction for fetching and mutating schedule and booking data. It exposes `useWeeklySchedule` to fetch the schedule for a given week and `useBookClass` for booking a class. `useWeeklySchedule` uses `schedulingService.getWeeklySchedule` and `useBookClass` uses `schedulingService.bookClass`. It manages loading, error, and success states, making it easy for components like `SchedulePage.tsx` and `BookingConfirmationDialog.tsx` to interact with the backend.\n\n### `schedule.ts`\nThis file defines the TypeScript interfaces for the data structures used throughout the scheduling feature. These types mirror the DTOs exposed by the `scheduling-backend` to ensure type safety and consistency across the frontend application. It includes `GymClassDto`, `ClassScheduleDto`, and `BookingDto`.\n\n**Flow:**\n1. `SchedulePage.tsx` renders, fetching the weekly schedule using `useSchedule.useWeeklySchedule`.\n2. The fetched schedule data is passed to `ScheduleCalendar.tsx`.\n3. `ScheduleCalendar.tsx` displays the classes. When a user clicks on a class, `onClassSelect` is called, passing the `ClassScheduleDto` of the selected class.\n4. `SchedulePage.tsx` then opens `BookingConfirmationDialog.tsx`, passing the selected `ClassScheduleDto`.\n5. Inside `BookingConfirmationDialog.tsx`, when the user confirms, `useSchedule.useBookClass().mutateAsync()` is called with the `classScheduleId`.\n6. `schedulingService.bookClass` makes the API call to `POST /api/v1/bookings/{classScheduleId}`.\n7. Upon successful booking, a success toast is shown, and the schedule might be refetched to reflect the updated `currentBookings` count for the class.\n8. If an error occurs (e.g., `BookingConflictException` from the backend), an error toast is displayed.",
     "depends_on_features" : [ "shared-frontend", "scheduling-backend" ],
     "change_required" : true,

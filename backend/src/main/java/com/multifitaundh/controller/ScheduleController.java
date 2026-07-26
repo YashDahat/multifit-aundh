@@ -1,5 +1,7 @@
 package com.multifitaundh.controller;
 
+import com.multifitaundh.dto.BookingDto;
+import com.multifitaundh.dto.BookingRequestDto;
 import com.multifitaundh.dto.ClassScheduleDto;
 import com.multifitaundh.dto.GymClassDto;
 import com.multifitaundh.exception.BookingConflictException;
