@@ -79,7 +79,10 @@ export function ClassScheduleForm({ initialData, onSuccess }: ClassScheduleFormP
 
   const onSubmit = (values: z.infer<typeof formSchema>) => {
     const scheduleData: ClassScheduleDto = {
-      ...initialData, // Preserve existing fields like id, gymClassName, trainerName, currentBookings
+      id: initialData?.id ?? null,
+      gymClassName: initialData?.gymClassName ?? null,
+      trainerName: initialData?.trainerName ?? null,
+      currentBookings: initialData?.currentBookings ?? null,
       gymClassId: values.gymClassId,
       scheduleDate: values.scheduleDate,
       startTime: values.startTime,

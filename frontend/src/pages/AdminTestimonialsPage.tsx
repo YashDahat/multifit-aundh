@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useQueryClient, useMutation } from '@tanstack/react-query';
-import { AdminLayout } from '@/components/AdminLayout';
+import AdminLayout from '@/components/AdminLayout';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { TestimonialDto } from '@/types/content';

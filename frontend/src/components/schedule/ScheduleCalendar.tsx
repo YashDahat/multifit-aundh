@@ -1,5 +1,5 @@
 import React from 'react';
-import { format, startOfWeek, addDays, isSameDay, parseISO } from 'date-fns';
+import { format, startOfWeek, addDays, parseISO } from 'date-fns';
 import { ClassScheduleDto } from '@/types/schedule';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';

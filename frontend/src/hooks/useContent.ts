@@ -1,11 +1,10 @@
 import { useQuery, useMutation } from '@tanstack/react-query';
-import {
-  getAllTrainers,
-  getTrainerById,
-  getAllTestimonials,
-  submitTrialLead,
-} from '@/services/apiService'; // Assuming apiService exports these
+import { getAllTrainers } from '@/services/trainerService';
+import { getAllTestimonials } from '@/services/testimonialService';
+import { submitTrialLead } from '@/services/trial-leadService';
+import { getAllGymClasses } from '@/services/apiService';
 import { TrainerDto, TestimonialDto, TrialLeadDto } from '@/types/content';
+import { GymClassDto } from '@/types/gym';
 import { toast } from 'sonner';
 
 export const useContent = () => {
@@ -13,13 +12,6 @@ export const useContent = () => {
     queryKey: ['trainers'],
     queryFn: getAllTrainers,
   });
-
-  const trainerDetailQuery = (trainerId: string) =>
-    useQuery<TrainerDto>({
-      queryKey: ['trainer', trainerId],
-      queryFn: () => getTrainerById(trainerId),
-      enabled: !!trainerId,
-    });
 
   const testimonialsQuery = useQuery<TestimonialDto[]>({
     queryKey: ['testimonials'],
@@ -38,8 +30,14 @@ export const useContent = () => {
 
   return {
     trainersQuery,
-    trainerDetailQuery,
     testimonialsQuery,
     trialLeadMutation,
   };
+};
+
+export const useAllGymClasses = () => {
+  return useQuery<GymClassDto[]>({
+    queryKey: ['gymClasses'],
+    queryFn: getAllGymClasses,
+  });
 };

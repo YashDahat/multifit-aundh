@@ -13,7 +13,7 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { TrainerDto } from '@/types/content';
+import { TrainerDto } from '@/types/trainer';
 
 const trainerFormSchema = z.object({
   id: z.string().optional().nullable(),
@@ -23,6 +23,8 @@ const trainerFormSchema = z.object({
   imageUrl: z.string().url('Must be a valid URL').min(1, 'Image URL is required'),
 });
 
+type TrainerFormValues = z.infer<typeof trainerFormSchema>;
+
 interface TrainerFormProps {
   initialData?: TrainerDto | null;
   onSubmit: (data: TrainerDto) => void;
@@ -30,7 +32,7 @@ interface TrainerFormProps {
 }
 
 export function TrainerForm({ initialData, onSubmit, onCancel }: TrainerFormProps) {
-  const form = useForm<TrainerDto>({
+  const form = useForm<TrainerFormValues>({
     resolver: zodResolver(trainerFormSchema),
     defaultValues: {
       id: initialData?.id ?? null,
@@ -61,8 +63,14 @@ export function TrainerForm({ initialData, onSubmit, onCancel }: TrainerFormProp
     }
   }, [initialData, form]);
 
-  const handleSubmit = (data: TrainerDto) => {
-    onSubmit(data);
+  const handleSubmit = (data: TrainerFormValues) => {
+    onSubmit({
+      id: data.id ?? null,
+      name: data.name,
+      specialization: data.specialization,
+      bio: data.bio,
+      imageUrl: data.imageUrl,
+    });
   };
 
   return (
@@ -75,7 +83,7 @@ export function TrainerForm({ initialData, onSubmit, onCancel }: TrainerFormProp
             <FormItem>
               <FormLabel>Name</FormLabel>
               <FormControl>
-                <Input {...field} />
+                <Input {...field} value={field.value ?? ''} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -88,7 +96,7 @@ export function TrainerForm({ initialData, onSubmit, onCancel }: TrainerFormProp
             <FormItem>
               <FormLabel>Specialization</FormLabel>
               <FormControl>
-                <Input {...field} />
+                <Input {...field} value={field.value ?? ''} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -101,7 +109,7 @@ export function TrainerForm({ initialData, onSubmit, onCancel }: TrainerFormProp
             <FormItem>
               <FormLabel>Bio</FormLabel>
               <FormControl>
-                <Textarea {...field} />
+                <Textarea {...field} value={field.value ?? ''} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -114,7 +122,7 @@ export function TrainerForm({ initialData, onSubmit, onCancel }: TrainerFormProp
             <FormItem>
               <FormLabel>Image URL</FormLabel>
               <FormControl>
-                <Input {...field} />
+                <Input {...field} value={field.value ?? ''} />
               </FormControl>
               <FormMessage />
             </FormItem>

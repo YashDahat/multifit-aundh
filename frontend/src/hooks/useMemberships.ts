@@ -1,4 +1,4 @@
-import { useQuery, useMutation } from '@tanstack/react-query';
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import {
   getAllActiveMembershipPlans,
   getMembershipPlanById,
@@ -11,7 +11,8 @@ import { toast } from 'sonner';
 import { useNavigate } from 'react-router-dom';
 import { ROUTES } from '@/routes';
 import { createOrder, verify } from '@/services/paymentService';
-import type { CreatePaymentRequest, VerifyPaymentRequest } from '@/types/payment';
+import type { CreatePaymentRequest } from '@/types/payment';
+import type { VerifyPaymentRequest } from '@/types/verify';
 
 export const useAllMembershipPlans = () => {
   return useQuery({

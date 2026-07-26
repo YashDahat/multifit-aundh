@@ -1,6 +1,7 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { bookClass, getScheduleForWeek } from '@/services/apiService';
-import { BookingRequestDto, ClassScheduleDto } from '@/types/schedule';
+import { ClassScheduleDto } from '@/types/schedule';
+import { BookingRequestDto } from '@/types/booking';
 import { toast } from 'sonner';
 
 export const useWeeklySchedule = () => {

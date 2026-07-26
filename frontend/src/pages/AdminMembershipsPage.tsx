@@ -7,7 +7,7 @@ import { MembershipPlanTable } from '@/components/admin/membership/MembershipPla
 import { MembershipPlanForm } from '@/components/admin/membership/MembershipPlanForm';
 import { DeleteConfirmationDialog } from '@/components/admin/common/DeleteConfirmationDialog';
 import { Button } from '@/components/ui/button';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Skeleton } from '@/components/ui/skeleton';
 import type { MembershipPlanDto } from '@/types/membership';
 import AdminLayout from '@/components/AdminLayout';

@@ -1,12 +1,16 @@
 import { useParams } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
 import Layout from '@/components/Layout';
-import { useContent } from '@/hooks/useContent';
+import { getAllTrainers } from '@/services/trainerService';
 import { Skeleton } from '@/components/ui/skeleton';
 
 const TrainerDetailPage = () => {
   const { id } = useParams<{ id: string }>();
-  const { trainerDetailQuery } = useContent();
-  const { data: trainer, isLoading, isError } = trainerDetailQuery(id || '');
+  const { data: trainers, isLoading, isError } = useQuery({
+    queryKey: ['trainers'],
+    queryFn: getAllTrainers,
+  });
+  const trainer = trainers?.find((t) => t.id === id);
 
   if (isLoading) {
     return (

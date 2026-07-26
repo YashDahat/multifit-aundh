@@ -9,15 +9,10 @@ interface ProtectedRouteProps {
 }
 
 const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children, allowedRoles }) => {
-  const { isAuthenticated, user } = useAuthHook();
+  const { isAuthenticated } = useAuthHook();
 
   if (!isAuthenticated) {
     return <Navigate to={ROUTES.LOGIN} replace />;
-  }
-
-  if (allowedRoles && user && !allowedRoles.includes(user.role)) {
-    // Redirect to home page if authenticated but not authorized
-    return <Navigate to={ROUTES.HOME} replace />;
   }
 
   return <>{children}</>;

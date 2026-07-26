@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { ROUTES, routeTable } from '@/routes';
+import { routeTable } from '@/routes';
 import { Separator } from '@/components/ui/separator';
 import { Button } from '@/components/ui/button';
 import { LogOut } from 'lucide-react';

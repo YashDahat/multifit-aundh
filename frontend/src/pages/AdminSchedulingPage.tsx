@@ -8,7 +8,7 @@ import { ClassScheduleForm } from '@/components/admin/schedule/ClassScheduleForm
 import { DeleteConfirmationDialog } from '@/components/admin/common/DeleteConfirmationDialog';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { createClassSchedule, deleteClassSchedule, getAllGymClasses, getScheduleForWeek, updateClassSchedule } from '@/services/apiService';
+import { deleteClassSchedule, getAllGymClasses, getScheduleForWeek } from '@/services/apiService';
 import { toast } from 'sonner';
 import { Skeleton } from '@/components/ui/skeleton';
 

@@ -5,14 +5,13 @@ import MembershipTiersSection from '@/components/home/MembershipTiersSection';
 import TestimonialsSection from '@/components/home/TestimonialsSection';
 import TrialFormSection from '@/components/home/TrialFormSection';
 import SocialFeedSection from '@/components/home/SocialFeedSection';
-import { useContent } from '@/hooks/useContent';
+import { useContent, useAllGymClasses } from '@/hooks/useContent';
 import { useAllMembershipPlans } from '@/hooks/useMemberships';
 import { useWeeklySchedule } from '@/hooks/useSchedule';
 import { Skeleton } from '@/components/ui/skeleton';
 
 const HomePage = () => {
-  const { gymClassesQuery } = useContent();
-  const { data: gymClasses, isLoading: isLoadingClasses, isError: isErrorClasses } = gymClassesQuery;
+  const { data: gymClasses, isLoading: isLoadingClasses, isError: isErrorClasses } = useAllGymClasses();
   const { isLoading: isLoadingMemberships, isError: isErrorMemberships } = useAllMembershipPlans();
   const { isLoading: isLoadingTestimonials, isError: isErrorTestimonials } = useContent().testimonialsQuery;
   const { isLoading: isLoadingSchedule, isError: isErrorSchedule } = useWeeklySchedule();

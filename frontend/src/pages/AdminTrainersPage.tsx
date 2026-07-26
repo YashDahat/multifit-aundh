@@ -1,19 +1,19 @@
 import { useState } from 'react';
-import { useQueryClient, useMutation } from '@tanstack/react-query';
+import { useQueryClient, useMutation, useQuery } from '@tanstack/react-query';
 import { toast } from 'sonner';
-import { AdminLayout } from '@/components/AdminLayout';
+import AdminLayout from '@/components/AdminLayout';
 import { Button } from '@/components/ui/button';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Skeleton } from '@/components/ui/skeleton';
-import { TrainerDto } from '@/types/content';
+import { TrainerDto } from '@/types/trainer';
 import { TrainerTable } from '@/components/admin/trainer/TrainerTable';
 import { TrainerForm } from '@/components/admin/trainer/TrainerForm';
 import { DeleteConfirmationDialog } from '@/components/admin/common/DeleteConfirmationDialog';
-import { getAllTrainers, createTrainer, updateTrainer, deleteTrainer } from '@/services/trainerService'; // Corrected import from trainerService
+import { getAllTrainers, createTrainer, updateTrainer, deleteTrainer } from '@/services/trainerService';
 
 export default function AdminTrainersPage() {
   const queryClient = useQueryClient();
-  const { data: trainers, isLoading, error } = useQueryClient().getQueryData(['trainers']) || useQueryClient().fetchQuery({ queryKey: ['trainers'], queryFn: getAllTrainers });
+  const { data: trainers, isLoading, error } = useQuery({ queryKey: ['trainers'], queryFn: getAllTrainers });
 
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);

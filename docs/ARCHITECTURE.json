@@ -1633,7 +1633,7 @@
     "layer" : "COMPONENT",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Main application layout for public pages, including the header, footer, and main content area.",
     "public_functions" : [ {
       "name" : "Layout",
@@ -1656,7 +1656,7 @@
     "layer" : "COMPONENT",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Site-wide header component with logo, navigation links, and call-to-action buttons.",
     "public_functions" : [ {
       "name" : "Header",
@@ -1679,7 +1679,7 @@
     "layer" : "COMPONENT",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Site-wide footer component with contact information, social links, and sitemap.",
     "public_functions" : [ {
       "name" : "Footer",
@@ -1702,7 +1702,7 @@
     "layer" : "COMPONENT",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Layout for the admin section, including a sidebar for navigation and a main content area.",
     "public_functions" : [ {
       "name" : "AdminLayout",
@@ -1725,7 +1725,7 @@
     "layer" : "COMPONENT",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "A wrapper component that restricts access to routes based on user authentication status and role.",
     "public_functions" : [ {
       "name" : "ProtectedRoute",
@@ -1748,7 +1748,7 @@
     "layer" : "CONTEXT",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "React context for managing and providing global authentication state (user, token, login/logout functions).",
     "public_functions" : [ {
       "name" : "AuthProvider",
@@ -1776,7 +1776,7 @@
     "layer" : "HOOK",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Custom hook for easy consumption of the AuthContext, providing access to auth state and actions.",
     "public_functions" : [ {
       "name" : "useAuth",
@@ -1875,7 +1875,7 @@
     "layer" : "PAGE",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Displays a login form for users and administrators to access their accounts.",
     "public_functions" : [ {
       "name" : "LoginPage",
@@ -1898,7 +1898,7 @@
     "layer" : "PAGE",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "A user-friendly 404 page shown when a route does not match.",
     "public_functions" : [ {
       "name" : "NotFoundPage",
@@ -1921,7 +1921,7 @@
     "layer" : "PAGE",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "The main landing page featuring a bold hero section, class highlights, membership tiers, testimonials, and the 3-day trial form.",
     "public_functions" : [ {
       "name" : "HomePage",
@@ -1944,7 +1944,7 @@
     "layer" : "COMPONENT",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Full-bleed, high-energy hero section with a motivational headline and primary call-to-action.",
     "public_functions" : [ {
       "name" : "HeroSection",
@@ -1967,7 +1967,7 @@
     "layer" : "COMPONENT",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Displays a dynamic grid of featured classes to showcase variety and energy.",
     "public_functions" : [ {
       "name" : "ClassHighlightsSection",
@@ -1990,7 +1990,7 @@
     "layer" : "COMPONENT",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Presents the main membership options in clear, comparable cards.",
     "public_functions" : [ {
       "name" : "MembershipTiersSection",
@@ -2013,7 +2013,7 @@
     "layer" : "COMPONENT",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Showcases customer testimonials and high Google rating to build social proof.",
     "public_functions" : [ {
       "name" : "TestimonialsSection",
@@ -2036,7 +2036,7 @@
     "layer" : "COMPONENT",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "A prominent lead capture form for the 'Get a 3-Day Free Trial' offer.",
     "public_functions" : [ {
       "name" : "TrialFormSection",
@@ -2059,7 +2059,7 @@
     "layer" : "COMPONENT",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Displays an embedded or curated feed from Instagram to show gym activity and community.",
     "public_functions" : [ {
       "name" : "SocialFeedSection",
@@ -2082,7 +2082,7 @@
     "layer" : "PAGE",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Provides contact information, a map, and business hours.",
     "public_functions" : [ {
       "name" : "ContactPage",
@@ -2105,7 +2105,7 @@
     "layer" : "HOOK",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "React Query hook for fetching and managing content data like trainers and testimonials.",
     "public_functions" : [ {
       "name" : "useAllTrainers",
@@ -2143,7 +2143,7 @@
     "layer" : "UTIL",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "TypeScript types for content entities like Trainer, Testimonial, and TrialLead.",
     "public_functions" : null,
     "public_variables" : [ {
@@ -2173,7 +2173,7 @@
     "layer" : "PAGE",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Displays all available membership plans in a grid of cards, allowing users to select one to purchase.",
     "public_functions" : [ {
       "name" : "MembershipsPage",
@@ -2196,7 +2196,7 @@
     "layer" : "COMPONENT",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "A card component that displays the details of a single membership plan with a purchase button.",
     "public_functions" : [ {
       "name" : "MembershipPlanCard",
@@ -2219,7 +2219,7 @@
     "layer" : "PAGE",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Guides the user through the payment process for a selected membership plan.",
     "public_functions" : [ {
       "name" : "CheckoutPage",
@@ -2242,7 +2242,7 @@
     "layer" : "COMPONENT",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Component containing the payment details form and integration with the payment gateway.",
     "public_functions" : [ {
       "name" : "CheckoutForm",
@@ -2265,7 +2265,7 @@
     "layer" : "PAGE",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Confirmation page shown after a successful membership purchase.",
     "public_functions" : [ {
       "name" : "PurchaseSuccessPage",
@@ -2342,7 +2342,7 @@
     "layer" : "HOOK",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "React Query hook for fetching and managing membership plan data and handling purchases.",
     "public_functions" : [ {
       "name" : "useAllMembershipPlans",
@@ -2405,7 +2405,7 @@
     "layer" : "PAGE",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Displays the weekly class schedule in an interactive calendar view, allowing users to book classes.",
     "public_functions" : [ {
       "name" : "SchedulePage",
@@ -2428,7 +2428,7 @@
     "layer" : "COMPONENT",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "A calendar component to display and interact with the class schedule.",
     "public_functions" : [ {
       "name" : "ScheduleCalendar",
@@ -2451,7 +2451,7 @@
     "layer" : "COMPONENT",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "A dialog to confirm a user's class booking selection.",
     "public_functions" : [ {
       "name" : "BookingConfirmationDialog",
@@ -2474,7 +2474,7 @@
     "layer" : "HOOK",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "React Query hook for fetching schedule data and handling class bookings.",
     "public_functions" : [ {
       "name" : "useWeeklySchedule",
@@ -2532,7 +2532,7 @@
     "layer" : "PAGE",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Displays a grid of all trainers with links to their individual profile pages.",
     "public_functions" : [ {
       "name" : "TrainersPage",
@@ -2555,7 +2555,7 @@
     "layer" : "PAGE",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Shows the detailed profile of a single trainer, including bio, specializations, and photo.",
     "public_functions" : [ {
       "name" : "TrainerDetailPage",
@@ -2578,7 +2578,7 @@
     "layer" : "COMPONENT",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "A component that lays out trainer profiles in a responsive grid.",
     "public_functions" : [ {
       "name" : "TrainerGrid",
@@ -2601,7 +2601,7 @@
     "layer" : "COMPONENT",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "A card component to display a summary of a trainer's profile.",
     "public_functions" : [ {
       "name" : "TrainerCard",
@@ -2624,7 +2624,7 @@
     "layer" : "PAGE",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "The main landing page for the admin panel, showing key stats and navigation links.",
     "public_functions" : [ {
       "name" : "AdminDashboardPage",
@@ -2647,7 +2647,7 @@
     "layer" : "PAGE",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Admin page for managing membership plans, composed of a data table and a creation/editing form.",
     "public_functions" : [ {
       "name" : "AdminMembershipsPage",
@@ -2670,7 +2670,7 @@
     "layer" : "COMPONENT",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "A data table for displaying and managing existing membership plans.",
     "public_functions" : [ {
       "name" : "MembershipPlanTable",
@@ -2693,7 +2693,7 @@
     "layer" : "COMPONENT",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "A form (used in a dialog or drawer) for creating and editing membership plans.",
     "public_functions" : [ {
       "name" : "MembershipPlanForm",
@@ -2716,7 +2716,7 @@
     "layer" : "PAGE",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Admin page for managing gym classes and schedules.",
     "public_functions" : [ {
       "name" : "AdminSchedulingPage",
@@ -2739,7 +2739,7 @@
     "layer" : "COMPONENT",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "A data table for displaying and managing class schedules.",
     "public_functions" : [ {
       "name" : "ClassScheduleTable",
@@ -2762,7 +2762,7 @@
     "layer" : "COMPONENT",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "A form for creating and editing class schedules.",
     "public_functions" : [ {
       "name" : "ClassScheduleForm",
@@ -2785,7 +2785,7 @@
     "layer" : "PAGE",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Admin page for managing trainer profiles.",
     "public_functions" : [ {
       "name" : "AdminTrainersPage",
@@ -2808,7 +2808,7 @@
     "layer" : "COMPONENT",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "A data table for displaying and managing trainer profiles.",
     "public_functions" : [ {
       "name" : "TrainerTable",
@@ -2831,7 +2831,7 @@
     "layer" : "COMPONENT",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "A form for creating and editing trainer profiles.",
     "public_functions" : [ {
       "name" : "TrainerForm",
@@ -2854,7 +2854,7 @@
     "layer" : "PAGE",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "Admin page for managing customer testimonials.",
     "public_functions" : [ {
       "name" : "AdminTestimonialsPage",
@@ -2877,7 +2877,7 @@
     "layer" : "COMPONENT",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "A data table for displaying and managing testimonials.",
     "public_functions" : [ {
       "name" : "TestimonialTable",
@@ -2900,7 +2900,7 @@
     "layer" : "COMPONENT",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "A form for creating and editing testimonials.",
     "public_functions" : [ {
       "name" : "TestimonialForm",
@@ -2923,7 +2923,7 @@
     "layer" : "COMPONENT",
     "created_date" : "2024-07-28",
     "updated_date" : "2026-07-26",
-    "status" : "GENERATED",
+    "status" : "VALIDATED",
     "description" : "A reusable dialog component to confirm deletion of any admin-managed entity.",
     "public_functions" : [ {
       "name" : "DeleteConfirmationDialog",
@@ -2945,7 +2945,7 @@
     "file_type" : "FRONTEND",
     "layer" : "UTIL",
     "created_date" : null,
-    "updated_date" : null,
+    "updated_date" : "2026-07-26",
     "status" : "VALIDATED",
     "description" : "Derived route registry — regenerated every attempt, never LLM-written",
     "public_functions" : null,

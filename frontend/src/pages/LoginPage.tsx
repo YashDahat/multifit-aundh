@@ -8,7 +8,6 @@ import { toast } from 'sonner';
 import Layout from '@/components/Layout';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
 import {
   Form,
   FormControl,
@@ -18,6 +17,7 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { useAuthHook } from '@/hooks/useAuth';
+import { login as authLogin } from '@/services/authService';
 import { ROUTES } from '@/routes';
 
 const loginSchema = z.object({
@@ -43,7 +43,8 @@ const LoginPage = () => {
   const onSubmit = async (values: LoginFormValues) => {
     setLoading(true);
     try {
-      await login({ username: values.username, password: values.password });
+      const authResponse = await authLogin({ username: values.username, password: values.password });
+      login(authResponse);
       toast.success('Login successful!');
       navigate(ROUTES.HOME);
     } catch (error: any) {
