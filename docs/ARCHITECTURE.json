@@ -308,8 +308,8 @@
     "file_type" : "BACKEND",
     "layer" : "SERVICE",
     "created_date" : "2024-07-28",
-    "updated_date" : "2024-07-28",
-    "status" : "PLANNED",
+    "updated_date" : "2026-07-26",
+    "status" : "GENERATED",
     "description" : "Handles business logic for purchasing and managing memberships, integrating with the PaymentService.",
     "public_functions" : [ {
       "name" : "getAllActiveMembershipPlans",
@@ -746,8 +746,8 @@
     "file_type" : "BACKEND",
     "layer" : "SERVICE",
     "created_date" : "2024-07-28",
-    "updated_date" : "2024-07-28",
-    "status" : "PLANNED",
+    "updated_date" : "2026-07-26",
+    "status" : "GENERATED",
     "description" : "Handles business logic for fetching class schedules and managing user bookings.",
     "public_functions" : [ {
       "name" : "getAllGymClasses",
@@ -1268,8 +1268,8 @@
     "file_type" : "BACKEND",
     "layer" : "SERVICE",
     "created_date" : "2024-07-28",
-    "updated_date" : "2024-07-28",
-    "status" : "PLANNED",
+    "updated_date" : "2026-07-26",
+    "status" : "GENERATED",
     "description" : "Handles business logic for managing trainers, testimonials, and trial leads.",
     "public_functions" : [ {
       "name" : "getAllTrainers",
