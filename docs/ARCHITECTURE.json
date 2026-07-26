@@ -62,14 +62,19 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Custom exception for when a user tries to book a class that is already full or at the same time as another booking.",
-    "public_functions" : null,
-    "public_variables" : null,
+    "public_functions" : [ {
+      "name" : "BookingConflictException",
+      "parameters" : [ "String message" ],
+      "return_type" : "void",
+      "description" : "Constructor for the BookingConflictException."
+    } ],
+    "public_variables" : [ ],
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "scheduling-backend",
-    "file_role" : null,
+    "file_role" : "EXCEPTION layer — Custom exception for business rule violations during class booking.",
     "change_required" : null
   }, {
     "file_name" : "ErrorResponse.java",
@@ -492,14 +497,34 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Represents a type of class offered, like 'Zumba', 'CrossFit', or 'Yoga'.",
-    "public_functions" : null,
-    "public_variables" : null,
+    "public_functions" : [ ],
+    "public_variables" : [ {
+      "name" : "id",
+      "type" : "UUID",
+      "description" : "Unique identifier for the gym class. Not null."
+    }, {
+      "name" : "name",
+      "type" : "String",
+      "description" : "Name of the class (e.g., 'Zumba'). Not null, max 100 characters."
+    }, {
+      "name" : "description",
+      "type" : "String",
+      "description" : "Detailed description of the class. Not null, max 1000 characters."
+    }, {
+      "name" : "durationMinutes",
+      "type" : "Integer",
+      "description" : "Duration of the class in minutes. Not null."
+    }, {
+      "name" : "trainer",
+      "type" : "Trainer",
+      "description" : "The trainer who teaches this class. Not null."
+    } ],
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "backend/src/main/java/com/multifitaundh/model/Trainer.java" ],
     "depends_on" : [ ],
     "feature_name" : "scheduling-backend",
-    "file_role" : null,
+    "file_role" : "MODEL layer — defines the structure for a gym class, linking to the Trainer entity from the content-backend feature.",
     "change_required" : null
   }, {
     "file_name" : "ClassSchedule.java",
@@ -510,14 +535,42 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Represents a specific, bookable instance of a GymClass at a given date and time.",
-    "public_functions" : null,
-    "public_variables" : null,
+    "public_functions" : [ ],
+    "public_variables" : [ {
+      "name" : "id",
+      "type" : "UUID",
+      "description" : "Unique identifier for the class schedule. Not null."
+    }, {
+      "name" : "gymClass",
+      "type" : "GymClass",
+      "description" : "The type of gym class being scheduled. Not null."
+    }, {
+      "name" : "scheduleDate",
+      "type" : "LocalDate",
+      "description" : "The date of the class. Not null."
+    }, {
+      "name" : "startTime",
+      "type" : "LocalTime",
+      "description" : "The start time of the class. Not null."
+    }, {
+      "name" : "endTime",
+      "type" : "LocalTime",
+      "description" : "The end time of the class. Not null."
+    }, {
+      "name" : "maxCapacity",
+      "type" : "Integer",
+      "description" : "Maximum number of participants allowed. Not null, min 1."
+    }, {
+      "name" : "currentBookings",
+      "type" : "Integer",
+      "description" : "Current number of participants booked for the class. Not null, default 0."
+    } ],
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "backend/src/main/java/com/multifitaundh/model/GymClass.java" ],
     "depends_on" : [ ],
     "feature_name" : "scheduling-backend",
-    "file_role" : null,
+    "file_role" : "MODEL layer — defines a specific, bookable instance of a GymClass.",
     "change_required" : null
   }, {
     "file_name" : "Booking.java",
@@ -528,14 +581,30 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Links a User to a ClassSchedule, representing a confirmed booking for a class.",
-    "public_functions" : null,
-    "public_variables" : null,
+    "public_functions" : [ ],
+    "public_variables" : [ {
+      "name" : "id",
+      "type" : "UUID",
+      "description" : "Unique identifier for the booking. Not null."
+    }, {
+      "name" : "classSchedule",
+      "type" : "ClassSchedule",
+      "description" : "The scheduled class that was booked. Not null."
+    }, {
+      "name" : "userId",
+      "type" : "UUID",
+      "description" : "The ID of the user who made the booking. Not null."
+    }, {
+      "name" : "bookingDate",
+      "type" : "LocalDateTime",
+      "description" : "Timestamp when the booking was made. Not null."
+    } ],
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "backend/src/main/java/com/multifitaundh/model/ClassSchedule.java" ],
     "depends_on" : [ ],
     "feature_name" : "scheduling-backend",
-    "file_role" : null,
+    "file_role" : "MODEL layer — defines a user's confirmed booking for a ClassSchedule.",
     "change_required" : null
   }, {
     "file_name" : "GymClassRepository.java",
@@ -546,14 +615,34 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Spring Data JPA repository for CRUD operations on GymClass entities.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "findAll",
+      "parameters" : [ ],
+      "return_type" : "List<GymClass>",
+      "description" : "Retrieves all GymClass entities."
+    }, {
+      "name" : "findById",
+      "parameters" : [ "UUID id" ],
+      "return_type" : "Optional<GymClass>",
+      "description" : "Retrieves a GymClass by its ID."
+    }, {
+      "name" : "save",
+      "parameters" : [ "GymClass gymClass" ],
+      "return_type" : "GymClass",
+      "description" : "Saves a GymClass entity."
+    }, {
+      "name" : "deleteById",
+      "parameters" : [ "UUID id" ],
+      "return_type" : "void",
+      "description" : "Deletes a GymClass by its ID."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "backend/src/main/java/com/multifitaundh/model/GymClass.java" ],
     "depends_on" : [ ],
     "feature_name" : "scheduling-backend",
-    "file_role" : null,
+    "file_role" : "REPOSITORY layer — provides data access for GymClass entities.",
     "change_required" : null
   }, {
     "file_name" : "ClassScheduleRepository.java",
@@ -564,14 +653,44 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Spring Data JPA repository for CRUD operations on ClassSchedule entities.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "findAll",
+      "parameters" : [ ],
+      "return_type" : "List<ClassSchedule>",
+      "description" : "Retrieves all ClassSchedule entities."
+    }, {
+      "name" : "findById",
+      "parameters" : [ "UUID id" ],
+      "return_type" : "Optional<ClassSchedule>",
+      "description" : "Retrieves a ClassSchedule by its ID."
+    }, {
+      "name" : "save",
+      "parameters" : [ "ClassSchedule classSchedule" ],
+      "return_type" : "ClassSchedule",
+      "description" : "Saves a ClassSchedule entity."
+    }, {
+      "name" : "deleteById",
+      "parameters" : [ "UUID id" ],
+      "return_type" : "void",
+      "description" : "Deletes a ClassSchedule by its ID."
+    }, {
+      "name" : "findByScheduleDate",
+      "parameters" : [ "LocalDate scheduleDate" ],
+      "return_type" : "List<ClassSchedule>",
+      "description" : "Retrieves all ClassSchedule entities for a specific date."
+    }, {
+      "name" : "findByScheduleDateBetweenOrderByStartTimeAsc",
+      "parameters" : [ "LocalDate startDate", "LocalDate endDate" ],
+      "return_type" : "List<ClassSchedule>",
+      "description" : "Retrieves all ClassSchedule entities within a date range, ordered by start time."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "backend/src/main/java/com/multifitaundh/model/ClassSchedule.java" ],
     "depends_on" : [ ],
     "feature_name" : "scheduling-backend",
-    "file_role" : null,
+    "file_role" : "REPOSITORY layer — provides data access for ClassSchedule entities.",
     "change_required" : null
   }, {
     "file_name" : "BookingRepository.java",
@@ -582,14 +701,44 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Spring Data JPA repository for CRUD operations on Booking entities.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "findAll",
+      "parameters" : [ ],
+      "return_type" : "List<Booking>",
+      "description" : "Retrieves all Booking entities."
+    }, {
+      "name" : "findById",
+      "parameters" : [ "UUID id" ],
+      "return_type" : "Optional<Booking>",
+      "description" : "Retrieves a Booking by its ID."
+    }, {
+      "name" : "save",
+      "parameters" : [ "Booking booking" ],
+      "return_type" : "Booking",
+      "description" : "Saves a Booking entity."
+    }, {
+      "name" : "deleteById",
+      "parameters" : [ "UUID id" ],
+      "return_type" : "void",
+      "description" : "Deletes a Booking by its ID."
+    }, {
+      "name" : "findByClassScheduleIdAndUserId",
+      "parameters" : [ "UUID classScheduleId", "UUID userId" ],
+      "return_type" : "Optional<Booking>",
+      "description" : "Finds a booking by class schedule ID and user ID."
+    }, {
+      "name" : "findByBookingIdAndUserId",
+      "parameters" : [ "UUID bookingId", "UUID userId" ],
+      "return_type" : "Optional<Booking>",
+      "description" : "Finds a booking by booking ID and user ID."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "backend/src/main/java/com/multifitaundh/model/Booking.java" ],
     "depends_on" : [ ],
     "feature_name" : "scheduling-backend",
-    "file_role" : null,
+    "file_role" : "REPOSITORY layer — provides data access for Booking entities.",
     "change_required" : null
   }, {
     "file_name" : "SchedulingService.java",
@@ -600,14 +749,74 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Handles business logic for fetching class schedules and managing user bookings.",
-    "public_functions" : null,
-    "public_variables" : null,
+    "public_functions" : [ {
+      "name" : "getAllGymClasses",
+      "parameters" : [ ],
+      "return_type" : "List<GymClassDto>",
+      "description" : "Retrieves all available gym classes."
+    }, {
+      "name" : "getGymClassById",
+      "parameters" : [ "UUID classId" ],
+      "return_type" : "GymClassDto",
+      "description" : "Retrieves a specific gym class by its ID."
+    }, {
+      "name" : "getScheduleForDate",
+      "parameters" : [ "LocalDate date" ],
+      "return_type" : "List<ClassScheduleDto>",
+      "description" : "Retrieves the class schedule for a specific date."
+    }, {
+      "name" : "getScheduleForWeek",
+      "parameters" : [ "LocalDate startDate" ],
+      "return_type" : "List<ClassScheduleDto>",
+      "description" : "Retrieves the class schedule for a week starting from a given date."
+    }, {
+      "name" : "bookClass",
+      "parameters" : [ "UUID classScheduleId", "UUID userId" ],
+      "return_type" : "BookingDto",
+      "description" : "Allows a user to book a specific class schedule."
+    }, {
+      "name" : "cancelBooking",
+      "parameters" : [ "UUID bookingId", "UUID userId" ],
+      "return_type" : "void",
+      "description" : "Allows a user to cancel an existing booking."
+    }, {
+      "name" : "createGymClass",
+      "parameters" : [ "GymClassDto gymClassDto" ],
+      "return_type" : "GymClassDto",
+      "description" : "Creates a new gym class (admin only)."
+    }, {
+      "name" : "updateGymClass",
+      "parameters" : [ "UUID classId", "GymClassDto gymClassDto" ],
+      "return_type" : "GymClassDto",
+      "description" : "Updates an existing gym class (admin only)."
+    }, {
+      "name" : "deleteGymClass",
+      "parameters" : [ "UUID classId" ],
+      "return_type" : "void",
+      "description" : "Deletes a gym class (admin only)."
+    }, {
+      "name" : "createClassSchedule",
+      "parameters" : [ "ClassScheduleDto classScheduleDto" ],
+      "return_type" : "ClassScheduleDto",
+      "description" : "Creates a new class schedule (admin only)."
+    }, {
+      "name" : "updateClassSchedule",
+      "parameters" : [ "UUID scheduleId", "ClassScheduleDto classScheduleDto" ],
+      "return_type" : "ClassScheduleDto",
+      "description" : "Updates an existing class schedule (admin only)."
+    }, {
+      "name" : "deleteClassSchedule",
+      "parameters" : [ "UUID scheduleId" ],
+      "return_type" : "void",
+      "description" : "Deletes a class schedule (admin only)."
+    } ],
+    "public_variables" : [ ],
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "backend/src/main/java/com/multifitaundh/repository/ClassScheduleRepository.java", "backend/src/main/java/com/multifitaundh/repository/BookingRepository.java", "backend/src/main/java/com/multifitaundh/exception/BookingConflictException.java" ],
     "depends_on" : [ ],
     "feature_name" : "scheduling-backend",
-    "file_role" : null,
+    "file_role" : "SERVICE layer — implements business logic for managing gym classes, schedules, and user bookings. It exposes methods for public schedule viewing and authenticated booking actions, as well as admin-level management.",
     "change_required" : null
   }, {
     "file_name" : "ScheduleController.java",
@@ -618,14 +827,86 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Exposes public API endpoints for viewing the class schedule and making bookings.",
-    "public_functions" : null,
-    "public_variables" : null,
-    "api_endpoints" : null,
+    "public_functions" : [ {
+      "name" : "getAllGymClasses",
+      "parameters" : [ ],
+      "return_type" : "ResponseEntity<List<GymClassDto>>",
+      "description" : "Retrieves all available gym classes."
+    }, {
+      "name" : "getGymClassById",
+      "parameters" : [ "UUID classId" ],
+      "return_type" : "ResponseEntity<GymClassDto>",
+      "description" : "Retrieves a specific gym class by its ID."
+    }, {
+      "name" : "getScheduleForDate",
+      "parameters" : [ "LocalDate date" ],
+      "return_type" : "ResponseEntity<List<ClassScheduleDto>>",
+      "description" : "Retrieves the class schedule for a specific date."
+    }, {
+      "name" : "getScheduleForWeek",
+      "parameters" : [ "LocalDate startDate" ],
+      "return_type" : "ResponseEntity<List<ClassScheduleDto>>",
+      "description" : "Retrieves the class schedule for a week starting from a given date."
+    }, {
+      "name" : "bookClass",
+      "parameters" : [ "UUID classScheduleId", "Principal principal" ],
+      "return_type" : "ResponseEntity<BookingDto>",
+      "description" : "Allows an authenticated user to book a specific class schedule."
+    }, {
+      "name" : "cancelBooking",
+      "parameters" : [ "UUID bookingId", "Principal principal" ],
+      "return_type" : "ResponseEntity<Void>",
+      "description" : "Allows an authenticated user to cancel an existing booking."
+    } ],
+    "public_variables" : [ ],
+    "api_endpoints" : [ {
+      "method" : "GET",
+      "path" : "/api/v1/classes",
+      "request_body" : null,
+      "response_body" : "List<GymClassDto>",
+      "description" : "Get all available gym classes.",
+      "access" : "public"
+    }, {
+      "method" : "GET",
+      "path" : "/api/v1/classes/{classId}",
+      "request_body" : null,
+      "response_body" : "GymClassDto",
+      "description" : "Get a specific gym class by ID.",
+      "access" : "public"
+    }, {
+      "method" : "GET",
+      "path" : "/api/v1/schedule/daily",
+      "request_body" : null,
+      "response_body" : "List<ClassScheduleDto>",
+      "description" : "Get the class schedule for a specific date. Query parameter: date (YYYY-MM-DD).",
+      "access" : "public"
+    }, {
+      "method" : "GET",
+      "path" : "/api/v1/schedule/weekly",
+      "request_body" : null,
+      "response_body" : "List<ClassScheduleDto>",
+      "description" : "Get the class schedule for a week. Query parameter: startDate (YYYY-MM-DD).",
+      "access" : "public"
+    }, {
+      "method" : "POST",
+      "path" : "/api/v1/bookings/{classScheduleId}",
+      "request_body" : null,
+      "response_body" : "BookingDto",
+      "description" : "Book a specific class schedule. Path variable: classScheduleId.",
+      "access" : "authenticated"
+    }, {
+      "method" : "DELETE",
+      "path" : "/api/v1/bookings/{bookingId}",
+      "request_body" : null,
+      "response_body" : "void",
+      "description" : "Cancel an existing booking. Path variable: bookingId.",
+      "access" : "authenticated"
+    } ],
     "api_endpoints_consumed" : null,
     "imports_from" : [ "backend/src/main/java/com/multifitaundh/service/SchedulingService.java", "backend/src/main/java/com/multifitaundh/dto/ClassScheduleDto.java" ],
     "depends_on" : [ ],
     "feature_name" : "scheduling-backend",
-    "file_role" : null,
+    "file_role" : "CONTROLLER layer — exposes public API endpoints for viewing the class schedule and making bookings for authenticated users.",
     "change_required" : null
   }, {
     "file_name" : "AdminSchedulingController.java",
@@ -636,14 +917,86 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Exposes secured admin API endpoints for managing gym classes and their schedules.",
-    "public_functions" : null,
-    "public_variables" : null,
-    "api_endpoints" : null,
+    "public_functions" : [ {
+      "name" : "createGymClass",
+      "parameters" : [ "GymClassDto gymClassDto" ],
+      "return_type" : "ResponseEntity<GymClassDto>",
+      "description" : "Creates a new gym class."
+    }, {
+      "name" : "updateGymClass",
+      "parameters" : [ "UUID classId", "GymClassDto gymClassDto" ],
+      "return_type" : "ResponseEntity<GymClassDto>",
+      "description" : "Updates an existing gym class."
+    }, {
+      "name" : "deleteGymClass",
+      "parameters" : [ "UUID classId" ],
+      "return_type" : "ResponseEntity<Void>",
+      "description" : "Deletes a gym class."
+    }, {
+      "name" : "createClassSchedule",
+      "parameters" : [ "ClassScheduleDto classScheduleDto" ],
+      "return_type" : "ResponseEntity<ClassScheduleDto>",
+      "description" : "Creates a new class schedule."
+    }, {
+      "name" : "updateClassSchedule",
+      "parameters" : [ "UUID scheduleId", "ClassScheduleDto classScheduleDto" ],
+      "return_type" : "ResponseEntity<ClassScheduleDto>",
+      "description" : "Updates an existing class schedule."
+    }, {
+      "name" : "deleteClassSchedule",
+      "parameters" : [ "UUID scheduleId" ],
+      "return_type" : "ResponseEntity<Void>",
+      "description" : "Deletes a class schedule."
+    } ],
+    "public_variables" : [ ],
+    "api_endpoints" : [ {
+      "method" : "POST",
+      "path" : "/api/v1/admin/classes",
+      "request_body" : "GymClassDto",
+      "response_body" : "GymClassDto",
+      "description" : "Create a new gym class.",
+      "access" : "admin"
+    }, {
+      "method" : "PUT",
+      "path" : "/api/v1/admin/classes/{classId}",
+      "request_body" : "GymClassDto",
+      "response_body" : "GymClassDto",
+      "description" : "Update an existing gym class.",
+      "access" : "admin"
+    }, {
+      "method" : "DELETE",
+      "path" : "/api/v1/admin/classes/{classId}",
+      "request_body" : null,
+      "response_body" : "void",
+      "description" : "Delete a gym class.",
+      "access" : "admin"
+    }, {
+      "method" : "POST",
+      "path" : "/api/v1/admin/schedule",
+      "request_body" : "ClassScheduleDto",
+      "response_body" : "ClassScheduleDto",
+      "description" : "Create a new class schedule.",
+      "access" : "admin"
+    }, {
+      "method" : "PUT",
+      "path" : "/api/v1/admin/schedule/{scheduleId}",
+      "request_body" : "ClassScheduleDto",
+      "response_body" : "ClassScheduleDto",
+      "description" : "Update an existing class schedule.",
+      "access" : "admin"
+    }, {
+      "method" : "DELETE",
+      "path" : "/api/v1/admin/schedule/{scheduleId}",
+      "request_body" : null,
+      "response_body" : "void",
+      "description" : "Delete a class schedule.",
+      "access" : "admin"
+    } ],
     "api_endpoints_consumed" : null,
     "imports_from" : [ "backend/src/main/java/com/multifitaundh/service/SchedulingService.java", "backend/src/main/java/com/multifitaundh/dto/GymClassDto.java", "backend/src/main/java/com/multifitaundh/dto/ClassScheduleDto.java" ],
     "depends_on" : [ ],
     "feature_name" : "scheduling-backend",
-    "file_role" : null,
+    "file_role" : "CONTROLLER layer — exposes secured admin API endpoints for managing gym classes and their schedules.",
     "change_required" : null
   }, {
     "file_name" : "GymClassDto.java",
@@ -654,14 +1007,38 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Data Transfer Object for GymClass entities.",
-    "public_functions" : null,
-    "public_variables" : null,
+    "public_functions" : [ ],
+    "public_variables" : [ {
+      "name" : "id",
+      "type" : "UUID",
+      "description" : "Unique identifier for the gym class."
+    }, {
+      "name" : "name",
+      "type" : "String",
+      "description" : "Name of the class. Not null, max 100 characters."
+    }, {
+      "name" : "description",
+      "type" : "String",
+      "description" : "Detailed description of the class. Not null, max 1000 characters."
+    }, {
+      "name" : "durationMinutes",
+      "type" : "Integer",
+      "description" : "Duration of the class in minutes. Not null, min 1."
+    }, {
+      "name" : "trainerId",
+      "type" : "UUID",
+      "description" : "ID of the trainer who teaches this class. Not null."
+    }, {
+      "name" : "trainerName",
+      "type" : "String",
+      "description" : "Name of the trainer (derived from Trainer entity)."
+    } ],
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "scheduling-backend",
-    "file_role" : null,
+    "file_role" : "DTO layer — Data Transfer Object for GymClass entities, used for API request and response bodies.",
     "change_required" : null
   }, {
     "file_name" : "ClassScheduleDto.java",
@@ -672,14 +1049,50 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Data Transfer Object for ClassSchedule entities, often including related GymClass info.",
-    "public_functions" : null,
-    "public_variables" : null,
+    "public_functions" : [ ],
+    "public_variables" : [ {
+      "name" : "id",
+      "type" : "UUID",
+      "description" : "Unique identifier for the class schedule."
+    }, {
+      "name" : "gymClassId",
+      "type" : "UUID",
+      "description" : "ID of the associated gym class. Not null."
+    }, {
+      "name" : "gymClassName",
+      "type" : "String",
+      "description" : "Name of the associated gym class (derived from GymClass entity)."
+    }, {
+      "name" : "trainerName",
+      "type" : "String",
+      "description" : "Name of the trainer for this class (derived from GymClass and Trainer entities)."
+    }, {
+      "name" : "scheduleDate",
+      "type" : "LocalDate",
+      "description" : "The date of the class. Not null."
+    }, {
+      "name" : "startTime",
+      "type" : "LocalTime",
+      "description" : "The start time of the class. Not null."
+    }, {
+      "name" : "endTime",
+      "type" : "LocalTime",
+      "description" : "The end time of the class. Not null."
+    }, {
+      "name" : "maxCapacity",
+      "type" : "Integer",
+      "description" : "Maximum number of participants allowed. Not null, min 1."
+    }, {
+      "name" : "currentBookings",
+      "type" : "Integer",
+      "description" : "Current number of participants booked for the class. Not null, min 0."
+    } ],
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "scheduling-backend",
-    "file_role" : null,
+    "file_role" : "DTO layer — Data Transfer Object for ClassSchedule entities, often including related GymClass info, used for API request and response bodies.",
     "change_required" : null
   }, {
     "file_name" : "Trainer.java",
@@ -1929,8 +2342,8 @@
     "feature_display_name" : "Class Scheduling (Backend)",
     "feature_type" : "BACKEND",
     "file_paths" : [ "backend/src/main/java/com/multifitaundh/model/GymClass.java", "backend/src/main/java/com/multifitaundh/model/ClassSchedule.java", "backend/src/main/java/com/multifitaundh/model/Booking.java", "backend/src/main/java/com/multifitaundh/repository/GymClassRepository.java", "backend/src/main/java/com/multifitaundh/repository/ClassScheduleRepository.java", "backend/src/main/java/com/multifitaundh/repository/BookingRepository.java", "backend/src/main/java/com/multifitaundh/service/SchedulingService.java", "backend/src/main/java/com/multifitaundh/controller/ScheduleController.java", "backend/src/main/java/com/multifitaundh/controller/AdminSchedulingController.java", "backend/src/main/java/com/multifitaundh/dto/GymClassDto.java", "backend/src/main/java/com/multifitaundh/dto/ClassScheduleDto.java", "backend/src/main/java/com/multifitaundh/exception/BookingConflictException.java" ],
-    "feature_instruction" : null,
-    "depends_on_features" : null,
+    "feature_instruction" : "This feature provides the backend logic and API endpoints for managing gym classes, their schedules, and user bookings at MultiFit Aundh. It encompasses three core domain models: `GymClass` (representing a type of class like 'Zumba'), `ClassSchedule` (a specific instance of a `GymClass` at a given time and date), and `Booking` (a user's confirmed reservation for a `ClassSchedule`).\n\nThe `GymClass` model stores details such as the class name, description, duration, and a reference to the `Trainer` who teaches it. The `ClassSchedule` model links a `GymClass` to a specific date, time, and maximum capacity. The `Booking` model records which `User` has booked which `ClassSchedule`.\n\n`GymClassRepository`, `ClassScheduleRepository`, and `BookingRepository` provide standard CRUD operations for their respective entities. The `SchedulingService` orchestrates the business logic. It provides methods for fetching all available gym classes and their schedules, creating new classes and schedules (admin-only), and handling user bookings. When a user attempts to book a class, the service checks for availability and prevents overbooking or duplicate bookings by throwing a `BookingConflictException`.\n\nThe `ScheduleController` exposes public API endpoints for users to view the class schedule and make bookings. It consumes `ClassScheduleDto` and `BookingRequestDto` (not explicitly listed but implied for booking) and returns `ClassScheduleDto` and `BookingDto` (also implied). The `AdminSchedulingController` provides secured endpoints for administrators to create, update, and delete `GymClass` and `ClassSchedule` entities, consuming and returning `GymClassDto` and `ClassScheduleDto`.\n\nAll DTOs (`GymClassDto`, `ClassScheduleDto`, `BookingDto`, `BookingRequestDto`) are used for data transfer between the controllers and the service layer, ensuring a clean separation from the JPA entities. The `BookingConflictException` is a custom exception used to signal business rule violations during the booking process.\n\n**Inter-file Wiring:**\n- `ScheduleController` and `AdminSchedulingController` inject `SchedulingService`.\n- `SchedulingService` injects `GymClassRepository`, `ClassScheduleRepository`, and `BookingRepository`.\n- `GymClass` imports `Trainer` from the `content-backend` feature.\n- `ClassSchedule` imports `GymClass`.\n- `Booking` imports `ClassSchedule`.\n\n**Method Contracts:**\n\n**`SchedulingService.java`**\n\n1.  `List<GymClassDto> getAllGymClasses()`\n    -   **Logic:**\n        1.  Fetches all `GymClass` entities from `GymClassRepository`.\n        2.  Maps `GymClass` entities to `GymClassDto`.\n        3.  Returns the list of `GymClassDto`.\n    -   **Error Cases:** None.\n\n2.  `GymClassDto getGymClassById(UUID classId)`\n    -   **Logic:**\n        1.  Fetches a `GymClass` entity by `classId` from `GymClassRepository`.\n        2.  If not found, throws `ResourceNotFoundException`.\n        3.  Maps the `GymClass` entity to `GymClassDto`.\n        4.  Returns the `GymClassDto`.\n    -   **Error Cases:** `ResourceNotFoundException` (HTTP 404) if the class is not found.\n\n3.  `List<ClassScheduleDto> getScheduleForDate(LocalDate date)`\n    -   **Logic:**\n        1.  Fetches all `ClassSchedule` entities for the given `date` from `ClassScheduleRepository`.\n        2.  Maps `ClassSchedule` entities to `ClassScheduleDto`.\n        3.  Returns the list of `ClassScheduleDto`.\n    -   **Error Cases:** None.\n\n4.  `List<ClassScheduleDto> getScheduleForWeek(LocalDate startDate)`\n    -   **Logic:**\n        1.  Calculates the end date (7 days from `startDate`).\n        2.  Fetches all `ClassSchedule` entities within the date range from `ClassScheduleRepository`.\n        3.  Maps `ClassSchedule` entities to `ClassScheduleDto`.\n        4.  Returns the list of `ClassScheduleDto`.\n    -   **Error Cases:** None.\n\n5.  `BookingDto bookClass(UUID classScheduleId, UUID userId)`\n    -   **Logic:**\n        1.  Fetches `ClassSchedule` by `classScheduleId` from `ClassScheduleRepository`.\n        2.  If not found, throws `ResourceNotFoundException`.\n        3.  Checks if the class is full (`currentBookings < maxCapacity`). If full, throws `BookingConflictException`.\n        4.  Checks if the user already has a booking for this `classScheduleId`. If yes, throws `BookingConflictException`.\n        5.  Creates a new `Booking` entity with `classScheduleId` and `userId`.\n        6.  Saves the `Booking` entity using `BookingRepository`.\n        7.  Increments `currentBookings` on the `ClassSchedule` and saves it.\n        8.  Maps the new `Booking` entity to `BookingDto`.\n        9.  Returns the `BookingDto`.\n    -   **Error Cases:** `ResourceNotFoundException` (HTTP 404) if `ClassSchedule` not found. `BookingConflictException` (HTTP 409) if class is full or user already booked.\n\n6.  `void cancelBooking(UUID bookingId, UUID userId)`\n    -   **Logic:**\n        1.  Fetches `Booking` by `bookingId` and `userId` from `BookingRepository`.\n        2.  If not found, throws `ResourceNotFoundException`.\n        3.  Fetches the associated `ClassSchedule`.\n        4.  Deletes the `Booking` entity from `BookingRepository`.\n        5.  Decrements `currentBookings` on the `ClassSchedule` and saves it.\n    -   **Error Cases:** `ResourceNotFoundException` (HTTP 404) if booking not found or user does not own the booking.\n\n7.  `GymClassDto createGymClass(GymClassDto gymClassDto)`\n    -   **Logic:**\n        1.  Maps `gymClassDto` to a `GymClass` entity.\n        2.  Saves the `GymClass` entity using `GymClassRepository`.\n        3.  Maps the saved `GymClass` back to `GymClassDto`.\n        4.  Returns the `GymClassDto`.\n    -   **Error Cases:** None.\n\n8.  `GymClassDto updateGymClass(UUID classId, GymClassDto gymClassDto)`\n    -   **Logic:**\n        1.  Fetches `GymClass` by `classId` from `GymClassRepository`.\n        2.  If not found, throws `ResourceNotFoundException`.\n        3.  Updates the fields of the fetched `GymClass` with values from `gymClassDto`.\n        4.  Saves the updated `GymClass` entity using `GymClassRepository`.\n        5.  Maps the saved `GymClass` back to `GymClassDto`.\n        6.  Returns the `GymClassDto`.\n    -   **Error Cases:** `ResourceNotFoundException` (HTTP 404) if the class is not found.\n\n9.  `void deleteGymClass(UUID classId)`\n    -   **Logic:**\n        1.  Deletes `GymClass` by `classId` from `GymClassRepository`.\n    -   **Error Cases:** None (repository handles non-existent IDs gracefully).\n\n10. `ClassScheduleDto createClassSchedule(ClassScheduleDto classScheduleDto)`\n    -   **Logic:**\n        1.  Fetches `GymClass` by `gymClassId` from `GymClassRepository` (from `classScheduleDto`).\n        2.  If `GymClass` not found, throws `ResourceNotFoundException`.\n        3.  Maps `classScheduleDto` to a `ClassSchedule` entity, linking the fetched `GymClass`.\n        4.  Sets `currentBookings` to 0.\n        5.  Saves the `ClassSchedule` entity using `ClassScheduleRepository`.\n        6.  Maps the saved `ClassSchedule` back to `ClassScheduleDto`.\n        7.  Returns the `ClassScheduleDto`.\n    -   **Error Cases:** `ResourceNotFoundException` (HTTP 404) if the associated `GymClass` is not found.\n\n11. `ClassScheduleDto updateClassSchedule(UUID scheduleId, ClassScheduleDto classScheduleDto)`\n    -   **Logic:**\n        1.  Fetches `ClassSchedule` by `scheduleId` from `ClassScheduleRepository`.\n        2.  If not found, throws `ResourceNotFoundException`.\n        3.  Fetches `GymClass` by `gymClassId` from `GymClassRepository` (from `classScheduleDto`).\n        4.  If `GymClass` not found, throws `ResourceNotFoundException`.\n        5.  Updates the fields of the fetched `ClassSchedule` with values from `classScheduleDto`, linking the fetched `GymClass`.\n        6.  Saves the updated `ClassSchedule` entity using `ClassScheduleRepository`.\n        7.  Maps the saved `ClassSchedule` back to `ClassScheduleDto`.\n        8.  Returns the `ClassScheduleDto`.\n    -   **Error Cases:** `ResourceNotFoundException` (HTTP 404) if `ClassSchedule` or associated `GymClass` not found.\n\n12. `void deleteClassSchedule(UUID scheduleId)`\n    -   **Logic:**\n        1.  Deletes `ClassSchedule` by `scheduleId` from `ClassScheduleRepository`.\n    -   **Error Cases:** None (repository handles non-existent IDs gracefully).\n\n**DTOs:**\n- `GymClassDto`: Used for transferring `GymClass` data, including `id`, `name`, `description`, `durationMinutes`, `trainerId`, and `trainerName`.\n- `ClassScheduleDto`: Used for transferring `ClassSchedule` data, including `id`, `gymClassId`, `gymClassName`, `trainerName`, `scheduleDate`, `startTime`, `endTime`, `maxCapacity`, and `currentBookings`.\n- `BookingRequestDto` (implied): Used for requesting a booking, containing `classScheduleId`.\n- `BookingDto` (implied): Used for returning booking details, including `id`, `classScheduleId`, `userId`, `bookingDate`.\n\n**Error Handling:**\n- `ResourceNotFoundException` will be caught by `GlobalExceptionHandler` (from `shared-backend`) and return HTTP 404.\n- `BookingConflictException` will be caught by `GlobalExceptionHandler` and return HTTP 409.\n\n**Cross-Feature Interactions:**\n- This feature depends on `content-backend` for `Trainer` entity details, specifically when creating or updating `GymClass` entities that reference a `Trainer`.\n- This feature depends on `auth-backend` (implied, not explicitly listed in peer contracts but standard for user authentication) for `userId` in booking operations.\n- This feature depends on `shared-backend` for `ResourceNotFoundException` handling via `GlobalExceptionHandler`.",
+    "depends_on_features" : [ "content-backend" ],
     "change_required" : true,
     "change_instruction" : null
   }, {
