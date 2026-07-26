@@ -2473,14 +2473,19 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Displays the weekly class schedule in an interactive calendar view, allowing users to book classes.",
-    "public_functions" : null,
-    "public_variables" : null,
-    "api_endpoints" : null,
-    "api_endpoints_consumed" : null,
+    "public_functions" : [ {
+      "name" : "SchedulePage",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders the main schedule page with a calendar and handles class booking interactions."
+    } ],
+    "public_variables" : [ ],
+    "api_endpoints" : [ ],
+    "api_endpoints_consumed" : [ ],
     "imports_from" : [ "frontend/src/hooks/useSchedule.ts", "frontend/src/components/schedule/ScheduleCalendar.tsx", "frontend/src/components/schedule/BookingConfirmationDialog.tsx" ],
     "depends_on" : [ ],
     "feature_name" : "scheduling-frontend",
-    "file_role" : null,
+    "file_role" : "PAGE layer — displays the weekly class schedule and orchestrates the booking flow by using `useSchedule` hook and rendering `ScheduleCalendar` and `BookingConfirmationDialog` components.",
     "change_required" : null
   }, {
     "file_name" : "ScheduleCalendar.tsx",
@@ -2491,14 +2496,19 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "A calendar component to display and interact with the class schedule.",
-    "public_functions" : null,
-    "public_variables" : null,
-    "api_endpoints" : null,
-    "api_endpoints_consumed" : null,
+    "public_functions" : [ {
+      "name" : "ScheduleCalendar",
+      "parameters" : [ "{ weeklySchedule: ClassScheduleDto[], currentDate: Date, onDateChange: (date: Date) => void, onClassSelect: (classSchedule: ClassScheduleDto) => void }" ],
+      "return_type" : "JSX.Element",
+      "description" : "Displays a weekly calendar with gym classes, allowing navigation and selection of classes. All monetary values, if any, will be displayed in Indian Rupees (₹) using the `en-IN` locale."
+    } ],
+    "public_variables" : [ ],
+    "api_endpoints" : [ ],
+    "api_endpoints_consumed" : [ ],
     "imports_from" : [ "frontend/src/types/schedule.ts" ],
     "depends_on" : [ ],
     "feature_name" : "scheduling-frontend",
-    "file_role" : null,
+    "file_role" : "COMPONENT layer — renders an interactive calendar view of the class schedule based on provided data and user interactions.",
     "change_required" : null
   }, {
     "file_name" : "BookingConfirmationDialog.tsx",
@@ -2509,14 +2519,19 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "A dialog to confirm a user's class booking selection.",
-    "public_functions" : null,
-    "public_variables" : null,
-    "api_endpoints" : null,
-    "api_endpoints_consumed" : null,
+    "public_functions" : [ {
+      "name" : "BookingConfirmationDialog",
+      "parameters" : [ "{ isOpen: boolean, onClose: () => void, classSchedule: ClassScheduleDto | null }" ],
+      "return_type" : "JSX.Element",
+      "description" : "Displays a confirmation dialog for a selected class, allowing the user to confirm or cancel the booking. All monetary values, if any, will be displayed in Indian Rupees (₹) using the `en-IN` locale."
+    } ],
+    "public_variables" : [ ],
+    "api_endpoints" : [ ],
+    "api_endpoints_consumed" : [ ],
     "imports_from" : [ "frontend/src/hooks/useSchedule.ts" ],
     "depends_on" : [ ],
     "feature_name" : "scheduling-frontend",
-    "file_role" : null,
+    "file_role" : "COMPONENT layer — presents a dialog for users to confirm their class booking selection, interacting with the `useSchedule` hook.",
     "change_required" : null
   }, {
     "file_name" : "schedulingService.ts",
@@ -2527,14 +2542,38 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Provides functions for making API calls related to class schedules and bookings.",
-    "public_functions" : null,
-    "public_variables" : null,
-    "api_endpoints" : null,
-    "api_endpoints_consumed" : null,
+    "public_functions" : [ {
+      "name" : "getWeeklySchedule",
+      "parameters" : [ "string startDate" ],
+      "return_type" : "Promise<ClassScheduleDto[]>",
+      "description" : "Fetches the weekly class schedule from the backend, starting from the given date."
+    }, {
+      "name" : "bookClass",
+      "parameters" : [ "string classScheduleId" ],
+      "return_type" : "Promise<BookingDto>",
+      "description" : "Submits a request to book a specific class schedule."
+    } ],
+    "public_variables" : [ ],
+    "api_endpoints" : [ ],
+    "api_endpoints_consumed" : [ {
+      "method" : "GET",
+      "path" : "/api/v1/schedule/weekly?startDate={startDate}",
+      "request_body" : null,
+      "response_body" : null,
+      "description" : "Fetches the weekly class schedule from the backend.",
+      "access" : null
+    }, {
+      "method" : "POST",
+      "path" : "/api/v1/bookings/{classScheduleId}",
+      "request_body" : null,
+      "response_body" : null,
+      "description" : "Books a specific class schedule for the authenticated user.",
+      "access" : null
+    } ],
     "imports_from" : [ "frontend/src/api/client.ts", "frontend/src/types/schedule.ts" ],
     "depends_on" : [ ],
     "feature_name" : "scheduling-frontend",
-    "file_role" : null,
+    "file_role" : "SERVICE layer — provides asynchronous functions for interacting with the scheduling backend API, specifically for fetching schedules and booking classes.",
     "change_required" : null
   }, {
     "file_name" : "useSchedule.ts",
@@ -2545,14 +2584,24 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "React Query hook for fetching schedule data and handling class bookings.",
-    "public_functions" : null,
-    "public_variables" : null,
-    "api_endpoints" : null,
-    "api_endpoints_consumed" : null,
+    "public_functions" : [ {
+      "name" : "useWeeklySchedule",
+      "parameters" : [ "string startDate" ],
+      "return_type" : "UseQueryResult<ClassScheduleDto[], Error>",
+      "description" : "A React Query hook to fetch the weekly class schedule, returning query state and data."
+    }, {
+      "name" : "useBookClass",
+      "parameters" : [ ],
+      "return_type" : "UseMutationResult<BookingDto, Error, string>",
+      "description" : "A React Query hook to book a class, returning mutation state and functions."
+    } ],
+    "public_variables" : [ ],
+    "api_endpoints" : [ ],
+    "api_endpoints_consumed" : [ ],
     "imports_from" : [ "frontend/src/services/schedulingService.ts", "frontend/src/types/schedule.ts" ],
     "depends_on" : [ ],
     "feature_name" : "scheduling-frontend",
-    "file_role" : null,
+    "file_role" : "HOOK layer — provides React Query hooks for fetching weekly class schedules and handling class bookings, abstracting API calls and managing loading/error states.",
     "change_required" : null
   }, {
     "file_name" : "schedule.ts",
@@ -2563,14 +2612,26 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "TypeScript types for schedule and booking data structures.",
-    "public_functions" : null,
-    "public_variables" : null,
-    "api_endpoints" : null,
-    "api_endpoints_consumed" : null,
+    "public_functions" : [ ],
+    "public_variables" : [ {
+      "name" : "GymClassDto",
+      "type" : "{ id: string, name: string, description: string, durationMinutes: number, trainerId: string, trainerName: string }",
+      "description" : "Data transfer object for a gym class."
+    }, {
+      "name" : "ClassScheduleDto",
+      "type" : "{ id: string, gymClassId: string, gymClassName: string, trainerName: string, scheduleDate: string, startTime: string, endTime: string, maxCapacity: number, currentBookings: number }",
+      "description" : "Data transfer object for a scheduled class instance."
+    }, {
+      "name" : "BookingDto",
+      "type" : "{ id: string, classSchedule: ClassScheduleDto, userId: string, bookingDate: string }",
+      "description" : "Data transfer object for a class booking."
+    } ],
+    "api_endpoints" : [ ],
+    "api_endpoints_consumed" : [ ],
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "scheduling-frontend",
-    "file_role" : null,
+    "file_role" : "Generated from the backend API contract — defines TypeScript interfaces for schedule and booking related data transfer objects.",
     "change_required" : null
   }, {
     "file_name" : "TrainersPage.tsx",
@@ -2994,8 +3055,8 @@
     "feature_display_name" : "Class Booking Flow",
     "feature_type" : "FRONTEND",
     "file_paths" : [ "frontend/src/pages/SchedulePage.tsx", "frontend/src/components/schedule/ScheduleCalendar.tsx", "frontend/src/components/schedule/BookingConfirmationDialog.tsx", "frontend/src/services/schedulingService.ts", "frontend/src/hooks/useSchedule.ts", "frontend/src/types/schedule.ts" ],
-    "feature_instruction" : null,
-    "depends_on_features" : null,
+    "feature_instruction" : "## Design Tokens\n- Navbar: bg-[#1A1A1A] text-[#F5F5F5]\n- Primary CTA: bg-[#DFFF00] hover:bg-[#c2e600] text-[#1A1A1A] font-semibold rounded-full px-8 py-3 transition-all duration-200\n- Brand text accent: text-[#DFFF00]\n- Section bg: bg-[#F5F5F5] (odd sections) / bg-gray-100 (even sections)\n- Card: bg-white rounded-xl shadow-md border border-gray-100 p-6\n- Section container: <section className=\"py-16 px-4\"><div className=\"max-w-7xl mx-auto\">\n- Hero h1: text-4xl md:text-6xl font-bold text-white\n- Body: text-gray-700 leading-relaxed\n\nThis feature implements the class booking flow for MultiFit Aundh, allowing users to view the weekly schedule and book classes. It consists of a main schedule page, a calendar component, a booking confirmation dialog, a service for API interactions, a React Query hook for data management, and TypeScript types for data structures.\n\n### `SchedulePage.tsx`\nThis page serves as the entry point for users to view and interact with the class schedule. It uses the `Layout` component from `shared-frontend` for consistent navigation and branding. The page will display a weekly calendar view powered by `ScheduleCalendar.tsx` and manage the state for booking classes using the `useSchedule` hook. When a user selects a class, a `BookingConfirmationDialog.tsx` will appear to finalize the booking. All monetary values, if any, will be displayed in Indian Rupees (₹) using the `en-IN` locale.\n\n### `ScheduleCalendar.tsx`\nThis component renders an interactive calendar displaying the weekly class schedule. It receives `weeklySchedule` data, `currentDate` for navigation, `onDateChange` to update the displayed week, and `onClassSelect` to trigger the booking flow for a specific class. The calendar will visually represent classes, their times, names, and trainer names. It will use the `ClassScheduleDto` and `GymClassDto` types from `frontend/src/types/schedule.ts` to render class details.\n\n### `BookingConfirmationDialog.tsx`\nThis dialog component is responsible for confirming a user's intent to book a class. It receives `isOpen`, `onClose`, and `classSchedule` as props. When opened, it displays details of the selected class (name, date, time, trainer). It provides a 'Confirm Booking' button that, when clicked, calls the `bookClass` mutation from `useSchedule.ts`. It also handles success and error states for the booking, providing user feedback using a toast notification (e.g., from `sonner`).\n\n### `schedulingService.ts`\nThis service acts as an intermediary between the frontend components and the `scheduling-backend` API. It exports asynchronous functions to fetch the weekly class schedule and to book a class. It uses the `apiClient` from `frontend/src/api/client.ts` to make HTTP requests and handles potential errors. All API calls require authentication.\n\n### `useSchedule.ts`\nThis React Query hook provides an abstraction for fetching and mutating schedule and booking data. It exposes `useWeeklySchedule` to fetch the schedule for a given week and `useBookClass` for booking a class. `useWeeklySchedule` uses `schedulingService.getWeeklySchedule` and `useBookClass` uses `schedulingService.bookClass`. It manages loading, error, and success states, making it easy for components like `SchedulePage.tsx` and `BookingConfirmationDialog.tsx` to interact with the backend.\n\n### `schedule.ts`\nThis file defines the TypeScript interfaces for the data structures used throughout the scheduling feature. These types mirror the DTOs exposed by the `scheduling-backend` to ensure type safety and consistency across the frontend application. It includes `GymClassDto`, `ClassScheduleDto`, and `BookingDto`.\n\n**Flow:**\n1. `SchedulePage.tsx` renders, fetching the weekly schedule using `useSchedule.useWeeklySchedule`.\n2. The fetched schedule data is passed to `ScheduleCalendar.tsx`.\n3. `ScheduleCalendar.tsx` displays the classes. When a user clicks on a class, `onClassSelect` is called, passing the `ClassScheduleDto` of the selected class.\n4. `SchedulePage.tsx` then opens `BookingConfirmationDialog.tsx`, passing the selected `ClassScheduleDto`.\n5. Inside `BookingConfirmationDialog.tsx`, when the user confirms, `useSchedule.useBookClass().mutateAsync()` is called with the `classScheduleId`.\n6. `schedulingService.bookClass` makes the API call to `POST /api/v1/bookings/{classScheduleId}`.\n7. Upon successful booking, a success toast is shown, and the schedule might be refetched to reflect the updated `currentBookings` count for the class.\n8. If an error occurs (e.g., `BookingConflictException` from the backend), an error toast is displayed.",
+    "depends_on_features" : [ "shared-frontend", "scheduling-backend" ],
     "change_required" : true,
     "change_instruction" : null
   }, {
