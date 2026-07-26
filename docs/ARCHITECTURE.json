@@ -1775,8 +1775,8 @@
     "file_type" : "FRONTEND",
     "layer" : "HOOK",
     "created_date" : "2024-07-28",
-    "updated_date" : "2024-07-28",
-    "status" : "PLANNED",
+    "updated_date" : "2026-07-26",
+    "status" : "GENERATED",
     "description" : "Custom hook for easy consumption of the AuthContext, providing access to auth state and actions.",
     "public_functions" : [ {
       "name" : "useAuth",
@@ -2104,8 +2104,8 @@
     "file_type" : "FRONTEND",
     "layer" : "HOOK",
     "created_date" : "2024-07-28",
-    "updated_date" : "2024-07-28",
-    "status" : "PLANNED",
+    "updated_date" : "2026-07-26",
+    "status" : "GENERATED",
     "description" : "React Query hook for fetching and managing content data like trainers and testimonials.",
     "public_functions" : [ {
       "name" : "useAllTrainers",
@@ -2341,8 +2341,8 @@
     "file_type" : "FRONTEND",
     "layer" : "HOOK",
     "created_date" : "2024-07-28",
-    "updated_date" : "2024-07-28",
-    "status" : "PLANNED",
+    "updated_date" : "2026-07-26",
+    "status" : "GENERATED",
     "description" : "React Query hook for fetching and managing membership plan data and handling purchases.",
     "public_functions" : [ {
       "name" : "useAllMembershipPlans",
@@ -2473,8 +2473,8 @@
     "file_type" : "FRONTEND",
     "layer" : "HOOK",
     "created_date" : "2024-07-28",
-    "updated_date" : "2024-07-28",
-    "status" : "PLANNED",
+    "updated_date" : "2026-07-26",
+    "status" : "GENERATED",
     "description" : "React Query hook for fetching schedule data and handling class bookings.",
     "public_functions" : [ {
       "name" : "useWeeklySchedule",
