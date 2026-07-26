@@ -171,14 +171,38 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Represents a purchasable gym membership tier (e.g., '3 Month Unlimited', '1 Year CrossFit').",
-    "public_functions" : null,
-    "public_variables" : null,
+    "public_functions" : [ ],
+    "public_variables" : [ {
+      "name" : "id",
+      "type" : "UUID",
+      "description" : "Unique identifier for the membership plan, auto-generated."
+    }, {
+      "name" : "name",
+      "type" : "String",
+      "description" : "Name of the membership plan (e.g., '3 Month Unlimited'), not null, max 100 characters."
+    }, {
+      "name" : "description",
+      "type" : "String",
+      "description" : "Detailed description of the membership plan, nullable, max 500 characters."
+    }, {
+      "name" : "price",
+      "type" : "BigDecimal",
+      "description" : "Price of the membership plan, not null, decimal(10,2)."
+    }, {
+      "name" : "durationInMonths",
+      "type" : "Integer",
+      "description" : "Duration of the membership plan in months, not null, min 1."
+    }, {
+      "name" : "isActive",
+      "type" : "Boolean",
+      "description" : "Indicates if the membership plan is currently active and available for purchase, not null."
+    } ],
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "membership-backend",
-    "file_role" : null,
+    "file_role" : "MODEL layer — Represents a purchasable gym membership tier with attributes like name, price, and duration.",
     "change_required" : null
   }, {
     "file_name" : "MemberSubscription.java",
@@ -189,14 +213,38 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Links a User to a MembershipPlan, representing an active or past subscription with start and end dates.",
-    "public_functions" : null,
-    "public_variables" : null,
+    "public_functions" : [ ],
+    "public_variables" : [ {
+      "name" : "id",
+      "type" : "UUID",
+      "description" : "Unique identifier for the member subscription, auto-generated."
+    }, {
+      "name" : "userId",
+      "type" : "UUID",
+      "description" : "ID of the user who holds this subscription, not null."
+    }, {
+      "name" : "membershipPlan",
+      "type" : "MembershipPlan",
+      "description" : "The membership plan associated with this subscription, ManyToOne relationship, not null."
+    }, {
+      "name" : "startDate",
+      "type" : "LocalDate",
+      "description" : "The date when the subscription started, not null."
+    }, {
+      "name" : "endDate",
+      "type" : "LocalDate",
+      "description" : "The date when the subscription will end, not null."
+    }, {
+      "name" : "status",
+      "type" : "String",
+      "description" : "Current status of the subscription (e.g., ACTIVE, EXPIRED, CANCELLED), not null, max 50 characters."
+    } ],
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "backend/src/main/java/com/multifitaundh/model/MembershipPlan.java" ],
     "depends_on" : [ ],
     "feature_name" : "membership-backend",
-    "file_role" : null,
+    "file_role" : "MODEL layer — Links a User to a MembershipPlan, representing an active or past subscription.",
     "change_required" : null
   }, {
     "file_name" : "MembershipPlanRepository.java",
@@ -207,14 +255,19 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Spring Data JPA repository for CRUD operations on MembershipPlan entities.",
-    "public_functions" : null,
-    "public_variables" : null,
+    "public_functions" : [ {
+      "name" : "findByIsActiveTrue",
+      "parameters" : [ ],
+      "return_type" : "List<MembershipPlan>",
+      "description" : "Retrieves all membership plans that are currently active."
+    } ],
+    "public_variables" : [ ],
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "backend/src/main/java/com/multifitaundh/model/MembershipPlan.java" ],
     "depends_on" : [ ],
     "feature_name" : "membership-backend",
-    "file_role" : null,
+    "file_role" : "REPOSITORY layer — Provides CRUD operations for MembershipPlan entities and custom queries for active plans.",
     "change_required" : null
   }, {
     "file_name" : "MemberSubscriptionRepository.java",
@@ -225,14 +278,24 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Spring Data JPA repository for CRUD operations on MemberSubscription entities.",
-    "public_functions" : null,
-    "public_variables" : null,
+    "public_functions" : [ {
+      "name" : "findByUserId",
+      "parameters" : [ "UUID userId" ],
+      "return_type" : "List<MemberSubscription>",
+      "description" : "Retrieves all subscriptions for a given user ID."
+    }, {
+      "name" : "findByUserIdAndStatus",
+      "parameters" : [ "UUID userId", "String status" ],
+      "return_type" : "List<MemberSubscription>",
+      "description" : "Retrieves subscriptions for a given user ID and status."
+    } ],
+    "public_variables" : [ ],
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "backend/src/main/java/com/multifitaundh/model/MemberSubscription.java" ],
     "depends_on" : [ ],
     "feature_name" : "membership-backend",
-    "file_role" : null,
+    "file_role" : "REPOSITORY layer — Provides CRUD operations for MemberSubscription entities and custom queries for user subscriptions.",
     "change_required" : null
   }, {
     "file_name" : "MembershipService.java",
@@ -243,14 +306,44 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Handles business logic for purchasing and managing memberships, integrating with the PaymentService.",
-    "public_functions" : null,
-    "public_variables" : null,
+    "public_functions" : [ {
+      "name" : "getAllActiveMembershipPlans",
+      "parameters" : [ ],
+      "return_type" : "List<MembershipPlanDto>",
+      "description" : "Retrieves all active membership plans."
+    }, {
+      "name" : "getMembershipPlanById",
+      "parameters" : [ "UUID id" ],
+      "return_type" : "MembershipPlanDto",
+      "description" : "Retrieves a specific membership plan by its ID."
+    }, {
+      "name" : "createSubscription",
+      "parameters" : [ "UUID userId", "UUID membershipPlanId" ],
+      "return_type" : "MemberSubscription",
+      "description" : "Creates a new member subscription for a user based on a membership plan."
+    }, {
+      "name" : "createMembershipPlan",
+      "parameters" : [ "MembershipPlanDto membershipPlanDto" ],
+      "return_type" : "MembershipPlanDto",
+      "description" : "Creates a new membership plan."
+    }, {
+      "name" : "updateMembershipPlan",
+      "parameters" : [ "UUID id", "MembershipPlanDto membershipPlanDto" ],
+      "return_type" : "MembershipPlanDto",
+      "description" : "Updates an existing membership plan."
+    }, {
+      "name" : "deleteMembershipPlan",
+      "parameters" : [ "UUID id" ],
+      "return_type" : "void",
+      "description" : "Deletes a membership plan by its ID."
+    } ],
+    "public_variables" : [ ],
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ "backend/src/main/java/com/multifitaundh/repository/MembershipPlanRepository.java", "backend/src/main/java/com/multifitaundh/repository/MemberSubscriptionRepository.java" ],
     "depends_on" : [ ],
     "feature_name" : "membership-backend",
-    "file_role" : null,
+    "file_role" : "SERVICE layer — Implements business logic for managing membership plans and member subscriptions, including integration with PaymentService.",
     "change_required" : null
   }, {
     "file_name" : "MembershipController.java",
@@ -261,14 +354,38 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Exposes public API endpoints for listing membership plans and initiating a purchase.",
-    "public_functions" : null,
-    "public_variables" : null,
-    "api_endpoints" : null,
-    "api_endpoints_consumed" : null,
+    "public_functions" : [ {
+      "name" : "getAllActiveMembershipPlans",
+      "parameters" : [ ],
+      "return_type" : "ResponseEntity<List<MembershipPlanDto>>",
+      "description" : "Handles GET requests to retrieve all active membership plans."
+    }, {
+      "name" : "getMembershipPlanById",
+      "parameters" : [ "UUID id" ],
+      "return_type" : "ResponseEntity<MembershipPlanDto>",
+      "description" : "Handles GET requests to retrieve a specific membership plan by ID."
+    } ],
+    "public_variables" : [ ],
+    "api_endpoints" : [ {
+      "method" : "GET",
+      "path" : "/api/v1/memberships/plans",
+      "request_body" : null,
+      "response_body" : "List<MembershipPlanDto>",
+      "description" : "Retrieves a list of all active membership plans.",
+      "access" : "public"
+    }, {
+      "method" : "GET",
+      "path" : "/api/v1/memberships/plans/{id}",
+      "request_body" : null,
+      "response_body" : "MembershipPlanDto",
+      "description" : "Retrieves a specific membership plan by its ID.",
+      "access" : "public"
+    } ],
+    "api_endpoints_consumed" : [ ],
     "imports_from" : [ "backend/src/main/java/com/multifitaundh/service/MembershipService.java", "backend/src/main/java/com/multifitaundh/dto/MembershipPlanDto.java" ],
     "depends_on" : [ ],
     "feature_name" : "membership-backend",
-    "file_role" : null,
+    "file_role" : "CONTROLLER layer — Exposes public API endpoints for listing membership plans and initiating a purchase.",
     "change_required" : null
   }, {
     "file_name" : "AdminMembershipController.java",
@@ -279,14 +396,50 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Exposes secured admin API endpoints for creating, updating, and deleting membership plans.",
-    "public_functions" : null,
-    "public_variables" : null,
-    "api_endpoints" : null,
-    "api_endpoints_consumed" : null,
+    "public_functions" : [ {
+      "name" : "createMembershipPlan",
+      "parameters" : [ "MembershipPlanDto membershipPlanDto" ],
+      "return_type" : "ResponseEntity<MembershipPlanDto>",
+      "description" : "Handles POST requests to create a new membership plan."
+    }, {
+      "name" : "updateMembershipPlan",
+      "parameters" : [ "UUID id", "MembershipPlanDto membershipPlanDto" ],
+      "return_type" : "ResponseEntity<MembershipPlanDto>",
+      "description" : "Handles PUT requests to update an existing membership plan."
+    }, {
+      "name" : "deleteMembershipPlan",
+      "parameters" : [ "UUID id" ],
+      "return_type" : "ResponseEntity<Void>",
+      "description" : "Handles DELETE requests to delete a membership plan."
+    } ],
+    "public_variables" : [ ],
+    "api_endpoints" : [ {
+      "method" : "POST",
+      "path" : "/api/v1/admin/memberships/plans",
+      "request_body" : "MembershipPlanDto",
+      "response_body" : "MembershipPlanDto",
+      "description" : "Creates a new membership plan.",
+      "access" : "admin"
+    }, {
+      "method" : "PUT",
+      "path" : "/api/v1/admin/memberships/plans/{id}",
+      "request_body" : "MembershipPlanDto",
+      "response_body" : "MembershipPlanDto",
+      "description" : "Updates an existing membership plan by its ID.",
+      "access" : "admin"
+    }, {
+      "method" : "DELETE",
+      "path" : "/api/v1/admin/memberships/plans/{id}",
+      "request_body" : null,
+      "response_body" : "void",
+      "description" : "Deletes a membership plan by its ID.",
+      "access" : "admin"
+    } ],
+    "api_endpoints_consumed" : [ ],
     "imports_from" : [ "backend/src/main/java/com/multifitaundh/service/MembershipService.java", "backend/src/main/java/com/multifitaundh/dto/MembershipPlanDto.java" ],
     "depends_on" : [ ],
     "feature_name" : "membership-backend",
-    "file_role" : null,
+    "file_role" : "CONTROLLER layer — Exposes secured admin API endpoints for creating, updating, and deleting membership plans.",
     "change_required" : null
   }, {
     "file_name" : "MembershipPlanDto.java",
@@ -297,14 +450,38 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Data Transfer Object for MembershipPlan entities, used in API responses and requests.",
-    "public_functions" : null,
-    "public_variables" : null,
+    "public_functions" : [ ],
+    "public_variables" : [ {
+      "name" : "id",
+      "type" : "UUID",
+      "description" : "Unique identifier for the membership plan."
+    }, {
+      "name" : "name",
+      "type" : "String",
+      "description" : "Name of the membership plan, @NotBlank, @Size(max = 100)."
+    }, {
+      "name" : "description",
+      "type" : "String",
+      "description" : "Detailed description of the membership plan, @Size(max = 500)."
+    }, {
+      "name" : "price",
+      "type" : "BigDecimal",
+      "description" : "Price of the membership plan, @NotNull, @DecimalMin(\"0.01\")."
+    }, {
+      "name" : "durationInMonths",
+      "type" : "Integer",
+      "description" : "Duration of the membership plan in months, @NotNull, @Min(1)."
+    }, {
+      "name" : "isActive",
+      "type" : "Boolean",
+      "description" : "Indicates if the membership plan is currently active."
+    } ],
     "api_endpoints" : null,
     "api_endpoints_consumed" : null,
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "membership-backend",
-    "file_role" : null,
+    "file_role" : "DTO layer — Data Transfer Object for MembershipPlan entities, used in API responses and requests.",
     "change_required" : null
   }, {
     "file_name" : "GymClass.java",
@@ -1743,8 +1920,8 @@
     "feature_display_name" : "Membership Management (Backend)",
     "feature_type" : "BACKEND",
     "file_paths" : [ "backend/src/main/java/com/multifitaundh/model/MembershipPlan.java", "backend/src/main/java/com/multifitaundh/model/MemberSubscription.java", "backend/src/main/java/com/multifitaundh/repository/MembershipPlanRepository.java", "backend/src/main/java/com/multifitaundh/repository/MemberSubscriptionRepository.java", "backend/src/main/java/com/multifitaundh/service/MembershipService.java", "backend/src/main/java/com/multifitaundh/controller/MembershipController.java", "backend/src/main/java/com/multifitaundh/controller/AdminMembershipController.java", "backend/src/main/java/com/multifitaundh/dto/MembershipPlanDto.java" ],
-    "feature_instruction" : null,
-    "depends_on_features" : null,
+    "feature_instruction" : "This feature provides the backend logic and API endpoints for managing gym membership plans and member subscriptions. It defines the data models for `MembershipPlan` and `MemberSubscription`, along with their respective Spring Data JPA repositories. The `MembershipService` encapsulates the core business logic, including operations to retrieve membership plans, create new subscriptions, and manage existing ones. It integrates with the pre-scaffolded `PaymentService` for handling payment processing during subscription creation. The `MembershipController` exposes public API endpoints for users to view available membership plans and initiate the purchase process. The `AdminMembershipController` provides secured administrative endpoints for CRUD operations on `MembershipPlan` entities. Data transfer between the frontend and backend is handled by `MembershipPlanDto`.\n\n### MembershipPlan.java\nThis entity represents a purchasable gym membership tier. It includes fields like `name`, `description`, `price`, `durationInMonths`, and `isActive`. The `id` is a UUID generated automatically.\n\n### MemberSubscription.java\nThis entity links a `User` to a `MembershipPlan`, representing an active or past subscription. It includes fields like `userId` (UUID), `membershipPlan` (ManyToOne relationship), `startDate`, `endDate`, and `status` (e.g., ACTIVE, EXPIRED, CANCELLED). The `id` is a UUID generated automatically.\n\n### MembershipPlanRepository.java\nThis repository extends `JpaRepository` for `MembershipPlan` entities, providing standard CRUD operations. It will include a custom query method to find all active membership plans.\n\n### MemberSubscriptionRepository.java\nThis repository extends `JpaRepository` for `MemberSubscription` entities, providing standard CRUD operations. It will include custom query methods to find subscriptions by `userId` and to find active subscriptions.\n\n### MembershipService.java\nThis service orchestrates the business logic for memberships. It injects `MembershipPlanRepository` and `MemberSubscriptionRepository`. It also injects the pre-scaffolded `PaymentService` to handle payment processing.\n\n**Public Functions:**\n\n1.  `List<MembershipPlanDto> getAllActiveMembershipPlans()`:\n    *   **Logic:**\n        1.  Calls `membershipPlanRepository.findByIsActiveTrue()` to retrieve all active `MembershipPlan` entities.\n        2.  Maps the entities to `MembershipPlanDto` objects.\n        3.  Returns the list of DTOs.\n    *   **Error Cases:** None specific; an empty list is returned if no active plans exist.\n\n2.  `MembershipPlanDto getMembershipPlanById(UUID id)`:\n    *   **Logic:**\n        1.  Calls `membershipPlanRepository.findById(id)`.\n        2.  If the plan is not found, throws `ResourceNotFoundException`.\n        3.  Maps the found `MembershipPlan` entity to `MembershipPlanDto`.\n        4.  Returns the DTO.\n    *   **Error Cases:** Throws `ResourceNotFoundException` if no plan with the given ID exists.\n\n3.  `MemberSubscription createSubscription(UUID userId, UUID membershipPlanId)`:\n    *   **Logic:**\n        1.  Retrieves the `MembershipPlan` by `membershipPlanId` using `membershipPlanRepository.findById()`. Throws `ResourceNotFoundException` if not found.\n        2.  Calculates `startDate` as `LocalDate.now()` and `endDate` based on `membershipPlan.getDurationInMonths()`.\n        3.  Creates a new `MemberSubscription` entity with `userId`, `membershipPlan`, `startDate`, `endDate`, and `status` as `ACTIVE`.\n        4.  Calls `memberSubscriptionRepository.save()` to persist the subscription.\n        5.  Returns the created `MemberSubscription`.\n    *   **Error Cases:** Throws `ResourceNotFoundException` if the `membershipPlanId` is invalid.\n\n4.  `MembershipPlanDto createMembershipPlan(MembershipPlanDto membershipPlanDto)`:\n    *   **Logic:**\n        1.  Maps the `membershipPlanDto` to a new `MembershipPlan` entity.\n        2.  Sets `isActive` to `true` by default for new plans.\n        3.  Calls `membershipPlanRepository.save()` to persist the new plan.\n        4.  Maps the saved entity back to `MembershipPlanDto`.\n        5.  Returns the DTO.\n    *   **Error Cases:** None specific.\n\n5.  `MembershipPlanDto updateMembershipPlan(UUID id, MembershipPlanDto membershipPlanDto)`:\n    *   **Logic:**\n        1.  Retrieves the existing `MembershipPlan` by `id` using `membershipPlanRepository.findById()`. Throws `ResourceNotFoundException` if not found.\n        2.  Updates the fields of the existing plan with values from `membershipPlanDto`.\n        3.  Calls `membershipPlanRepository.save()` to update the plan.\n        4.  Maps the updated entity back to `MembershipPlanDto`.\n        5.  Returns the DTO.\n    *   **Error Cases:** Throws `ResourceNotFoundException` if no plan with the given ID exists.\n\n6.  `void deleteMembershipPlan(UUID id)`:\n    *   **Logic:**\n        1.  Checks if a `MembershipPlan` with the given `id` exists using `membershipPlanRepository.existsById()`. Throws `ResourceNotFoundException` if not found.\n        2.  Calls `membershipPlanRepository.deleteById(id)`.\n    *   **Error Cases:** Throws `ResourceNotFoundException` if no plan with the given ID exists.\n\n### MembershipController.java\nThis controller exposes public API endpoints for users to interact with membership plans. It injects `MembershipService`.\n\n**API Endpoints:**\n\n1.  `GET /api/v1/memberships/plans`:\n    *   **Description:** Retrieves a list of all active membership plans.\n    *   **Access:** public\n    *   **Response Body:** `List<MembershipPlanDto>`\n\n2.  `GET /api/v1/memberships/plans/{id}`:\n    *   **Description:** Retrieves a specific membership plan by its ID.\n    *   **Access:** public\n    *   **Response Body:** `MembershipPlanDto`\n    *   **Error Cases:** Returns 404 NOT FOUND if the plan does not exist.\n\n### AdminMembershipController.java\nThis controller exposes secured administrative API endpoints for managing membership plans. It injects `MembershipService`.\n\n**API Endpoints:**\n\n1.  `POST /api/v1/admin/memberships/plans`:\n    *   **Description:** Creates a new membership plan.\n    *   **Access:** admin\n    *   **Request Body:** `MembershipPlanDto`\n    *   **Response Body:** `MembershipPlanDto`\n\n2.  `PUT /api/v1/admin/memberships/plans/{id}`:\n    *   **Description:** Updates an existing membership plan by its ID.\n    *   **Access:** admin\n    *   **Request Body:** `MembershipPlanDto`\n    *   **Response Body:** `MembershipPlanDto`\n    *   **Error Cases:** Returns 404 NOT FOUND if the plan does not exist.\n\n3.  `DELETE /api/v1/admin/memberships/plans/{id}`:\n    *   **Description:** Deletes a membership plan by its ID.\n    *   **Access:** admin\n    *   **Response Body:** `void`\n    *   **Error Cases:** Returns 404 NOT FOUND if the plan does not exist.\n\n### MembershipPlanDto.java\nThis DTO defines the structure for transferring `MembershipPlan` data between the frontend and backend. It includes fields like `id`, `name`, `description`, `price`, `durationInMonths`, and `isActive` with appropriate validation annotations.",
+    "depends_on_features" : [ ],
     "change_required" : true,
     "change_instruction" : null
   }, {
