@@ -2734,14 +2734,19 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "The main landing page for the admin panel, showing key stats and navigation links.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "AdminDashboardPage",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders the admin dashboard with navigation links to manage memberships, schedules, trainers, and testimonials."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
-    "api_endpoints_consumed" : null,
+    "api_endpoints_consumed" : [ ],
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "admin-portal",
-    "file_role" : null,
+    "file_role" : "Admin page — the main landing page for the admin panel, providing navigation to other admin sections.",
     "change_required" : null
   }, {
     "file_name" : "AdminMembershipsPage.tsx",
@@ -2752,14 +2757,19 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Admin page for managing membership plans, composed of a data table and a creation/editing form.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "AdminMembershipsPage",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders the membership plan management interface, including a table of plans and a form for creating/editing."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
-    "api_endpoints_consumed" : null,
+    "api_endpoints_consumed" : [ ],
     "imports_from" : [ "frontend/src/hooks/useMemberships.ts", "frontend/src/components/admin/membership/MembershipPlanTable.tsx", "frontend/src/components/admin/membership/MembershipPlanForm.tsx", "frontend/src/components/admin/common/DeleteConfirmationDialog.tsx" ],
     "depends_on" : [ ],
     "feature_name" : "admin-portal",
-    "file_role" : null,
+    "file_role" : "Admin page — manages membership plans using `useMemberships` hooks and renders `MembershipPlanTable` and `MembershipPlanForm`.",
     "change_required" : null
   }, {
     "file_name" : "MembershipPlanTable.tsx",
@@ -2770,14 +2780,19 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "A data table for displaying and managing existing membership plans.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "MembershipPlanTable",
+      "parameters" : [ "{ plans: MembershipPlanDto[], onEdit: (plan: MembershipPlanDto) => void, onDelete: (id: string) => void }" ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders a table of membership plans with actions for editing and deleting."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
-    "api_endpoints_consumed" : null,
+    "api_endpoints_consumed" : [ ],
     "imports_from" : [ "frontend/src/types/membership.ts" ],
     "depends_on" : [ ],
     "feature_name" : "admin-portal",
-    "file_role" : null,
+    "file_role" : "COMPONENT layer — displays a data table for existing membership plans with edit and delete actions.",
     "change_required" : null
   }, {
     "file_name" : "MembershipPlanForm.tsx",
@@ -2788,14 +2803,19 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "A form (used in a dialog or drawer) for creating and editing membership plans.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "MembershipPlanForm",
+      "parameters" : [ "{ initialData?: MembershipPlanDto, onSubmit: (data: MembershipPlanDto) => void, onCancel: () => void }" ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders a form for creating or editing a membership plan."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
-    "api_endpoints_consumed" : null,
+    "api_endpoints_consumed" : [ ],
     "imports_from" : [ "frontend/src/hooks/useMemberships.ts" ],
     "depends_on" : [ ],
     "feature_name" : "admin-portal",
-    "file_role" : null,
+    "file_role" : "COMPONENT layer — provides a form for creating and editing `MembershipPlanDto` objects.",
     "change_required" : null
   }, {
     "file_name" : "AdminSchedulingPage.tsx",
@@ -2806,14 +2826,19 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Admin page for managing gym classes and schedules.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "AdminSchedulingPage",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders the class schedule management interface, including a table of schedules and a form for creating/editing."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
-    "api_endpoints_consumed" : null,
+    "api_endpoints_consumed" : [ ],
     "imports_from" : [ "frontend/src/hooks/useSchedule.ts", "frontend/src/components/admin/schedule/ClassScheduleTable.tsx", "frontend/src/components/admin/schedule/ClassScheduleForm.tsx", "frontend/src/components/admin/common/DeleteConfirmationDialog.tsx" ],
     "depends_on" : [ ],
     "feature_name" : "admin-portal",
-    "file_role" : null,
+    "file_role" : "Admin page — manages gym classes and schedules using `useSchedule` hooks and renders `ClassScheduleTable` and `ClassScheduleForm`.",
     "change_required" : null
   }, {
     "file_name" : "ClassScheduleTable.tsx",
@@ -2824,14 +2849,19 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "A data table for displaying and managing class schedules.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "ClassScheduleTable",
+      "parameters" : [ "{ schedules: ClassScheduleDto[], onEdit: (schedule: ClassScheduleDto) => void, onDelete: (id: string) => void }" ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders a table of class schedules with actions for editing and deleting."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
-    "api_endpoints_consumed" : null,
+    "api_endpoints_consumed" : [ ],
     "imports_from" : [ "frontend/src/types/schedule.ts" ],
     "depends_on" : [ ],
     "feature_name" : "admin-portal",
-    "file_role" : null,
+    "file_role" : "COMPONENT layer — displays a data table for existing class schedules with edit and delete actions.",
     "change_required" : null
   }, {
     "file_name" : "ClassScheduleForm.tsx",
@@ -2842,14 +2872,19 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "A form for creating and editing class schedules.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "ClassScheduleForm",
+      "parameters" : [ "{ initialData?: ClassScheduleDto, onSubmit: (data: ClassScheduleDto) => void, onCancel: () => void }" ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders a form for creating or editing a class schedule."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
-    "api_endpoints_consumed" : null,
+    "api_endpoints_consumed" : [ ],
     "imports_from" : [ "frontend/src/hooks/useSchedule.ts" ],
     "depends_on" : [ ],
     "feature_name" : "admin-portal",
-    "file_role" : null,
+    "file_role" : "COMPONENT layer — provides a form for creating and editing `ClassScheduleDto` objects.",
     "change_required" : null
   }, {
     "file_name" : "AdminTrainersPage.tsx",
@@ -2860,14 +2895,19 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Admin page for managing trainer profiles.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "AdminTrainersPage",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders the trainer profile management interface, including a table of trainers and a form for creating/editing."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
-    "api_endpoints_consumed" : null,
+    "api_endpoints_consumed" : [ ],
     "imports_from" : [ "frontend/src/hooks/useContent.ts", "frontend/src/components/admin/trainer/TrainerTable.tsx", "frontend/src/components/admin/trainer/TrainerForm.tsx", "frontend/src/components/admin/common/DeleteConfirmationDialog.tsx" ],
     "depends_on" : [ ],
     "feature_name" : "admin-portal",
-    "file_role" : null,
+    "file_role" : "Admin page — manages trainer profiles using `useContent` hooks and renders `TrainerTable` and `TrainerForm`.",
     "change_required" : null
   }, {
     "file_name" : "TrainerTable.tsx",
@@ -2878,14 +2918,19 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "A data table for displaying and managing trainer profiles.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "TrainerTable",
+      "parameters" : [ "{ trainers: TrainerDto[], onEdit: (trainer: TrainerDto) => void, onDelete: (id: string) => void }" ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders a table of trainer profiles with actions for editing and deleting."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
-    "api_endpoints_consumed" : null,
+    "api_endpoints_consumed" : [ ],
     "imports_from" : [ "frontend/src/types/content.ts" ],
     "depends_on" : [ ],
     "feature_name" : "admin-portal",
-    "file_role" : null,
+    "file_role" : "COMPONENT layer — displays a data table for existing trainer profiles with edit and delete actions.",
     "change_required" : null
   }, {
     "file_name" : "TrainerForm.tsx",
@@ -2896,14 +2941,19 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "A form for creating and editing trainer profiles.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "TrainerForm",
+      "parameters" : [ "{ initialData?: TrainerDto, onSubmit: (data: TrainerDto) => void, onCancel: () => void }" ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders a form for creating or editing a trainer profile."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
-    "api_endpoints_consumed" : null,
+    "api_endpoints_consumed" : [ ],
     "imports_from" : [ "frontend/src/hooks/useContent.ts" ],
     "depends_on" : [ ],
     "feature_name" : "admin-portal",
-    "file_role" : null,
+    "file_role" : "COMPONENT layer — provides a form for creating and editing `TrainerDto` objects.",
     "change_required" : null
   }, {
     "file_name" : "AdminTestimonialsPage.tsx",
@@ -2914,14 +2964,19 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "Admin page for managing customer testimonials.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "AdminTestimonialsPage",
+      "parameters" : [ ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders the testimonial management interface, including a table of testimonials and a form for creating/editing."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
-    "api_endpoints_consumed" : null,
+    "api_endpoints_consumed" : [ ],
     "imports_from" : [ "frontend/src/hooks/useContent.ts", "frontend/src/components/admin/testimonial/TestimonialTable.tsx", "frontend/src/components/admin/testimonial/TestimonialForm.tsx", "frontend/src/components/admin/common/DeleteConfirmationDialog.tsx" ],
     "depends_on" : [ ],
     "feature_name" : "admin-portal",
-    "file_role" : null,
+    "file_role" : "Admin page — manages customer testimonials using `useContent` hooks and renders `TestimonialTable` and `TestimonialForm`.",
     "change_required" : null
   }, {
     "file_name" : "TestimonialTable.tsx",
@@ -2932,14 +2987,19 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "A data table for displaying and managing testimonials.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "TestimonialTable",
+      "parameters" : [ "{ testimonials: TestimonialDto[], onEdit: (testimonial: TestimonialDto) => void, onDelete: (id: string) => void }" ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders a table of testimonials with actions for editing and deleting."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
-    "api_endpoints_consumed" : null,
+    "api_endpoints_consumed" : [ ],
     "imports_from" : [ "frontend/src/types/content.ts" ],
     "depends_on" : [ ],
     "feature_name" : "admin-portal",
-    "file_role" : null,
+    "file_role" : "COMPONENT layer — displays a data table for existing testimonials with edit and delete actions.",
     "change_required" : null
   }, {
     "file_name" : "TestimonialForm.tsx",
@@ -2950,14 +3010,19 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "A form for creating and editing testimonials.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "TestimonialForm",
+      "parameters" : [ "{ initialData?: TestimonialDto, onSubmit: (data: TestimonialDto) => void, onCancel: () => void }" ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders a form for creating or editing a testimonial."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
-    "api_endpoints_consumed" : null,
+    "api_endpoints_consumed" : [ ],
     "imports_from" : [ "frontend/src/hooks/useContent.ts" ],
     "depends_on" : [ ],
     "feature_name" : "admin-portal",
-    "file_role" : null,
+    "file_role" : "COMPONENT layer — provides a form for creating and editing `TestimonialDto` objects.",
     "change_required" : null
   }, {
     "file_name" : "DeleteConfirmationDialog.tsx",
@@ -2968,14 +3033,19 @@
     "updated_date" : "2024-07-28",
     "status" : "PLANNED",
     "description" : "A reusable dialog component to confirm deletion of any admin-managed entity.",
-    "public_functions" : null,
+    "public_functions" : [ {
+      "name" : "DeleteConfirmationDialog",
+      "parameters" : [ "{ isOpen: boolean, onClose: () => void, onConfirm: () => void, title: string, message: string }" ],
+      "return_type" : "JSX.Element",
+      "description" : "Renders a confirmation dialog for deletion operations."
+    } ],
     "public_variables" : null,
     "api_endpoints" : null,
-    "api_endpoints_consumed" : null,
+    "api_endpoints_consumed" : [ ],
     "imports_from" : [ ],
     "depends_on" : [ ],
     "feature_name" : "admin-portal",
-    "file_role" : null,
+    "file_role" : "COMPONENT layer — a reusable dialog component to confirm deletion of any admin-managed entity.",
     "change_required" : null
   } ],
   "features" : [ {
@@ -3064,8 +3134,8 @@
     "feature_display_name" : "Admin Portal",
     "feature_type" : "FRONTEND",
     "file_paths" : [ "frontend/src/pages/AdminDashboardPage.tsx", "frontend/src/pages/AdminMembershipsPage.tsx", "frontend/src/components/admin/membership/MembershipPlanTable.tsx", "frontend/src/components/admin/membership/MembershipPlanForm.tsx", "frontend/src/pages/AdminSchedulingPage.tsx", "frontend/src/components/admin/schedule/ClassScheduleTable.tsx", "frontend/src/components/admin/schedule/ClassScheduleForm.tsx", "frontend/src/pages/AdminTrainersPage.tsx", "frontend/src/components/admin/trainer/TrainerTable.tsx", "frontend/src/components/admin/trainer/TrainerForm.tsx", "frontend/src/pages/AdminTestimonialsPage.tsx", "frontend/src/components/admin/testimonial/TestimonialTable.tsx", "frontend/src/components/admin/testimonial/TestimonialForm.tsx", "frontend/src/components/admin/common/DeleteConfirmationDialog.tsx" ],
-    "feature_instruction" : null,
-    "depends_on_features" : null,
+    "feature_instruction" : "## Design Tokens\n- Navbar: bg-[#1A1A1A] text-[#F5F5F5]\n- Primary CTA: bg-[#DFFF00] hover:bg-[#c7e600] text-[#1A1A1A] font-semibold rounded-full px-8 py-3 transition-all duration-200\n- Brand text accent: text-[#DFFF00]\n- Section bg: bg-white (odd sections) / bg-gray-50 (even sections)\n- Card: bg-white rounded-xl shadow-md border border-gray-100 p-6\n- Section container: <section className=\"py-16 px-4\"><div className=\"max-w-7xl mx-auto\">\n- Hero h1: text-4xl md:text-6xl font-bold text-white\n- Body: text-gray-700 leading-relaxed\n\nThe Admin Portal feature provides a comprehensive interface for managing various aspects of MultiFit Aundh, including membership plans, class schedules, trainer profiles, and customer testimonials. All pages within this feature are protected by the `AdminLayout` from `shared-frontend` and require authentication with an 'admin' role, enforced by `ProtectedRoute` from `auth-frontend`. The portal leverages several custom React hooks (`useMemberships`, `useSchedule`, `useContent`) to interact with the backend APIs for data fetching, creation, updating, and deletion. Each administrative section (Memberships, Scheduling, Trainers, Testimonials) follows a consistent pattern: a main page (`AdminMembershipsPage.tsx`, `AdminSchedulingPage.tsx`, etc.) that renders a data table component (`MembershipPlanTable.tsx`, `ClassScheduleTable.tsx`, etc.) and a form component (`MembershipPlanForm.tsx`, `ClassScheduleForm.tsx`, etc.) for adding or editing entities. A common `DeleteConfirmationDialog.tsx` is used across all sections for confirming deletion operations.\n\n### AdminDashboardPage.tsx\nThis page serves as the entry point for the admin portal, providing an overview of key metrics and navigation links to other admin sections. It will display a welcoming message and cards linking to the Membership Plans, Class Schedules, Trainers, and Testimonials management pages.\n\n### AdminMembershipsPage.tsx\nThis page is responsible for managing membership plans. It will use the `useAllMembershipPlans`, `useCreateMembership`, `useUpdateMembership`, and `useDeleteMembership` hooks from `useMemberships.ts` to fetch, create, update, and delete membership plans. The page will render `MembershipPlanTable` to display existing plans and `MembershipPlanForm` within a modal or drawer for creating and editing plans. Deletion will be handled via `DeleteConfirmationDialog`.\n\n### MembershipPlanTable.tsx\nThis component displays a sortable and filterable table of membership plans. Each row will include actions for editing and deleting a plan. It will receive `MembershipPlanDto[]` as props and emit events for edit and delete actions.\n\n### MembershipPlanForm.tsx\nThis component provides a form for creating or editing a `MembershipPlanDto`. It will use `react-hook-form` and `zod` for validation. The form will include fields for `name`, `description`, `price`, `durationInMonths`, and `isActive`. Upon submission, it will call the appropriate mutation hook from `useMemberships.ts`.\n\n### AdminSchedulingPage.tsx\nThis page manages gym classes and schedules. It will utilize `useAllGymClasses`, `useCreateGymClass`, `useUpdateGymClass`, `useDeleteGymClass`, `useAllClassSchedules`, `useCreateClassSchedule`, `useUpdateClassSchedule`, and `useDeleteClassSchedule` hooks from `useSchedule.ts`. It will render `ClassScheduleTable` for schedules and `ClassScheduleForm` for creating/editing schedules. `DeleteConfirmationDialog` will be used for deletion.\n\n### ClassScheduleTable.tsx\nThis component displays a table of class schedules. Each row will include actions for editing and deleting a schedule. It will receive `ClassScheduleDto[]` as props and emit events for edit and delete actions.\n\n### ClassScheduleForm.tsx\nThis component provides a form for creating or editing a `ClassScheduleDto`. It will include fields for `gymClassId`, `scheduleDate`, `startTime`, `endTime`, and `maxCapacity`. It will call the appropriate mutation hook from `useSchedule.ts` on submission.\n\n### AdminTrainersPage.tsx\nThis page manages trainer profiles. It will use `useAllTrainers`, `useCreateTrainer`, `useUpdateTrainer`, and `useDeleteTrainer` hooks from `useContent.ts`. It will render `TrainerTable` to display trainers and `TrainerForm` for creating/editing trainers. `DeleteConfirmationDialog` will be used for deletion.\n\n### TrainerTable.tsx\nThis component displays a table of trainer profiles. Each row will include actions for editing and deleting a trainer. It will receive `TrainerDto[]` as props and emit events for edit and delete actions.\n\n### TrainerForm.tsx\nThis component provides a form for creating or editing a `TrainerDto`. It will include fields for `name`, `specialization`, `bio`, and `imageUrl`. It will call the appropriate mutation hook from `useContent.ts` on submission.\n\n### AdminTestimonialsPage.tsx\nThis page manages customer testimonials. It will use `useAllTestimonials`, `useCreateTestimonial`, `useUpdateTestimonial`, and `useDeleteTestimonial` hooks from `useContent.ts`. It will render `TestimonialTable` to display testimonials and `TestimonialForm` for creating/editing testimonials. `DeleteConfirmationDialog` will be used for deletion.\n\n### TestimonialTable.tsx\nThis component displays a table of testimonials. Each row will include actions for editing and deleting a testimonial. It will receive `TestimonialDto[]` as props and emit events for edit and delete actions.\n\n### TestimonialForm.tsx\nThis component provides a form for creating or editing a `TestimonialDto`. It will include fields for `authorName`, `rating`, `content`, and `displayDate`. It will call the appropriate mutation hook from `useContent.ts` on submission.\n\n### DeleteConfirmationDialog.tsx\nThis is a reusable dialog component that takes a title, message, and a callback function for confirmation. It will be used by all admin pages to confirm deletion operations before proceeding.",
+    "depends_on_features" : [ "membership-backend", "scheduling-backend", "content-backend", "shared-frontend", "auth-frontend", "membership-frontend", "scheduling-frontend", "content-frontend" ],
     "change_required" : true,
     "change_instruction" : null
   }, {
